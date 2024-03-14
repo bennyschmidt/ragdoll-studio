@@ -2,6 +2,8 @@
 
 A parallelized Node.js API for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
 
+This project was bootstrapped with [Simple Node.js Multi-process](https://github.com/bennyschmidt/simple-node-multiprocess).
+
 -----
 
 ## Simple Node.js multi-process
@@ -27,21 +29,13 @@ On load, the server is treated as a "primary" node that forks 1 copy of itself f
 The copies run the same logic in `index.js` in parallel as needed, each listening for `GET` and `POST` requests (in this example).
 That means if you run this on a machine with an 8-core CPU, the first instance will spawn 7 other copies, and manage all of their lifecycle events (`onExit` etc.).
 
-![cores](cores.png)
-
 **Note that "multi-process" is not the same as "multi-threaded"**
 
 > The main difference is that when resource requirements are low, multiple processes can still run on a single CPU core thread, especially if the OS is doing something else more expensive than what your app is doing. But if your app is the hungriest for CPU on that machine, it will spread the work across more cores.
 
-![multi-process](workers.png)
-
 > There's no guarantee that it will run 1 process per core until you start to push the machine to its limit - at that point each process would work in its own core. That's the point of limiting `numCPUs` to the number of CPU cores available. It's pretty graceful, as it's like using the OS as a load balancer. Of course, Node.js can scale and run many more processes in parallel than the number of available CPU cores, but it isn't recommended for a few reasons.
 
-![load balancer](requests.png)
-
 > The effects of heavy traffic, DDoS attacks, and uncaught errors are minimized by handing off excess work to available workers
-
-![non-blocking io](nonblocking.png)
 
 > Non-blocking IO: The first tab (using Worker #3) is sending an unhandled erroneous request that causes the process to hang, while the second tab is still able to use the API via another worker (Worker #2)
 
