@@ -1,0 +1,46 @@
+#app {
+  width: 75vw;
+  min-width: 30rem;
+  margin: 1rem auto;
+}
+
+#input,
+#output {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#output .img {
+  width: 25rem;
+  height: 25rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 5rem black;
+}
+
+#output p {
+  color: dodgerblue;
+}
+
+#input > input,
+#input > button {
+  display: block;
+  height: 3rem;
+  margin: .5rem;
+  border: none;
+  border-radius: .5rem;
+  width: calc(100% - 1rem);
+  appearance: none;
+  outline: none;
+  background: black;
+  color: white;
+}
+
+#input > input {
+  padding: 0 .5rem;
+}
+
+#input > button {
+  background: dodgerblue;
+}
