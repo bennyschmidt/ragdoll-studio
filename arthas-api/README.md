@@ -1,5 +1,7 @@
 # Arthas API
 
+A parallelized Node.js API for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
+
 -----
 
 ## Simple Node.js multi-process
