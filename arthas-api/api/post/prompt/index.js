@@ -1,7 +1,5 @@
 const ArthasGPT = require('arthasgpt');
-const { OpenAIAgent } = require('llamaindex');
-
-console.log(ArthasGPT);
+const { OpenAIAgent } = require('llamaindex')
 
 // Storage utils
 
