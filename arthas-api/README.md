@@ -2,11 +2,11 @@
 
 A parallelized Node.js API for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
 
-This project was bootstrapped with [Simple Node.js Multi-process](https://github.com/bennyschmidt/simple-node-multiprocess).
-
 -----
 
 ## Simple Node.js multi-process
+
+This project was bootstrapped with [Simple Node.js Multi-process](https://github.com/bennyschmidt/simple-node-multiprocess).
 
 ###  A super simple Node.js multi-process API setup:
 
