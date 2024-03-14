@@ -1,5 +1,7 @@
 # Arthas React
 
+React front-end for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
+
 -----
 
 ## Getting Started with Create React App
