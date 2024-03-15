@@ -2,6 +2,9 @@
   width: 75vw;
   min-width: 30rem;
   margin: 1rem auto;
+  background: #12121240;
+  border-radius: 1rem;
+  padding: 2rem;
 }
 
 #input,
@@ -17,9 +20,18 @@
   height: 25rem;
   border-radius: 1rem;
   box-shadow: 0 0 5rem black;
+  background: black;
+}
+
+#output .img > img {
+  border-radius: inherit;
 }
 
 #output p {
+  margin: 1rem 0.5rem;
+  padding: 1rem;
+  background: black;
+  border-radius: 1rem;
   color: dodgerblue;
 }
 
@@ -43,4 +55,11 @@
 
 #input > button {
   background: dodgerblue;
+  transition: background-color .1s linear, color .1s linear;
+  font: normal normal 1em "Wrath", sans-serif;
+}
+
+#input > button:hover {
+  background-color: cyan;
+  color: dodgerblue;
 }

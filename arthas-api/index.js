@@ -49,7 +49,14 @@ if (cluster.isPrimary) {
 
   const ApiGateway = require('./api');
 
+  const sessionStorage = {
+    getItem: key => sessionStorage[key],
+    setItem: (key, value) => sessionStorage[key] = value
+  };
+
+  sessionStorage.setItem('agent', null);
+
   http
-    .createServer(ApiGateway(cluster))
+    .createServer(ApiGateway(cluster, sessionStorage))
     .listen(PORT);
 }

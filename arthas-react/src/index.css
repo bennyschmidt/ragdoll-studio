@@ -1,12 +1,33 @@
 body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   margin: 0;
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #121212;
+  background: #121212 url('http://localhost:3000/img/arthas.jpg') center center / cover no-repeat;
   color: white;
 }
 
 * {
   box-sizing: border-box;
+}
+
+input[disabled],
+button[disabled] {
+  opacity: .5;
+  font-style: italic;
+  cursor: not-allowed;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.5em;
+  font: normal normal 1.5em "Wrath", sans-serif;
+  text-shadow: 0 0 3rem dodgerblue;
 }

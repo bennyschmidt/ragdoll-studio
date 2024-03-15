@@ -2,6 +2,25 @@
 
 A parallelized Node.js API for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
 
+#### .env
+
+```
+OPENAI_API_KEY= <Your OpenAI API key>
+LLM_FRAMEWORK=llamaindex
+LANGUAGE_MODEL=GPT-3.5
+IMAGE_MODEL=dall-e-2
+DELAY=2000
+RENDER=false
+VERBOSE=true
+GREETING=false
+CACHE=true
+MAX_STORAGE_KEY_LENGTH=32
+LOG_PREFIX=<ArthasGPT>
+STORAGE_URI=./.tmp
+```
+
+See [ArthasGPT Environment Config](https://github.com/bennyschmidt/ArthasGPT?tab=readme-ov-file#env-scaffold).
+
 -----
 
 ## Simple Node.js multi-process

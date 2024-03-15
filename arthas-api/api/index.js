@@ -4,23 +4,23 @@ dotenv.config();
 
 const { DELAY } = process.env;
 
-let agent;
-
 /**
  * API Gateway
  * Handles incoming HTTP requests
  */
 
-const Routes = {
-  POST: {
-    '/v1/prompt': require('./post/prompt')({
-      timeout: DELAY,
-      agent
-    })
-  }
-};
+module.exports = (cluster, sessionStorage) => (req, res) => {
+  const agent = sessionStorage.getItem('agent');
 
-module.exports = cluster => (req, res) => {
+  const Routes = {
+    POST: {
+      '/v1/prompt': require('./post/prompt')({
+        timeout: DELAY,
+        agent
+      })
+    }
+  };
+
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',

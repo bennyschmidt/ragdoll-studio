@@ -1,13 +1,20 @@
 import { useState } from 'react';
+
 import './App.css';
+
+const BASE_URL = 'http://localhost:8000';
+const ARTHAS_NAME = 'Arthas';
 
 const App = () => {
   const [question, setQuestion] = useState('');
   const [text, setText] = useState('');
   const [image, setImage] = useState('');
+  const [disabled, setDisabled] = useState(false);
 
   const ask = async () => {
-    const response = await fetch('http://localhost:8000/v1/prompt', {
+    setDisabled(true);
+
+    const response = await fetch(`${BASE_URL}/v1/prompt`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -22,22 +29,47 @@ const App = () => {
       setText(answer.text);
       setImage(answer.imageURL);
     }
+
+    setDisabled(false);
   };
 
   const onChangeQuestion = ({ target: { value }}) => {
     setQuestion(value);
   };
 
+  const onKeyDownQuestion = ({ keyCode }) => (
+    question && keyCode === 13 && ask()
+  );
+
   return <main id="app">
+    <h1>ArthasGPT</h1>
     <div id="output">
       <div className="img">
-        {image && <img src={image} alt="Corresponding visualization" width="100%" height="100%" />}
+        {image && <img
+          src={image}
+          alt="Corresponding visualization"
+          width="100%"
+          height="100%"
+        />}
       </div>
-      <p>{text || <em style={{ color: '#444' }}>Write a question...</em>}</p>
+      <p style={{ background: text ? 'black' : '#12121260'}}>{text || <em style={{ color: '#444' }}>
+        Write a question...
+      </em>}</p>
     </div>
     <div id="input">
-      <input onChange={onChangeQuestion} value={question} placeholder="What would you like to ask Arthas?" />
-      <button onClick={ask}>Ask</button>
+      <input
+        disabled={disabled}
+        value={question}
+        placeholder={`What would you like to ask ${ARTHAS_NAME}?`}
+        onChange={onChangeQuestion}
+        onKeyDown={onKeyDownQuestion}
+      />
+      <button
+        disabled={disabled}
+        onClick={ask}
+      >
+        Send
+      </button>
     </div>
   </main>;
 }
