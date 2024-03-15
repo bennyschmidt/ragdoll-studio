@@ -2,4 +2,8 @@
 
 A web app for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
 
-![image](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/08d311d2-3cbd-4cd1-bc36-11af02a1ce72)
+![Screenshot from 2024-03-14 18-47-39](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/9655596a-ac48-46f2-963c-78449b748c1e)
+
+![Screenshot from 2024-03-14 18-45-34](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/e5755c55-20fc-4a4a-84e7-d71ab0b5d93a)
+
+![Screenshot from 2024-03-14 19-03-51](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/08dc6603-70a4-4913-a723-7335e2ae1b95)
