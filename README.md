@@ -6,6 +6,8 @@ A web app for interacting with [ArthasGPT](https://github.com/bennyschmidt/Artha
 
 ### Arthas Menethil (default persona)
 
+![arthas](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/2b138721-193b-4ba0-b543-330a87b7f9cf)
+
 ```
 ARTHAS_NAME = 'Arthas';
 KNOWLEDGE_URI = 'https://wowpedia.fandom.com/wiki/Arthas_Menethil';
@@ -14,11 +16,11 @@ WRITING_STYLE = 'inspiring but grim, from the year 1200 A.D.';
 WRITING_TONE = 'slightly resentful';
 ```
 
-![Screenshot from 2024-03-14 18-47-39](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/9655596a-ac48-46f2-963c-78449b748c1e)
-
 ![Screenshot from 2024-03-14 18-45-34](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/e5755c55-20fc-4a4a-84e7-d71ab0b5d93a)
 
 ### J.R.R. Tolkien
+
+![tolkien](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/34ede550-2daf-4c1e-91f7-f010ff9b4719)
 
 ```
 ARTHAS_NAME = 'Mr. Tolkien';
@@ -28,11 +30,11 @@ WRITING_STYLE = 'flowery and scenic, from the 20th century';
 WRITING_TONE = 'quintessentially English';
 ```
 
-![Screenshot from 2024-03-14 20-11-16](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/7c1aaab8-d94d-497b-8008-3286af4850f9)
-
 ![image](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/76ab514b-ed2e-4304-baa7-207e1878874b)
 
 ### Queen of Hearts
+
+![queen-of-hearts](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/e311b27c-c4c0-45da-a40c-44c73dd3a157)
 
 ```
 ARTHAS_NAME = 'Her Majesty';
@@ -44,5 +46,4 @@ WRITING_TONE = 'English from the 18th century, often ending sentences with "Off 
 
 ![Screenshot from 2024-03-14 20-44-00](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/1096ff5f-1bda-4635-a7ca-4c8992e4badb)
 
-![image](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/c7c153c9-6d4c-4926-9a39-aad8871d93a7)
-
+![screenshot](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/fdfa4fb7-bd74-462c-a992-b9ffed6063e7)
