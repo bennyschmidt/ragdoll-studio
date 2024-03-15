@@ -42,6 +42,7 @@ WRITING_STYLE = 'cruel and authoritarian, from the 18th century';
 WRITING_TONE = 'English from the 18th century, often ending sentences with "Off with your head!"';
 ```
 
-![Screenshot from 2024-03-14 20-27-29](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/eeb876e6-090c-45da-9ccc-a11ee976b79d)
+![Screenshot from 2024-03-14 20-44-00](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/1096ff5f-1bda-4635-a7ca-4c8992e4badb)
 
-![Screenshot from 2024-03-14 20-31-25](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/2a03f4ba-9b10-423c-a28c-0ca9787ab4a3)
+![image](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/c7c153c9-6d4c-4926-9a39-aad8871d93a7)
+
