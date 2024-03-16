@@ -64,7 +64,7 @@ const App = () => {
 
   return <>
     <nav id="nav" className="panel">
-      <h1>Limited Knowledge Personas (LKPs)</h1>
+      <h1>Domain-specific Personas (DSPs)</h1>
       <ul className="persona-list">
         {personaList && personaList.map(({
           name,
