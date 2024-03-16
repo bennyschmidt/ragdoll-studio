@@ -2,6 +2,12 @@
 
 A web app for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
 
+#### Responsive Chat UI
+
+![Screenshot from 2024-03-16 09-47-18](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/73dde8a8-f013-4905-bb22-e33ce0391506)
+
+![Screenshot from 2024-03-16 10-19-44](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/3b443d0c-469b-423e-af52-0fa6de47ae5b)
+
 -----
 
 ### Arthas Menethil (default persona)
