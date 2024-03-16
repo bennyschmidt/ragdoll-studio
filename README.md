@@ -4,8 +4,6 @@ A web app for interacting with [ArthasGPT](https://github.com/bennyschmidt/Artha
 
 #### Responsive Chat UI
 
-Desktop:
-
 ![Screenshot from 2024-03-16 09-47-18](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/73dde8a8-f013-4905-bb22-e33ce0391506)
 
 #### Getting started
@@ -14,7 +12,7 @@ Desktop:
 
 `cd arthas-api` 
 
-Follow the instructions in the API `README.md`. You will need an OpenAI API key to get started.
+See the API `README.md`. You will need an OpenAI API key to get started.
 
 2. Install dependencies
 
@@ -56,9 +54,11 @@ Worker (#7) is listening for messages.
 
 This means the server is running and handling concurrent requests on all CPU cores
 
-4. Set up the front-end
+4. Set up the [front-end](https://github.com/bennyschmidt/Arthas.AI/tree/master/arthas-react)
 
 `cd ../arthas-react`
+
+See the React `README.md`.
 
 `nvm use && npm i`
 
