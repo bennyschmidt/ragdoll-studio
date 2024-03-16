@@ -2,11 +2,7 @@
 
 A web app for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
 
-#### Responsive Chat UI
-
-![Screenshot from 2024-03-16 09-47-18](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/73dde8a8-f013-4905-bb22-e33ce0391506)
-
-#### Getting started
+## Installation
 
 1. Configure the [API](https://github.com/bennyschmidt/Arthas.AI/tree/master/arthas-api)
 
@@ -22,7 +18,7 @@ See the API `README.md`. You will need an OpenAI API key to get started.
 
 `npm start`
 
-You should see some output like this:
+You should see something like this:
 
 ```
 A worker has spawned.
@@ -68,9 +64,29 @@ See the React `README.md`.
 
 You should see the default UI:
 
-![Screenshot from 2024-03-16 11-47-10](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/555940a4-a99f-42d5-af63-0b25833b6716)
+![image](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/d1980924-7a50-408e-b5c6-aa586743d1d5)
 
 -----
+
+## Usage
+
+Coming soon.
+
+#### Using text models other than GPT-3.5
+
+#### Using image models other than DALL-E
+
+#### Sharing personas
+
+- JSON import/export
+
+#### Customizing the UI
+
+![Screenshot from 2024-03-16 09-47-18](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/73dde8a8-f013-4905-bb22-e33ce0391506)
+
+-----
+
+## Examples
 
 ### Arthas Menethil (default persona)
 
@@ -133,3 +149,5 @@ What I learned from Queen of Hearts that I didn't already know, after ~5 minutes
 > - She doesn't really chop people's heads off - it's all for show to scare the lesser cards into falling in line, while the King of Hearts usually pardons them in secret
 > - Queen of Hearts is loosely based on Queen Victoria
 > - The Queen's identity outside of Wonderland is Cora Mills - the mother of both the Wicked Witch of the West (from _The Wizard of Oz_) and Evil Queen (from _Snow White_)
+
+## 
