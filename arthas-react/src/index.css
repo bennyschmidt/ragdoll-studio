@@ -12,6 +12,7 @@ body {
 
 * {
   box-sizing: border-box;
+  font-size: 1em;
 }
 
 input[disabled],
@@ -23,11 +24,30 @@ button[disabled] {
 
 button {
   cursor: pointer;
+  background: #ffffff25;
+  color: white;
+  padding: 1rem;
+  appearance: none;
+  border-radius: 1rem;
+  border: none;
+  margin: 1rem 0;
+  font-weight: bold;
+  transition: background-color .1s linear, color .1s linear;
+}
+
+button:hover {
+  background-color: white;
+  color: dodgerblue;
+}
+
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
-  text-align: center;
-  font-size: 1.5em;
-  font: normal normal 1.5em "Wrath", sans-serif;
-  text-shadow: 0 0 3rem dodgerblue;
+  font-size: .75em;
+  margin: 0 0 1rem;
+  opacity: .5;
 }

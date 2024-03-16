@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import './App.css';
 
@@ -10,6 +10,35 @@ const App = () => {
   const [text, setText] = useState('');
   const [image, setImage] = useState('');
   const [disabled, setDisabled] = useState(false);
+
+  const [persona, setPersona] = useState();
+  const [personaList, setPersonaList] = useState();
+
+  useEffect(() => {
+    const currentPersona = {
+      name: ARTHAS_NAME,
+      avatarURL: '/img/avatars/arthas.png'
+    };
+
+    const savedPersonas = [
+      {
+        ...currentPersona,
+
+        online: true
+      },
+      {
+        name: 'J.R.R. Tolkien',
+        avatarURL: '/img/avatars/tolkien.png'
+      },
+      {
+        name: 'Queen of Hearts',
+        avatarURL: '/img/avatars/queen-of-hearts.png'
+      }
+    ];
+
+    setPersona(currentPersona);
+    setPersonaList(savedPersonas);
+  }, []);
 
   const ask = async () => {
     setDisabled(true);
@@ -41,37 +70,60 @@ const App = () => {
     question && keyCode === 13 && ask()
   );
 
-  return <main id="app">
-    <h1>ArthasGPT</h1>
-    <div id="output">
-      <div className="img">
-        {image && <img
-          src={image}
-          alt="Corresponding visualization"
-          width="100%"
-          height="100%"
-        />}
+  return <>
+    <nav id="nav" className="panel">
+      <h1>Limited Knowledge Personas (LKPs)</h1>
+      <ul className="persona-list">
+        {personaList && personaList.map(({
+          name,
+          avatarURL,
+          online = false
+        }) => (
+          <li key={name} className={`persona-list-item panel ${online ? 'selected' : ''}`}>
+            <span className="online-indicator" />
+            <span className="persona-avatar">
+              <img
+                src={avatarURL}
+                alt={name}
+                width="100%"
+                height="100%"
+              />
+            </span>
+            <h2>{name}</h2>
+          </li>
+        ))}
+      </ul>
+      <button id="create-persona-button">+</button>
+    </nav>
+    <main id="app" className="panel">
+      <div id="output">
+        <div className="img">
+          {image && <img
+            src={image}
+            alt="Corresponding visualization"
+            width="100%"
+            height="100%"
+          />}
+        </div>
+        {text && <p>{text}</p>}
       </div>
-      <p style={{ background: text ? 'black' : '#12121260'}}>{text || <em style={{ color: '#444' }}>
-        Write a question...
-      </em>}</p>
-    </div>
-    <div id="input">
-      <input
-        disabled={disabled}
-        value={question}
-        placeholder={`What would you like to ask ${ARTHAS_NAME}?`}
-        onChange={onChangeQuestion}
-        onKeyDown={onKeyDownQuestion}
-      />
-      <button
-        disabled={disabled}
-        onClick={ask}
-      >
-        Send
-      </button>
-    </div>
-  </main>;
+      <div id="input">
+        <input
+          disabled={disabled}
+          value={question}
+          placeholder={`What would you like to ask ${ARTHAS_NAME}?`}
+          onChange={onChangeQuestion}
+          onKeyDown={onKeyDownQuestion}
+        />
+        <button
+          disabled={disabled}
+          onClick={ask}
+        >
+          Send
+        </button>
+      </div>
+    </main>
+  </>;
 }
 
 export default App;

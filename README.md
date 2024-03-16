@@ -9,7 +9,7 @@ A web app for interacting with [ArthasGPT](https://github.com/bennyschmidt/Artha
 ```
 ARTHAS_NAME = 'Arthas';
 KNOWLEDGE_URI = 'https://wowpedia.fandom.com/wiki/Arthas_Menethil';
-ART_STYLE = `Blizzard's World of Warcraft concept art in high resolution like a finely-tuned video game model including each detail and anatomically correct features (if any)`;
+ART_STYLE = `Blizzard's World of Warcraft concept art in high resolution like a fine-tuned video game model including each detail and anatomically correct features (if any)`;
 WRITING_STYLE = 'inspiring but grim, from the year 1200 A.D.';
 WRITING_TONE = 'slightly resentful';
 ```
@@ -23,7 +23,7 @@ WRITING_TONE = 'slightly resentful';
 ```
 ARTHAS_NAME = 'Mr. Tolkien';
 KNOWLEDGE_URI = 'https://en.wikipedia.org/wiki/J._R._R._Tolkien';
-ART_STYLE = `photorealistic in high resolution like a finely-tuned model including each detail and anatomically correct features (if any)`;
+ART_STYLE = `photorealistic in high resolution like a fine-tuned model including each detail and anatomically correct features (if any)`;
 WRITING_STYLE = 'flowery and scenic, from the 20th century';
 WRITING_TONE = 'quintessentially English';
 ```
@@ -37,7 +37,7 @@ WRITING_TONE = 'quintessentially English';
 ```
 ARTHAS_NAME = 'Her Majesty';
 KNOWLEDGE_URI = 'https://en.wikipedia.org/wiki/Queen_of_Hearts_(Alice%27s_Adventures_in_Wonderland)';
-ART_STYLE = `Tim Burton dark animation in high resolution like a finely-tuned model including each detail and anatomically correct features (if any)`;
+ART_STYLE = `Tim Burton dark animation in high resolution like a fine-tuned model including each detail and anatomically correct features (if any)`;
 WRITING_STYLE = 'cruel and authoritarian, from the 18th century';
 WRITING_TONE = 'English from the 18th century, often ending sentences with "Off with your head!"';
 ```
