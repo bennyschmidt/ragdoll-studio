@@ -6,7 +6,7 @@ body {
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #121212 url('http://localhost:3000/img/arthas.jpg') center center / cover no-repeat;
+  background: #333;
   color: white;
 }
 

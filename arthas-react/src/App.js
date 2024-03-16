@@ -25,14 +25,6 @@ const App = () => {
         ...currentPersona,
 
         online: true
-      },
-      {
-        name: 'J.R.R. Tolkien',
-        avatarURL: '/img/avatars/tolkien.png'
-      },
-      {
-        name: 'Queen of Hearts',
-        avatarURL: '/img/avatars/queen-of-hearts.png'
       }
     ];
 
