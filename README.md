@@ -33,10 +33,8 @@ What I learned from Arthas that I didn't already know, after ~5 minutes of chatt
 > - It was Archimonde's idea for Arthas to become the Lich King
 > - Arthas has only personally killed 5 orcs, 3 blademasters and 2 farseers
 > - The Lich King's power comes from wielding Frostmourne and wearing the Helm of Domination:
->     - Frostmourne: A longsword that turns targets into undead Scourge (and imprisons their soul in the blade)
->     - Helm of Domination: A helmet that allows the wearer to control the undead Scourge
->    - Both items were crafted by the Runecarver against his will (forced by Zovaal, The Jailer)
-> - Arthas now wishes to vanquish the spirit of the Lich King once and for all, but can't because he doesn't exist in any realm
+>     - Frostmourne: Turns targets into undead Scourge (and imprisons their soul)
+>     - Helm of Domination: Allows the wearer to control the undead Scourge
 
 ### J.R.R. Tolkien
 
