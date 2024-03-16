@@ -8,9 +8,67 @@ Desktop:
 
 ![Screenshot from 2024-03-16 09-47-18](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/73dde8a8-f013-4905-bb22-e33ce0391506)
 
-Mobile:
+#### Getting started
 
-![Screenshot from 2024-03-16 10-19-44](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/3b443d0c-469b-423e-af52-0fa6de47ae5b)
+1. Configure the [API](https://github.com/bennyschmidt/Arthas.AI/tree/master/arthas-api)
+
+`cd arthas-api` 
+
+Follow the instructions in the API `README.md`. You will need an OpenAI API key to get started.
+
+2. Install dependencies
+
+`nvm use && npm i`
+
+3. Start the server
+
+`npm start`
+
+You should see some output like this:
+
+```
+A worker has spawned.
+A worker has spawned.
+A worker has spawned.
+A worker has spawned.
+A worker has spawned.
+A worker has spawned.
+A worker has spawned.
+A worker has spawned.
+Cluster is online at http://localhost:8000
+Worker online (#1).
+Worker online (#2).
+Worker online (#3).
+Worker online (#4).
+Worker online (#5).
+Worker (#1) is listening for messages.
+Worker (#3) is listening for messages.
+Worker (#2) is listening for messages.
+Worker (#5) is listening for messages.
+Worker online (#6).
+Worker online (#8).
+Worker (#4) is listening for messages.
+Worker online (#7).
+Worker (#6) is listening for messages.
+Worker (#8) is listening for messages.
+Worker (#7) is listening for messages.
+```
+
+This means the server is running and handling concurrent requests on all CPU cores
+
+4. Set up the front-end
+
+`cd ../arthas-react`
+
+`nvm use && npm i`
+
+5. Start the front-end
+
+`npm start`
+
+You should see the default UI:
+
+![Screenshot from 2024-03-16 11-47-10](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/555940a4-a99f-42d5-af63-0b25833b6716)
 
 -----
 
