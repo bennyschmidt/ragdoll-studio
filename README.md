@@ -2,6 +2,16 @@
 
 A web app for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
 
+#### Responsive Chat UI
+
+Desktop:
+
+![Screenshot from 2024-03-16 09-47-18](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/73dde8a8-f013-4905-bb22-e33ce0391506)
+
+Mobile:
+
+![Screenshot from 2024-03-16 10-19-44](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/3b443d0c-469b-423e-af52-0fa6de47ae5b)
+
 -----
 
 ### Arthas Menethil (default persona)
@@ -23,10 +33,8 @@ What I learned from Arthas that I didn't already know, after ~5 minutes of chatt
 > - It was Archimonde's idea for Arthas to become the Lich King
 > - Arthas has only personally killed 5 orcs, 3 blademasters and 2 farseers
 > - The Lich King's power comes from wielding Frostmourne and wearing the Helm of Domination:
->     - Frostmourne: A longsword that turns targets into undead Scourge (and imprisons their soul in the blade)
->     - Helm of Domination: A helmet that allows the wearer to control the undead Scourge
->    - Both items were crafted by the Runecarver against his will (forced by Zovaal, The Jailer)
-> - Arthas now wishes to vanquish the spirit of the Lich King once and for all, but can't because he doesn't exist in any realm
+>     - Frostmourne: Turns targets into undead Scourge (and imprisons their soul)
+>     - Helm of Domination: Allows the wearer to control the undead Scourge
 
 ### J.R.R. Tolkien
 
