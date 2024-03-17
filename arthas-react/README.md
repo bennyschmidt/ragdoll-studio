@@ -2,7 +2,7 @@
 
 React front-end for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
 
-![Screenshot from 2024-03-16 11-47-10](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/6524383e-b764-4fff-8b54-d9efa747a645)
+![image](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/8508de77-ceef-427c-b66c-0a58cbdf5f86)
 
 -----
 
