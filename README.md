@@ -84,6 +84,8 @@ Coming soon.
 
 ![Screenshot from 2024-03-16 09-47-18](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/73dde8a8-f013-4905-bb22-e33ce0391506)
 
+#### API documentation
+
 -----
 
 ## Examples
