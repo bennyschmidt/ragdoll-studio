@@ -44,7 +44,13 @@ const App = () => {
     });
 
     if (response?.ok) {
-      const { answer } = await response.json();
+      const { answer = {} } = await response.json();
+
+      if (answer.pending) {
+        window.location.reload();
+
+        return;
+      }
 
       setText(answer.text);
       setImage(answer.imageURL);

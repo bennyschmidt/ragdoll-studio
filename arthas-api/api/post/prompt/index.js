@@ -32,7 +32,7 @@ module.exports = sessionStorage => async (req, res) => {
   const timeout = sessionStorage.getItem('timeout');
   const config = sessionStorage.getItem('config');
 
-  let persona = sessionStorage.getItem('persona');
+  let answer = sessionStorage.getItem('answer');
 
   // Prefix input prompt
 
@@ -95,31 +95,28 @@ module.exports = sessionStorage => async (req, res) => {
         await delay(timeout);
       }
 
-      if (persona) {
-        await persona.chat(messageResponse);
+      if (answer) {
+        await answer.chat(messageResponse);
       } else {
         if (isVerbose) {
           log(CREATING_AGENT);
         }
 
-        const newPersona = await ArthasGPT({
+        const newAnswer = await ArthasGPT({
           ...config,
 
           query: messageResponse,
           cache: true
         });
 
-        sessionStorage.setItem('persona', newPersona);
+        sessionStorage.setItem('answer', newAnswer);
 
-        persona = sessionStorage.getItem('persona');
+        answer = sessionStorage.getItem('answer');
       }
 
       res.end(JSON.stringify({
         success: true,
-        answer: {
-          imageURL: persona.imageURL,
-          text: persona.text
-        }
+        answer
       }));
     });
 };
