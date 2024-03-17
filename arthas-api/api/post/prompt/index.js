@@ -28,16 +28,16 @@ const {
 
 const { prefixInput } = require('arthasgpt/src/utils/prefix');
 
-module.exports = sessionStorage => async (req, res) => {
+/**
+ * Prompt
+ */
+
+module.exports = getSessionStorage => async (req, res) => {
+  const sessionStorage = getSessionStorage();
   const timeout = sessionStorage.getItem('timeout');
   const config = sessionStorage.getItem('config');
 
   let answer = sessionStorage.getItem('answer');
-
-  // Prefix input prompt
-
-  const povPromptPrefix = prefixInput(config);
-
   let body = [];
 
   req
@@ -47,7 +47,7 @@ module.exports = sessionStorage => async (req, res) => {
     .on('end', async () => {
       body = Buffer.concat(body).toString();
 
-      const { input } = JSON.parse(body || '{}');
+      const { key, input } = JSON.parse(body || '{}');
 
       if (!input) {
         res.end(JSON.stringify({
@@ -59,6 +59,11 @@ module.exports = sessionStorage => async (req, res) => {
         return;
       }
 
+        // Prefix input prompt
+
+      const currentConfig = config[key];
+      const povPromptPrefix = prefixInput(currentConfig);
+
       const chatAgent = new OpenAIAgent({});
 
       // Create prompt transforming the user input into the third-person
@@ -66,7 +71,9 @@ module.exports = sessionStorage => async (req, res) => {
       let message = `${povPromptPrefix} ${input}`;
       let messageResponse;
 
-      const messageCache = recall(input);
+      // TODO: cache input by persona
+      // const messageCache = recall(input);
+      const messageCache = null;
 
       if (messageCache) {
         if (isVerbose) {
@@ -103,7 +110,7 @@ module.exports = sessionStorage => async (req, res) => {
         }
 
         const newAnswer = await ArthasGPT({
-          ...config,
+          ...currentConfig,
 
           query: messageResponse,
           cache: true

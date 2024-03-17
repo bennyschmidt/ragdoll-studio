@@ -22,17 +22,21 @@ const sessionStorage = {
   setItem: (key, value) => sessionStorage[key] = value
 };
 
+const getSessionStorage = () => sessionStorage;
+
 sessionStorage.setItem('timeout', DELAY);
-sessionStorage.setItem('persona', null);
+sessionStorage.setItem('answer', null);
 
 sessionStorage.setItem('config', {
-  cache: true,
-  greeting: false,
-  name: DEFAULT_NAME,
-  knowledgeURI: DEFAULT_KNOWLEDGE_URI,
-  artStyle: DEFAULT_ART_STYLE,
-  writingStyle: DEFAULT_WRITING_STYLE,
-  writingTone: DEFAULT_WRITING_TONE
+  [DEFAULT_KNOWLEDGE_URI]: {
+    cache: true,
+    greeting: false,
+    name: DEFAULT_NAME,
+    knowledgeURI: DEFAULT_KNOWLEDGE_URI,
+    artStyle: DEFAULT_ART_STYLE,
+    writingStyle: DEFAULT_WRITING_STYLE,
+    writingTone: DEFAULT_WRITING_TONE
+  }
 });
 
 /**
@@ -43,7 +47,8 @@ sessionStorage.setItem('config', {
 module.exports = cluster => (req, res) => {
   const Routes = {
     POST: {
-      '/v1/prompt': require('./post/prompt')(sessionStorage)
+      '/v1/prompt': require('./post/prompt')(getSessionStorage),
+      '/v1/configure': require('./post/configure')(getSessionStorage)
     }
   };
 

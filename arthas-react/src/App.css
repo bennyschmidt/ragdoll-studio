@@ -20,10 +20,13 @@
   max-width: 3rem;
   max-height: 3rem;
   filter: grayscale(1);
+  background: linear-gradient(to top right, violet, coral);
+  border-radius: 100vw;
 }
 
 .persona-avatar > img {
-  border-radius: 100vw;
+  border-radius: inherit;
+  border: 1px solid white;
 }
 
 .persona-list {
@@ -69,6 +72,14 @@
   display: block;
 }
 
+.form {
+  background: black;
+  width: 75%;
+  padding: 1rem;
+  box-shadow: 0 0 10rem dodgerblue;
+  border-radius: 1rem;
+}
+
 #root {
   display: flex;
   gap: 1rem;
@@ -91,6 +102,20 @@
 
 #nav {
   max-width: 20vw;
+}
+
+#overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  background: #00000075;
 }
 
 #input,
@@ -164,6 +189,10 @@
 
   .persona-list-item > .persona-avatar {
     display: block;
+  }
+
+  .form {
+    width: 95%;
   }
 
   #root {

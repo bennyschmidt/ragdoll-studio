@@ -22,8 +22,11 @@ button[disabled] {
   cursor: not-allowed;
 }
 
-button {
+button,
+input {
+  display: block;
   cursor: pointer;
+  width: 100%;
   background: #ffffff25;
   color: white;
   padding: 1rem;
@@ -33,6 +36,11 @@ button {
   margin: 1rem 0;
   font-weight: bold;
   transition: background-color .1s linear, color .1s linear;
+  outline: none;
+}
+
+input {
+  cursor: auto;
 }
 
 button:hover {
