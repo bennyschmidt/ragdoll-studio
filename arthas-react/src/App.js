@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import './App.css';
 
 const BASE_URL = 'http://localhost:8000';
-const ARTHAS_NAME = 'Arthas';
 
 const App = () => {
   const [question, setQuestion] = useState('');
@@ -16,7 +15,7 @@ const App = () => {
 
   useEffect(() => {
     const currentPersona = {
-      name: ARTHAS_NAME,
+      name: 'Arthas',
       avatarURL: '/img/avatars/arthas.png'
     };
 
@@ -103,7 +102,7 @@ const App = () => {
         <input
           disabled={disabled}
           value={question}
-          placeholder={`What would you like to ask ${ARTHAS_NAME}?`}
+          placeholder={!persona ? '...' : `What would you like to ask ${persona.name}?`}
           onChange={onChangeQuestion}
           onKeyDown={onKeyDownQuestion}
         />

@@ -1,5 +1,5 @@
 const ArthasGPT = require('arthasgpt');
-const { OpenAIAgent } = require('llamaindex')
+const { OpenAIAgent } = require('llamaindex');
 
 // Storage utils
 
@@ -23,15 +23,21 @@ const {
   CREATING_AGENT,
   languageModel,
   gptLogPrefix,
-  waiting,
-  povPromptPrefix
+  waiting
 } = require('arthasgpt/src/utils/strings');
 
-// Persona configs
+const { prefixInput } = require('arthasgpt/src/utils/prefix');
 
-const { KNOWLEDGE_URI } = require('arthasgpt/src/utils/persona');
+module.exports = sessionStorage => async (req, res) => {
+  const timeout = sessionStorage.getItem('timeout');
+  const config = sessionStorage.getItem('config');
 
-module.exports = ({ timeout, agent }) => async (req, res) => {
+  let persona = sessionStorage.getItem('persona');
+
+  // Prefix input prompt
+
+  const povPromptPrefix = prefixInput(config);
+
   let body = [];
 
   req
@@ -89,25 +95,30 @@ module.exports = ({ timeout, agent }) => async (req, res) => {
         await delay(timeout);
       }
 
-      if (agent) {
-        await agent.chat(messageResponse);
+      if (persona) {
+        await persona.chat(messageResponse);
       } else {
         if (isVerbose) {
           log(CREATING_AGENT);
         }
 
-        agent = await ArthasGPT(
-          KNOWLEDGE_URI,
-          messageResponse,
-          true
-        );
+        const newPersona = await ArthasGPT({
+          ...config,
+
+          query: messageResponse,
+          cache: true
+        });
+
+        sessionStorage.setItem('persona', newPersona);
+
+        persona = sessionStorage.getItem('persona');
       }
 
       res.end(JSON.stringify({
         success: true,
         answer: {
-          imageURL: agent.imageURL,
-          text: agent.text
+          imageURL: persona.imageURL,
+          text: persona.text
         }
       }));
     });
