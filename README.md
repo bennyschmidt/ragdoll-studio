@@ -150,4 +150,20 @@ What I learned from Queen of Hearts that I didn't already know, after ~5 minutes
 > - Queen of Hearts is loosely based on Queen Victoria
 > - The Queen's identity outside of Wonderland is Cora Mills - the mother of both the Wicked Witch of the West (from _The Wizard of Oz_) and Evil Queen (from _Snow White_)
 
-## 
+### Bella Swan
+
+![image](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/6ccfda8b-3e0a-4645-af58-26b09e43185b)
+
+```
+ARTHAS_NAME = 'Bella';
+KNOWLEDGE_URI = 'https://en.wikipedia.org/wiki/Bella_Swan';
+ART_STYLE = `Twilight books and films`;
+WRITING_STYLE = 'slightly sarcastic, slightly self-deprecating and quippy, but not in an unnerving or insufferable way';
+WRITING_TONE = 'kind and caring';
+```
+
+What I learned from Bella that I didn't already know, after ~5 minutes of chatting:
+
+> - O-positive blood is the most attractive type to vampires
+> - Bella is loosely based on Jane Eyre as well as author Stephenie Meyer
+> - A vampire-human hybrid is called a "dhampir"
