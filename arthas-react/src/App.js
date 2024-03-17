@@ -17,6 +17,7 @@ const PERSONA_KNOWLEDGE_URI = 'Knowledge URI';
 const PERSONA_ART_STYLE = 'Art style';
 const PERSONA_WRITING_STYLE = 'Writing style';
 const PERSONA_WRITING_TONE = 'Writing tone';
+const SAVE_ERROR = 'Error saving persona.';
 
 const DEFAULT_AVATAR_URL = '/img/avatars/arthas.png';
 const DEFAULT_NAME = 'Arthas';
@@ -169,11 +170,6 @@ const App = () => {
       [personaKnowledgeURI]: personaConfig
     };
 
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(updatedPersonaList)
-    );
-
     const response = await fetch(`${BASE_URL}/v1/configure`, {
       method: 'POST',
       headers: {
@@ -184,12 +180,21 @@ const App = () => {
     });
 
     if (response?.ok) {
-      const { success } = await response.json();
+      const { error, success } = await response.json();
 
       if (success) {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify(updatedPersonaList)
+        );
+
         alert(PERSONA_CREATED);
         window.location.reload();
+      } else {
+        alert(error?.message || SAVE_ERROR);
       }
+    } else {
+      alert(SAVE_ERROR);
     }
 
     setDisabled(false);
