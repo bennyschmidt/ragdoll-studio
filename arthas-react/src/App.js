@@ -106,6 +106,7 @@ const App = () => {
       </div>
       <div id="input">
         <input
+          autoFocus
           disabled={disabled}
           value={question}
           placeholder={!persona ? '...' : `What would you like to ask ${persona.name}?`}
