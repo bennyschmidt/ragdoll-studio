@@ -70,8 +70,6 @@ You should see the default UI:
 
 ## Usage
 
-Coming soon.
-
 #### Using text models other than GPT-3.5
 
 Coming soon.
@@ -90,9 +88,13 @@ Coming soon.
 
 ![Screenshot from 2024-03-16 09-47-18](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/73dde8a8-f013-4905-bb22-e33ce0391506)
 
+#### Arthas app
+
+[How to use the app](https://github.com/bennyschmidt/Arthas.AI/tree/master?tab=readme-ov-file#usage)
+
 #### API documentation
 
-Coming soon.
+[How to run the API](https://github.com/bennyschmidt/Arthas.AI/tree/master/arthas-api#api-documentation)
 
 -----
 
