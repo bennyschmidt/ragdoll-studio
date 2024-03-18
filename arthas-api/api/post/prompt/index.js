@@ -123,7 +123,7 @@ module.exports = clusterStorage => async (req, res) => {
           ...currentConfig,
 
           query: messageResponse,
-          cache: false
+          cache: true
         });
 
         await clusterStorage.setItem('answer', newAnswer);
