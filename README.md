@@ -112,26 +112,6 @@ What I learned from Arthas that I didn't already know, after ~5 minutes of chatt
 >     - Frostmourne: Turns targets into undead Scourge (and imprisons their soul)
 >     - Helm of Domination: Allows the wearer to control the undead Scourge
 
-### J.R.R. Tolkien
-
-![tolkien](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/34ede550-2daf-4c1e-91f7-f010ff9b4719)
-
-```
-ARTHAS_NAME = 'Mr. Tolkien';
-KNOWLEDGE_URI = 'https://en.wikipedia.org/wiki/J._R._R._Tolkien';
-ART_STYLE = `photorealistic in high resolution like a fine-tuned model including each detail and anatomically correct features (if any)`;
-WRITING_STYLE = 'flowery and scenic, from the 20th century';
-WRITING_TONE = 'quintessentially English';
-```
-
-![image](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/76ab514b-ed2e-4304-baa7-207e1878874b)
-
-What I learned from J.R.R. Tolkien that I didn't already know, after ~5 minutes of chatting:
-
-> - Most of his works were published posthumously
-> - Tolkien served in World War 1 and became very ill fighting in the trenches
-> - He speaks several old world languages like Old English, Heroic Verse (Old English) Old Norse, Old Icelandic, Medieval Welsh, and Finnish
-
 ### Queen of Hearts
 
 ![queen-of-hearts](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/e311b27c-c4c0-45da-a40c-44c73dd3a157)
