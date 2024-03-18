@@ -35,7 +35,6 @@ const { prefixInput } = require('arthasgpt/src/utils/prefix');
 module.exports = getSessionStorage => async (req, res) => {
   const sessionStorage = getSessionStorage();
   const timeout = sessionStorage.getItem('timeout');
-  const config = sessionStorage.getItem('config');
 
   let answer = sessionStorage.getItem('answer');
   let body = [];
@@ -45,6 +44,8 @@ module.exports = getSessionStorage => async (req, res) => {
       body.push(chunk);
     })
     .on('end', async () => {
+      const config = sessionStorage.getItem('config');
+
       body = Buffer.concat(body).toString();
 
       const { key, input } = JSON.parse(body || '{}');
@@ -52,16 +53,27 @@ module.exports = getSessionStorage => async (req, res) => {
       if (!input) {
         res.end(JSON.stringify({
           error: {
-            message: 'Bad request.'
+            message: 'Bad query.'
           }
         }));
 
         return;
       }
 
-        // Prefix input prompt
-
       const currentConfig = config[key];
+
+      if (!currentConfig) {
+        res.end(JSON.stringify({
+          error: {
+            message: 'Persona not found.'
+          }
+        }));
+
+        return;
+      }
+
+      // Prefix input prompt
+
       const povPromptPrefix = prefixInput(currentConfig);
 
       const chatAgent = new OpenAIAgent({});

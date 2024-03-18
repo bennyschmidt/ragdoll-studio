@@ -18,6 +18,7 @@ const PERSONA_ART_STYLE = 'Art style';
 const PERSONA_WRITING_STYLE = 'Writing style';
 const PERSONA_WRITING_TONE = 'Writing tone';
 const SAVE_ERROR = 'Error saving persona.';
+const API_ERROR = 'API temporarily unavailable.';
 
 const DEFAULT_AVATAR_URL = '/img/avatars/arthas.png';
 const DEFAULT_NAME = 'Arthas';
@@ -100,7 +101,7 @@ const App = () => {
     });
 
     if (response?.ok) {
-      const { answer = {} } = await response.json();
+      const { error, answer = {} } = await response.json();
 
       if (answer.pending) {
         window.location.reload();
@@ -108,10 +109,18 @@ const App = () => {
         return;
       }
 
-      setText(answer.text);
-      setImage(answer.imageURL);
+      if (error) {
+        alert(error.message || API_ERROR);
+        setDisabled(false);
+
+        return;
+      } else {
+        setText(answer.text);
+        setImage(answer.imageURL);
+      }
     }
 
+    setQuestion('');
     setDisabled(false);
   };
 
@@ -167,6 +176,7 @@ const App = () => {
     const updatedPersonaList = {
       ...personaList,
 
+      [updatedCurrentPersona.knowledgeURI]: updatedCurrentPersona,
       [personaKnowledgeURI]: personaConfig
     };
 
@@ -190,6 +200,8 @@ const App = () => {
 
         alert(PERSONA_CREATED);
         window.location.reload();
+
+        return;
       } else {
         alert(error?.message || SAVE_ERROR);
       }
@@ -245,6 +257,9 @@ const App = () => {
       }
     }
 
+    setText('');
+    setImage('')
+    setQuestion('');
     setDisabled(false);
   };
 

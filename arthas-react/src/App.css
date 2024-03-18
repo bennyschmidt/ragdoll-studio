@@ -122,13 +122,17 @@
 #output {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
+#output {
+  flex: 1;
+}
+
 #output .img {
-  width: 25rem;
-  height: 25rem;
+  width: calc(100% - 1rem);
+  margin: 1rem .5rem;
   border-radius: 1rem;
   box-shadow: 0 0 5rem black;
   background: black;
@@ -139,7 +143,8 @@
 }
 
 #output p {
-  margin: 1rem 0.5rem;
+  width: 60%;
+  margin: 1rem .5rem;
   padding: 1rem;
   background: black;
   border-radius: 1rem;
@@ -209,9 +214,8 @@
     overflow-y: auto;
   }
 
-  #output > .img {
-    width: 70vw;
-    height: 70vw;
+  #output p {
+    width: calc(100% - 1rem);
   }
 
   #create-persona-button {
