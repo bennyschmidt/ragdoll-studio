@@ -2,6 +2,8 @@
 
 A web app for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
 
+https://github.com/bennyschmidt/Arthas.AI/assets/45407493/dcfdbb68-3d3c-4bfe-8190-fa47db2e55ca
+
 ## Installation
 
 1. Configure the [API](https://github.com/bennyschmidt/Arthas.AI/tree/master/arthas-api)
