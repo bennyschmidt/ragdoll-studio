@@ -72,11 +72,11 @@ You should see the default UI:
 
 #### Using text models other than GPT-3.5
 
-[How to change models](https://github.com/bennyschmidt/ArthasGPT/edit/master/README.md#important-environment-variables)
+[How to change models](https://github.com/bennyschmidt/ArthasGPT/?tab=readme-ov-file#important-environment-variables)
 
 #### Using image models other than DALL-E
 
-[How to change models](https://github.com/bennyschmidt/ArthasGPT/edit/master/README.md#important-environment-variables)
+[How to change models](https://github.com/bennyschmidt/ArthasGPT/?tab=readme-ov-file#important-environment-variables)
 
 #### Arthas app
 
