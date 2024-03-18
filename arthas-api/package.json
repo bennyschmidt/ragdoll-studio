@@ -5,7 +5,7 @@
     "start": "node index"
   },
   "dependencies": {
-    "arthasgpt": "^1.2.4",
+    "arthasgpt": "^1.2.5",
     "dotenv": "^16.4.5"
   }
 }

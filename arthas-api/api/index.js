@@ -24,6 +24,8 @@ const sessionStorage = {
 
 const getSessionStorage = () => sessionStorage;
 
+// Bootstrap some data
+
 sessionStorage.setItem('timeout', DELAY);
 sessionStorage.setItem('answer', null);
 

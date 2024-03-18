@@ -22,7 +22,7 @@ const {
   LOADED_CACHED_QUESTION,
   CREATING_AGENT,
   languageModel,
-  gptLogPrefix,
+  textModelLogPrefix,
   waiting
 } = require('arthasgpt/src/utils/strings');
 
@@ -83,11 +83,9 @@ module.exports = getSessionStorage => async (req, res) => {
       let message = `${povPromptPrefix} ${input}`;
       let messageResponse;
 
-      // TODO: cache input by persona
-      // const messageCache = recall(input);
-      const messageCache = null;
+      const messageCache = recall(input);
 
-      if (messageCache) {
+      if (messageCache && messageCache.split(' ').includes(currentConfig.name)) {
         if (isVerbose) {
           log(LOADED_CACHED_QUESTION);
         }
@@ -95,7 +93,7 @@ module.exports = getSessionStorage => async (req, res) => {
         messageResponse = messageCache;
       } else {
         if (isVerbose) {
-          log(`${gptLogPrefix} ${message}`);
+          log(`${textModelLogPrefix} ${message}`);
         }
 
         const { response: gptResponse } = await chatAgent.chat({
