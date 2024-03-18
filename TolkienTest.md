@@ -66,8 +66,8 @@ Note: J.R.R. Tolkien doesn't exist in most of the apps that have a predefined li
 
 - Is it usable (is it possible to chat with J.R.R. Tolkien)?
 
-- Is it accurate?
+- Is the information accurate?
 
 - Does it match Tolkien's tone & style?
 
-- Is it secure (does it leak information outside what Tolkien would know)?
+- Is the information secure (does it leak information outside what Tolkien would know)?
