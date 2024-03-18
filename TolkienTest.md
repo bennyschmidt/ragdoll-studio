@@ -10,7 +10,7 @@ By asking the question
 
 Without requiring specific training, we should expect a realistic J.R.R. Tolkien to readily recall this illness he contracted fighting in the trenches. Here are some examples starting with Arthas.AI:
 
-#### Arthas.AI
+#### ✅ [Arthas.AI](https://github.com/bennyschmidt/Arthas.AI)
 
 https://github.com/bennyschmidt/Arthas.AI/assets/45407493/414df025-91db-4599-935e-b7c82f928cb4
 
@@ -18,7 +18,7 @@ _Arthas.AI's Tolkien immediately reports in classic Tolkien style fighting in th
 
 -----
 
-#### character.ai
+#### ❌ [character.ai](https://www.character.ai)
 
 ![character-ai-tolkien](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/1fe7dd02-94aa-495c-b2a4-f5c41562b182)
 
@@ -28,7 +28,7 @@ Note: "Young Tolkien" is a second attempt at creating Tolkien using character.ai
 
 -----
 
-#### Knowtify
+#### ✅ Knowtify
 
 ![knowtify](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/7352779f-c1f0-4035-afac-3fa5852dd842)
 
@@ -38,7 +38,7 @@ Note: Knowtify has a predefined J.R.R. Tolkien.
 
 -----
 
-#### AI History Chat
+#### ❌ AI History Chat
 
 ![AA4E7393-0A9A-4A3B-91D5-E86B0289775C](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/b57462bd-126a-4fe2-bc0e-1c374031a62a)
 
@@ -48,7 +48,7 @@ Note: AI History Chat did not have a pre-defined J.R.R. Tolkien, but lets you ad
 
 -----
 
-#### ChatGPT
+#### ✅ ChatGPT
 
 ![Screenshot from 2024-03-18 13-30-15](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/88829714-f320-4f58-9c18-1fd1a3083c8c)
 
@@ -56,7 +56,7 @@ _With some initial prompting to take on the style of Tolkien, vanilla ChatGPT - 
 
 -----
 
-#### Hello History, Text History, and other "historical figures" apps on iOS/Android
+#### ❌ Hello History, Text History, and other "historical figures" apps on iOS/Android
 
 _N/A_
 
