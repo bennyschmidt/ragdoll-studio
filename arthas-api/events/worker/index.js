@@ -4,7 +4,7 @@
  */
 
 module.exports = worker => {
-  
+
   /**
    * onExit
    * Similar to the `cluster.on('exit')` event, but specific to this worker
@@ -41,9 +41,11 @@ module.exports = worker => {
    * Similar to the 'message' event of cluster, but specific to this worker
    */
 
-  worker.on('message', message => (
-    console.log(`Worker (#${worker.id}) received a message: ${message}.`)
-  ));
+  worker.on('message', message => {
+    if (worker.isPrimary) return;
+
+    console.log(`Worker (#${worker.id}) received a message: ${JSON.stringify(message)}.`)
+  });
 
   /**
    * onDisconnect

@@ -2,9 +2,7 @@
  * Configure
  */
 
-module.exports = getSessionStorage => async (req, res) => {
-  const sessionStorage = getSessionStorage();
-
+module.exports = clusterStorage => async (req, res) => {
   let body = [];
 
   req
@@ -39,9 +37,9 @@ module.exports = getSessionStorage => async (req, res) => {
         return;
       }
 
-      const config = sessionStorage.getItem('config');
+      const config = await clusterStorage.getItem('config');
 
-      sessionStorage.setItem('config', {
+      await clusterStorage.setItem('config', {
         ...config,
 
         [knowledgeURI]: {

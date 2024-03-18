@@ -32,11 +32,11 @@ const { prefixInput } = require('arthasgpt/src/utils/prefix');
  * Prompt
  */
 
-module.exports = getSessionStorage => async (req, res) => {
-  const sessionStorage = getSessionStorage();
-  const timeout = sessionStorage.getItem('timeout');
+module.exports = clusterStorage => async (req, res) => {
+  const timeout = await clusterStorage.getItem('timeout');
 
-  let answer = sessionStorage.getItem('answer');
+  let answer = await clusterStorage.getItem('answer');
+
   let body = [];
 
   req
@@ -44,7 +44,7 @@ module.exports = getSessionStorage => async (req, res) => {
       body.push(chunk);
     })
     .on('end', async () => {
-      const config = sessionStorage.getItem('config');
+      const config = await clusterStorage.getItem('config');
 
       body = Buffer.concat(body).toString();
 
@@ -112,7 +112,7 @@ module.exports = getSessionStorage => async (req, res) => {
         await delay(timeout);
       }
 
-      if (answer) {
+      if (answer?.chat) {
         await answer.chat(messageResponse);
       } else {
         if (isVerbose) {
@@ -123,12 +123,12 @@ module.exports = getSessionStorage => async (req, res) => {
           ...currentConfig,
 
           query: messageResponse,
-          cache: true
+          cache: false
         });
 
-        sessionStorage.setItem('answer', newAnswer);
+        await clusterStorage.setItem('answer', newAnswer);
 
-        answer = sessionStorage.getItem('answer');
+        answer = await clusterStorage.getItem('answer');
       }
 
       res.end(JSON.stringify({
