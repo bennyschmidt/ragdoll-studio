@@ -8,13 +8,7 @@ By asking the question
 
 > _What happened to you in France?_
 
-Without requiring specific training, we should expect a realistic J.R.R. Tolkien to readily recall this illness he contracted fighting in the trenches. Here are some examples starting with Arthas.AI:
-
-#### ✅ [Arthas.AI](https://github.com/bennyschmidt/Arthas.AI)
-
-https://github.com/bennyschmidt/Arthas.AI/assets/45407493/414df025-91db-4599-935e-b7c82f928cb4
-
-_Arthas.AI's Tolkien immediately reports in classic Tolkien style fighting in the trenches, falling ill, and returning to England._
+Without requiring specific training, we should expect a realistic J.R.R. Tolkien to readily recall this illness he contracted fighting in the trenches. Here are some examples:
 
 -----
 
@@ -32,7 +26,7 @@ Note: "Young Tolkien" is a second attempt at creating Tolkien using character.ai
 
 ![knowtify](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/7352779f-c1f0-4035-afac-3fa5852dd842)
 
-_Knowtify's Tolkien only took one clarifying question to mention the illness, and was able to readily recall it in a classic Tolkien style._
+_Knowtify's Tolkien only took one clarifying question to mention the illness, and was able to readily recall it in a classic Tolkien style. Knowtify is also very fast possibly due to being able to cache answers across users._
 
 Note: Knowtify has a predefined J.R.R. Tolkien.
 
@@ -56,11 +50,27 @@ _With some initial prompting to take on the style of Tolkien, vanilla ChatGPT - 
 
 -----
 
-#### ❌ Hello History, Text History, and other "historical figures" apps on iOS/Android
+#### ❌ Hello History
 
 _N/A_
 
-Note: J.R.R. Tolkien doesn't exist in most of the apps that have a predefined list of AI personas, but I'm excited to try again if they ever add Tolkien, or the ability to add a custom persona.
+Note: J.R.R. Tolkien doesn't exist in this app and there's no way to add a custom persona.
+
+#### ❌ Text History
+
+_N/A_
+
+Note: J.R.R. Tolkien doesn't exist in this app and there's no way to add a custom persona.
+
+-----
+
+#### ✅ [Arthas.AI](https://github.com/bennyschmidt/Arthas.AI)
+
+https://github.com/bennyschmidt/Arthas.AI/assets/45407493/414df025-91db-4599-935e-b7c82f928cb4
+
+_Arthas.AI's Tolkien immediately reports in classic Tolkien style fighting in the trenches, falling ill, and returning to England._
+
+-----
 
 ## Rubrik
 
