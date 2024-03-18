@@ -1,4 +1,6 @@
-## Tolkien Test
+## The Tolkien Heuristic
+
+#### Testing AI efficacy
 
 Of all the persona-based AI chat applications on the market today, most of them specialize in real-world, historical figures rather than fictional or hypothetical characters.
 
