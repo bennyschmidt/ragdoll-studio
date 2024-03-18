@@ -80,7 +80,7 @@ You should see the default UI:
 
 #### Arthas app
 
-[How to use the app](https://github.com/bennyschmidt/Arthas.AI/tree/master?tab=readme-ov-file#usage)
+[How to use the app](https://github.com/bennyschmidt/Arthas.AI/tree/master/arthas-react#usage)
 
 #### API documentation
 
