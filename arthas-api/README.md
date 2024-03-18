@@ -21,6 +21,10 @@ STORAGE_URI=./.tmp
 
 See [ArthasGPT Environment Config](https://github.com/bennyschmidt/ArthasGPT?tab=readme-ov-file#env-scaffold).
 
+## API documentation
+
+Coming soon.
+
 -----
 
 ## Simple Node.js multi-process
