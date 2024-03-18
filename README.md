@@ -6,7 +6,7 @@ A web app for interacting with [ArthasGPT](https://github.com/bennyschmidt/Artha
 
 1. Configure the [API](https://github.com/bennyschmidt/Arthas.AI/tree/master/arthas-api)
 
-`cd arthas-api` 
+`cd arthas-api`
 
 See the API `README.md`. You will need an OpenAI API key to get started.
 
@@ -85,3 +85,9 @@ You should see the default UI:
 #### API documentation
 
 [How to run the API](https://github.com/bennyschmidt/Arthas.AI/tree/master/arthas-api#api-documentation)
+
+-----
+
+## Comparing Arthas.AI to other products
+
+See [TolkienTest.md](./TolkienTest.md).
