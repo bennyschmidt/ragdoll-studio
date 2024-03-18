@@ -4,6 +4,10 @@ React front-end for interacting with [ArthasGPT](https://github.com/bennyschmidt
 
 ![image](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/8508de77-ceef-427c-b66c-0a58cbdf5f86)
 
+## Usage
+
+Coming soon.
+
 -----
 
 ## Getting Started with Create React App
