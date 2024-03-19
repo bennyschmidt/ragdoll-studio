@@ -14,7 +14,7 @@ Without requiring specific training, we should expect a realistic J.R.R. Tolkien
 
 -----
 
-#### [character.ai](https://www.character.ai)
+#### [character.ai](https://character.ai)
 
 ![character-ai-tolkien](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/1fe7dd02-94aa-495c-b2a4-f5c41562b182)
 
@@ -26,7 +26,7 @@ Grade: **❌ FAIL**
 
 -----
 
-#### Knowtify
+#### [Knowtify](https://knowtify.app/)
 
 ![knowtify](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/7352779f-c1f0-4035-afac-3fa5852dd842)
 
@@ -38,7 +38,7 @@ Grade: **✅ PASS**
 
 -----
 
-#### AI History Chat
+#### [AI History Chat](https://apps.apple.com/us/app/ai-history-chat/id6446097887)
 
 ![AA4E7393-0A9A-4A3B-91D5-E86B0289775C](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/b57462bd-126a-4fe2-bc0e-1c374031a62a)
 
@@ -50,7 +50,7 @@ Grade: **❌ FAIL**
 
 -----
 
-#### ChatGPT
+#### [ChatGPT](https://chat.openai.com/)
 
 ![Screenshot from 2024-03-18 13-30-15](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/88829714-f320-4f58-9c18-1fd1a3083c8c)
 
@@ -60,7 +60,7 @@ Grade: **✅ PASS**
 
 -----
 
-#### Hello History
+#### [Hello History](https://hellohistory.ai/)
 
 _N/A_
 
@@ -70,7 +70,7 @@ Grade: **❌ FAIL**
 
 -----
 
-#### Text History
+#### [Text With History](https://textwith.app/history/)
 
 _N/A_
 
