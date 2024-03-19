@@ -92,6 +92,8 @@ Grade: **✅ PASS**
 
 ## Rubrik
 
+#### Need 3 out of 4 to pass
+
 - Is it usable (is it possible to chat with J.R.R. Tolkien)?
 
 - Is the information accurate?
