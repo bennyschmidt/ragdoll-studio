@@ -6,31 +6,7 @@
 const HOST = 'http://localhost';
 const PORT = 8000;
 
-/**
- * Session Storage
- * Manage connection (user) data
- */
-
-const dotenv = require('dotenv');
-
-const {
-  DEFAULT_NAME,
-  DEFAULT_KNOWLEDGE_URI,
-  DEFAULT_ART_STYLE,
-  DEFAULT_WRITING_TONE,
-  DEFAULT_WRITING_STYLE
-} = require('arthasgpt/src/utils/strings');
-
-dotenv.config();
-
-const { DELAY } = process.env;
-
-const store = {
-  get: key => store[key],
-  set: (key, value) => store[key] = value
-};
-
-module.exports = cluster => {
+module.exports = (cluster, cache) => {
 
   /**
    * onExit
@@ -62,41 +38,25 @@ module.exports = cluster => {
   cluster.on('message', (worker, message) => {
     if (worker.isPrimary) return;
 
-    const {
-      command,
-      method,
-      args
-    } = message;
+    const { command } = message;
 
     // Cluster commands
 
     switch (command) {
       case 'STORE':
+        const {
+          method,
+          args
+        } = message;
+
         worker.send(
-          store[method](...args)
+          cache[method](...args)
         );
 
         break;
 
       default:
         break;
-    }
-  });
-
-  // Bootstrap some data
-
-  store.set('timeout', DELAY);
-  store.set('answer', null);
-
-  store.set('config', {
-    [DEFAULT_KNOWLEDGE_URI]: {
-      cache: true,
-      greeting: false,
-      name: DEFAULT_NAME,
-      knowledgeURI: DEFAULT_KNOWLEDGE_URI,
-      artStyle: DEFAULT_ART_STYLE,
-      writingStyle: DEFAULT_WRITING_STYLE,
-      writingTone: DEFAULT_WRITING_TONE
     }
   });
 

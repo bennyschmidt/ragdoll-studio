@@ -2,7 +2,7 @@
  * Configure
  */
 
-module.exports = clusterStorage => async (req, res) => {
+module.exports = asyncCache => async (req, res) => {
   let body = [];
 
   req
@@ -37,9 +37,9 @@ module.exports = clusterStorage => async (req, res) => {
         return;
       }
 
-      const config = await clusterStorage.getItem('config');
+      const config = await asyncCache.getItem('config');
 
-      await clusterStorage.setItem('config', {
+      await asyncCache.setItem('config', {
         ...config,
 
         [knowledgeURI]: {

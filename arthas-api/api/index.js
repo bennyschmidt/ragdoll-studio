@@ -1,9 +1,11 @@
 /**
- * API Gateway
- * Handles incoming HTTP requests
+ * Async Cache
+ * Cache wrapper that Promisifies message
+ * passing between cluster and workers
+ * (so we can use async/await in endpoints)
  */
 
-const clusterStorage = {
+const asyncCache = {
   getItem: async storageKey => {
     const asyncGetItem = key => new Promise(resolve => {
       process.on('message', message => (
@@ -34,11 +36,16 @@ const clusterStorage = {
   }
 };
 
+/**
+ * API Gateway
+ * Handles incoming HTTP requests
+ */
+
 module.exports = cluster => (req, res) => {
   const Routes = {
     POST: {
-      '/v1/prompt': require('./post/prompt')(clusterStorage),
-      '/v1/configure': require('./post/configure')(clusterStorage)
+      '/v1/prompt': require('./post/prompt')(asyncCache),
+      '/v1/configure': require('./post/configure')(asyncCache)
     }
   };
 
@@ -57,7 +64,7 @@ module.exports = cluster => (req, res) => {
     return;
   }
 
-  if (['GET', 'POST'].indexOf(req.method) > -1) {
+  if (['GET', 'POST'].includes(req.method)) {
     res.writeHead(200, headers);
 
     console.log(`Request handled by Worker #${cluster.worker.id}: ${req.method} ${req.url}`);

@@ -32,10 +32,10 @@ const { prefixInput } = require('arthasgpt/src/utils/prefix');
  * Prompt
  */
 
-module.exports = clusterStorage => async (req, res) => {
-  const timeout = await clusterStorage.getItem('timeout');
+module.exports = asyncCache => async (req, res) => {
+  const timeout = await asyncCache.getItem('timeout');
 
-  let answer = await clusterStorage.getItem('answer');
+  let answer = await asyncCache.getItem('answer');
 
   let body = [];
 
@@ -44,7 +44,7 @@ module.exports = clusterStorage => async (req, res) => {
       body.push(chunk);
     })
     .on('end', async () => {
-      const config = await clusterStorage.getItem('config');
+      const config = await asyncCache.getItem('config');
 
       body = Buffer.concat(body).toString();
 
@@ -112,24 +112,16 @@ module.exports = clusterStorage => async (req, res) => {
         await delay(timeout);
       }
 
-      if (answer?.chat) {
-        await answer.chat(messageResponse);
-      } else {
-        if (isVerbose) {
-          log(CREATING_AGENT);
-        }
-
-        const newAnswer = await ArthasGPT({
-          ...currentConfig,
-
-          query: messageResponse,
-          cache: true
-        });
-
-        await clusterStorage.setItem('answer', newAnswer);
-
-        answer = await clusterStorage.getItem('answer');
+      if (isVerbose) {
+        log(CREATING_AGENT);
       }
+
+      answer = await ArthasGPT({
+        ...currentConfig,
+
+        query: messageResponse,
+        cache: false
+      });
 
       res.end(JSON.stringify({
         success: true,
