@@ -21,11 +21,11 @@ STORAGE_URI=./.tmp
 
 See [ArthasGPT Environment Config](https://github.com/bennyschmidt/ArthasGPT?tab=readme-ov-file#env-scaffold).
 
-## API documentation
+-----
 
-### Endpoints
+### API documentation
 
-#### Configure
+## Configure
 
 Load the context of a persona in order to prompt it.
 
@@ -65,7 +65,7 @@ Returns
 >```
 >
 
-#### Prompt
+## Prompt
 
 `POST /v1/prompt`
 
