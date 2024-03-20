@@ -61,7 +61,9 @@ Returns
 
 >
 >```
-> success: boolean
+> {
+>   success: boolean
+> }
 >```
 >
 
@@ -85,12 +87,13 @@ Returns
 
 >
 > ```
-> success: boolean,
-> answer: {
->   image: buffer,
->   imageURL: string,
->   text: string
-> }
+> {
+>   success: boolean,
+>   answer: {
+>     image: buffer,
+>     imageURL: string,
+>     text: string
+>  }
 > ```
 >
 
