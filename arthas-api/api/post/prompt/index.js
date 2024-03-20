@@ -28,11 +28,15 @@ const {
 
 const { prefixInput } = require('arthasgpt/src/utils/prefix');
 
+const __statefulChatFunction = {};
+
 /**
  * Prompt
  */
 
 module.exports = asyncCache => async (req, res) => {
+  const config = await asyncCache.getItem('config');
+
   const timeout = await asyncCache.getItem('timeout');
 
   let answer = await asyncCache.getItem('answer');
@@ -44,8 +48,6 @@ module.exports = asyncCache => async (req, res) => {
       body.push(chunk);
     })
     .on('end', async () => {
-      const config = await asyncCache.getItem('config');
-
       body = Buffer.concat(body).toString();
 
       const { key, input } = JSON.parse(body || '{}');
@@ -112,16 +114,29 @@ module.exports = asyncCache => async (req, res) => {
         await delay(timeout);
       }
 
-      if (isVerbose) {
-        log(CREATING_AGENT);
+      const currentChat = __statefulChatFunction?.[key];
+
+      if (currentChat) {
+        await currentChat(messageResponse);
+      } else {
+        if (isVerbose) {
+          log(CREATING_AGENT);
+        }
+
+        answer = await ArthasGPT({
+          ...currentConfig,
+
+          query: messageResponse,
+          cache: true
+        });
+
+        await asyncCache.setItem('answer', answer);
+
+        // Cache the stateful chat method in the API
+        // (antipattern)
+
+        __statefulChatFunction[key] = answer?.chat;
       }
-
-      answer = await ArthasGPT({
-        ...currentConfig,
-
-        query: messageResponse,
-        cache: false
-      });
 
       res.end(JSON.stringify({
         success: true,

@@ -30,7 +30,8 @@ const PORT = 8000;
  * Config
  */
 
-const numCPUs = availableParallelism();
+// const numCPUs = availableParallelism();
+const numCPUs = 1;
 
 const onCluster = require('./events/cluster');
 const onWorker = require('./events/worker');
