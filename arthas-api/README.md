@@ -76,7 +76,7 @@ Returns
 >
 > `key: string`
 >
-> The persona's identifier (the same as it's `knowledgeURI` upon configuration).
+> The persona's identifier (the same as its `knowledgeURI` upon configuration).
 >
 > `input: string`
 >
@@ -93,7 +93,8 @@ Returns
 >     image: buffer,
 >     imageURL: string,
 >     text: string
->  }
+>   }
+> }
 > ```
 >
 
