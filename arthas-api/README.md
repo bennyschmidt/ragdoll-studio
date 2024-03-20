@@ -23,7 +23,7 @@ See [ArthasGPT Environment Config](https://github.com/bennyschmidt/ArthasGPT?tab
 
 -----
 
-### API documentation
+### Endpoints
 
 ## Configure
 
