@@ -21,9 +21,82 @@ STORAGE_URI=./.tmp
 
 See [ArthasGPT Environment Config](https://github.com/bennyschmidt/ArthasGPT?tab=readme-ov-file#env-scaffold).
 
-## API documentation
+-----
 
-Coming soon.
+### Endpoints
+
+## Configure
+
+Load the context of a persona in order to prompt it.
+
+`POST /v1/configure`
+ 
+> 
+> `name: string`
+> 
+> The persona's name.
+> 
+> `knowledgeURI: string`
+> 
+> The knowledge source - typically a web page (like a Wiki style article). `knowledgeURI` is also the unique identifier (or `key`) for a persona when looking them up.
+> 
+> `avatarURL: string`
+> 
+> The persona's profile image.
+> 
+> `artStyle: string`
+> 
+> If/when images are rendered, the desired art style that is injected to the image model prompt.
+> 
+> `writingStyle: string`
+> 
+> When text is written, the desired writing style that is injected to the text model prompt.
+> 
+> `writingTone: string`
+> 
+> Aesthetical text prompting beyond basic structure.
+>
+
+Returns
+
+>
+>```
+> {
+>   success: boolean
+> }
+>```
+>
+
+## Prompt
+
+`POST /v1/prompt`
+
+>
+> Prompt the persona with a question.
+>
+> `key: string`
+>
+> The persona's identifier (the same as its `knowledgeURI` upon configuration).
+>
+> `input: string`
+>
+> The question being asked.
+>
+
+Returns
+
+>
+> ```
+> {
+>   success: boolean,
+>   answer: {
+>     image: buffer,
+>     imageURL: string,
+>     text: string
+>   }
+> }
+> ```
+>
 
 -----
 

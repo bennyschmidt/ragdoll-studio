@@ -82,11 +82,11 @@ You should see the default UI:
 
 #### Arthas app
 
-[How to use the app](https://github.com/bennyschmidt/Arthas.AI/tree/master/arthas-react#usage)
+[How to use the app](https://github.com/bennyschmidt/Arthas.AI/blob/master/arthas-react/README.md)
 
 #### API documentation
 
-[How to run the API](https://github.com/bennyschmidt/Arthas.AI/tree/master/arthas-api#api-documentation)
+[How to run the API](https://github.com/bennyschmidt/Arthas.AI/blob/master/arthas-api/README.md)
 
 -----
 
