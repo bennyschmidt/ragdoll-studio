@@ -2,7 +2,21 @@
 
 React front-end for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
 
-video TBD
+Note: You can edit the name and avatar, or choose another at random by closing and re-opening the chat.
+
+#### Zenia, the beauty products guru:
+
+https://github.com/bennyschmidt/Arthas.AI/assets/45407493/249f619f-6e93-4464-b237-453831610d52
+
+Note: Because I know the year/make/model of my car, I based Seymour off that selection on the auto parts website that sourced his knowledge, so that when I ask about parts we both know it's for my car.
+
+#### Seymour, the car expert:
+
+https://github.com/bennyschmidt/Arthas.AI/assets/45407493/96f6c39c-f126-4091-aac4-231daa24ee9c
+
+We can get into more in-depth conversations about price and part comparisons:
+
+https://github.com/bennyschmidt/Arthas.AI/assets/45407493/04ecc3c0-16ef-4f4e-aaf6-bf5a7afe77ff
 
 ## Background
 
@@ -48,7 +62,7 @@ This case study inspired the idea to create an alternate front-end focused aroun
 
 ![Screenshot from 2024-03-21 09-38-06](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/dff16b30-fa1b-4dcd-95b3-3220cf9a6f92)
 
-This widget or extension would allow your users to create an instant AI salesperson based on any URL that has products listed, giving the shopper an alternative way to browse and buy.
+This site widget or browser extension would allow your users to create an instant AI shopping assistant ased on any URL that has products listed, giving the shopper an alternative way to browse and buy.
 
 -----
 
