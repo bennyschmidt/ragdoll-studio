@@ -14,7 +14,9 @@
   max-height: .4rem;
 }
 
-.persona-avatar {
+.persona-list-item > .persona-avatar {
+  display: flex;
+  flex-direction: column;
   min-width: 3rem;
   min-height: 3rem;
   max-width: 3rem;
@@ -25,8 +27,11 @@
 }
 
 .persona-avatar > img {
+  flex: 1;
   border-radius: inherit;
   border: 1px solid white;
+  object-fit: cover;
+  max-height: inherit;
 }
 
 .persona-list {
@@ -73,10 +78,12 @@
 }
 
 .form {
-  background: black;
+  position: relative;
+  background: white;
+  color: #121212;
+  box-shadow: 0 0 10rem dodgerblue;
   width: 75%;
   padding: 1rem;
-  box-shadow: 0 0 10rem dodgerblue;
   border-radius: 1rem;
 }
 
@@ -116,6 +123,24 @@
   bottom: 0;
   z-index: 1000;
   background: #00000075;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+
+#overlay.show {
+  opacity: 1;
+}
+
+#overlay > .form {
+  max-width: 34rem;
+  transition: opacity .5s ease, margin-top .5s ease;
+  margin-top: 10vh;
+  opacity: 0;
+}
+
+#overlay.show > .form {
+  margin-top: 0;
+  opacity: 1;
 }
 
 #input,
@@ -154,8 +179,8 @@
 #input > input,
 #input > button {
   display: block;
-  height: 3rem;
-  margin: .5rem;
+  min-height: 3rem;
+  margin-bottom: .5rem;
   border: none;
   border-radius: .5rem;
   width: calc(100% - 1rem);
@@ -176,6 +201,11 @@
 
 #input > button:hover {
   background-color: white;
+  color: dodgerblue;
+}
+
+#create-persona-button {
+  background: white;
   color: dodgerblue;
 }
 
