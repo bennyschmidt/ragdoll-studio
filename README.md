@@ -93,3 +93,15 @@ You should see the default UI:
 ## Comparing Arthas.AI to other products
 
 See [TolkienTest.md](./TolkienTest.md).
+
+-----
+
+## Examples
+
+- [AI characters](https://github.com/bennyschmidt/Arthas.AI/tree/master/arthas-react) (default)
+- [Shopping assistants](https://github.com/bennyschmidt/Arthas.AI/tree/master/examples/instant-salesperson/arthas-react)
+- Comment bots
+- Game NPCs
+- Expert knowledge communities
+- Writing & storyboarding tools
+- Customer support / salespeople
