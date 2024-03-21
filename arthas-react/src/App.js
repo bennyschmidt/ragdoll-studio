@@ -13,6 +13,7 @@ const PERSONA_LIST_HEADING = 'Domain-specific Personas (DSPs)';
 const PERSONA_CREATED = 'New persona created.';
 const PERSONA_ERROR = 'Error loading persona.';
 const PERSONA_NAME = 'Name';
+const PERSONA_AVATAR_URL = 'Avatar URL';
 const PERSONA_KNOWLEDGE_URI = 'Knowledge URI';
 const PERSONA_ART_STYLE = 'Art style';
 const PERSONA_WRITING_STYLE = 'Writing style';
@@ -39,12 +40,15 @@ const App = () => {
   const [persona, setPersona] = useState();
   const [personaList, setPersonaList] = useState(SAVED_PERSONAS);
   const [isCreating, setIsCreating] = useState(false);
+  const [overlayClassName, setOverlayClassName] = useState('');
+  const [timeoutId, setTimeoutId] = useState();
 
   const [personaName, setPersonaName] = useState('');
   const [personaKnowledgeURI, setPersonaKnowledgeURI] = useState('');
   const [personaArtStyle, setPersonaArtStyle] = useState('');
   const [personaWritingStyle, setPersonaWritingStyle] = useState('');
   const [personaWritingTone, setPersonaWritingTone] = useState('');
+  const [personaAvatarURL, setPersonaAvatarURL] = useState('');
 
   useEffect(() => {
     const personas = getPersonasArray();
@@ -77,13 +81,17 @@ const App = () => {
 
   useEffect(() => {
     document.body.onkeydown = isCreating
-      ? onKeyDownOverlay
+      ? (overlayClassName && onKeyDownOverlay)
       : null;
 
     return () => document.body.onkeydown = null;
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isCreating]);
+  }, [isCreating, overlayClassName]);
+
+  useEffect(() => {
+    return () => clearTimeout(timeoutId);
+  }, [timeoutId]);
 
   const ask = async () => {
     setDisabled(true);
@@ -124,13 +132,28 @@ const App = () => {
     setDisabled(false);
   };
 
+  const openOverlay = () => {
+    setIsCreating(true);
+    setOverlayClassName('');
+
+    requestAnimationFrame(() => {
+      setOverlayClassName('show');
+    });
+  };
+
   const closeOverlay = () => {
     setPersonaName('');
     setPersonaKnowledgeURI('');
     setPersonaArtStyle('');
     setPersonaWritingStyle('');
     setPersonaWritingTone('');
-    setIsCreating(false);
+    setOverlayClassName('');
+
+    setTimeoutId(
+      setTimeout(() => {
+        setIsCreating(false);
+      }, 1000)
+    );
   };
 
   const getQuestionPlaceholder = () => (
@@ -155,7 +178,7 @@ const App = () => {
     }
   };
 
-  const onClickCreate = () => setIsCreating(true);
+  const onClickCreate = openOverlay;
 
   const onClickSave = async () => {
     setDisabled(true);
@@ -163,7 +186,7 @@ const App = () => {
     const personaConfig = {
       name: personaName,
       knowledgeURI: personaKnowledgeURI,
-      avatarURL: '',
+      avatarURL: personaAvatarURL,
       artStyle: personaArtStyle,
       writingStyle: personaWritingStyle,
       writingTone: personaWritingTone
@@ -283,8 +306,12 @@ const App = () => {
     setPersonaWritingTone(value)
   );
 
+  const onChangePersonaAvatarURL = ({ target: { value }}) => (
+    setPersonaAvatarURL(value)
+  );
+
   return <>
-    {isCreating && <aside id="overlay" onClick={onClickOverlay}>
+    {isCreating && <aside id="overlay" className={overlayClassName} onClick={onClickOverlay}>
       <div className="form">
         <h2>Create Persona</h2>
         <input
@@ -293,6 +320,13 @@ const App = () => {
           placeholder={PERSONA_NAME}
           onChange={onChangePersonaName}
           value={personaName}
+        />
+        <input
+          required
+          disabled={disabled}
+          placeholder={PERSONA_AVATAR_URL}
+          onChange={onChangePersonaAvatarURL}
+          value={personaAvatarURL}
         />
         <input
           required
@@ -358,6 +392,7 @@ const App = () => {
         ))}
       </ul>
       <button
+        disabled={isCreating}
         id="create-persona-button"
         onClick={onClickCreate}
       >
@@ -379,14 +414,14 @@ const App = () => {
       <div id="input">
         <input
           autoFocus
-          disabled={disabled}
+          disabled={disabled || isCreating}
           value={question}
           placeholder={getQuestionPlaceholder()}
           onChange={onChangeQuestion}
           onKeyDown={onKeyDownQuestion}
         />
         <button
-          disabled={disabled}
+          disabled={disabled || isCreating}
           onClick={ask}
         >
           {SEND}
