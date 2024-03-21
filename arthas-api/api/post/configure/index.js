@@ -24,7 +24,6 @@ module.exports = asyncCache => async (req, res) => {
       if (
         !name ||
         !knowledgeURI ||
-        !artStyle ||
         !writingStyle ||
         !writingTone
       ) {
