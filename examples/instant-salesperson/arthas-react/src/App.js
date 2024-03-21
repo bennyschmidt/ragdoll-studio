@@ -122,7 +122,7 @@ const App = () => {
     const {
       firstName,
       avatar
-    } = RandomProfile.profile('female');
+    } = RandomProfile.profile();
 
     setIsCreating(true);
     setOverlayClassName('');
