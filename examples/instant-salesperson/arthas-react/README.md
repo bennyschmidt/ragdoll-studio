@@ -54,7 +54,7 @@ Note: You can edit the name and avatar, or choose another at random by closing a
 
 https://github.com/bennyschmidt/Arthas.AI/assets/45407493/249f619f-6e93-4464-b237-453831610d52
 
-Note: Because I know the year/make/model of my car, I based Seymour off that selection on the auto parts website that sourced his knowledge, so that when I ask about parts we both know it's for my car.
+Note: Because I know the year/make/model of my car, I based Seymour off that selection on the auto parts website that sourced his knowledge, so that when I ask about parts we both know it's for my car. And because their website approximates my location (and asks for exact) Seymour already knows which store location I'm asking about, and for parts only available in-store he'll even recommend when I should swing by in person.
 
 #### Seymour, the car expert:
 
