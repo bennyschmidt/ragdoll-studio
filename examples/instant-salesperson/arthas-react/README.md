@@ -2,7 +2,7 @@
 
 React front-end for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
 
-screenshot TBD
+video TBD
 
 ## Background
 
@@ -43,6 +43,12 @@ The DALL-E 2 image here is pretty irrelevant, and generating one takes up the bu
 #### Instant salesperson
 
 This case study inspired the idea to create an alternate front-end focused around the use case of an instant salesperson. Because some web pages (especially in e-commerce) can be so busy and hard to navigate, the instant salesperson comes in handy as its able to easily sift through the noise and find what you're looking for.
+
+#### Let's make a more relevant UI
+
+![Screenshot from 2024-03-21 09-38-06](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/dff16b30-fa1b-4dcd-95b3-3220cf9a6f92)
+
+This widget or extension would allow your users to create an instant AI salesperson based on any URL that has products listed, giving the shopper an alternative way to browse and buy.
 
 -----
 
