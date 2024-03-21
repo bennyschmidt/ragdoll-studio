@@ -1,5 +1,5 @@
 .panel {
-  background: #12121280;
+  background: #12121210;
   border-radius: 1rem;
   padding: 1rem;
 }
@@ -87,12 +87,6 @@
   border-radius: 1rem;
 }
 
-#root {
-  display: flex;
-  gap: 1rem;
-  padding: 1rem;
-}
-
 #app,
 #nav {
   display: flex;
@@ -105,10 +99,18 @@
 
 #app {
   justify-content: space-between;
+  width: 30rem;
+  max-width: 30vw;
+  height: 40rem;
+  max-height: 60vh;
+  position: absolute;
+  right: 1rem;
+  bottom: 6rem;
+  z-index: 1000;
 }
 
 #nav {
-  max-width: 20vw;
+  display: none;
 }
 
 #overlay {
@@ -121,7 +123,7 @@
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 1000;
+  z-index: 9000;
   background: #00000075;
   opacity: 0;
   transition: opacity .5s ease;
@@ -148,7 +150,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
 }
 
 #output {
@@ -171,9 +172,9 @@
   width: 60%;
   margin: 1rem .5rem;
   padding: 1rem;
-  background: black;
+  background: dodgerblue;
   border-radius: 1rem;
-  color: dodgerblue;
+  color: white;
 }
 
 #input > input,
@@ -183,15 +184,14 @@
   margin-bottom: .5rem;
   border: none;
   border-radius: .5rem;
-  width: calc(100% - 1rem);
+  width: 100%;
   appearance: none;
   outline: none;
   background: black;
-  color: white;
 }
 
 #input > input {
-  background: #12121280;
+  background: #12121210;
   padding: 0 .5rem;
 }
 
@@ -205,53 +205,13 @@
 }
 
 #create-persona-button {
-  background: white;
-  color: dodgerblue;
-}
-
-@media (max-width: 900px) {
-  .persona-list-item {
-    padding: 0;
-    border-radius: 100vw;
-    margin: 0;
-  }
-
-  h1,
-  .persona-list-item > span,
-  .persona-list-item > h2 {
-    display: none;
-  }
-
-  .persona-list-item > .persona-avatar {
-    display: block;
-  }
-
-  .form {
-    width: 95%;
-  }
-
-  #root {
-    padding: 0;
-    gap: 2px;
-  }
-
-  #nav,
-  #app {
-    margin: 0;
-    border-radius: 0;
-    height: 100vh;
-    max-height: 100vh;
-    overflow-y: auto;
-  }
-
-  #output p {
-    width: calc(100% - 1rem);
-  }
-
-  #create-persona-button {
-    position: relative;
-    width: 3rem;
-    height: 3rem;
-    padding: 0;
-  }
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  border-radius: 100vw;
+  width: 4rem;
+  height: 4rem;
+  background: black;
+  color: white;
+  z-index: 1000;
 }

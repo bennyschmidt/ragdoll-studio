@@ -1,32 +1,26 @@
 import { useEffect, useState } from 'react';
 
+import RandomProfile from 'random-profile-generator';
+
 import './App.css';
 
 const BASE_URL = 'http://localhost:8000';
-const STORAGE_KEY = 'ARTHAS_PERSONAS';
+const STORAGE_KEY = 'ARTHAS_INSTANT_SALESPERSON';
 const DEFAULT_IMG_ALT = 'Corresponding visualization';
 const OVERLAY = 'overlay';
 const SEND = 'Send';
 const SAVE = 'Save';
-const CREATE = '+';
+const CREATE = '🗨';
 const PERSONA_LIST_HEADING = 'Domain-specific Personas (DSPs)';
 const PERSONA_CREATED = 'New persona created.';
 const PERSONA_ERROR = 'Error loading persona.';
 const PERSONA_NAME = 'Name';
 const PERSONA_AVATAR_URL = 'Avatar URL';
-const PERSONA_KNOWLEDGE_URI = 'Knowledge URI';
-const PERSONA_ART_STYLE = 'Art style';
+const PERSONA_KNOWLEDGE_URI = 'Store URL';
 const PERSONA_WRITING_STYLE = 'Writing style';
 const PERSONA_WRITING_TONE = 'Writing tone';
 const SAVE_ERROR = 'Error saving persona.';
 const API_ERROR = 'API temporarily unavailable.';
-
-const DEFAULT_AVATAR_URL = '/img/avatars/arthas.png';
-const DEFAULT_NAME = 'Arthas';
-const DEFAULT_KNOWLEDGE_URI = 'https://wowpedia.fandom.com/wiki/Arthas_Menethil';
-const DEFAULT_ART_STYLE = `Blizzard's World of Warcraft concept art in high resolution like a fine-tuned video game model including each detail and anatomically correct features (if any)`;
-const DEFAULT_WRITING_STYLE = 'inspiring but grim, from the year 1200 A.D.';
-const DEFAULT_WRITING_TONE = 'slightly annoyed';
 
 const SAVED_PERSONAS = JSON.parse(
   localStorage.getItem(STORAGE_KEY)
@@ -45,23 +39,15 @@ const App = () => {
 
   const [personaName, setPersonaName] = useState('');
   const [personaKnowledgeURI, setPersonaKnowledgeURI] = useState('');
-  const [personaArtStyle, setPersonaArtStyle] = useState('');
   const [personaWritingStyle, setPersonaWritingStyle] = useState('');
   const [personaWritingTone, setPersonaWritingTone] = useState('');
   const [personaAvatarURL, setPersonaAvatarURL] = useState('');
 
   useEffect(() => {
     const personas = getPersonasArray();
-    const defaultPersona = personas[0];
+    const currentPersona = personas.pop();
 
-    const currentPersona = defaultPersona || {
-      name: DEFAULT_NAME,
-      knowledgeURI: DEFAULT_KNOWLEDGE_URI,
-      avatarURL: DEFAULT_AVATAR_URL,
-      artStyle: DEFAULT_ART_STYLE,
-      writingStyle: DEFAULT_WRITING_STYLE,
-      writingTone: DEFAULT_WRITING_TONE
-    };
+    if (!currentPersona) return;
 
     const savedPersonas = {
       ...personaList,
@@ -133,10 +119,17 @@ const App = () => {
   };
 
   const openOverlay = () => {
+    const {
+      firstName,
+      avatar
+    } = RandomProfile.profile('female');
+
     setIsCreating(true);
     setOverlayClassName('');
 
     requestAnimationFrame(() => {
+      setPersonaName(firstName);
+      setPersonaAvatarURL(avatar);
       setOverlayClassName('show');
     });
   };
@@ -144,7 +137,6 @@ const App = () => {
   const closeOverlay = () => {
     setPersonaName('');
     setPersonaKnowledgeURI('');
-    setPersonaArtStyle('');
     setPersonaWritingStyle('');
     setPersonaWritingTone('');
     setOverlayClassName('');
@@ -187,7 +179,10 @@ const App = () => {
       name: personaName,
       knowledgeURI: personaKnowledgeURI,
       avatarURL: personaAvatarURL,
-      artStyle: personaArtStyle,
+
+      // Passing null for artStyle will skip image generation
+
+      artStyle: null,
       writingStyle: personaWritingStyle,
       writingTone: personaWritingTone
     };
@@ -294,10 +289,6 @@ const App = () => {
     setPersonaKnowledgeURI(value)
   );
 
-  const onChangePersonaArtStyle = ({ target: { value }}) => (
-    setPersonaArtStyle(value)
-  );
-
   const onChangePersonaWritingStyle = ({ target: { value }}) => (
     setPersonaWritingStyle(value)
   );
@@ -313,7 +304,7 @@ const App = () => {
   return <>
     {isCreating && <aside id="overlay" className={overlayClassName} onClick={onClickOverlay}>
       <div className="form">
-        <h2>Create Persona</h2>
+        <h2>Create Shopping Assistant</h2>
         <input
           required
           disabled={disabled}
@@ -334,13 +325,6 @@ const App = () => {
           placeholder={PERSONA_KNOWLEDGE_URI}
           onChange={onChangePersonaKnowledgeURI}
           value={personaKnowledgeURI}
-        />
-        <input
-          required
-          disabled={disabled}
-          placeholder={PERSONA_ART_STYLE}
-          onChange={onChangePersonaArtStyle}
-          value={personaArtStyle}
         />
         <input
           required
@@ -372,7 +356,7 @@ const App = () => {
           knowledgeURI,
           avatarURL,
           online = false
-        }) => (
+        }) => online && (
           <li
             key={knowledgeURI}
             className={`persona-list-item panel ${online ? 'selected' : ''}`}
@@ -391,15 +375,15 @@ const App = () => {
           </li>
         ))}
       </ul>
-      <button
-        disabled={isCreating}
-        id="create-persona-button"
-        onClick={onClickCreate}
-      >
-        {CREATE}
-      </button>
     </nav>
-    <main id="app" className="panel">
+    <button
+      disabled={isCreating}
+      id="create-persona-button"
+      onClick={onClickCreate}
+    >
+      {CREATE}
+    </button>
+    {persona && <main id="app" className="panel">
       <div id="output">
         <div className="img">
           {image && <img
@@ -427,7 +411,7 @@ const App = () => {
           {SEND}
         </button>
       </div>
-    </main>
+    </main>}
   </>;
 }
 
