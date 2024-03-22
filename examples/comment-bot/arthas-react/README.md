@@ -1,10 +1,12 @@
-# Forum/Comment Bot
+# Comment Bot
 
 React front-end for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
 
 ## Background
 
-TBD
+This example works more like a Slack or Discord bot, where Arthas listens for commands - in this case, in a forum backend - and responds accordingly. Instead of a slash command like you'd find in a chat bot, Arthas just watches for newly created topics that mention his name. If mentioned, Arthas parses the question and posts the text response as a comment in the thread.
+
+https://github.com/bennyschmidt/Arthas.AI/assets/45407493/dfb7c223-835c-4415-8199-1ef8d1481693
 
 -----
 
