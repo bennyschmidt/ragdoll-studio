@@ -14,6 +14,10 @@ https://github.com/bennyschmidt/Arthas.AI/assets/45407493/30df59e1-bdfb-4d54-88f
 > Answer: Hi there! I recommend the Joico Color Balance Purple Shampoo. It's fab and only $16.40 on sale! Great choice for under $20. Enjoy! 😊
 >
 
+#### Images
+
+The DALL-E 2 images here are pretty irrelevant, and generating one takes up the bulk of the model cost (and time it takes to respond), so ideally we'll modify it to pull an image directly from the page, or even provide only text without an image. We will probably also want to provide the URL to buy the product.
+
 Here's a slightly different salesperson and question:
 
 >
@@ -29,10 +33,6 @@ You can ask a Walmart shopping assistant for a list of gift ideas:
 >
 > Answer: I've found some great Easter gifts for kids at Walmart! Check out the Dudley's Easter Egg Party Pack for $13.98, Reese's Milk Chocolate Snack Size Peanut Butter Eggs Easter Candy for $3.96, Bluey Talking Bluey Plush for $19.97, Fun Express 12 pieces Large Solid Color Easter Bamboo Baskets for $34.40, Kit Kat, Reese's and Whoppers Assorted Flavored Easter Candy for $19.44, Time and Tru Women's Tiered Midi Dress with Puff Sleeves for $19.98, Medium Round White Paper Rope Easter Basket with Bunny Ears for $13.37, and Bluey Dance and Play 14 inch Animated Plush with Phrases Songs for $34.97. Happy Easter!
 >
-
-#### Images
-
-The DALL-E 2 images here are pretty irrelevant, and generating one takes up the bulk of the model cost (and time it takes to respond), so ideally we'll modify it to pull an image directly from the page, or even provide only text without an image. We will probably also want to provide the URL to buy the product.
 
 #### Instant salesperson
 
@@ -50,7 +50,7 @@ Note: You can edit the name and avatar, or choose another at random by closing a
 
 https://github.com/bennyschmidt/Arthas.AI/assets/45407493/249f619f-6e93-4464-b237-453831610d52
 
-Note: Because I know the year/make/model of my car, I based Seymour off that selection on the auto parts website that sourced his knowledge, so that when I ask about parts we both know it's for my car. And because their website approximates my location (and asks for exact) Seymour already knows which store location I'm asking about, and for parts only available in-store he'll even recommend when I should swing by in person.
+Note: Because I know the year/make/model of my car, I based Seymour off that selection on the auto parts website that sourced his knowledge, so that when I ask about parts we both know it's for my car. And because their website approximates my location Seymour already knows which store location I'm asking about, and for parts only available in-store he'll even recommend when I should swing by in person.
 
 #### Seymour, the car expert:
 
