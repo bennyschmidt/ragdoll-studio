@@ -1,0 +1,32 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  padding-left: 1rem;
+  background: black;
+  color: white;
+  margin: 0;
+}
+
+.breadcrumbs em {
+  opacity: .6;
+}
+
+.breadcrumbs a {
+  color: white;
+}
+
+#forum {
+  flex-direction: column;
+  width: 100%;
+}
+
+.topic,
+.comment {
+  padding: 1rem;
+  background: #ffffff50;
+}
+
+.topic:nth-of-type(odd) {
+  background: #ffffff75
+}
