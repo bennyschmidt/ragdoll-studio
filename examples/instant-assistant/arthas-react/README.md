@@ -1,4 +1,4 @@
-# Instant Salesperson
+# Instant Assistant
 
 React front-end for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
 
@@ -34,9 +34,9 @@ You can ask a Walmart shopping assistant for a list of gift ideas:
 > Answer: I've found some great Easter gifts for kids at Walmart! Check out the Dudley's Easter Egg Party Pack for $13.98, Reese's Milk Chocolate Snack Size Peanut Butter Eggs Easter Candy for $3.96, Bluey Talking Bluey Plush for $19.97, Fun Express 12 pieces Large Solid Color Easter Bamboo Baskets for $34.40, Kit Kat, Reese's and Whoppers Assorted Flavored Easter Candy for $19.44, Time and Tru Women's Tiered Midi Dress with Puff Sleeves for $19.98, Medium Round White Paper Rope Easter Basket with Bunny Ears for $13.37, and Bluey Dance and Play 14 inch Animated Plush with Phrases Songs for $34.97. Happy Easter!
 >
 
-#### Instant salesperson
+#### Instant salesperson or research assistant
 
-This case study inspired the idea to create an alternate front-end focused around the use case of an instant salesperson/shopping assistant. Because some web pages (especially in e-commerce) can be so busy and hard to navigate, the instant salesperson comes in handy as its able to easily sift through the noise and find what you're looking for.
+This case study inspired the idea to create an alternate front-end focused around the use case of an instant assistant. Because some web pages (especially in e-commerce like Amazon or academic sources like PubMed) can be so busy and hard to navigate, the instant assistant comes in handy as its able to easily sift through the noise and find what you're looking for.
 
 #### Let's make a more relevant UI
 
@@ -60,7 +60,19 @@ We can get into more in-depth conversations about price and part comparisons:
 
 https://github.com/bennyschmidt/Arthas.AI/assets/45407493/04ecc3c0-16ef-4f4e-aaf6-bf5a7afe77ff
 
-This site widget or browser extension would allow your users to create an instant AI shopping assistant based on any URL that has products listed, giving the shopper an alternative way to browse and buy.
+#### Fun example
+
+Wesley is toxic, all he does is talk trash about articles on Hacker News. I asked his thoughts on the most upvoted article this morning:
+
+![screenshot](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/0d02ae19-c7b8-41dc-9f5a-3f555e860a2c)
+
+Hot take!
+
+#### Research example
+
+PubMeds can be lengthy and hard to follow. This research assistant can easily index the entire study so I can chat with him about it.
+
+![screenshot](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/d5667561-b5d8-4635-8847-ac75c37098de)
 
 -----
 
