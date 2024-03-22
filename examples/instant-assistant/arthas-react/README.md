@@ -66,13 +66,15 @@ Wesley is toxic, all he does is talk trash about articles on Hacker News. I aske
 
 ![screenshot](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/0d02ae19-c7b8-41dc-9f5a-3f555e860a2c)
 
-Hot take!
+Hot take! Either way I learned the most upvoted post this morning is a FOSS alternative to Google Photos.
 
 #### Research example
 
 PubMeds can be lengthy and hard to follow. This research assistant can easily index the entire study so I can chat with him about it.
 
 ![screenshot](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/d5667561-b5d8-4635-8847-ac75c37098de)
+
+Don't worry, Alfred tells me the research is ultimately inconclusive.
 
 -----
 
