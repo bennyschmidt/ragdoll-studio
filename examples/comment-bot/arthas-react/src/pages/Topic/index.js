@@ -110,16 +110,23 @@ const Topic = ({ timeAgo }) => {
     <article>
       {topic && <div className="topic">
         <h2>{topic.topic}</h2>
-        <em>{timeAgo.format(new Date(topic.createdAt))}</em>
+        <div className="author">
+          <h6>Posted by {topic.authorName}</h6>&nbsp;
+          <em>{timeAgo.format(new Date(topic.createdAt))}</em>
+        </div>
         <p>{topic.text}</p>
         <ul>
           {Object.values(topic.comments).map(({
             id,
+            authorName,
             text,
             createdAt
           }) => (
             <li className="comment" key={id}>
-              <em>{timeAgo.format(new Date(createdAt))}</em>
+              <span className="author">
+                <h6>Commented by {authorName}</h6>&nbsp;
+                <em>{timeAgo.format(new Date(createdAt))}</em>
+              </span>
               <p>{text}</p>
             </li>
           ))}

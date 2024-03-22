@@ -16,6 +16,7 @@ module.exports = asyncCache => async (req, res) => {
       body = Buffer.concat(body).toString();
 
       const {
+        authorName = 'Anonymous User',
         topicId,
         text
       } = JSON.parse(body || '{}');
@@ -45,6 +46,7 @@ module.exports = asyncCache => async (req, res) => {
             ...comments[topicId].comments,
 
             [commentId]: {
+              authorName,
               id: commentId,
               text,
               createdAt
