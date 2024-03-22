@@ -16,17 +16,13 @@ https://github.com/bennyschmidt/Arthas.AI/assets/45407493/30df59e1-bdfb-4d54-88f
 
 Here's a slightly different salesperson and question:
 
-![Screenshot from 2024-03-20 21-03-32](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/25945bf2-d6d4-44a1-bc10-41bc30dfd8d1)
-
 >
 > Question: What's the most affordable red nail polish you have?
 >
 > Answer: Hi there! I'm Alli, your friendly nail polish expert! Looking for an affordable red shade? Look no further than the OPI Nail Lacquer! It's currently on sale for just $10.19. Grab it now and rock those stunning red nails! 😊💅
 >
 
-You can even ask for a list of products to get ideas:
-
-![image](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/042747b9-01dd-4619-9f61-9f7a2b256b75)
+You can ask a Walmart shopping assistant for a list of gift ideas:
 
 >
 > Question: What are some good easter gifts for kids, and can you tell me how much they cost?
@@ -40,7 +36,7 @@ The DALL-E 2 images here are pretty irrelevant, and generating one takes up the 
 
 #### Instant salesperson
 
-This case study inspired the idea to create an alternate front-end focused around the use case of an instant salesperson. Because some web pages (especially in e-commerce) can be so busy and hard to navigate, the instant salesperson comes in handy as its able to easily sift through the noise and find what you're looking for.
+This case study inspired the idea to create an alternate front-end focused around the use case of an instant salesperson/shopping assistant. Because some web pages (especially in e-commerce) can be so busy and hard to navigate, the instant salesperson comes in handy as its able to easily sift through the noise and find what you're looking for.
 
 #### Let's make a more relevant UI
 
