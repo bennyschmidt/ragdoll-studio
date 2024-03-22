@@ -1,12 +1,10 @@
-# Arthas React
+# Forum/Comment Bot
 
 React front-end for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
 
-![Screenshot from 2024-03-17 14-39-22](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/2088fcaf-4513-4014-b285-bfc4f43999c6)
+## Background
 
-## Usage
-
-Coming soon.
+TBD
 
 -----
 
