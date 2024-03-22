@@ -87,7 +87,25 @@
   border-radius: 1rem;
 }
 
-#root {
+#persona-manager .breadcrumbs {
+  position: absolute;
+  width: calc(100% - 2rem);
+  height: 3rem;
+  top: 1rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  background: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  z-index: 2000;
+}
+
+#persona-manager .breadcrumbs a {
+  color: white;
+}
+
+#persona-manager {
   display: flex;
   gap: 1rem;
   padding: 1rem;
@@ -98,8 +116,8 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin: 1rem auto;
-  height: calc(100vh - 3rem);
+  margin: 4rem auto 1rem;
+  height: calc(100vh - 7rem);
   overflow-x: hidden;
 }
 
@@ -230,7 +248,12 @@
     width: 95%;
   }
 
-  #root {
+  #persona-manager .breadcrumbs {
+    width: 50%;
+    right: 1rem;
+  }
+
+  #persona-manager {
     padding: 0;
     gap: 2px;
   }

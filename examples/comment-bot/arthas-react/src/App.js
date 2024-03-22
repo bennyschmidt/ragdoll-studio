@@ -19,7 +19,11 @@ const App = () => {
         </div>
       );
     default:
-      return <PersonaManager />;
+      return (
+        <div id="persona-manager">
+          <PersonaManager />
+        </div>
+      );
   }
 };
 

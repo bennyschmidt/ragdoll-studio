@@ -1,8 +1,15 @@
 import { useEffect, useState } from 'react';
 
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
+
 import './index.css';
 
 const BASE_URL = 'http://localhost:8000';
+
+TimeAgo.addDefaultLocale(en);
+
+const timeAgo = new TimeAgo('en-US');
 
 const Topic = () => {
   const params = new URL(document.location).searchParams;
@@ -107,22 +114,25 @@ const Topic = () => {
         </button>
       </div>
     </aside>}
-    {topic && <div className="topic">
-      <h2>{topic.topic}</h2>
-      <p>{topic.text}</p>
-      <ul>
-        {Object.values(topic.comments).map(({
-          id,
-          text,
-          createdAt
-        }) => (
-          <li className="comment" key={id}>
-            <span>{new Date(createdAt).toLocaleDateString()}</span>
-            <p>{text}</p>
-          </li>
-        ))}
-      </ul>
-    </div>}
+    <article>
+      {topic && <div className="topic">
+        <h2>{topic.topic}</h2>
+        <em>{timeAgo.format(new Date(topic.createdAt))}</em>
+        <p>{topic.text}</p>
+        <ul>
+          {Object.values(topic.comments).map(({
+            id,
+            text,
+            createdAt
+          }) => (
+            <li className="comment" key={id}>
+              <em>{timeAgo.format(new Date(createdAt))}</em>
+              <p>{text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>}
+    </article>
     <button disabled={isPosting} onClick={onClickPostComment}>Post Comment</button>
   </>;
 };

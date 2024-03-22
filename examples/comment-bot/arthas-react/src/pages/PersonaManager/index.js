@@ -311,6 +311,9 @@ const PersonaManager = () => {
   );
 
   return <>
+    <header className="breadcrumbs">
+      Visit the&nbsp;<a href="/forum">Community Forum</a>!
+    </header>
     {isCreating && <aside id="overlay" className={overlayClassName} onClick={onClickOverlay}>
       <div className="form">
         <h2>Create Persona</h2>

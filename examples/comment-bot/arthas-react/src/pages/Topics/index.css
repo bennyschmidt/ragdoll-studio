@@ -1,32 +1,55 @@
-.breadcrumbs {
+#forum {
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+}
+
+#forum .breadcrumbs {
+  position: static;
   display: flex;
   align-items: center;
   height: 3rem;
   padding-left: 1rem;
   background: black;
+  border-radius: 1rem;
   color: white;
   margin: 0;
 }
 
-.breadcrumbs em {
+#forum .breadcrumbs em {
   opacity: .6;
 }
 
-.breadcrumbs a {
+#forum .breadcrumbs a {
   color: white;
 }
 
-#forum {
-  flex-direction: column;
-  width: 100%;
+#forum > ul,
+#forum > article {
+  margin: 1rem 0;
 }
 
 .topic,
 .comment {
   padding: 1rem;
-  background: #ffffff50;
+  background: #00000050;
+}
+
+.topic a,
+.comment a {
+  color: white;
 }
 
 .topic:nth-of-type(odd) {
-  background: #ffffff75
+  background: #00000085
+}
+
+.topic:first-of-type {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.topic:last-of-type {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
