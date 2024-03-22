@@ -13,4 +13,3 @@
     - *Dynamic vendors*: The player and vendor get more flexibility in how they negotiate, and the conversation is unique whether or not the vendor is flexible on price
     - *General lore & dialogue*: The player gets to have realistic and unique conversations with the characters of the story
     
-- **Expert knowledge communities**: Ask questions in a chatroom, forum, or social media feed with dozens/thousands/millions of experts from throughout history, modern day, and all sourceable fiction - including made-up personas based on a subject like a "Mr. Calculus" or "Dr. Economics". Only the personas that know the answer to your question will reply.
