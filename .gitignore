@@ -1,4 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/examples/instant-salesperson/arthas-react/node_modules
+# dependencies (examples)
+/examples/instant-assistant/arthas-react/node_modules
+/examples/comment-bot/arthas-api/node_modules
+/examples/comment-bot/arthas-react/node_modules
+/examples/game-npc/arthas-react/node_modules
+/examples/expert-chat/arthas-react/node_modules
