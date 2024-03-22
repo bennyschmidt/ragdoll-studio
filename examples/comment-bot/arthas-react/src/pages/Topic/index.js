@@ -1,17 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en';
-
 import './index.css';
 
 const BASE_URL = 'http://localhost:8000';
 
-TimeAgo.addDefaultLocale(en);
-
-const timeAgo = new TimeAgo('en-US');
-
-const Topic = () => {
+const Topic = ({ timeAgo }) => {
   const params = new URL(document.location).searchParams;
 
   const topicId = params.get('id');

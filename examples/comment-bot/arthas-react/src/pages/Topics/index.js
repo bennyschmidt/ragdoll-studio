@@ -1,17 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en';
-
 import './index.css';
 
 const BASE_URL = 'http://localhost:8000';
 
-TimeAgo.addDefaultLocale(en);
-
-const timeAgo = new TimeAgo('en-US');
-
-const Topics = () => {
+const Topics = ({ timeAgo }) => {
   const [topics, setTopics] = useState([]);
   const [topic, setTopic] = useState('');
   const [text, setText] = useState('');
