@@ -5,8 +5,7 @@ import RandomProfile from 'random-profile-generator';
 import './App.css';
 
 const BASE_URL = 'http://localhost:8000';
-const STORAGE_KEY = 'ARTHAS_INSTANT_SALESPERSON';
-const DEFAULT_IMG_ALT = 'Corresponding visualization';
+const STORAGE_KEY = 'ARTHAS_INSTANT_ASSISTANT';
 const OVERLAY = 'overlay';
 const SEND = 'Send';
 const SAVE = 'Save';
@@ -19,6 +18,8 @@ const PERSONA_AVATAR_URL = 'Avatar URL';
 const PERSONA_KNOWLEDGE_URI = 'Store URL';
 const PERSONA_WRITING_STYLE = 'Writing style';
 const PERSONA_WRITING_TONE = 'Writing tone';
+// const DEFAULT_PERSONA_GENDER = 'Male';
+const DEFAULT_PERSONA_GENDER = 'Female';
 const SAVE_ERROR = 'Error saving persona.';
 const API_ERROR = 'API temporarily unavailable.';
 
@@ -29,7 +30,6 @@ const SAVED_PERSONAS = JSON.parse(
 const App = () => {
   const [question, setQuestion] = useState('');
   const [text, setText] = useState('');
-  const [image, setImage] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [persona, setPersona] = useState();
   const [personaList, setPersonaList] = useState(SAVED_PERSONAS);
@@ -42,6 +42,7 @@ const App = () => {
   const [personaWritingStyle, setPersonaWritingStyle] = useState('');
   const [personaWritingTone, setPersonaWritingTone] = useState('');
   const [personaAvatarURL, setPersonaAvatarURL] = useState('');
+  const [personaGender] = useState(DEFAULT_PERSONA_GENDER);
 
   useEffect(() => {
     const personas = getPersonasArray();
@@ -110,7 +111,6 @@ const App = () => {
         return;
       } else {
         setText(answer.text);
-        setImage(answer.imageURL);
       }
     }
 
@@ -122,7 +122,7 @@ const App = () => {
     const {
       firstName,
       avatar
-    } = RandomProfile.profile();
+    } = RandomProfile.profile(personaGender);
 
     setIsCreating(true);
     setOverlayClassName('');
@@ -276,7 +276,6 @@ const App = () => {
     }
 
     setText('');
-    setImage('')
     setQuestion('');
     setDisabled(false);
   };
@@ -386,9 +385,9 @@ const App = () => {
     {persona && <main id="app" className="panel">
       <div id="output">
         <div className="img">
-          {image && <img
-            src={image}
-            alt={DEFAULT_IMG_ALT}
+          {persona.avatarURL && <img
+            src={persona.avatarURL}
+            alt={persona.name}
             width="100%"
             height="100%"
           />}

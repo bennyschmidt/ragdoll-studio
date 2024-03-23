@@ -99,14 +99,16 @@
 
 #app {
   justify-content: space-between;
-  width: 30rem;
-  max-width: 30vw;
-  height: 40rem;
-  max-height: 60vh;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
   position: absolute;
-  right: 1rem;
-  bottom: 6rem;
   z-index: 1000;
+  overflow: hidden;
 }
 
 #nav {
@@ -154,16 +156,17 @@
 
 #output {
   flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #output .img {
   width: calc(100% - 1rem);
-  margin: 0 auto;
-  border-radius: 100vw;
+  margin: 1rem .5rem;
+  border-radius: 1rem;
   box-shadow: 0 0 5rem black;
   background: black;
-  width: 3rem;
-  height: 3rem;
 }
 
 #output .img > img {
@@ -193,7 +196,7 @@
 }
 
 #input > input {
-  background: #12121210;
+  background: #ffffff10;
   padding: 0 .5rem;
 }
 
@@ -216,4 +219,40 @@
   background: black;
   color: white;
   z-index: 1000;
+}
+
+#game {
+  position: relative;
+  width: 1024px;
+  height: 576px;
+  background: black url('http://localhost:3000/img/background.jpg') center bottom / 1024px 576px no-repeat;
+}
+
+#game.complete {
+  background: black url('http://localhost:3000/img/background-open.jpg') center bottom / 1024px 576px no-repeat;
+}
+
+#player {
+  position: absolute;
+  left: 0;
+  bottom: 160px;
+  width: 64px;
+  height: 96px;
+  background: url('http://localhost:3000/img/player-idle.gif') center bottom / 240px 160px no-repeat;
+}
+
+#player.run {
+  background: url('http://localhost:3000/img/player-run.gif') center bottom / 240px 160px no-repeat;
+}
+
+#player.left {
+  transform: rotateY(-180deg);
+}
+
+#input {
+  visibility: hidden;
+}
+
+#input.visible {
+  visibility: visible;
 }
