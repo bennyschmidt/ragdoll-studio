@@ -4,9 +4,7 @@ React front-end for interacting with [ArthasGPT](https://github.com/bennyschmidt
 
 ## Background
 
-Arthas can store and index knowledge so fast you can deploy a persona to any live URL - even a temporary and encrypted one. I plugged in an Amazon search result page for "beauty products" and made this AI sales agent in seconds:
-
-https://github.com/bennyschmidt/Arthas.AI/assets/45407493/30df59e1-bdfb-4d54-88f1-999805b622ab
+Arthas can store and index knowledge so fast you can deploy a persona to any live URL - even a temporary and encrypted one. I plugged in an Amazon search result page for "beauty products" and made an AI shopping assistant in seconds:
 
 >
 > Question: What's a good shampoo for under $20?
@@ -14,31 +12,11 @@ https://github.com/bennyschmidt/Arthas.AI/assets/45407493/30df59e1-bdfb-4d54-88f
 > Answer: Hi there! I recommend the Joico Color Balance Purple Shampoo. It's fab and only $16.40 on sale! Great choice for under $20. Enjoy! 😊
 >
 
-#### Images
-
-The DALL-E 2 images here are pretty irrelevant, and generating one takes up the bulk of the model cost (and time it takes to respond), so ideally we'll modify it to pull an image directly from the page, or even provide only text without an image. We will probably also want to provide the URL to buy the product.
-
-Here's a slightly different salesperson and question:
-
->
-> Question: What's the most affordable red nail polish you have?
->
-> Answer: Hi there! I'm Alli, your friendly nail polish expert! Looking for an affordable red shade? Look no further than the OPI Nail Lacquer! It's currently on sale for just $10.19. Grab it now and rock those stunning red nails! 😊💅
->
-
-You can ask a Walmart shopping assistant for a list of gift ideas:
-
->
-> Question: What are some good easter gifts for kids, and can you tell me how much they cost?
->
-> Answer: I've found some great Easter gifts for kids at Walmart! Check out the Dudley's Easter Egg Party Pack for $13.98, Reese's Milk Chocolate Snack Size Peanut Butter Eggs Easter Candy for $3.96, Bluey Talking Bluey Plush for $19.97, Fun Express 12 pieces Large Solid Color Easter Bamboo Baskets for $34.40, Kit Kat, Reese's and Whoppers Assorted Flavored Easter Candy for $19.44, Time and Tru Women's Tiered Midi Dress with Puff Sleeves for $19.98, Medium Round White Paper Rope Easter Basket with Bunny Ears for $13.37, and Bluey Dance and Play 14 inch Animated Plush with Phrases Songs for $34.97. Happy Easter!
->
-
 #### Instant salesperson or research assistant
 
-This case study inspired the idea to create an alternate front-end focused around the use case of an instant assistant. Because some web pages (especially in e-commerce like Amazon or academic sources like PubMed) can be so busy and hard to navigate, the instant assistant comes in handy as its able to easily sift through the noise and find what you're looking for.
+This inspired the idea to create an alternate front-end focused around the use case of an instant assistant. Because some web pages (especially in e-commerce like Amazon or academic sources like PubMed) can be so busy and hard to understand, the instant assistant comes in handy as its able to easily sift through the noise and find what you're looking for.
 
-#### Let's make a more relevant UI
+#### Re-designed the chat UI
 
 ![Screenshot from 2024-03-21 09-38-06](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/dff16b30-fa1b-4dcd-95b3-3220cf9a6f92)
 
