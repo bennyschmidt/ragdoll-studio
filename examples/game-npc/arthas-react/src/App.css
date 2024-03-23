@@ -108,6 +108,7 @@
   width: 100%;
   position: absolute;
   z-index: 1000;
+  overflow: hidden;
 }
 
 #nav {
@@ -155,6 +156,9 @@
 
 #output {
   flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #output .img {
@@ -215,4 +219,40 @@
   background: black;
   color: white;
   z-index: 1000;
+}
+
+#game {
+  position: relative;
+  width: 1024px;
+  height: 576px;
+  background: black url('http://localhost:3000/img/background.jpg') center bottom / 1024px 576px no-repeat;
+}
+
+#game.complete {
+  background: black url('http://localhost:3000/img/background-open.jpg') center bottom / 1024px 576px no-repeat;
+}
+
+#player {
+  position: absolute;
+  left: 0;
+  bottom: 160px;
+  width: 64px;
+  height: 96px;
+  background: url('http://localhost:3000/img/player-idle.gif') center bottom / 240px 160px no-repeat;
+}
+
+#player.run {
+  background: url('http://localhost:3000/img/player-run.gif') center bottom / 240px 160px no-repeat;
+}
+
+#player.left {
+  transform: rotateY(-180deg);
+}
+
+#input {
+  visibility: hidden;
+}
+
+#input.visible {
+  visibility: visible;
 }

@@ -3,7 +3,7 @@ body {
   height: 100vh;
   overflow: hidden;
   margin: 0;
-  font-family: "Outfit Light", sans-serif;
+  font-family: "Silkscreen", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: black;
@@ -34,7 +34,7 @@ input {
   border-radius: 1.2rem;
   border: none;
   margin: 1rem 0;
-  font-family: "Outfit Medium", sans-serif;
+  font-family: "Silkscreen", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color .1s linear, color .1s linear;

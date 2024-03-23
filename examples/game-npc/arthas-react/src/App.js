@@ -5,12 +5,17 @@ import './App.css';
 const BASE_URL = 'http://localhost:8000';
 const SEND = 'Send';
 const API_ERROR = 'API temporarily unavailable.';
+const SECRET_PASSWORD = 'CORPSE FLOWER';
 
 const App = () => {
   const [question, setQuestion] = useState('');
   const [text, setText] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [persona, setPersona] = useState();
+  const [keys, setKeys] = useState({});
+  const [positionX, setPositionX] = useState(0);
+  const [gameClassName, setGameClassName] = useState('');
+  const [playerClassName, setPlayerClassName] = useState('');
 
   useEffect(() => {
     const personaConfig = {
@@ -45,7 +50,56 @@ const App = () => {
     };
 
     fetchOracle();
+
+    document.body.onkeydown = ({ key }) => {
+      const keybind = key.toUpperCase();
+
+      setKeys({
+        ...keys,
+
+        [keybind]: true
+      });
+    };
+
+    document.body.onkeyup = ({ key }) => {
+      const keybind = key.toUpperCase();
+
+      setKeys({
+        ...keys,
+
+        [keybind]: false
+      });
+    };
+
+    return () => {
+      document.body.onkeydown = null;
+      document.body.onkeyup = null;
+    };
   }, []);
+
+  useEffect(() => {
+    if (document.activeElement.tagName === 'INPUT') return;
+
+    if (keys.A) {
+      setPlayerClassName('run left');
+
+      if (positionX > 0) {
+        requestAnimationFrame(() => {
+          setPositionX(positionX - 5);
+        });
+      }
+    } else if (keys.D) {
+      setPlayerClassName('run right');
+
+      if (positionX < 800) {
+        requestAnimationFrame(() => {
+          setPositionX(positionX + 5);
+        });
+      }
+    } else {
+      setPlayerClassName('');
+    }
+  }, [keys]);
 
   const ask = async () => {
     setDisabled(true);
@@ -85,6 +139,20 @@ const App = () => {
     setDisabled(false);
   };
 
+  const guess = () => {
+    setDisabled(true);
+
+    if (question.trim().toUpperCase() === SECRET_PASSWORD) {
+      setGameClassName('complete');
+      setText('The door has opened! (You win)');
+    } else {
+      setText('Incorrect! Try again, mortal.');
+    }
+
+    setQuestion('');
+    setDisabled(false);
+  };
+
   const getQuestionPlaceholder = () => (
     !persona ? '...' : 'Type something...'
   );
@@ -94,21 +162,27 @@ const App = () => {
   };
 
   const onKeyDownQuestion = ({ keyCode }) => (
-    question && keyCode === 13 && ask()
+    question && keyCode === 13 && (isPlayerNearOracle ? ask() : guess())
+  );
+
+  const isPlayerNearDoor = (
+    positionX > 430 &&
+    positionX < 600
+  );
+
+  const isPlayerNearOracle = (
+    positionX > 750
   );
 
   return <>
     {persona && <main id="app" className="panel">
       <div id="output">
-        {persona.avatarURL && <img
-          src={persona.avatarURL}
-          alt={persona.name}
-          width="4rem"
-          height="4rem"
-        />}
-        {text && <p>{text}</p>}
+        <div id="game" className={gameClassName}>
+          <div id="player" className={playerClassName} style={{ left: positionX }} />
+          {text && <p>{text}</p>}
+        </div>
       </div>
-      <div id="input">
+      <div id="input" className={(isPlayerNearDoor || isPlayerNearOracle) ? 'visible' : ''}>
         <input
           autoFocus
           disabled={disabled}
@@ -119,7 +193,7 @@ const App = () => {
         />
         <button
           disabled={disabled}
-          onClick={ask}
+          onClick={isPlayerNearOracle ? ask : guess}
         >
           {SEND}
         </button>
