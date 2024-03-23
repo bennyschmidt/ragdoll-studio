@@ -158,10 +158,12 @@
 
 #output .img {
   width: calc(100% - 1rem);
-  margin: 1rem .5rem;
-  border-radius: 1rem;
+  margin: 0 auto;
+  border-radius: 100vw;
   box-shadow: 0 0 5rem black;
   background: black;
+  width: 3rem;
+  height: 3rem;
 }
 
 #output .img > img {
