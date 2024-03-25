@@ -23,7 +23,6 @@ dotenv.config();
 
 const { DELAY } = process.env;
 
-const HOST = 'http://localhost';
 const PORT = 8000;
 
 /**
