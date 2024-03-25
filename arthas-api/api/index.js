@@ -42,12 +42,20 @@ const asyncCache = {
  */
 
 module.exports = (cluster, routes) => {
-  for (const route of Object.keys(routes.GET)) {
-    routes.GET[route] = routes.GET[route](asyncCache);
+  if (routes.GET) {
+    for (const route of Object.keys(routes.GET)) {
+      if (routes.GET[route]) {
+        routes.GET[route] = routes.GET[route](asyncCache);
+      }
+    }
   }
 
-  for (const route of Object.keys(routes.POST)) {
-    routes.POST[route] = routes.POST[route](asyncCache);
+  if (routes.POST) {
+    for (const route of Object.keys(routes.POST)) {
+      if (routes.POST[route]) {
+        routes.POST[route] = routes.POST[route](asyncCache);
+      }
+    }
   }
 
   routes.POST['/v1/prompt'] = require('./post/prompt')(asyncCache);
@@ -59,6 +67,10 @@ module.exports = (cluster, routes) => {
       'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
       'Access-Control-Max-Age': 2592000
     };
+
+    if (req.url.slice(0, 3) !== '/v1') {
+      res.setHeader('Content-Type', 'text/html');
+    }
 
     res.setHeader('Access-Control-Allow-Headers', 'content-type');
 

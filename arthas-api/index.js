@@ -25,7 +25,7 @@ const { DELAY } = process.env;
 
 const PORT = 8000;
 
-module.exports = (routes = { GET: {}, POST: {} }, init) => {
+module.exports = (routes = {}, init) => {
 
   /**
    * Config
