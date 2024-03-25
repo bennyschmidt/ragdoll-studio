@@ -2,7 +2,7 @@ const {
   PersonaForm,
   PersonaChat,
   PersonaList
-} = require('./dist/components');
+} = require('./dist');
 
 module.exports = {
   PersonaForm,
