@@ -25,7 +25,7 @@ const { DELAY } = process.env;
 
 const PORT = 8000;
 
-module.exports = (routes = { POST: {} }) => {
+module.exports = (routes = { POST: {} }, init) => {
 
   /**
    * Config
@@ -94,5 +94,9 @@ module.exports = (routes = { POST: {} }) => {
     http
       .createServer(ApiGateway(cluster, routes))
       .listen(PORT);
+  }
+
+  if (init) {
+    init(store);
   }
 };
