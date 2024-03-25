@@ -50,18 +50,8 @@ module.exports = (cluster, routes) => (req, res) => {
     routes[route] = routes[route](asyncCache);
   }
 
-  const Routes = {
-    GET: {
-      ...routes.GET
-    },
-
-    POST: {
-      '/v1/prompt': require('./post/prompt')(asyncCache),
-      '/v1/configure': require('./post/configure')(asyncCache),
-
-      ...routes.POST
-    }
-  };
+  routes.POST['/v1/prompt'] = require('./post/prompt')(asyncCache);
+  routes.POST['/v1/configure'] = require('./post/configure')(asyncCache);
 
   const headers = {
     'Access-Control-Allow-Origin': '*',
@@ -84,7 +74,7 @@ module.exports = (cluster, routes) => (req, res) => {
     console.log(`Request handled by Worker #${cluster.worker.id}: ${req.method} ${req.url}`);
 
     try {
-      Routes[req.method.toUpperCase()]?.[req.url]?.(req, res);
+      routes[req.method.toUpperCase()]?.[req.url]?.(req, res);
     } catch (error) {
       console.log('API error:', error);
     }
