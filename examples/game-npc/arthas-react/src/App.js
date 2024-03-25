@@ -20,7 +20,7 @@ const App = () => {
   useEffect(() => {
     const personaConfig = {
       name: 'The Oracle',
-      knowledgeURI: `${BASE_URL}/v1/oracle`,
+      knowledgeURI: `${BASE_URL}/oracle`,
       avatarURL: '',
 
       // Passing null for artStyle will skip image generation

@@ -1,11 +1,10 @@
 {
   "name": "arthas-npc-api",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "scripts": {
     "start": "node index"
   },
   "dependencies": {
-    "arthasgpt": "^1.2.6",
-    "dotenv": "^16.4.5"
+    "arthas-api": "1.1"
   }
 }

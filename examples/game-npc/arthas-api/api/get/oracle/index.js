@@ -6,7 +6,7 @@ const path = require('path');
  * Fetch all the oracle's knowledgeURI
  */
 
-module.exports = async (_, res) => {
+module.exports = () => async (_, res) => {
   const html = await fs.readFile(path.join(__dirname, '/knowledge.html'));
 
   return res.end(html);

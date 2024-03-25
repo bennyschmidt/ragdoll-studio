@@ -1,10 +1,10 @@
 {
-  "name": "arthas-forum-api",
+  "name": "arthas-assistant-api",
   "version": "1.0.3",
   "scripts": {
     "start": "node index"
   },
   "dependencies": {
-    "arthas-api": "^1.1"
+    "arthas-api": "1.1"
   }
 }
