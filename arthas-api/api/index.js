@@ -76,7 +76,6 @@ module.exports = (cluster, routes) => {
 
       try {
         routes[req.method.toUpperCase()]?.[req.url]?.(req, res);
-        console.log(routes[req.method.toUpperCase()], routes[req.method.toUpperCase()][req.url])
       } catch (error) {
         console.log('API error:', error);
       }
