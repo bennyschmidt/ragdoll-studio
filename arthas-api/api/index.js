@@ -41,7 +41,7 @@ const asyncCache = {
  * Handles incoming HTTP requests
  */
 
-module.exports = (cluster, routes) => (req, res) => {
+module.exports = (cluster, routes) => {
   for (const route of Object.keys(routes.GET)) {
     routes.GET[route] = routes.GET[route](asyncCache);
   }
@@ -53,35 +53,38 @@ module.exports = (cluster, routes) => (req, res) => {
   routes.POST['/v1/prompt'] = require('./post/prompt')(asyncCache);
   routes.POST['/v1/configure'] = require('./post/configure')(asyncCache);
 
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
-    'Access-Control-Max-Age': 2592000
-  };
+  return (req, res) => {
+    const headers = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+      'Access-Control-Max-Age': 2592000
+    };
 
-  res.setHeader('Access-Control-Allow-Headers', 'content-type');
+    res.setHeader('Access-Control-Allow-Headers', 'content-type');
 
-  if (req.method === 'OPTIONS') {
-    res.writeHead(204, headers);
-    res.end();
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204, headers);
+      res.end();
 
-    return;
-  }
-
-  if (['GET', 'POST'].includes(req.method)) {
-    res.writeHead(200, headers);
-
-    console.log(`Request handled by Worker #${cluster.worker.id}: ${req.method} ${req.url}`);
-
-    try {
-      routes[req.method.toUpperCase()]?.[req.url]?.(req, res);
-    } catch (error) {
-      console.log('API error:', error);
+      return;
     }
 
-    return;
-  }
+    if (['GET', 'POST'].includes(req.method)) {
+      res.writeHead(200, headers);
 
-  res.writeHead(405, headers);
-  res.end(`${req.method} is not allowed for the request.`);
+      console.log(`Request handled by Worker #${cluster.worker.id}: ${req.method} ${req.url}`);
+
+      try {
+        routes[req.method.toUpperCase()]?.[req.url]?.(req, res);
+        console.log(routes[req.method.toUpperCase()], routes[req.method.toUpperCase()][req.url])
+      } catch (error) {
+        console.log('API error:', error);
+      }
+
+      return;
+    }
+
+    res.writeHead(405, headers);
+    res.end(`${req.method} is not allowed for the request.`);
+  };
 };
