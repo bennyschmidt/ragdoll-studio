@@ -1,10 +1,10 @@
-import {
+const {
   PersonaForm,
   PersonaChat,
   PersonaList
-} from './src/components';
+} = require('./dist/components');
 
-export {
+module.exports = {
   PersonaForm,
   PersonaChat,
   PersonaList

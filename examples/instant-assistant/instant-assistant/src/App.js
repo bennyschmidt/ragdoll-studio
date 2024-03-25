@@ -145,7 +145,6 @@ const App = () => {
     personaList,
     personaName,
     personaKnowledgeURI,
-    personaArtStyle,
     personaWritingStyle,
     personaWritingTone,
     personaAvatarURL,
@@ -160,7 +159,6 @@ const App = () => {
     disabled: disabled || isCreating,
     persona,
     question,
-    image,
     text,
     onQuestion,
     onAnswer

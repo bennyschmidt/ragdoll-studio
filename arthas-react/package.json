@@ -1,8 +1,9 @@
 {
   "name": "arthas-react",
-  "version": "0.1.1",
-  "private": true,
+  "version": "0.1.2",
   "dependencies": {
+    "@babel/core": "^7.24.3",
+    "@babel/preset-react": "^7.24.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -14,6 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-lib": "node package",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
