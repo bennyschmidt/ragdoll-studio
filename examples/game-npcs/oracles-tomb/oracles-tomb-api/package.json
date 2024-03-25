@@ -1,0 +1,10 @@
+{
+  "name": "oracles-tomb-api",
+  "version": "1.0.4",
+  "scripts": {
+    "start": "node index"
+  },
+  "dependencies": {
+    "arthas-api": "1.1"
+  }
+}
