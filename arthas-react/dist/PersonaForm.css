@@ -1,0 +1,9 @@
+.form {
+  position: relative;
+  background: white;
+  color: #121212;
+  box-shadow: 0 0 10rem dodgerblue;
+  width: 75%;
+  padding: 1rem;
+  border-radius: 1rem;
+}

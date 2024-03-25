@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './index.css';
+import './PersonaChat.css';
 const BASE_URL = 'http://localhost:8000';
 const SEND = 'Send';
 const DEFAULT_IMG_ALT = 'Corresponding visualization';

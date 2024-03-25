@@ -1,20 +1,61 @@
+const fs = require('fs').promises;
+const fsSync = require('fs');
+
 const babel = require('@babel/core');
 const presetReact = require('@babel/preset-react');
 
-const fs = require('fs').promises;
+// Define an output directory and the
+// components to be transpiled
 
-const transpileAndExport = async () => {
-  const babelConfig = {
-    presets: [presetReact]
-  };
+const DIRECTORY = './dist';
 
-  const PersonaFormFile = await babel.transformFileAsync('./src/components/PersonaForm/index.js', babelConfig);
-  const PersonaChatFile = await babel.transformFileAsync('./src/components/PersonaChat/index.js', babelConfig);
-  const PersonaListFile = await babel.transformFileAsync('./src/components/PersonaList/index.js', babelConfig);
+const COMPONENTS = [
+  'PersonaForm',
+  'PersonaChat',
+  'PersonaList'
+];
 
-  await fs.writeFile('./dist/PersonaForm.js', PersonaFormFile.code);
-  await fs.writeFile('./dist/PersonaChat.js', PersonaChatFile.code);
-  await fs.writeFile('./dist/PersonaList.js', PersonaListFile.code);
+if (!fsSync.existsSync(DIRECTORY)) {
+  fsSync.mkdirSync(DIRECTORY);
+}
+
+// Transform React/JSX to JavaScript
+
+const babelConfig = {
+  presets: [presetReact]
 };
 
-transpileAndExport();
+/**
+ * transpileComponent
+ *
+ * component: string
+ */
+
+const transpileComponent = async component => {
+
+  // Babel transform
+
+  const file = await babel.transformFileAsync(
+    `./src/components/${component}/index.js`,
+    babelConfig
+  );
+
+  // Map CSS files
+
+  const fileWithCSS = file.code.replace(
+    "import './index.css';",
+    `import './${component}.css';`
+  );
+
+  // Write the transformed component file
+
+  await fs.writeFile(`${DIRECTORY}/${component}.js`, fileWithCSS);
+
+  // Move a copy of the CSS file to it
+
+  await fs.copyFile(`./src/components/${component}/index.css`, `${DIRECTORY}/${component}.css`);
+};
+
+// Transpile all
+
+COMPONENTS.map(transpileComponent);
