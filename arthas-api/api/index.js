@@ -41,11 +41,15 @@ const asyncCache = {
  * Handles incoming HTTP requests
  */
 
-module.exports = cluster => (req, res) => {
+module.exports = (cluster, routes) => (req, res) => {
   const Routes = {
+    ...routes,
+
     POST: {
       '/v1/prompt': require('./post/prompt')(asyncCache),
-      '/v1/configure': require('./post/configure')(asyncCache)
+      '/v1/configure': require('./post/configure')(asyncCache),
+
+      ...routes.POST
     }
   };
 
