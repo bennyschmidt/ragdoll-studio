@@ -6,7 +6,7 @@
 
 - [**Comment/chat bots**](https://github.com/bennyschmidt/Arthas.AI/tree/master/examples/comment-bots/forum): Create bots that respond to events in your app or website, or as the mind of a Slack or Discord bot that responds to user commands and provides information.
 
-- [**Game NPCs**](https://github.com/bennyschmidt/Arthas.AI/tree/master/examples/game-npc/oracles-tomb): Create NPCs capable of dynamic conversations scoped to their knowledge with unique mechanics like:
+- [**Game NPCs**](https://github.com/bennyschmidt/Arthas.AI/tree/master/examples/game-npcs/oracles-tomb): Create NPCs capable of dynamic conversations scoped to their knowledge with unique mechanics like:
     - *Gatekeeping*: The player has to ask the right questions to learn a specific knowledge detail in order to advance in the game
     - *Progression*: The player has to have already asked about topics A, B, and C before knowledge D will be given
     - *Clue-following*: The player has to talk to several different personas to get the complete set of knowledge details in order to advance
