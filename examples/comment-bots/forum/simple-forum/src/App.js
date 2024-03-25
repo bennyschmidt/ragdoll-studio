@@ -1,9 +1,10 @@
-import PersonaManager from './pages/PersonaManager';
 import Topics from './pages/Topics';
 import Topic from './pages/Topic';
 
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
+
+import './App.css';
 
 TimeAgo.addDefaultLocale(en);
 
@@ -13,6 +14,7 @@ const App = () => {
   const { pathname } = window.location;
 
   switch (pathname) {
+    case '/':
     case '/forum':
       return (
         <div id="forum">
@@ -27,8 +29,8 @@ const App = () => {
       );
     default:
       return (
-        <div id="persona-manager">
-          <PersonaManager />
+        <div id="forum">
+          404
         </div>
       );
   }
