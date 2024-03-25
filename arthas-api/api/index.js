@@ -43,11 +43,11 @@ const asyncCache = {
 
 module.exports = (cluster, routes) => (req, res) => {
   for (const route of Object.keys(routes.GET)) {
-    routes[route] = routes[route](asyncCache);
+    routes.GET[route] = routes.GET[route](asyncCache);
   }
 
   for (const route of Object.keys(routes.POST)) {
-    routes[route] = routes[route](asyncCache);
+    routes.POST[route] = routes.POST[route](asyncCache);
   }
 
   routes.POST['/v1/prompt'] = require('./post/prompt')(asyncCache);
