@@ -31,7 +31,8 @@ module.exports = (routes = { GET: {}, POST: {}}, init) => {
    * Config
    */
 
-  const numCPUs = availableParallelism();
+  // const numCPUs = availableParallelism();
+  const numCPUs = 1;
 
   const onCluster = require('./events/cluster');
   const onWorker = require('./events/worker');
