@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import './index.css';
 
-const BASE_URL = 'http://localhost:8000';
+const { ARTHAS_URI } = window;
 
 const Topics = ({ timeAgo }) => {
   const [topics, setTopics] = useState([]);
@@ -14,7 +14,7 @@ const Topics = ({ timeAgo }) => {
 
   useEffect(() => {
     const fetchTopics = async () => {
-      const response = await fetch(`${BASE_URL}/v1/comments`);
+      const response = await fetch(`${ARTHAS_URI}/v1/comments`);
 
       if (response?.ok) {
         const { comments } = await response.json();
@@ -60,7 +60,7 @@ const Topics = ({ timeAgo }) => {
   const onClickCreateTopic = openOverlay;
 
   const onClickPost = async () => {
-    const response = await fetch(`${BASE_URL}/v1/topic`, {
+    const response = await fetch(`${ARTHAS_URI}/v1/topic`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

@@ -6,6 +6,13 @@ import en from 'javascript-time-ago/locale/en';
 
 import './App.css';
 
+// Globals
+
+window.ARTHAS_URI = 'http://localhost:8000';
+window.STORAGE_KEY = 'ARTHAS_PERSONAS';
+
+// TimeAgo for user-facing timestamps
+
 TimeAgo.addDefaultLocale(en);
 
 const timeAgo = new TimeAgo('en-US');

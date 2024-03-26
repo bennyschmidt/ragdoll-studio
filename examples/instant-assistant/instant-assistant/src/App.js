@@ -7,7 +7,13 @@ import {
 
 import './App.css';
 
-const STORAGE_KEY = 'ARTHAS_INSTANT_ASSISTANT';
+// Globals
+
+window.ARTHAS_URI = 'http://localhost:8000';
+window.STORAGE_KEY = 'ARTHAS_INSTANT_ASSISTANT';
+
+const { STORAGE_KEY } = window;
+
 const OVERLAY = 'overlay';
 const CREATE = '🗨';
 

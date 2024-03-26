@@ -19,7 +19,8 @@ if (!fsSync.existsSync(DIRECTORY)) {
   fsSync.mkdirSync(DIRECTORY);
 }
 
-// Transform React/JSX to JavaScript
+// Preset for transforming React/JSX
+// to regular JavaScript
 
 const babelConfig = {
   presets: [presetReact]
@@ -27,6 +28,7 @@ const babelConfig = {
 
 /**
  * transpileComponent
+ * The main transpile function
  *
  * component: string
  */

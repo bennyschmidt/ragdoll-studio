@@ -1,12 +1,19 @@
+const process = require('node:process');
+const dotenv = require('dotenv');
+
 const ArthasAPI = require('arthas-api');
+
+dotenv.config();
+
+const { API_PATH_PREFIX } = process.env;
 
 ArthasAPI({
   GET: {
-    '/v1/comments': require('./api/get/comments'),
+    [`${API_PATH_PREFIX}/comments`]: require('./api/get/comments'),
   },
   POST: {
-    '/v1/comment': require('./api/post/comment'),
-    '/v1/topic': require('./api/post/topic')
+    [`${API_PATH_PREFIX}/comment`]: require('./api/post/comment'),
+    [`${API_PATH_PREFIX}/topic`]: require('./api/post/topic')
   }
 }, store => {
   store.set('comments', {

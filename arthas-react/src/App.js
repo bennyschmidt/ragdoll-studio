@@ -8,7 +8,13 @@ import {
 
 import './App.css';
 
-const STORAGE_KEY = 'ARTHAS_PERSONAS';
+// Globals
+
+window.ARTHAS_URI = 'http://localhost:8000';
+window.STORAGE_KEY = 'ARTHAS_PERSONAS';
+
+const { STORAGE_KEY } = window;
+
 const OVERLAY = 'overlay';
 const CREATE = '+';
 const DEFAULT_AVATAR_URL = '/img/avatars/arthas.png';

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import './index.css';
 
-const BASE_URL = 'http://localhost:8000';
 const SEND = 'Send';
 const DEFAULT_IMG_ALT = 'Corresponding visualization';
 const API_ERROR = 'API temporarily unavailable.';
@@ -16,12 +15,14 @@ const PersonaChat = ({
   onQuestion,
   onAnswer
 }) => {
+  const { ARTHAS_URI } = window;
+
   const [disabled, setDisabled] = useState(parentDisabled);
 
   const ask = async () => {
     setDisabled(true);
 
-    const response = await fetch(`${BASE_URL}/v1/prompt`, {
+    const response = await fetch(`${ARTHAS_URI}/v1/prompt`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

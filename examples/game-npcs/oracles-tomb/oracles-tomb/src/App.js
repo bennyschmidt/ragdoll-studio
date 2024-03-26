@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react';
 
 import './App.css';
 
-const BASE_URL = 'http://localhost:8000';
+// Globals
+
+window.ARTHAS_URI = 'http://localhost:8000';
+window.STORAGE_KEY = 'ARTHAS_PERSONAS';
+
+const { ARTHAS_URI } = window;
+
 const SEND = 'Send';
 const API_ERROR = 'API temporarily unavailable.';
 const SECRET_PASSWORD = 'CORPSE FLOWER';
@@ -20,7 +26,7 @@ const App = () => {
   useEffect(() => {
     const personaConfig = {
       name: 'The Oracle',
-      knowledgeURI: `${BASE_URL}/oracle`,
+      knowledgeURI: `${ARTHAS_URI}/oracle`,
       avatarURL: '',
 
       // Passing null for artStyle will skip image generation
@@ -31,7 +37,7 @@ const App = () => {
     };
 
     const fetchOracle = async () => {
-      const response = await fetch(`${BASE_URL}/v1/configure`, {
+      const response = await fetch(`${ARTHAS_URI}/v1/configure`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -104,7 +110,7 @@ const App = () => {
   const ask = async () => {
     setDisabled(true);
 
-    const response = await fetch(`${BASE_URL}/v1/prompt`, {
+    const response = await fetch(`${ARTHAS_URI}/v1/prompt`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

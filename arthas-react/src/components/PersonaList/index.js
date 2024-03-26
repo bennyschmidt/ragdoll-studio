@@ -1,6 +1,5 @@
 import './index.css';
 
-const BASE_URL = 'http://localhost:8000';
 const PERSONA_LIST_HEADING = 'Domain-specific Personas (DSPs)';
 const PERSONA_ERROR = 'Error loading persona.';
 
@@ -11,6 +10,8 @@ const PersonaList = ({
   onClickListItem,
   didClickListItem
 }) => {
+  const { ARTHAS_URI } = window;
+
   const getPersonasArray = () => (
     Object.values(personaList || {})
   );
@@ -31,7 +32,7 @@ const PersonaList = ({
       previousPersona: updatedCurrentPersona
     });
 
-    const response = await fetch(`${BASE_URL}/v1/configure`, {
+    const response = await fetch(`${ARTHAS_URI}/v1/configure`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

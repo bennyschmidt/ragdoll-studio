@@ -1,3 +1,12 @@
+const process = require('node:process');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+const {
+  API_PATH_PREFIX
+} = process.env;
+
 /**
  * Async Cache
  * Cache wrapper that Promisifies message
@@ -58,8 +67,8 @@ module.exports = (cluster, routes) => {
     }
   }
 
-  routes.POST['/v1/prompt'] = require('./post/prompt')(asyncCache);
-  routes.POST['/v1/configure'] = require('./post/configure')(asyncCache);
+  routes.POST[`${API_PATH_PREFIX}/prompt`] = require('./post/prompt')(asyncCache);
+  routes.POST[`${API_PATH_PREFIX}/configure`] = require('./post/configure')(asyncCache);
 
   return (req, res) => {
     const headers = {
@@ -68,7 +77,7 @@ module.exports = (cluster, routes) => {
       'Access-Control-Max-Age': 2592000
     };
 
-    if (req.url.slice(0, 3) !== '/v1') {
+    if (req.url.slice(0, 3) !== `${API_PATH_PREFIX}`) {
       res.setHeader('Content-Type', 'text/html');
     }
 

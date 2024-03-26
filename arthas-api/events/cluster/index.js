@@ -3,9 +3,6 @@
  * Handle events at the cluster level
  */
 
-const HOST = 'http://localhost';
-const PORT = 8000;
-
 module.exports = (cluster, cache) => {
 
   /**
@@ -60,5 +57,5 @@ module.exports = (cluster, cache) => {
     }
   });
 
-  console.log(`Cluster is online at ${HOST}:${PORT}`);
+  console.log('Cluster is online.');
 };

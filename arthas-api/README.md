@@ -17,6 +17,7 @@ CACHE=false
 MAX_STORAGE_KEY_LENGTH=32
 LOG_PREFIX=<ArthasGPT>
 STORAGE_URI=./.tmp
+API_PATH_PREFIX=/v1
 ```
 
 See [ArthasGPT Environment Config](https://github.com/bennyschmidt/ArthasGPT?tab=readme-ov-file#env-scaffold).

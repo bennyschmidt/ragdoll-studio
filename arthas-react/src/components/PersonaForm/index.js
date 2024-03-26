@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 
 import './index.css';
 
-const BASE_URL = 'http://localhost:8000';
-const STORAGE_KEY = 'ARTHAS_INSTANT_ASSISTANT';
-
 const SAVE = 'Save';
 const PERSONA_CREATED = 'New persona created.';
 const SAVE_ERROR = 'Error saving persona.';
@@ -33,6 +30,11 @@ const PersonaForm = ({
   onChangePersonaWritingTone,
   onChangePersonaAvatarURL
 }) => {
+  const {
+    ARTHAS_URI,
+    STORAGE_KEY
+  } = window;
+
   const [disabled, setDisabled] = useState(parentDisabled);
 
   const onClickSave = async () => {
@@ -61,7 +63,7 @@ const PersonaForm = ({
       [personaKnowledgeURI]: personaConfig
     };
 
-    const response = await fetch(`${BASE_URL}/v1/configure`, {
+    const response = await fetch(`${ARTHAS_URI}/v1/configure`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

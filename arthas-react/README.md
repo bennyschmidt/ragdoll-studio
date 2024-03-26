@@ -22,7 +22,7 @@ React hooks:
 
 -
 
-`.env` setup:
+Environment variables (set on `window` in the React [entry]('./src/index.js')):
 
 `ARTHAS_URI=http://localhost:8000`
 
