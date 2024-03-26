@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './PersonaForm.css';
-window.React = React;
 const BASE_URL = 'http://localhost:8000';
 const STORAGE_KEY = 'ARTHAS_INSTANT_ASSISTANT';
 const SAVE = 'Save';
