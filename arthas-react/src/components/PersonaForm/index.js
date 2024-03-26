@@ -52,16 +52,18 @@ const PersonaForm = ({
       writingTone: personaWritingTone
     };
 
-    const updatedCurrentPersona = { ...persona };
-
-    updatedCurrentPersona.online = false;
+    const updatedCurrentPersona = persona?.knowledgeURI && { ...persona };
 
     const updatedPersonaList = {
       ...personaList,
 
-      [updatedCurrentPersona.knowledgeURI]: updatedCurrentPersona,
       [personaKnowledgeURI]: personaConfig
     };
+
+    if (updatedCurrentPersona) {
+      updatedCurrentPersona.online = false;
+      updatedPersonaList[updatedCurrentPersona.knowledgeURI] = updatedCurrentPersona;
+    }
 
     const response = await fetch(`${ARTHAS_URI}/v1/configure`, {
       method: 'POST',

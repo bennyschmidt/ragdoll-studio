@@ -32,6 +32,7 @@
   border: 1px solid white;
   object-fit: cover;
   max-height: inherit;
+  height: 3rem;
 }
 
 .persona-list {

@@ -6,6 +6,10 @@ import {
   PersonaList
 } from './components';
 
+import {
+  usePersona
+} from './hooks';
+
 import './App.css';
 
 // Globals
@@ -33,8 +37,6 @@ const App = () => {
   const [text, setText] = useState('');
   const [imageURL, setImageURL] = useState('');
   const [disabled, setDisabled] = useState(false);
-  const [persona, setPersona] = useState();
-  const [personaList, setPersonaList] = useState(SAVED_PERSONAS);
   const [isCreating, setIsCreating] = useState(false);
   const [overlayClassName, setOverlayClassName] = useState('');
   const [timeoutId, setTimeoutId] = useState();
@@ -46,18 +48,22 @@ const App = () => {
   const [personaWritingTone, setPersonaWritingTone] = useState('');
   const [personaAvatarURL, setPersonaAvatarURL] = useState('');
 
+  const [persona, setPersona] = useState({
+    name: DEFAULT_NAME,
+    knowledgeURI: DEFAULT_KNOWLEDGE_URI,
+    avatarURL: DEFAULT_AVATAR_URL,
+    artStyle: DEFAULT_ART_STYLE,
+    writingStyle: DEFAULT_WRITING_STYLE,
+    writingTone: DEFAULT_WRITING_TONE
+  });
+
+  const [personaList, setPersonaList] = useState(SAVED_PERSONAS);
+
+  const [activePersona] = usePersona(persona);
+
   useEffect(() => {
     const personas = getPersonasArray();
-    const defaultPersona = personas[0];
-
-    const currentPersona = defaultPersona || {
-      name: DEFAULT_NAME,
-      knowledgeURI: DEFAULT_KNOWLEDGE_URI,
-      avatarURL: DEFAULT_AVATAR_URL,
-      artStyle: DEFAULT_ART_STYLE,
-      writingStyle: DEFAULT_WRITING_STYLE,
-      writingTone: DEFAULT_WRITING_TONE
-    };
+    const currentPersona = personas[0];
 
     const savedPersonas = {
       ...personaList,
@@ -167,13 +173,18 @@ const App = () => {
   const didClickListItem = ({ currentPersona, previousPersona }) => {
     setPersona(currentPersona);
 
-    setPersonaList({
+    const updatedPersonaList = {
       ...personaList,
 
-      [previousPersona.knowledgeURI]: previousPersona,
       [currentPersona.knowledgeURI]: currentPersona
-    });
+    };
 
+    if (previousPersona?.knowledgeURI) {
+      previousPersona.online = false;
+      updatedPersonaList[previousPersona.knowledgeURI] = previousPersona;
+    }
+
+    setPersonaList(updatedPersonaList);
     setText('');
     setImageURL('')
     setQuestion('');
@@ -182,7 +193,7 @@ const App = () => {
 
   const personaFormProps = {
     disabled,
-    persona,
+    persona: activePersona,
     personaList,
     personaName,
     personaKnowledgeURI,
@@ -200,7 +211,7 @@ const App = () => {
 
   const personaChatProps = {
     disabled: disabled || isCreating,
-    persona,
+    persona: activePersona,
     question,
     imageURL,
     text,
@@ -209,7 +220,7 @@ const App = () => {
   };
 
   const personaListProps = {
-    persona,
+    persona: activePersona,
     personaList,
     onClickListItem,
     didClickListItem

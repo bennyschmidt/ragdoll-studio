@@ -44,15 +44,17 @@ const PersonaForm = ({
       writingStyle: personaWritingStyle,
       writingTone: personaWritingTone
     };
-    const updatedCurrentPersona = {
+    const updatedCurrentPersona = persona?.knowledgeURI && {
       ...persona
     };
-    updatedCurrentPersona.online = false;
     const updatedPersonaList = {
       ...personaList,
-      [updatedCurrentPersona.knowledgeURI]: updatedCurrentPersona,
       [personaKnowledgeURI]: personaConfig
     };
+    if (updatedCurrentPersona) {
+      updatedCurrentPersona.online = false;
+      updatedPersonaList[updatedCurrentPersona.knowledgeURI] = updatedCurrentPersona;
+    }
     const response = await fetch(`${ARTHAS_URI}/v1/configure`, {
       method: 'POST',
       headers: {
