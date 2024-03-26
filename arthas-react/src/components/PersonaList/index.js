@@ -4,7 +4,6 @@ const BASE_URL = 'http://localhost:8000';
 const PERSONA_LIST_HEADING = 'Domain-specific Personas (DSPs)';
 const PERSONA_ERROR = 'Error loading persona.';
 
-
 const PersonaList = ({
   children,
   persona,

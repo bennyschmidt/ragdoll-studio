@@ -26,6 +26,14 @@ React hooks:
 
 `.env` setup:
 
+`ARTHAS_URI=http://localhost:8000`
+
+The base URL to make API requests.
+
+`STORAGE_KEY=ARTHAS_PERSONAS`
+
+The `localStorage` key used when saving local data.
+
 -----
 
 ## Getting Started with Create React App

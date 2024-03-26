@@ -30,29 +30,29 @@ See [ArthasGPT Environment Config](https://github.com/bennyschmidt/ArthasGPT?tab
 Load the context of a persona in order to prompt it.
 
 `POST /v1/configure`
-  
+
 **name**: `string`
- 
-> The persona's name. 
- 
+
+> The persona's name.
+
 **knowledgeURI**: `string`
- 
+
 > The knowledge source - typically a web page (like a Wiki style article). `knowledgeURI` is also the unique identifier (or `key`) for a persona when looking them up.
-  
+
 **avatarURL**: `string`
- 
+
 > The persona's profile image.
- 
+
 **artStyle**: `string`
- 
+
 > If/when images are rendered, the desired art style that is injected to the image model prompt. Set to `null` to skip image generation.
- 
+
 **writingStyle**: `string`
- 
+
 > When text is written, the desired writing style that is injected to the text model prompt.
- 
+
 **writingTone**: `string`
- 
+
 > Aesthetical text prompting beyond basic structure.
 
 Returns
@@ -97,7 +97,7 @@ You can use `ArthasAPI` as a library in your existing application.
 
 `npm i arthas-api`
 
-Coming soon.
+*Coming soon.*
 
 Serverless functions (exportable):
 - `configure`
