@@ -23,75 +23,81 @@ dotenv.config();
 
 const { DELAY } = process.env;
 
-const HOST = 'http://localhost';
 const PORT = 8000;
 
-/**
- * Config
- */
+module.exports = (routes = { GET: {}, POST: {}}, init) => {
 
-// const numCPUs = availableParallelism();
-const numCPUs = 1;
+  /**
+   * Config
+   */
 
-const onCluster = require('./events/cluster');
-const onWorker = require('./events/worker');
+  // const numCPUs = availableParallelism();
+  const numCPUs = 1;
 
-/**
- * Storage (cache)
- * Cache data in the primary for as long
- * as it runs
- */
+  const onCluster = require('./events/cluster');
+  const onWorker = require('./events/worker');
 
-const store = {
-  get: key => store[key],
-  set: (key, value) => store[key] = value
-};
+  /**
+   * Storage (cache)
+   * Cache data in the primary for as long
+   * as it runs
+   */
 
-// Bootstrap some data
+  const store = {
+    get: key => store[key],
+    set: (key, value) => store[key] = value
+  };
 
-store.set('timeout', DELAY);
-store.set('answer', null);
+  // Bootstrap some data
 
-store.set('config', {
-  [DEFAULT_KNOWLEDGE_URI]: {
-    cache: true,
-    greeting: false,
-    name: DEFAULT_NAME,
-    knowledgeURI: DEFAULT_KNOWLEDGE_URI,
-    artStyle: DEFAULT_ART_STYLE,
-    writingStyle: DEFAULT_WRITING_STYLE,
-    writingTone: DEFAULT_WRITING_TONE
-  }
-});
+  store.set('timeout', DELAY);
+  store.set('answer', null);
 
-if (cluster.isPrimary) {
-  for (let i = 0; i < numCPUs; i++) {
+  store.set('config', {
+    [DEFAULT_KNOWLEDGE_URI]: {
+      cache: true,
+      greeting: false,
+      name: DEFAULT_NAME,
+      knowledgeURI: DEFAULT_KNOWLEDGE_URI,
+      artStyle: DEFAULT_ART_STYLE,
+      writingStyle: DEFAULT_WRITING_STYLE,
+      writingTone: DEFAULT_WRITING_TONE
+    }
+  });
+
+  if (cluster.isPrimary) {
+    for (let i = 0; i < numCPUs; i++) {
+
+      /**
+       * Worker
+       * Spawn a child instance that handles requests
+       */
+
+      onWorker(cluster.fork());
+    }
 
     /**
-     * Worker
-     * Spawn a child instance that handles requests
+     * Cluster
+     * Create a primary instance that serves as a load balancer
+     * and manages worker lifecycle events
      */
 
-    onWorker(cluster.fork());
+    onCluster(cluster, store);
+  } else {
+
+    /**
+     * ApiGateway
+     * Route traffic to handlers
+     */
+
+    const ApiGateway = require('./api');
+
+    http
+      .createServer(ApiGateway(cluster, routes))
+      .listen(PORT);
   }
 
-  /**
-   * Cluster
-   * Create a primary instance that serves as a load balancer
-   * and manages worker lifecycle events
-   */
-
-  onCluster(cluster, store);
-} else {
-
-  /**
-   * ApiGateway
-   * Route traffic to handlers
-   */
-
-  const ApiGateway = require('./api');
-
-  http
-    .createServer(ApiGateway(cluster))
-    .listen(PORT);
-}
+  if (init) {
+    init(store);
+  }
+};

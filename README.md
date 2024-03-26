@@ -74,11 +74,11 @@ You should see the default UI:
 
 #### Using text models other than GPT-3.5
 
-[How to change models](https://github.com/bennyschmidt/ArthasGPT/?tab=readme-ov-file#important-environment-variables)
+[How to change text models](https://github.com/bennyschmidt/ArthasGPT/?tab=readme-ov-file#middleware)
 
 #### Using image models other than DALL-E
 
-[How to change models](https://github.com/bennyschmidt/ArthasGPT/?tab=readme-ov-file#important-environment-variables)
+[How to change image models](https://github.com/bennyschmidt/ArthasGPT/?tab=readme-ov-file#middleware)
 
 #### Arthas app
 
@@ -93,3 +93,9 @@ You should see the default UI:
 ## Comparing Arthas.AI to other products
 
 See [TolkienTest.md](./TolkienTest.md).
+
+-----
+
+## Use Cases
+
+See [CaseStudies.md](./CaseStudies.md).

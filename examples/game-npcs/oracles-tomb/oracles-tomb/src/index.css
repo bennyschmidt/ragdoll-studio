@@ -1,0 +1,65 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  font-family: "Silkscreen", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: black;
+  color: white;
+}
+
+* {
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+input[disabled],
+button[disabled] {
+  opacity: .5;
+  font-style: italic;
+  cursor: not-allowed;
+}
+
+button,
+input {
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  background: #000000;
+  color: white;
+  padding: 1rem;
+  appearance: none;
+  border-radius: 1.2rem;
+  border: none;
+  margin: 1rem 0;
+  font-family: "Silkscreen", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color .1s linear, color .1s linear;
+  outline: none;
+}
+
+input {
+  cursor: auto;
+  background: #ffffff25;
+  color: #ffffff;
+}
+
+button:hover {
+  background-color: dodgerblue;
+  color: white;
+}
+
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: .75em;
+  margin: 0 0 1rem;
+  opacity: .5;
+}

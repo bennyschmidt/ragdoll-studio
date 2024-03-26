@@ -1,11 +1,11 @@
 {
   "name": "arthas-api",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "scripts": {
-    "start": "node index"
+    "start": "node start"
   },
   "dependencies": {
-    "arthasgpt": "^1.2.5",
+    "arthasgpt": "^1.2.6",
     "dotenv": "^16.4.5"
   }
 }

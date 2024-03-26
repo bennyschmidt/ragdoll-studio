@@ -41,43 +41,61 @@ const asyncCache = {
  * Handles incoming HTTP requests
  */
 
-module.exports = cluster => (req, res) => {
-  const Routes = {
-    POST: {
-      '/v1/prompt': require('./post/prompt')(asyncCache),
-      '/v1/configure': require('./post/configure')(asyncCache)
+module.exports = (cluster, routes) => {
+  if (routes.GET) {
+    for (const route of Object.keys(routes.GET)) {
+      if (routes.GET[route]) {
+        routes.GET[route] = routes.GET[route](asyncCache);
+      }
     }
-  };
-
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
-    'Access-Control-Max-Age': 2592000
-  };
-
-  res.setHeader('Access-Control-Allow-Headers', 'content-type');
-
-  if (req.method === 'OPTIONS') {
-    res.writeHead(204, headers);
-    res.end();
-
-    return;
   }
 
-  if (['GET', 'POST'].includes(req.method)) {
-    res.writeHead(200, headers);
-
-    console.log(`Request handled by Worker #${cluster.worker.id}: ${req.method} ${req.url}`);
-
-    try {
-      Routes[req.method.toUpperCase()]?.[req.url]?.(req, res);
-    } catch (error) {
-      console.log('API error:', error);
+  if (routes.POST) {
+    for (const route of Object.keys(routes.POST)) {
+      if (routes.POST[route]) {
+        routes.POST[route] = routes.POST[route](asyncCache);
+      }
     }
-
-    return;
   }
 
-  res.writeHead(405, headers);
-  res.end(`${req.method} is not allowed for the request.`);
+  routes.POST['/v1/prompt'] = require('./post/prompt')(asyncCache);
+  routes.POST['/v1/configure'] = require('./post/configure')(asyncCache);
+
+  return (req, res) => {
+    const headers = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+      'Access-Control-Max-Age': 2592000
+    };
+
+    if (req.url.slice(0, 3) !== '/v1') {
+      res.setHeader('Content-Type', 'text/html');
+    }
+
+    res.setHeader('Access-Control-Allow-Headers', 'content-type');
+
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204, headers);
+      res.end();
+
+      return;
+    }
+
+    if (['GET', 'POST'].includes(req.method)) {
+      res.writeHead(200, headers);
+
+      console.log(`Request handled by Worker #${cluster.worker.id}: ${req.method} ${req.url}`);
+
+      try {
+        routes[req.method.toUpperCase()]?.[req.url]?.(req, res);
+      } catch (error) {
+        console.log('API error:', error);
+      }
+
+      return;
+    }
+
+    res.writeHead(405, headers);
+    res.end(`${req.method} is not allowed for the request.`);
+  };
 };

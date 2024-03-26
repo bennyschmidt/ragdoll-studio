@@ -1,25 +1,16 @@
 import { useEffect, useState } from 'react';
 
+import {
+  PersonaForm,
+  PersonaChat,
+  PersonaList
+} from './components';
+
 import './App.css';
 
-const BASE_URL = 'http://localhost:8000';
 const STORAGE_KEY = 'ARTHAS_PERSONAS';
-const DEFAULT_IMG_ALT = 'Corresponding visualization';
 const OVERLAY = 'overlay';
-const SEND = 'Send';
-const SAVE = 'Save';
 const CREATE = '+';
-const PERSONA_LIST_HEADING = 'Domain-specific Personas (DSPs)';
-const PERSONA_CREATED = 'New persona created.';
-const PERSONA_ERROR = 'Error loading persona.';
-const PERSONA_NAME = 'Name';
-const PERSONA_KNOWLEDGE_URI = 'Knowledge URI';
-const PERSONA_ART_STYLE = 'Art style';
-const PERSONA_WRITING_STYLE = 'Writing style';
-const PERSONA_WRITING_TONE = 'Writing tone';
-const SAVE_ERROR = 'Error saving persona.';
-const API_ERROR = 'API temporarily unavailable.';
-
 const DEFAULT_AVATAR_URL = '/img/avatars/arthas.png';
 const DEFAULT_NAME = 'Arthas';
 const DEFAULT_KNOWLEDGE_URI = 'https://wowpedia.fandom.com/wiki/Arthas_Menethil';
@@ -34,17 +25,20 @@ const SAVED_PERSONAS = JSON.parse(
 const App = () => {
   const [question, setQuestion] = useState('');
   const [text, setText] = useState('');
-  const [image, setImage] = useState('');
+  const [imageURL, setImageURL] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [persona, setPersona] = useState();
   const [personaList, setPersonaList] = useState(SAVED_PERSONAS);
   const [isCreating, setIsCreating] = useState(false);
+  const [overlayClassName, setOverlayClassName] = useState('');
+  const [timeoutId, setTimeoutId] = useState();
 
   const [personaName, setPersonaName] = useState('');
   const [personaKnowledgeURI, setPersonaKnowledgeURI] = useState('');
   const [personaArtStyle, setPersonaArtStyle] = useState('');
   const [personaWritingStyle, setPersonaWritingStyle] = useState('');
   const [personaWritingTone, setPersonaWritingTone] = useState('');
+  const [personaAvatarURL, setPersonaAvatarURL] = useState('');
 
   useEffect(() => {
     const personas = getPersonasArray();
@@ -77,51 +71,25 @@ const App = () => {
 
   useEffect(() => {
     document.body.onkeydown = isCreating
-      ? onKeyDownOverlay
+      ? (overlayClassName && onKeyDownOverlay)
       : null;
 
     return () => document.body.onkeydown = null;
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isCreating]);
+  }, [isCreating, overlayClassName]);
 
-  const ask = async () => {
-    setDisabled(true);
+  useEffect(() => {
+    return () => clearTimeout(timeoutId);
+  }, [timeoutId]);
 
-    const response = await fetch(`${BASE_URL}/v1/prompt`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        key: persona.knowledgeURI,
-        input: question
-      })
+  const openOverlay = () => {
+    setIsCreating(true);
+    setOverlayClassName('');
+
+    requestAnimationFrame(() => {
+      setOverlayClassName('show');
     });
-
-    if (response?.ok) {
-      const { error, answer = {} } = await response.json();
-
-      if (answer.pending) {
-        window.location.reload();
-
-        return;
-      }
-
-      if (error) {
-        alert(error.message || API_ERROR);
-        setDisabled(false);
-
-        return;
-      } else {
-        setText(answer.text);
-        setImage(answer.imageURL);
-      }
-    }
-
-    setQuestion('');
-    setDisabled(false);
   };
 
   const closeOverlay = () => {
@@ -130,23 +98,17 @@ const App = () => {
     setPersonaArtStyle('');
     setPersonaWritingStyle('');
     setPersonaWritingTone('');
-    setIsCreating(false);
-  };
+    setOverlayClassName('');
 
-  const getQuestionPlaceholder = () => (
-    !persona ? '...' : `What would you like to ask ${persona.name}?`
-  );
+    setTimeoutId(
+      setTimeout(() => {
+        setIsCreating(false);
+      }, 1000)
+    );
+  };
 
   const getPersonasArray = () => (
     Object.values(personaList || {})
-  );
-
-  const onChangeQuestion = ({ target: { value }}) => {
-    setQuestion(value);
-  };
-
-  const onKeyDownQuestion = ({ keyCode }) => (
-    question && keyCode === 13 && ask()
   );
 
   const onKeyDownOverlay = ({ keyCode }) => {
@@ -155,112 +117,10 @@ const App = () => {
     }
   };
 
-  const onClickCreate = () => setIsCreating(true);
-
-  const onClickSave = async () => {
-    setDisabled(true);
-
-    const personaConfig = {
-      name: personaName,
-      knowledgeURI: personaKnowledgeURI,
-      avatarURL: '',
-      artStyle: personaArtStyle,
-      writingStyle: personaWritingStyle,
-      writingTone: personaWritingTone
-    };
-
-    const updatedCurrentPersona = { ...persona };
-
-    updatedCurrentPersona.online = false;
-
-    const updatedPersonaList = {
-      ...personaList,
-
-      [updatedCurrentPersona.knowledgeURI]: updatedCurrentPersona,
-      [personaKnowledgeURI]: personaConfig
-    };
-
-    const response = await fetch(`${BASE_URL}/v1/configure`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(personaConfig)
-    });
-
-    if (response?.ok) {
-      const { error, success } = await response.json();
-
-      if (success) {
-        localStorage.setItem(
-          STORAGE_KEY,
-          JSON.stringify(updatedPersonaList)
-        );
-
-        alert(PERSONA_CREATED);
-        window.location.reload();
-
-        return;
-      } else {
-        alert(error?.message || SAVE_ERROR);
-      }
-    } else {
-      alert(SAVE_ERROR);
-    }
-
-    setDisabled(false);
-  };
-
   const onClickOverlay = ({ target: { id }}) => {
     if (id === OVERLAY) {
       closeOverlay();
     }
-  };
-
-  const onClickPersonaListItem = key => async () => {
-    setDisabled(true);
-
-    const updatedCurrentPersona = { ...persona };
-
-    updatedCurrentPersona.online = false;
-
-    const selectedPersona = {
-      ...personaList[key],
-
-      online: true
-    };
-
-    setPersona(selectedPersona);
-
-    setPersonaList({
-      ...personaList,
-
-      [updatedCurrentPersona.knowledgeURI]: updatedCurrentPersona,
-      [selectedPersona.knowledgeURI]: selectedPersona
-    });
-
-    const response = await fetch(`${BASE_URL}/v1/configure`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(selectedPersona)
-    });
-
-    if (response?.ok) {
-      const { success } = await response.json();
-
-      if (!success) {
-        alert(PERSONA_ERROR);
-      }
-    }
-
-    setText('');
-    setImage('')
-    setQuestion('');
-    setDisabled(false);
   };
 
   const onChangePersonaName = ({ target: { value }}) => (
@@ -283,115 +143,87 @@ const App = () => {
     setPersonaWritingTone(value)
   );
 
+  const onChangePersonaAvatarURL = ({ target: { value }}) => (
+    setPersonaAvatarURL(value)
+  );
+
+  const onQuestion = value => setQuestion(value);
+
+  const onAnswer = answer => {
+    setImageURL(answer?.imageURL);
+    setText(answer?.text);
+  };
+
+  const onClickListItem = () => {
+    setDisabled(true);
+  };
+
+  const didClickListItem = ({ currentPersona, previousPersona }) => {
+    setPersona(currentPersona);
+
+    setPersonaList({
+      ...personaList,
+
+      [previousPersona.knowledgeURI]: previousPersona,
+      [currentPersona.knowledgeURI]: currentPersona
+    });
+
+    setText('');
+    setImageURL('')
+    setQuestion('');
+    setDisabled(false);
+  };
+
+  const personaFormProps = {
+    disabled,
+    persona,
+    personaList,
+    personaName,
+    personaKnowledgeURI,
+    personaArtStyle,
+    personaWritingStyle,
+    personaWritingTone,
+    personaAvatarURL,
+    onChangePersonaName,
+    onChangePersonaKnowledgeURI,
+    onChangePersonaArtStyle,
+    onChangePersonaWritingStyle,
+    onChangePersonaWritingTone,
+    onChangePersonaAvatarURL
+  };
+
+  const personaChatProps = {
+    disabled: disabled || isCreating,
+    persona,
+    question,
+    imageURL,
+    text,
+    onQuestion,
+    onAnswer
+  };
+
+  const personaListProps = {
+    persona,
+    personaList,
+    onClickListItem,
+    didClickListItem
+  };
+
   return <>
-    {isCreating && <aside id="overlay" onClick={onClickOverlay}>
-      <div className="form">
-        <h2>Create Persona</h2>
-        <input
-          required
-          disabled={disabled}
-          placeholder={PERSONA_NAME}
-          onChange={onChangePersonaName}
-          value={personaName}
-        />
-        <input
-          required
-          disabled={disabled}
-          placeholder={PERSONA_KNOWLEDGE_URI}
-          onChange={onChangePersonaKnowledgeURI}
-          value={personaKnowledgeURI}
-        />
-        <input
-          required
-          disabled={disabled}
-          placeholder={PERSONA_ART_STYLE}
-          onChange={onChangePersonaArtStyle}
-          value={personaArtStyle}
-        />
-        <input
-          required
-          disabled={disabled}
-          placeholder={PERSONA_WRITING_STYLE}
-          onChange={onChangePersonaWritingStyle}
-          value={personaWritingStyle}
-        />
-        <input
-          required
-          disabled={disabled}
-          placeholder={PERSONA_WRITING_TONE}
-          onChange={onChangePersonaWritingTone}
-          value={personaWritingTone}
-        />
-        <button
-          disabled={disabled}
-          onClick={onClickSave}
-        >
-          {SAVE}
-        </button>
-      </div>
+    {isCreating && <aside id="overlay" className={overlayClassName} onClick={onClickOverlay}>
+      <PersonaForm { ...personaFormProps } />
     </aside>}
-    <nav id="nav" className="panel">
-      <h1>{PERSONA_LIST_HEADING}</h1>
-      <ul className="persona-list">
-        {personaList && getPersonasArray().map(({
-          name,
-          knowledgeURI,
-          avatarURL,
-          online = false
-        }) => (
-          <li
-            key={knowledgeURI}
-            className={`persona-list-item panel ${online ? 'selected' : ''}`}
-            onClick={onClickPersonaListItem(knowledgeURI)}
-          >
-            <span className="online-indicator" />
-            <span className="persona-avatar">
-              {avatarURL && <img
-                src={avatarURL}
-                alt={name}
-                width="100%"
-                height="100%"
-              />}
-            </span>
-            <h2>{name}</h2>
-          </li>
-        ))}
-      </ul>
+    <PersonaList { ...personaListProps }>
       <button
+        disabled={isCreating}
         id="create-persona-button"
-        onClick={onClickCreate}
+        onClick={openOverlay}
       >
         {CREATE}
       </button>
-    </nav>
+    </PersonaList>
     <main id="app" className="panel">
-      <div id="output">
-        <div className="img">
-          {image && <img
-            src={image}
-            alt={DEFAULT_IMG_ALT}
-            width="100%"
-            height="100%"
-          />}
-        </div>
-        {text && <p>{text}</p>}
-      </div>
-      <div id="input">
-        <input
-          autoFocus
-          disabled={disabled}
-          value={question}
-          placeholder={getQuestionPlaceholder()}
-          onChange={onChangeQuestion}
-          onKeyDown={onKeyDownQuestion}
-        />
-        <button
-          disabled={disabled}
-          onClick={ask}
-        >
-          {SEND}
-        </button>
-      </div>
+      <PersonaChat {...personaChatProps } />
     </main>
   </>;
 }

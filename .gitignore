@@ -1,0 +1,12 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies (examples)
+/examples/comment-bots/forum/simple-forum/node_modules
+/examples/comment-bots/forum/simple-forum-api/node_modules
+/examples/comment-bots/forum/simple-forum-api/.env
+/examples/game-npcs/oracles-tomb/oracles-tomb/node_modules
+/examples/game-npcs/oracles-tomb-api/oracles-tomb/node_modules
+/examples/game-npcs/oracles-tomb-api/oracles-tomb/.env
+/examples/instant-assistant/instant-assistant/node_modules
+/examples/instant-assistant/instant-assistant-api/node_modules
+/examples/instant-assistant/instant-assistant-api/.env

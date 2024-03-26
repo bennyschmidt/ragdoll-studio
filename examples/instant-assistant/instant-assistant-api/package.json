@@ -1,0 +1,10 @@
+{
+  "name": "instant-assistant-api",
+  "version": "1.0.3",
+  "scripts": {
+    "start": "node index"
+  },
+  "dependencies": {
+    "arthas-api": "1.1"
+  }
+}

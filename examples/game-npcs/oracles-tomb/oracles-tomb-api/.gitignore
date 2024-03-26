@@ -1,0 +1,6 @@
+# directories
+/node_modules
+/.tmp
+
+# env
+.env
