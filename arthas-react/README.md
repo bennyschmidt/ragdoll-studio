@@ -8,17 +8,23 @@ React front-end for interacting with [ArthasGPT](https://github.com/bennyschmidt
 
 Coming soon.
 
-## Documentation
+## Library documentation
 
-Coming soon.
+You can import these React components to your application.
+
+*Coming soon.*
 
 React components:
 
-- `PersonaChat`
-- `PersonaForm`
-- `PersonaList`
+- `<PersonaChat />`
+- `<PersonaForm />`
+- `<PersonaList />`
 
 React hooks:
+
+-
+
+`.env` setup:
 
 -----
 
