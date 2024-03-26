@@ -97,8 +97,6 @@ You can use `ArthasAPI` as a library in your existing application.
 
 `npm i arthas-api`
 
-*Coming soon.*
-
 Serverless functions (exportable):
 - `configure`
 - `prompt`
