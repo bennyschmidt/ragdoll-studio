@@ -9,10 +9,20 @@ const presetReact = require('@babel/preset-react');
 
 const DIRECTORY = './dist';
 
+// Define which components should be
+// transformed
+
 const COMPONENTS = [
   'PersonaForm',
   'PersonaChat',
   'PersonaList'
+];
+
+// Define which hooks should be
+// transformed
+
+const HOOKS = [
+  'usePersona'
 ];
 
 if (!fsSync.existsSync(DIRECTORY)) {
@@ -58,6 +68,28 @@ const transpileComponent = async component => {
   await fs.copyFile(`./src/components/${component}/index.css`, `${DIRECTORY}/${component}.css`);
 };
 
+/**
+ * transpileComponent
+ * The main transpile function
+ *
+ * component: string
+ */
+
+const transpileHook = async hook => {
+
+  // Babel transform
+
+  const file = await babel.transformFileAsync(
+    `./src/hooks/${hook}.js`,
+    babelConfig
+  );
+
+  // Write the transformed hook file
+
+  await fs.writeFile(`${DIRECTORY}/${hook}.js`, file.code);
+};
+
 // Transpile all
 
 COMPONENTS.map(transpileComponent);
+HOOKS.map(transpileHook);
