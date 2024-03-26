@@ -12,8 +12,6 @@ Coming soon.
 
 You can import these React components to your application.
 
-*Coming soon.*
-
 React components:
 
 - `<PersonaChat />`
