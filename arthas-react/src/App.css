@@ -114,6 +114,7 @@
   color: dodgerblue;
 }
 
+
 @media (max-width: 900px) {
   h1 {
     display: none;
@@ -121,6 +122,10 @@
 
   .form {
     width: 95%;
+  }
+
+  .persona-list-item.panel {
+    padding: unset;
   }
 
   #root {
@@ -135,6 +140,10 @@
     height: 100vh;
     max-height: 100vh;
     overflow-y: auto;
+  }
+
+  #nav {
+    max-width: 5rem;
   }
 
   #output p {
