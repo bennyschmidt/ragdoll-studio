@@ -2,7 +2,7 @@
 
 A game NPC example with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
 
-https://github.com/bennyschmidt/Arthas.AI/assets/45407493/fdbca676-6a1d-4c55-8cea-2573ee6a06c8
+https://github.com/bennyschmidt/Arthas.AI/assets/45407493/c13c21ff-bab0-4831-b6f9-17a63cfa7d9c
 
 ## Background
 
