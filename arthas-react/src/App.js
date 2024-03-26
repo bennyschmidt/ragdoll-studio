@@ -25,7 +25,7 @@ const SAVED_PERSONAS = JSON.parse(
 const App = () => {
   const [question, setQuestion] = useState('');
   const [text, setText] = useState('');
-  const [image, setImage] = useState('');
+  const [imageURL, setImageURL] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [persona, setPersona] = useState();
   const [personaList, setPersonaList] = useState(SAVED_PERSONAS);
@@ -150,7 +150,7 @@ const App = () => {
   const onQuestion = value => setQuestion(value);
 
   const onAnswer = answer => {
-    setImage(answer?.image);
+    setImageURL(answer?.imageURL);
     setText(answer?.text);
   };
 
@@ -169,7 +169,7 @@ const App = () => {
     });
 
     setText('');
-    setImage('')
+    setImageURL('')
     setQuestion('');
     setDisabled(false);
   };
@@ -196,7 +196,7 @@ const App = () => {
     disabled: disabled || isCreating,
     persona,
     question,
-    image,
+    imageURL,
     text,
     onQuestion,
     onAnswer

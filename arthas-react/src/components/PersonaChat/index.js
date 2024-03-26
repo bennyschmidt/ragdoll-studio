@@ -11,7 +11,7 @@ const PersonaChat = ({
   disabled: parentDisabled,
   persona,
   question,
-  image,
+  imageURL,
   text,
   onQuestion,
   onAnswer
@@ -78,9 +78,9 @@ const PersonaChat = ({
           height="100%"
         />}
       </div>
-      {image && <div className="img full">
-        {image && <img
-          src={image}
+      {imageURL && <div className="img full">
+        {imageURL && <img
+          src={imageURL}
           alt={DEFAULT_IMG_ALT}
           width="100%"
           height="100%"

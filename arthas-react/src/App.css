@@ -77,18 +77,6 @@
   flex: 1;
 }
 
-#output .img.full {
-  width: calc(100% - 1rem);
-  margin: 1rem .5rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 5rem black;
-  background: black;
-}
-
-#output .img.full > img {
-  border-radius: inherit;
-}
-
 #output p {
   width: 60%;
   margin: 1rem .5rem;
