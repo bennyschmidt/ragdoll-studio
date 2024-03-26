@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 
 import './index.css';
 
-const { ARTHAS_URI } = window;
-
 const Topics = ({ timeAgo }) => {
+  const { ARTHAS_URI } = window;
+
   const [topics, setTopics] = useState([]);
   const [topic, setTopic] = useState('');
   const [text, setText] = useState('');

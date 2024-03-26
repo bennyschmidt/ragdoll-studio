@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 
 import './index.css';
 
-const { ARTHAS_URI } = window;
-
 const Topic = ({ timeAgo }) => {
+  const { ARTHAS_URI } = window;
+
   const params = new URL(document.location).searchParams;
 
   const topicId = params.get('id');
