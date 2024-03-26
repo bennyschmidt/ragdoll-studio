@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './PersonaChat.css';
+window.React = React;
 const BASE_URL = 'http://localhost:8000';
 const SEND = 'Send';
 const DEFAULT_IMG_ALT = 'Corresponding visualization';
@@ -89,4 +90,3 @@ const PersonaChat = ({
   }, SEND)));
 };
 export default PersonaChat;
-window.React = React;

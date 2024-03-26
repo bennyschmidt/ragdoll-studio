@@ -41,20 +41,16 @@ const transpileComponent = async component => {
     babelConfig
   );
 
-  // Map CSS files
+  // Map CSS and React imports
 
-  const fileWithCSS = file.code.replace(
+  const fileWithCSSAndReact = file.code.replace(
     "import './index.css';",
-    `import './${component}.css';`
+    `import './${component}.css';\nwindow.React = React;`
   );
-
-  // Append React
-
-  const fileWithReact = `${fileWithCSS}\nwindow.React = React;`;
 
   // Write the transformed component file
 
-  await fs.writeFile(`${DIRECTORY}/${component}.js`, fileWithReact);
+  await fs.writeFile(`${DIRECTORY}/${component}.js`, fileWithCSSAndReact);
 
   // Move a copy of the CSS file to it
 

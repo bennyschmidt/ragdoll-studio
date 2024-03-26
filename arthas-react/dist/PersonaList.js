@@ -1,4 +1,5 @@
 import './PersonaList.css';
+window.React = React;
 const BASE_URL = 'http://localhost:8000';
 const PERSONA_LIST_HEADING = 'Domain-specific Personas (DSPs)';
 const PERSONA_ERROR = 'Error loading persona.';
@@ -70,4 +71,3 @@ const PersonaList = ({
   })), /*#__PURE__*/React.createElement("h2", null, name)))), children));
 };
 export default PersonaList;
-window.React = React;
