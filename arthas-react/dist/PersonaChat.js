@@ -8,7 +8,7 @@ const PersonaChat = ({
   disabled: parentDisabled,
   persona,
   question,
-  image,
+  imageURL,
   text,
   onQuestion,
   onAnswer
@@ -67,10 +67,10 @@ const PersonaChat = ({
     alt: persona.name,
     width: "100%",
     height: "100%"
-  })), image && /*#__PURE__*/React.createElement("div", {
+  })), imageURL && /*#__PURE__*/React.createElement("div", {
     className: "img full"
-  }, image && /*#__PURE__*/React.createElement("img", {
-    src: image,
+  }, imageURL && /*#__PURE__*/React.createElement("img", {
+    src: imageURL,
     alt: DEFAULT_IMG_ALT,
     width: "100%",
     height: "100%"

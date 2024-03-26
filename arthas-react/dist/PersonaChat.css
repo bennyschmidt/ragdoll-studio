@@ -21,6 +21,20 @@
 
 #output .img > img {
   border-radius: inherit;
+  object-fit: cover;
+}
+
+#output .img.full {
+  width: calc(100% - 1rem);
+  height: auto;
+  margin: 1rem .5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 5rem black;
+  background: black;
+}
+
+#output .img.full > img {
+  border-radius: inherit;
 }
 
 #output p {
