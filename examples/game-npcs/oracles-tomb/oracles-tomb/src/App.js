@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { usePersona } from 'arthas-react';
+
 import './App.css';
 
 // Globals
@@ -17,46 +19,24 @@ const App = () => {
   const [question, setQuestion] = useState('');
   const [text, setText] = useState('');
   const [disabled, setDisabled] = useState(false);
-  const [persona, setPersona] = useState();
   const [keys, setKeys] = useState({});
   const [positionX, setPositionX] = useState(0);
   const [gameClassName, setGameClassName] = useState('');
   const [playerClassName, setPlayerClassName] = useState('');
 
+  const [persona] = usePersona({
+    name: 'The Oracle',
+    knowledgeURI: `${ARTHAS_URI}/oracle`,
+    avatarURL: '',
+
+    // Passing null for artStyle will skip image generation
+
+    artStyle: null,
+    writingStyle: 'emotionless but all-knowing, like an oracle or deity, but somewhat brief and without giving up too much information at once',
+    writingTone: 'mysterious'
+  });
+
   useEffect(() => {
-    const personaConfig = {
-      name: 'The Oracle',
-      knowledgeURI: `${ARTHAS_URI}/oracle`,
-      avatarURL: '',
-
-      // Passing null for artStyle will skip image generation
-
-      artStyle: null,
-      writingStyle: 'emotionless but all-knowing, like an oracle or deity, but somewhat brief and without giving up too much information at once',
-      writingTone: 'mysterious'
-    };
-
-    const fetchOracle = async () => {
-      const response = await fetch(`${ARTHAS_URI}/v1/configure`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(personaConfig)
-      });
-
-      if (response?.ok) {
-        const { success } = await response.json();
-
-        if (success) {
-          setPersona(personaConfig);
-        }
-      }
-    };
-
-    fetchOracle();
-
     document.body.onkeydown = ({ key }) => {
       const keybind = key.toUpperCase();
 
