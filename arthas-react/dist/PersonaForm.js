@@ -121,3 +121,4 @@ const PersonaForm = ({
   }, SAVE)));
 };
 export default PersonaForm;
+window.React = React;

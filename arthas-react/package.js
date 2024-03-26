@@ -1,5 +1,6 @@
 const fs = require('fs').promises;
 const fsSync = require('fs');
+const React = require('react');
 
 const babel = require('@babel/core');
 const presetReact = require('@babel/preset-react');
@@ -47,9 +48,13 @@ const transpileComponent = async component => {
     `import './${component}.css';`
   );
 
+  // Append React
+
+  const fileWithReact = `${fileWithCSS}\nwindow.React = React;`;
+
   // Write the transformed component file
 
-  await fs.writeFile(`${DIRECTORY}/${component}.js`, fileWithCSS);
+  await fs.writeFile(`${DIRECTORY}/${component}.js`, fileWithReact);
 
   // Move a copy of the CSS file to it
 

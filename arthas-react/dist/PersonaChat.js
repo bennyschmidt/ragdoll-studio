@@ -89,3 +89,4 @@ const PersonaChat = ({
   }, SEND)));
 };
 export default PersonaChat;
+window.React = React;

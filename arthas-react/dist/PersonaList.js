@@ -70,3 +70,4 @@ const PersonaList = ({
   })), /*#__PURE__*/React.createElement("h2", null, name)))), children));
 };
 export default PersonaList;
+window.React = React;
