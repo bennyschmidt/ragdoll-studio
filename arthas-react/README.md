@@ -20,7 +20,7 @@ React components:
 
 React hooks:
 
--
+- `usePersona`
 
 Environment variables (set on `window` in the React [entry]('./src/index.js')):
 
