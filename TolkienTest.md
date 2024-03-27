@@ -84,7 +84,7 @@ Grade: **❌ FAIL**
 
 https://github.com/bennyschmidt/Arthas.AI/assets/45407493/414df025-91db-4599-935e-b7c82f928cb4
 
-_Arthas.AI's Tolkien immediately reports in classic Tolkien style fighting in the trenches, falling ill, and returning to England._
+_Arthas.AI's Tolkien (with GPT-3.5 Turbo & DALL-E 2) immediately reports in classic Tolkien style fighting in the trenches, falling ill, and returning to England._
 
 Grade: **✅ PASS**
 
