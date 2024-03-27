@@ -72,19 +72,11 @@ You should see the default UI:
 
 ## Usage
 
-#### Using text models other than GPT-3.5
-
-[How to change text models](https://github.com/bennyschmidt/ArthasGPT/?tab=readme-ov-file#middleware)
-
-#### Using image models other than DALL-E
-
-[How to change image models](https://github.com/bennyschmidt/ArthasGPT/?tab=readme-ov-file#middleware)
-
 #### Arthas app
 
 [How to use the app](https://github.com/bennyschmidt/Arthas.AI/blob/master/arthas-react/README.md)
 
-#### API documentation
+#### Arthas API 
 
 [How to run the API](https://github.com/bennyschmidt/Arthas.AI/blob/master/arthas-api/README.md)
 
