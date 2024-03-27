@@ -25,8 +25,17 @@ const DEFAULT_AVATAR_URL = '/img/avatars/arthas.png';
 const DEFAULT_NAME = 'Arthas';
 const DEFAULT_KNOWLEDGE_URI = 'https://wowpedia.fandom.com/wiki/Arthas_Menethil';
 const DEFAULT_ART_STYLE = `Blizzard's World of Warcraft concept art in high resolution like a fine-tuned video game model including each detail and anatomically correct features (if any)`;
-const DEFAULT_WRITING_STYLE = 'inspiring but grim, from the year 1200 A.D.';
+const DEFAULT_WRITING_STYLE = 'inspiring but grim, like from the dark ages, excluding asterisk-based interjections like "*sigh*"';
 const DEFAULT_WRITING_TONE = 'slightly annoyed';
+
+const DEFAULT_PERSONA = {
+  name: DEFAULT_NAME,
+  knowledgeURI: DEFAULT_KNOWLEDGE_URI,
+  avatarURL: DEFAULT_AVATAR_URL,
+  artStyle: DEFAULT_ART_STYLE,
+  writingStyle: DEFAULT_WRITING_STYLE,
+  writingTone: DEFAULT_WRITING_TONE
+};
 
 const SAVED_PERSONAS = JSON.parse(
   localStorage.getItem(STORAGE_KEY)
@@ -47,23 +56,13 @@ const App = () => {
   const [personaWritingStyle, setPersonaWritingStyle] = useState('');
   const [personaWritingTone, setPersonaWritingTone] = useState('');
   const [personaAvatarURL, setPersonaAvatarURL] = useState('');
-
-  const [persona, setPersona] = useState({
-    name: DEFAULT_NAME,
-    knowledgeURI: DEFAULT_KNOWLEDGE_URI,
-    avatarURL: DEFAULT_AVATAR_URL,
-    artStyle: DEFAULT_ART_STYLE,
-    writingStyle: DEFAULT_WRITING_STYLE,
-    writingTone: DEFAULT_WRITING_TONE
-  });
-
+  const [persona, setPersona] = useState(DEFAULT_PERSONA);
   const [personaList, setPersonaList] = useState(SAVED_PERSONAS);
-
   const [activePersona] = usePersona(persona);
 
   useEffect(() => {
     const personas = getPersonasArray();
-    const currentPersona = personas[0];
+    const currentPersona = personas[0] || persona;
 
     const savedPersonas = {
       ...personaList,
@@ -193,7 +192,7 @@ const App = () => {
 
   const personaFormProps = {
     disabled,
-    persona: activePersona,
+    persona: activePersona || persona,
     personaList,
     personaName,
     personaKnowledgeURI,
@@ -211,7 +210,7 @@ const App = () => {
 
   const personaChatProps = {
     disabled: disabled || isCreating,
-    persona: activePersona,
+    persona: activePersona || persona,
     question,
     imageURL,
     text,
@@ -220,7 +219,7 @@ const App = () => {
   };
 
   const personaListProps = {
-    persona: activePersona,
+    persona: activePersona || persona,
     personaList,
     onClickListItem,
     didClickListItem
