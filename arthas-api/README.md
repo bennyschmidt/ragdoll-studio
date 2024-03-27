@@ -5,19 +5,20 @@ A parallelized Node.js API for interacting with [ArthasGPT](https://github.com/b
 #### .env
 
 ```
-OPENAI_API_KEY= <Your OpenAI API key>
 LLM_FRAMEWORK=llamaindex
-LANGUAGE_MODEL=GPT-3.5
-IMAGE_MODEL=dall-e-2
-DELAY=2000
-RENDER=false
+TEXT_MODEL=mistral
+STABLE_DIFFUSION_URI=http://127.0.0.1:7860
+IMAGE_MODEL=txt2img
+DELAY=200
+RENDER=true
 VERBOSE=true
 GREETING=false
-CACHE=false
+CACHE=true
 MAX_STORAGE_KEY_LENGTH=32
 LOG_PREFIX=<ArthasGPT>
-STORAGE_URI=./.tmp
 API_PATH_PREFIX=/v1
+STORAGE_URI=./.tmp
+
 ```
 
 See [ArthasGPT Environment Config](https://github.com/bennyschmidt/ArthasGPT?tab=readme-ov-file#env-scaffold).
@@ -105,6 +106,14 @@ Serverless functions (exportable):
 Extending the API:
 
 `ArthasAPI(customRoutes, onReady);`
+
+## Running models
+
+The API defaults to locally-running models on your machine. Make sure you have them up and running on `localhost`:
+
+- [Run your text model (via Ollama)](https://github.com/bennyschmidt/ArthasGPT?tab=readme-ov-file#install-ollama)
+
+- [Run your image model (via Stable Diffusion)](https://github.com/bennyschmidt/ArthasGPT?tab=readme-ov-file#install-stable-diffusion)
 
 -----
 

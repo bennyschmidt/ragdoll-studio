@@ -1,5 +1,5 @@
 const ArthasGPT = require('arthasgpt');
-const { OpenAIAgent } = require('llamaindex');
+const { Ollama } = require('llamaindex');
 
 // Storage utils
 
@@ -23,7 +23,8 @@ const {
   CREATING_AGENT,
   languageModel,
   textModelLogPrefix,
-  waiting
+  waiting,
+  TEXT_MODEL
 } = require('arthasgpt/src/utils/strings');
 
 const { prefixInput } = require('arthasgpt/src/utils/prefix');
@@ -33,6 +34,7 @@ const { prefixInput } = require('arthasgpt/src/utils/prefix');
  */
 
 module.exports = asyncCache => async (req, res) => {
+  console.log('request')
   const timeout = await asyncCache.getItem('timeout');
 
   let answer = await asyncCache.getItem('answer');
@@ -76,7 +78,9 @@ module.exports = asyncCache => async (req, res) => {
 
       const povPromptPrefix = prefixInput(currentConfig);
 
-      const chatAgent = new OpenAIAgent({});
+      const chatAgent = new Ollama({
+        model: TEXT_MODEL
+      });
 
       // Create prompt transforming the user input into the third-person
 
@@ -96,11 +100,17 @@ module.exports = asyncCache => async (req, res) => {
           log(`${textModelLogPrefix} ${message}`);
         }
 
-        const { response: gptResponse } = await chatAgent.chat({
-          message
+        const { message: textModelResponse } = await chatAgent.chat({
+          model: TEXT_MODEL,
+          messages: [
+            {
+              role: 'user',
+              content: message
+            }
+          ]
         });
 
-        messageResponse = gptResponse;
+        messageResponse = textModelResponse?.content;
 
         remember(input, messageResponse);
 
