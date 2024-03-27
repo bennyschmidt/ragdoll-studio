@@ -10,7 +10,7 @@ https://github.com/bennyschmidt/Arthas.AI/assets/45407493/dcfdbb68-3d3c-4bfe-819
 
 `cd arthas-api`
 
-See the API `README.md`. You will need an OpenAI API key to get started.
+See the API `README.md`.
 
 2. Install dependencies
 
