@@ -6,7 +6,7 @@ React front-end for interacting with [ArthasGPT](https://github.com/bennyschmidt
 
 ## Usage
 
-Coming soon.
+Coming soon. TLDR: Click stuff, type stuff.
 
 ## Library documentation
 
