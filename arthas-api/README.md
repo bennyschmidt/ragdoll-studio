@@ -21,7 +21,7 @@ STORAGE_URI=./.tmp
 
 ```
 
-See [ArthasGPT Environment Config](https://github.com/bennyschmidt/ArthasGPT?tab=readme-ov-file#env-scaffold).
+See [ArthasGPT Environment Config](https://github.com/bennyschmidt/ArthasGPT#env-scaffold).
 
 -----
 
@@ -111,9 +111,9 @@ Extending the API:
 
 The API defaults to locally-running models on your machine. Make sure you have them up and running on `localhost`:
 
-- [Run your text model (via Ollama)](https://github.com/bennyschmidt/ArthasGPT?tab=readme-ov-file#install-ollama)
+- [Run your text model (via Ollama)](https://github.com/bennyschmidt/ArthasGPT#install-ollama)
 
-- [Run your image model (via Stable Diffusion)](https://github.com/bennyschmidt/ArthasGPT?tab=readme-ov-file#install-stable-diffusion)
+- [Run your image model (via Stable Diffusion)](https://github.com/bennyschmidt/ArthasGPT#install-stable-diffusion)
 
 -----
 

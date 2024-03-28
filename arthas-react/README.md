@@ -6,7 +6,7 @@ React front-end for interacting with [ArthasGPT](https://github.com/bennyschmidt
 
 ## Usage
 
-Coming soon.
+Coming soon. TLDR: Click stuff, type stuff.
 
 ## Library documentation
 
@@ -20,9 +20,9 @@ React components:
 
 React hooks:
 
--
+- `usePersona`
 
-Environment variables (set on `window` in the React [entry]('./src/index.js')):
+Environment variables (set on `window` in the React [App.js](./src/App.js)):
 
 `ARTHAS_URI=http://localhost:8000`
 
