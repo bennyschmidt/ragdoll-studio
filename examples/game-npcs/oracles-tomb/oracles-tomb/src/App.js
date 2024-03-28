@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 
-import { usePersona } from 'arthas-react';
+import { usePersona } from 'ragdoll-react';
 
 import './App.css';
 
 // Globals
 
-window.ARTHAS_URI = 'http://localhost:8000';
-window.STORAGE_KEY = 'ARTHAS_PERSONAS';
+window.RAGDOLL_URI = 'http://localhost:8000';
+window.STORAGE_KEY = 'RAGDOLL_PERSONAS';
 
-const { ARTHAS_URI } = window;
+const { RAGDOLL_URI } = window;
 
 const SEND = 'Send';
 const API_ERROR = 'API temporarily unavailable.';
@@ -26,7 +26,7 @@ const App = () => {
 
   const [persona] = usePersona({
     name: 'The Oracle',
-    knowledgeURI: `${ARTHAS_URI}/oracle`,
+    knowledgeURI: `${RAGDOLL_URI}/oracle`,
     avatarURL: '',
 
     // Passing null for artStyle will skip image generation
@@ -90,7 +90,7 @@ const App = () => {
   const ask = async () => {
     setDisabled(true);
 
-    const response = await fetch(`${ARTHAS_URI}/v1/prompt`, {
+    const response = await fetch(`${RAGDOLL_URI}/v1/prompt`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

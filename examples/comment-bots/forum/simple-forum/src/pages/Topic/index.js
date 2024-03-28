@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import './index.css';
 
 const Topic = ({ timeAgo }) => {
-  const { ARTHAS_URI } = window;
+  const { RAGDOLL_URI } = window;
 
   const params = new URL(document.location).searchParams;
 
@@ -17,7 +17,7 @@ const Topic = ({ timeAgo }) => {
 
   useEffect(() => {
     const fetchTopic = async () => {
-      const response = await fetch(`${ARTHAS_URI}/v1/comments`);
+      const response = await fetch(`${RAGDOLL_URI}/v1/comments`);
 
       if (response?.ok) {
         const { success, comments } = await response.json();
@@ -64,7 +64,7 @@ const Topic = ({ timeAgo }) => {
   const onClickPostComment = openOverlay;
 
   const onClickPost = async () => {
-    const response = await fetch(`${ARTHAS_URI}/v1/comment`, {
+    const response = await fetch(`${RAGDOLL_URI}/v1/comment`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

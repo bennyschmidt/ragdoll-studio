@@ -1,14 +1,14 @@
-# Arthas.AI
+# Ragdoll Studio
 
-A web app for interacting with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
+A web app for interacting with [ragdoll](https://github.com/bennyschmidt/ragdoll).
 
-https://github.com/bennyschmidt/Arthas.AI/assets/45407493/dcfdbb68-3d3c-4bfe-8190-fa47db2e55ca
+https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/dcfdbb68-3d3c-4bfe-8190-fa47db2e55ca
 
 ## Installation
 
-1. Configure the [API](https://github.com/bennyschmidt/Arthas.AI/tree/master/arthas-api)
+1. Configure the [API](https://github.com/bennyschmidt/ragdoll-studio/tree/master/ragdoll-api)
 
-`cd arthas-api`
+`cd ragdoll-api`
 
 See the API `README.md`.
 
@@ -52,9 +52,9 @@ Worker (#7) is listening for messages.
 
 This means the server is running and handling concurrent requests on all CPU cores
 
-4. Set up the [front-end](https://github.com/bennyschmidt/Arthas.AI/tree/master/arthas-react)
+4. Set up the [front-end](https://github.com/bennyschmidt/ragdoll-studio/tree/master/ragdoll-react)
 
-`cd ../arthas-react`
+`cd ../ragdoll-react`
 
 See the React `README.md`.
 
@@ -66,23 +66,23 @@ See the React `README.md`.
 
 You should see the default UI:
 
-![image](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/d1980924-7a50-408e-b5c6-aa586743d1d5)
+![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/d1980924-7a50-408e-b5c6-aa586743d1d5)
 
 -----
 
 ## Usage
 
-#### Arthas app
+#### Ragdoll app
 
-[How to use the app](https://github.com/bennyschmidt/Arthas.AI/blob/master/arthas-react/README.md)
+[How to use the app](https://github.com/bennyschmidt/ragdoll-studio/blob/master/ragdoll-react/README.md)
 
-#### Arthas API 
+#### Ragdoll API
 
-[How to run the API](https://github.com/bennyschmidt/Arthas.AI/blob/master/arthas-api/README.md)
+[How to run the API](https://github.com/bennyschmidt/ragdoll-studio/blob/master/ragdoll-api/README.md)
 
 -----
 
-## Comparing Arthas.AI to other products
+## Comparing Ragdoll Studio to other products
 
 See [TolkienTest.md](./TolkienTest.md).
 

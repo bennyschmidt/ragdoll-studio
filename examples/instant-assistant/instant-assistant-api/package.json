@@ -1,10 +1,10 @@
 {
   "name": "instant-assistant-api",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "scripts": {
     "start": "node index"
   },
   "dependencies": {
-    "arthas-api": "^1.1.2"
+    "ragdoll-api": "^1.1.3"
   }
 }

@@ -1,3 +1,3 @@
-const ArthasAPI = require('arthas-api');
+const RagdollAPI = require('ragdoll-api');
 
-ArthasAPI();
+RagdollAPI();

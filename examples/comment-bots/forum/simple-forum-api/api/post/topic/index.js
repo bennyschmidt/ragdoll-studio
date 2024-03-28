@@ -10,9 +10,9 @@ const {
   DEFAULT_KNOWLEDGE_URI: personaKnowledgeURI,
   DEFAULT_WRITING_STYLE: personaWritingStyle,
   DEFAULT_WRITING_TONE: personaWritingTone
-} = require('arthasgpt/src/utils/strings');
+} = require('ragdoll-core/src/utils/strings');
 
-const ARTHAS_URI = 'http://localhost:8000';
+const RAGDOLL_URI = 'http://localhost:8000';
 
 module.exports = asyncCache => async (req, res) => {
   let body = [];
@@ -82,7 +82,7 @@ module.exports = asyncCache => async (req, res) => {
           writingTone: personaWritingTone
         };
 
-        const configResponse = await fetch(`${ARTHAS_URI}/v1/configure`, {
+        const configResponse = await fetch(`${RAGDOLL_URI}/v1/configure`, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -96,7 +96,7 @@ module.exports = asyncCache => async (req, res) => {
 
           if (error) return;
 
-          const promptResponse = await fetch(`${ARTHAS_URI}/v1/prompt`, {
+          const promptResponse = await fetch(`${RAGDOLL_URI}/v1/prompt`, {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
@@ -115,7 +115,7 @@ module.exports = asyncCache => async (req, res) => {
 
             // Post bot comment
 
-            await fetch(`${ARTHAS_URI}/v1/comment`, {
+            await fetch(`${RAGDOLL_URI}/v1/comment`, {
               method: 'POST',
               headers: {
                 'Accept': 'application/json',

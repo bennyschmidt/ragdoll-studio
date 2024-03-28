@@ -1,13 +1,13 @@
 const process = require('node:process');
 const dotenv = require('dotenv');
 
-const ArthasAPI = require('arthas-api');
+const RagdollAPI = require('ragdoll-api');
 
 dotenv.config();
 
 const { API_PATH_PREFIX } = process.env;
 
-ArthasAPI({
+RagdollAPI({
   GET: {
     [`${API_PATH_PREFIX}/comments`]: require('./api/get/comments'),
   },

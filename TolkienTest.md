@@ -16,7 +16,7 @@ Without requiring specific training, we should expect a realistic J.R.R. Tolkien
 
 #### [character.ai](https://character.ai)
 
-![character-ai-tolkien](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/1fe7dd02-94aa-495c-b2a4-f5c41562b182)
+![character-ai-tolkien](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/1fe7dd02-94aa-495c-b2a4-f5c41562b182)
 
 _character.ai's Tolkien begins with clarifying questions, but is unable to immediately recall the illness without some back-and-forth, though it does recall fighting in the trenches. character.ai also completely misses the mark on the Tolkien style of writing._
 
@@ -28,7 +28,7 @@ Grade: **❌ FAIL**
 
 #### [Knowtify](https://knowtify.app/)
 
-![knowtify](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/7352779f-c1f0-4035-afac-3fa5852dd842)
+![knowtify](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/7352779f-c1f0-4035-afac-3fa5852dd842)
 
 _Knowtify's Tolkien only took one clarifying question to mention the illness, and was able to readily recall it in a classic Tolkien style. Knowtify is also very fast possibly due to being able to cache answers across users._
 
@@ -40,7 +40,7 @@ Grade: **✅ PASS**
 
 #### [AI History Chat](https://apps.apple.com/us/app/ai-history-chat/id6446097887)
 
-![AA4E7393-0A9A-4A3B-91D5-E86B0289775C](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/b57462bd-126a-4fe2-bc0e-1c374031a62a)
+![AA4E7393-0A9A-4A3B-91D5-E86B0289775C](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/b57462bd-126a-4fe2-bc0e-1c374031a62a)
 
 _AI History Chat's Tolkien doesn't even know he's been to France, let alone fought in a war or contracted a serious illness._
 
@@ -52,7 +52,7 @@ Grade: **❌ FAIL**
 
 #### [ChatGPT](https://chat.openai.com/)
 
-![Screenshot from 2024-03-18 13-30-15](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/88829714-f320-4f58-9c18-1fd1a3083c8c)
+![Screenshot from 2024-03-18 13-30-15](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/88829714-f320-4f58-9c18-1fd1a3083c8c)
 
 _With some initial prompting to take on the style of Tolkien, vanilla ChatGPT - which has access to Wikipedia articles - still takes an additional question to get there. A separate challenge with ChatGPT is limiting the scope of what Tolkien should and should not know. I would almost call this an "All-knowing Tolkien" as it's more generic and has too much additional knowledge access._
 
@@ -80,11 +80,11 @@ Grade: **❌ FAIL**
 
 -----
 
-#### [Arthas.AI](https://github.com/bennyschmidt/Arthas.AI)
+#### [Ragdoll Studio](https://github.com/bennyschmidt/ragdoll-studio)
 
-https://github.com/bennyschmidt/Arthas.AI/assets/45407493/414df025-91db-4599-935e-b7c82f928cb4
+https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/414df025-91db-4599-935e-b7c82f928cb4
 
-_Arthas.AI's Tolkien (with GPT-3.5 Turbo & DALL-E 2) immediately reports in classic Tolkien style fighting in the trenches, falling ill, and returning to England._
+_Ragdoll Studio's Tolkien (with GPT-3.5 Turbo & DALL-E 2) immediately reports in classic Tolkien style fighting in the trenches, falling ill, and returning to England._
 
 Grade: **✅ PASS**
 

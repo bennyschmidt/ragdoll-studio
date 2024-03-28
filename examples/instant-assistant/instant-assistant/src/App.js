@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react';
 import {
   PersonaChat,
   PersonaForm
-} from 'arthas-react';
+} from 'ragdoll-react';
 
 import './App.css';
 
 // Globals
 
-window.ARTHAS_URI = 'http://localhost:8000';
-window.STORAGE_KEY = 'ARTHAS_INSTANT_ASSISTANT';
+window.RAGDOLL_URI = 'http://localhost:8000';
+window.STORAGE_KEY = 'RAGDOLL_INSTANT_ASSISTANT';
 
 const { STORAGE_KEY } = window;
 

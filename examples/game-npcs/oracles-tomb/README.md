@@ -1,14 +1,14 @@
 # A game NPC in *Oracle's Tomb*
 
-A game NPC example with [ArthasGPT](https://github.com/bennyschmidt/ArthasGPT).
+A game NPC example with [ragdoll](https://github.com/bennyschmidt/ragdoll).
 
-https://github.com/bennyschmidt/Arthas.AI/assets/45407493/c13c21ff-bab0-4831-b6f9-17a63cfa7d9c
+https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/c13c21ff-bab0-4831-b6f9-17a63cfa7d9c
 
 ## Background
 
 Normally a persona's knowledge is based on content of a web page at some remote URL, but in [*Oracle's Tomb*](./oracles-tomb-api/) we serve our own pages from our the project backend. Here's a simple HTML file that contains all of The Oracle's knowledge:
 
-![image](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/86072177-813d-497a-a1a8-6de84115ef67)
+![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/86072177-813d-497a-a1a8-6de84115ef67)
 
 It's just simple HTML:
 
@@ -43,7 +43,7 @@ It's just simple HTML:
 </html>
 ```
 
-This is everything The Oracle knows and can speak on. Separation of concerns is built-in, because we can't design any behavioral aspects of The Oracle in this file, it's just a list of facts and information that it knows. This is because this content is never used in any prompts (which are more generic), it just serves as a source of knowledge for this persona. For example, adding "The Oracle speaks in all caps." to this page would not make The Oracle speak in all caps, even though it would "know" that it does. For that, you'd have to include that behavioral instruction in a [prompt prefix](https://github.com/bennyschmidt/ArthasGPT/blob/master/src/utils/prefix.js). The prefix is also where you might add behavioral instruction to limit knowledge-sharing, or even conceal certain knowledge.
+This is everything The Oracle knows and can speak on. Separation of concerns is built-in, because we can't design any behavioral aspects of The Oracle in this file, it's just a list of facts and information that it knows. This is because this content is never used in any prompts (which are more generic), it just serves as a source of knowledge for this persona. For example, adding "The Oracle speaks in all caps." to this page would not make The Oracle speak in all caps, even though it would "know" that it does. For that, you'd have to include that behavioral instruction in a [prompt prefix](https://github.com/bennyschmidt/ragdoll/blob/master/src/utils/prefix.js). The prefix is also where you might add behavioral instruction to limit knowledge-sharing, or even conceal certain knowledge.
 
 ## The game
 
@@ -55,11 +55,11 @@ Art Credits:
 
 [Fantasy Knight](https://aamatniekss.itch.io/fantasy-knight-free-pixelart-animated-character) by [aamatniekss](https://aamatniekss.itch.io/)
 
-![Comparison2x](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/2055c641-4e06-45fa-82d4-80fa34ea69cd)
+![Comparison2x](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/2055c641-4e06-45fa-82d4-80fa34ea69cd)
 
 [The Oracle](https://leonardo.ai) by [Leonardo Kino XL](https://faq.leonardo.ai/finetuning/getting-started)
 
-![image](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/72c74fde-1dc3-4284-8a01-087746b05b4d)
+![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/72c74fde-1dc3-4284-8a01-087746b05b4d)
 
 Prompt:
 
@@ -71,4 +71,4 @@ Prompt:
 
 > an 8-bit pixelated sidescroller platformer map with a black background featuring an old stone bridge that the player crosses from left to right upon which is a mysterious door in the center
 
-![image](https://github.com/bennyschmidt/Arthas.AI/assets/45407493/d973469b-39e9-4824-89b9-7c695b143a0b)
+![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/d973469b-39e9-4824-89b9-7c695b143a0b)
