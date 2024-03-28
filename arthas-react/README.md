@@ -22,7 +22,7 @@ React hooks:
 
 - `usePersona`
 
-Environment variables (set on `window` in the React [entry]('./src/index.js')):
+Environment variables (set on `window` in the React [App.js](./src/App.js)):
 
 `ARTHAS_URI=http://localhost:8000`
 
