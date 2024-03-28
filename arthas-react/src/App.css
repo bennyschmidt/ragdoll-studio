@@ -70,20 +70,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 #output {
   flex: 1;
-}
-
-#output p {
-  width: 60%;
-  margin: 1rem .5rem;
-  padding: 1rem;
-  background: black;
-  border-radius: 1rem;
-  color: dodgerblue;
 }
 
 #input > input,
@@ -113,7 +104,6 @@
   background-color: white;
   color: dodgerblue;
 }
-
 
 @media (max-width: 900px) {
   h1 {
