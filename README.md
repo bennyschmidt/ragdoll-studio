@@ -1,6 +1,6 @@
 # Ragdoll Studio
 
-Web apps and libraries for interacting with [ragdoll](https://github.com/bennyschmidt/ragdoll).
+Web apps and libraries for interacting with [Ragdoll](https://github.com/bennyschmidt/ragdoll).
 
 https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/dcfdbb68-3d3c-4bfe-8190-fa47db2e55ca
 
