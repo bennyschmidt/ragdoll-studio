@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-const usePersona = personaConfig => {
+const useRagdoll = ragdollConfig => {
   const { RAGDOLL_URI } = window;
 
-  const [persona, setPersona] = useState();
+  const [ragdoll, setPersona] = useState();
   const [pending, setPending] = useState(false);
 
   useEffect(() => {
@@ -11,8 +11,8 @@ const usePersona = personaConfig => {
       setPending(true);
 
       const isUpdate = (
-        personaConfig?.knowledgeURI &&
-        personaConfig.knowledgeURI !== persona?.knowledgeURI
+        ragdollConfig?.knowledgeURI &&
+        ragdollConfig.knowledgeURI !== ragdoll?.knowledgeURI
       );
 
       if (isUpdate) {
@@ -22,14 +22,14 @@ const usePersona = personaConfig => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(personaConfig)
+          body: JSON.stringify(ragdollConfig)
         });
 
         if (response?.ok) {
           const { success } = await response.json();
 
           if (success) {
-            setPersona(personaConfig);
+            setPersona(ragdollConfig);
           }
         }
 
@@ -38,9 +38,9 @@ const usePersona = personaConfig => {
     };
 
     fetchPersona();
-  }, [personaConfig]);
+  }, [ragdollConfig]);
 
-  return [persona, pending];
+  return [ragdoll, pending];
 };
 
-export default usePersona;
+export default useRagdoll;

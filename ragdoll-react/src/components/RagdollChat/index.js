@@ -6,9 +6,9 @@ const SEND = 'Send';
 const DEFAULT_IMG_ALT = 'Corresponding visualization';
 const API_ERROR = 'API temporarily unavailable.';
 
-const PersonaChat = ({
+const RagdollChat = ({
   disabled: parentDisabled,
-  persona,
+  ragdoll,
   question,
   imageURL,
   text,
@@ -22,7 +22,7 @@ const PersonaChat = ({
 
   useEffect(() => {
     setHistory([]);
-  }, [persona]);
+  }, [ragdoll]);
 
   const ask = async () => {
     setDisabled(true);
@@ -34,7 +34,7 @@ const PersonaChat = ({
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        key: persona.knowledgeURI,
+        key: ragdoll.knowledgeURI,
         input: question
       })
     });
@@ -58,8 +58,8 @@ const PersonaChat = ({
           ...history,
 
           {
-            avatarURL: persona.avatarURL,
-            name: persona.name,
+            avatarURL: ragdoll.avatarURL,
+            name: ragdoll.name,
             text
           },
           {
@@ -79,7 +79,7 @@ const PersonaChat = ({
   };
 
   const getQuestionPlaceholder = () => (
-    !persona ? '...' : `What would you like to ask ${persona.name}?`
+    !ragdoll ? '...' : `What would you like to ask ${ragdoll.name}?`
   );
 
   const onChangeQuestion = ({ target: { value }}) => {
@@ -90,13 +90,13 @@ const PersonaChat = ({
     question && keyCode === 13 && ask()
   );
 
-  return persona && <>
+  return ragdoll && <>
     <div id="output">
       <header>
         <div className="img">
-          {persona.avatarURL && <img
-            src={persona.avatarURL}
-            alt={persona.name}
+          {ragdoll.avatarURL && <img
+            src={ragdoll.avatarURL}
+            alt={ragdoll.name}
             width="100%"
             height="100%"
           />}
@@ -126,9 +126,9 @@ const PersonaChat = ({
         ))}
         <div>
           {<div className="img">
-            {persona.avatarURL && <img
-              src={persona.avatarURL}
-              alt={persona.name}
+            {ragdoll.avatarURL && <img
+              src={ragdoll.avatarURL}
+              alt={ragdoll.name}
               width="100%"
               height="100%"
             />}
@@ -142,7 +142,7 @@ const PersonaChat = ({
             />}
           </div>}
           {text && <p>
-            <span className="author">{persona.name} says...</span>{text}
+            <span className="author">{ragdoll.name} says...</span>{text}
           </p>}
         </div>
       </div>
@@ -166,4 +166,4 @@ const PersonaChat = ({
   </>;
 }
 
-export default PersonaChat;
+export default RagdollChat;

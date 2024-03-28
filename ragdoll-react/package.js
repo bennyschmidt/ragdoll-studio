@@ -13,16 +13,16 @@ const DIRECTORY = './dist';
 // transformed
 
 const COMPONENTS = [
-  'PersonaForm',
-  'PersonaChat',
-  'PersonaList'
+  'RagdollForm',
+  'RagdollChat',
+  'RagdollList'
 ];
 
 // Define which hooks should be
 // transformed
 
 const HOOKS = [
-  'usePersona'
+  'useRagdoll'
 ];
 
 if (!fsSync.existsSync(DIRECTORY)) {

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
 import {
-  PersonaForm,
-  PersonaChat,
-  PersonaList
+  RagdollForm,
+  RagdollChat,
+  RagdollList
 } from './components';
 
 import {
-  usePersona
+  useRagdoll
 } from './hooks';
 
 import './App.css';
@@ -15,20 +15,20 @@ import './App.css';
 // Globals
 
 window.RAGDOLL_URI = 'http://localhost:8000';
-window.STORAGE_KEY = 'RAGDOLL_PERSONAS';
+window.STORAGE_KEY = 'RAGDOLLS';
 
 const { STORAGE_KEY } = window;
 
 const OVERLAY = 'overlay';
 const CREATE = '+';
-const DEFAULT_AVATAR_URL = '/img/avatars/ragdoll.png';
+const DEFAULT_AVATAR_URL = '/img/avatars/arthas.png';
 const DEFAULT_NAME = 'Arthas';
 const DEFAULT_KNOWLEDGE_URI = 'https://wowpedia.fandom.com/wiki/Arthas_Menethil';
 const DEFAULT_ART_STYLE = `Blizzard's World of Warcraft concept art in high resolution like a fine-tuned video game model including each detail and anatomically correct features (if any)`;
 const DEFAULT_WRITING_STYLE = 'inspiring but grim, like from the dark ages, excluding asterisk-based interjections like "*sigh*"';
 const DEFAULT_WRITING_TONE = 'slightly annoyed';
 
-const DEFAULT_PERSONA = {
+const DEFAULT_RAGDOLL = {
   name: DEFAULT_NAME,
   knowledgeURI: DEFAULT_KNOWLEDGE_URI,
   avatarURL: DEFAULT_AVATAR_URL,
@@ -37,7 +37,7 @@ const DEFAULT_PERSONA = {
   writingTone: DEFAULT_WRITING_TONE
 };
 
-const SAVED_PERSONAS = JSON.parse(
+const SAVED_RAGDOLLS = JSON.parse(
   localStorage.getItem(STORAGE_KEY)
 );
 
@@ -50,22 +50,22 @@ const App = () => {
   const [overlayClassName, setOverlayClassName] = useState('');
   const [timeoutId, setTimeoutId] = useState();
 
-  const [personaName, setPersonaName] = useState('');
-  const [personaKnowledgeURI, setPersonaKnowledgeURI] = useState('');
-  const [personaArtStyle, setPersonaArtStyle] = useState('');
-  const [personaWritingStyle, setPersonaWritingStyle] = useState('');
-  const [personaWritingTone, setPersonaWritingTone] = useState('');
-  const [personaAvatarURL, setPersonaAvatarURL] = useState('');
-  const [persona, setPersona] = useState(DEFAULT_PERSONA);
-  const [personaList, setPersonaList] = useState(SAVED_PERSONAS);
-  const [activePersona] = usePersona(persona);
+  const [ragdollName, setPersonaName] = useState('');
+  const [ragdollKnowledgeURI, setPersonaKnowledgeURI] = useState('');
+  const [ragdollArtStyle, setPersonaArtStyle] = useState('');
+  const [ragdollWritingStyle, setPersonaWritingStyle] = useState('');
+  const [ragdollWritingTone, setPersonaWritingTone] = useState('');
+  const [ragdollAvatarURL, setPersonaAvatarURL] = useState('');
+  const [ragdoll, setPersona] = useState(DEFAULT_RAGDOLL);
+  const [ragdollList, setRagdollList] = useState(SAVED_RAGDOLLS);
+  const [activePersona] = useRagdoll(ragdoll);
 
   useEffect(() => {
-    const personas = getPersonasArray();
-    const currentPersona = personas[0] || persona;
+    const ragdolls = getPersonasArray();
+    const currentPersona = ragdolls[0] || ragdoll;
 
     const savedPersonas = {
-      ...personaList,
+      ...ragdollList,
 
       [currentPersona.knowledgeURI]: {
         ...currentPersona,
@@ -75,7 +75,7 @@ const App = () => {
     };
 
     setPersona(currentPersona);
-    setPersonaList(savedPersonas);
+    setRagdollList(savedPersonas);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -119,7 +119,7 @@ const App = () => {
   };
 
   const getPersonasArray = () => (
-    Object.values(personaList || {})
+    Object.values(ragdollList || {})
   );
 
   const onKeyDownOverlay = ({ keyCode }) => {
@@ -172,34 +172,34 @@ const App = () => {
   const didClickListItem = ({ currentPersona, previousPersona }) => {
     setPersona(currentPersona);
 
-    const updatedPersonaList = {
-      ...personaList,
+    const updatedRagdollList = {
+      ...ragdollList,
 
       [currentPersona.knowledgeURI]: currentPersona
     };
 
     if (previousPersona?.knowledgeURI) {
       previousPersona.online = false;
-      updatedPersonaList[previousPersona.knowledgeURI] = previousPersona;
+      updatedRagdollList[previousPersona.knowledgeURI] = previousPersona;
     }
 
-    setPersonaList(updatedPersonaList);
+    setRagdollList(updatedRagdollList);
     setText('');
     setImageURL('')
     setQuestion('');
     setDisabled(false);
   };
 
-  const personaFormProps = {
+  const ragdollFormProps = {
     disabled,
-    persona: activePersona || persona,
-    personaList,
-    personaName,
-    personaKnowledgeURI,
-    personaArtStyle,
-    personaWritingStyle,
-    personaWritingTone,
-    personaAvatarURL,
+    ragdoll: activePersona || ragdoll,
+    ragdollList,
+    ragdollName,
+    ragdollKnowledgeURI,
+    ragdollArtStyle,
+    ragdollWritingStyle,
+    ragdollWritingTone,
+    ragdollAvatarURL,
     onChangePersonaName,
     onChangePersonaKnowledgeURI,
     onChangePersonaArtStyle,
@@ -208,9 +208,9 @@ const App = () => {
     onChangePersonaAvatarURL
   };
 
-  const personaChatProps = {
+  const ragdollChatProps = {
     disabled: disabled || isCreating,
-    persona: activePersona || persona,
+    ragdoll: activePersona || ragdoll,
     question,
     imageURL,
     text,
@@ -218,28 +218,28 @@ const App = () => {
     onAnswer
   };
 
-  const personaListProps = {
-    persona: activePersona || persona,
-    personaList,
+  const ragdollListProps = {
+    ragdoll: activePersona || ragdoll,
+    ragdollList,
     onClickListItem,
     didClickListItem
   };
 
   return <>
     {isCreating && <aside id="overlay" className={overlayClassName} onClick={onClickOverlay}>
-      <PersonaForm { ...personaFormProps } />
+      <RagdollForm { ...ragdollFormProps } />
     </aside>}
-    <PersonaList { ...personaListProps }>
+    <RagdollList { ...ragdollListProps }>
       <button
         disabled={isCreating}
-        id="create-persona-button"
+        id="create-ragdoll-button"
         onClick={openOverlay}
       >
         {CREATE}
       </button>
-    </PersonaList>
+    </RagdollList>
     <main id="app" className="panel">
-      <PersonaChat {...personaChatProps } />
+      <RagdollChat {...ragdollChatProps } />
     </main>
   </>;
 }

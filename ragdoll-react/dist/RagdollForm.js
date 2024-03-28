@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
-import './PersonaForm.css';
+import './RagdollForm.css';
 const SAVE = 'Save';
-const PERSONA_CREATED = 'New persona created.';
-const SAVE_ERROR = 'Error saving persona.';
-const PLACEHOLDER_PERSONA_NAME = 'Name';
-const PLACEHOLDER_PERSONA_AVATAR_URL = 'Avatar URL';
-const PLACEHOLDER_PERSONA_KNOWLEDGE_URI = 'Target URL';
-const PLACEHOLDER_PERSONA_ART_STYLE = 'Art style';
-const PLACEHOLDER_PERSONA_WRITING_STYLE = 'Writing style';
-const PLACEHOLDER_PERSONA_WRITING_TONE = 'Writing tone';
-const PersonaForm = ({
+const RAGDOLL_CREATED = 'New ragdoll created.';
+const SAVE_ERROR = 'Error saving ragdoll.';
+const PLACEHOLDER_RAGDOLL_NAME = 'Name';
+const PLACEHOLDER_RAGDOLL_AVATAR_URL = 'Avatar URL';
+const PLACEHOLDER_RAGDOLL_KNOWLEDGE_URI = 'Target URL';
+const PLACEHOLDER_RAGDOLL_ART_STYLE = 'Art style';
+const PLACEHOLDER_RAGDOLL_WRITING_STYLE = 'Writing style';
+const PLACEHOLDER_RAGDOLL_WRITING_TONE = 'Writing tone';
+const RagdollForm = ({
   disabled: parentDisabled,
   textOnly,
-  persona,
-  personaList,
-  personaName,
-  personaKnowledgeURI,
-  personaArtStyle,
-  personaWritingStyle,
-  personaWritingTone,
-  personaAvatarURL,
+  ragdoll,
+  ragdollList,
+  ragdollName,
+  ragdollKnowledgeURI,
+  ragdollArtStyle,
+  ragdollWritingStyle,
+  ragdollWritingTone,
+  ragdollAvatarURL,
   onChangePersonaName,
   onChangePersonaKnowledgeURI,
   onChangePersonaArtStyle,
@@ -34,26 +34,26 @@ const PersonaForm = ({
   const [disabled, setDisabled] = useState(parentDisabled);
   const onClickSave = async () => {
     setDisabled(true);
-    const personaConfig = {
-      name: personaName,
-      knowledgeURI: personaKnowledgeURI,
-      avatarURL: personaAvatarURL,
+    const ragdollConfig = {
+      name: ragdollName,
+      knowledgeURI: ragdollKnowledgeURI,
+      avatarURL: ragdollAvatarURL,
       // Passing null for artStyle will skip image generation
 
-      artStyle: textOnly ? null : personaArtStyle,
-      writingStyle: personaWritingStyle,
-      writingTone: personaWritingTone
+      artStyle: textOnly ? null : ragdollArtStyle,
+      writingStyle: ragdollWritingStyle,
+      writingTone: ragdollWritingTone
     };
-    const updatedCurrentPersona = persona?.knowledgeURI && {
-      ...persona
+    const updatedCurrentPersona = ragdoll?.knowledgeURI && {
+      ...ragdoll
     };
-    const updatedPersonaList = {
-      ...personaList,
-      [personaKnowledgeURI]: personaConfig
+    const updatedRagdollList = {
+      ...ragdollList,
+      [ragdollKnowledgeURI]: ragdollConfig
     };
     if (updatedCurrentPersona) {
       updatedCurrentPersona.online = false;
-      updatedPersonaList[updatedCurrentPersona.knowledgeURI] = updatedCurrentPersona;
+      updatedRagdollList[updatedCurrentPersona.knowledgeURI] = updatedCurrentPersona;
     }
     const response = await fetch(`${RAGDOLL_URI}/v1/configure`, {
       method: 'POST',
@@ -61,7 +61,7 @@ const PersonaForm = ({
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(personaConfig)
+      body: JSON.stringify(ragdollConfig)
     });
     if (response?.ok) {
       const {
@@ -69,8 +69,8 @@ const PersonaForm = ({
         success
       } = await response.json();
       if (success) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPersonaList));
-        alert(PERSONA_CREATED);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedRagdollList));
+        alert(RAGDOLL_CREATED);
         window.location.reload();
         return;
       } else {
@@ -86,42 +86,42 @@ const PersonaForm = ({
   }, /*#__PURE__*/React.createElement("h2", null, "Persona"), /*#__PURE__*/React.createElement("input", {
     required: true,
     disabled: disabled,
-    placeholder: PLACEHOLDER_PERSONA_NAME,
+    placeholder: PLACEHOLDER_RAGDOLL_NAME,
     onChange: onChangePersonaName,
-    value: personaName
+    value: ragdollName
   }), /*#__PURE__*/React.createElement("input", {
     required: true,
     disabled: disabled,
-    placeholder: PLACEHOLDER_PERSONA_AVATAR_URL,
+    placeholder: PLACEHOLDER_RAGDOLL_AVATAR_URL,
     onChange: onChangePersonaAvatarURL,
-    value: personaAvatarURL
+    value: ragdollAvatarURL
   }), !textOnly && /*#__PURE__*/React.createElement("input", {
     required: true,
     disabled: disabled,
-    placeholder: PLACEHOLDER_PERSONA_ART_STYLE,
+    placeholder: PLACEHOLDER_RAGDOLL_ART_STYLE,
     onChange: onChangePersonaArtStyle,
-    value: personaArtStyle
+    value: ragdollArtStyle
   }), /*#__PURE__*/React.createElement("input", {
     required: true,
     disabled: disabled,
-    placeholder: PLACEHOLDER_PERSONA_KNOWLEDGE_URI,
+    placeholder: PLACEHOLDER_RAGDOLL_KNOWLEDGE_URI,
     onChange: onChangePersonaKnowledgeURI,
-    value: personaKnowledgeURI
+    value: ragdollKnowledgeURI
   }), /*#__PURE__*/React.createElement("input", {
     required: true,
     disabled: disabled,
-    placeholder: PLACEHOLDER_PERSONA_WRITING_STYLE,
+    placeholder: PLACEHOLDER_RAGDOLL_WRITING_STYLE,
     onChange: onChangePersonaWritingStyle,
-    value: personaWritingStyle
+    value: ragdollWritingStyle
   }), /*#__PURE__*/React.createElement("input", {
     required: true,
     disabled: disabled,
-    placeholder: PLACEHOLDER_PERSONA_WRITING_TONE,
+    placeholder: PLACEHOLDER_RAGDOLL_WRITING_TONE,
     onChange: onChangePersonaWritingTone,
-    value: personaWritingTone
+    value: ragdollWritingTone
   }), /*#__PURE__*/React.createElement("button", {
     disabled: disabled,
     onClick: onClickSave
   }, SAVE)));
 };
-export default PersonaForm;
+export default RagdollForm;

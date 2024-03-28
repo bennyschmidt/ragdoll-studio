@@ -1,5 +1,5 @@
-import usePersona from './usePersona';
+import useRagdoll from './useRagdoll';
 
 export {
-  usePersona
+  useRagdoll
 };

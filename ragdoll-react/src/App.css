@@ -60,7 +60,7 @@
   opacity: 1;
 }
 
-#create-persona-button {
+#create-ragdoll-button {
   background: white;
   color: dodgerblue;
 }
@@ -114,7 +114,7 @@
     width: 95%;
   }
 
-  .persona-list-item.panel {
+  .ragdoll-list-item.panel {
     padding: unset;
   }
 
@@ -140,7 +140,7 @@
     width: calc(100% - 1rem);
   }
 
-  #create-persona-button {
+  #create-ragdoll-button {
     position: relative;
     width: 3rem;
     height: 3rem;

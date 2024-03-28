@@ -14,13 +14,13 @@ You can import these React components to your application.
 
 React components:
 
-- `<PersonaChat />`
-- `<PersonaForm />`
-- `<PersonaList />`
+- `<RagdollChat />`
+- `<RagdollForm />`
+- `<RagdollList />`
 
 React hooks:
 
-- `usePersona`
+- `useRagdoll`
 
 Environment variables (set on `window` in the React [App.js](./src/App.js)):
 
@@ -28,7 +28,7 @@ Environment variables (set on `window` in the React [App.js](./src/App.js)):
 
 The base URL to make API requests.
 
-`STORAGE_KEY=RAGDOLL_PERSONAS`
+`STORAGE_KEY=RAGDOLLS`
 
 The `localStorage` key used when saving local data.
 

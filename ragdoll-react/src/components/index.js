@@ -1,9 +1,9 @@
-import PersonaChat from './PersonaChat';
-import PersonaForm from './PersonaForm';
-import PersonaList from './PersonaList';
+import RagdollChat from './RagdollChat';
+import RagdollForm from './RagdollForm';
+import RagdollList from './RagdollList';
 
 export {
-  PersonaChat,
-  PersonaForm,
-  PersonaList
+  RagdollChat,
+  RagdollForm,
+  RagdollList
 };

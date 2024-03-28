@@ -1,16 +1,16 @@
 // Components
 
-const PersonaForm = require('./dist/PersonaForm').default;
-const PersonaChat = require('./dist/PersonaChat').default;
-const PersonaList = require('./dist/PersonaList').default;
+const RagdollForm = require('./dist/RagdollForm').default;
+const RagdollChat = require('./dist/RagdollChat').default;
+const RagdollList = require('./dist/RagdollList').default;
 
 // Hooks
 
-const usePersona = require('./dist/usePersona').default;
+const useRagdoll = require('./dist/useRagdoll').default;
 
 module.exports = {
-  PersonaForm,
-  PersonaChat,
-  PersonaList,
-  usePersona
+  RagdollForm,
+  RagdollChat,
+  RagdollList,
+  useRagdoll
 };

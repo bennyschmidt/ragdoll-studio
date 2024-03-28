@@ -1,24 +1,24 @@
-import './PersonaList.css';
-const PERSONA_LIST_HEADING = 'Domain-specific Personas (DSPs)';
-const PERSONA_ERROR = 'Error loading persona.';
-const PersonaList = ({
+import './RagdollList.css';
+const RAGDOLL_LIST_HEADING = 'Domain-specific Personas (DSPs)';
+const RAGDOLL_ERROR = 'Error loading ragdoll.';
+const RagdollList = ({
   children,
-  persona,
-  personaList,
+  ragdoll,
+  ragdollList,
   onClickListItem,
   didClickListItem
 }) => {
   const {
     RAGDOLL_URI
   } = window;
-  const getPersonasArray = () => Object.values(personaList || {});
-  const onClickPersonaListItem = key => async () => {
+  const getPersonasArray = () => Object.values(ragdollList || {});
+  const onClickRagdollListItem = key => async () => {
     const updatedCurrentPersona = {
-      ...persona
+      ...ragdoll
     };
     updatedCurrentPersona.online = false;
     const selectedPersona = {
-      ...personaList[key],
+      ...ragdollList[key],
       online: true
     };
     onClickListItem({
@@ -38,7 +38,7 @@ const PersonaList = ({
         success
       } = await response.json();
       if (!success) {
-        alert(PERSONA_ERROR);
+        alert(RAGDOLL_ERROR);
       }
     }
     didClickListItem({
@@ -49,21 +49,21 @@ const PersonaList = ({
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("nav", {
     id: "nav",
     className: "panel"
-  }, /*#__PURE__*/React.createElement("h1", null, PERSONA_LIST_HEADING), /*#__PURE__*/React.createElement("ul", {
-    className: "persona-list"
-  }, personaList && getPersonasArray().map(({
+  }, /*#__PURE__*/React.createElement("h1", null, RAGDOLL_LIST_HEADING), /*#__PURE__*/React.createElement("ul", {
+    className: "ragdoll-list"
+  }, ragdollList && getPersonasArray().map(({
     name,
     knowledgeURI,
     avatarURL,
     online = false
   }) => /*#__PURE__*/React.createElement("li", {
     key: knowledgeURI,
-    className: `persona-list-item panel ${online ? 'selected' : ''}`,
-    onClick: onClickPersonaListItem(knowledgeURI)
+    className: `ragdoll-list-item panel ${online ? 'selected' : ''}`,
+    onClick: onClickRagdollListItem(knowledgeURI)
   }, /*#__PURE__*/React.createElement("span", {
     className: "online-indicator"
   }), /*#__PURE__*/React.createElement("span", {
-    className: "persona-avatar"
+    className: "ragdoll-avatar"
   }, avatarURL && /*#__PURE__*/React.createElement("img", {
     src: avatarURL,
     alt: name,
@@ -71,4 +71,4 @@ const PersonaList = ({
     height: "100%"
   })), /*#__PURE__*/React.createElement("h2", null, name)))), children));
 };
-export default PersonaList;
+export default RagdollList;

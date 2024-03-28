@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './PersonaChat.css';
+import './RagdollChat.css';
 const SEND = 'Send';
 const DEFAULT_IMG_ALT = 'Corresponding visualization';
 const API_ERROR = 'API temporarily unavailable.';
-const PersonaChat = ({
+const RagdollChat = ({
   disabled: parentDisabled,
-  persona,
+  ragdoll,
   question,
   imageURL,
   text,
@@ -19,7 +19,7 @@ const PersonaChat = ({
   const [history, setHistory] = useState([]);
   useEffect(() => {
     setHistory([]);
-  }, [persona]);
+  }, [ragdoll]);
   const ask = async () => {
     setDisabled(true);
     const response = await fetch(`${RAGDOLL_URI}/v1/prompt`, {
@@ -29,7 +29,7 @@ const PersonaChat = ({
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        key: persona.knowledgeURI,
+        key: ragdoll.knowledgeURI,
         input: question
       })
     });
@@ -48,8 +48,8 @@ const PersonaChat = ({
         return;
       } else {
         setHistory([...history, {
-          avatarURL: persona.avatarURL,
-          name: persona.name,
+          avatarURL: ragdoll.avatarURL,
+          name: ragdoll.name,
           text
         }, {
           avatarURL: null,
@@ -63,7 +63,7 @@ const PersonaChat = ({
     onQuestion('');
     setDisabled(false);
   };
-  const getQuestionPlaceholder = () => !persona ? '...' : `What would you like to ask ${persona.name}?`;
+  const getQuestionPlaceholder = () => !ragdoll ? '...' : `What would you like to ask ${ragdoll.name}?`;
   const onChangeQuestion = ({
     target: {
       value
@@ -74,13 +74,13 @@ const PersonaChat = ({
   const onKeyDownQuestion = ({
     keyCode
   }) => question && keyCode === 13 && ask();
-  return persona && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  return ragdoll && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     id: "output"
   }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("div", {
     className: "img"
-  }, persona.avatarURL && /*#__PURE__*/React.createElement("img", {
-    src: persona.avatarURL,
-    alt: persona.name,
+  }, ragdoll.avatarURL && /*#__PURE__*/React.createElement("img", {
+    src: ragdoll.avatarURL,
+    alt: ragdoll.name,
     width: "100%",
     height: "100%"
   }))), /*#__PURE__*/React.createElement("div", {
@@ -103,9 +103,9 @@ const PersonaChat = ({
     height: "100%"
   })), /*#__PURE__*/React.createElement("p", null, output.text))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "img"
-  }, persona.avatarURL && /*#__PURE__*/React.createElement("img", {
-    src: persona.avatarURL,
-    alt: persona.name,
+  }, ragdoll.avatarURL && /*#__PURE__*/React.createElement("img", {
+    src: ragdoll.avatarURL,
+    alt: ragdoll.name,
     width: "100%",
     height: "100%"
   })), imageURL && /*#__PURE__*/React.createElement("div", {
@@ -117,7 +117,7 @@ const PersonaChat = ({
     height: "100%"
   })), text && /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("span", {
     className: "author"
-  }, persona.name, " says..."), text)))), /*#__PURE__*/React.createElement("div", {
+  }, ragdoll.name, " says..."), text)))), /*#__PURE__*/React.createElement("div", {
     id: "input"
   }, /*#__PURE__*/React.createElement("input", {
     autoFocus: true,
@@ -131,4 +131,4 @@ const PersonaChat = ({
     onClick: ask
   }, SEND)));
 };
-export default PersonaChat;
+export default RagdollChat;

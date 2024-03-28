@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-const usePersona = personaConfig => {
+const useRagdoll = ragdollConfig => {
   const {
     RAGDOLL_URI
   } = window;
-  const [persona, setPersona] = useState();
+  const [ragdoll, setPersona] = useState();
   const [pending, setPending] = useState(false);
   useEffect(() => {
     const fetchPersona = async () => {
       setPending(true);
-      const isUpdate = personaConfig?.knowledgeURI && personaConfig.knowledgeURI !== persona?.knowledgeURI;
+      const isUpdate = ragdollConfig?.knowledgeURI && ragdollConfig.knowledgeURI !== ragdoll?.knowledgeURI;
       if (isUpdate) {
         const response = await fetch(`${RAGDOLL_URI}/v1/configure`, {
           method: 'POST',
@@ -16,21 +16,21 @@ const usePersona = personaConfig => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(personaConfig)
+          body: JSON.stringify(ragdollConfig)
         });
         if (response?.ok) {
           const {
             success
           } = await response.json();
           if (success) {
-            setPersona(personaConfig);
+            setPersona(ragdollConfig);
           }
         }
         setPending(false);
       }
     };
     fetchPersona();
-  }, [personaConfig]);
-  return [persona, pending];
+  }, [ragdollConfig]);
+  return [ragdoll, pending];
 };
-export default usePersona;
+export default useRagdoll;

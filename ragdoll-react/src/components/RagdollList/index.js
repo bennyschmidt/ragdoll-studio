@@ -1,28 +1,28 @@
 import './index.css';
 
-const PERSONA_LIST_HEADING = 'Domain-specific Personas (DSPs)';
-const PERSONA_ERROR = 'Error loading persona.';
+const RAGDOLL_LIST_HEADING = 'Domain-specific Personas (DSPs)';
+const RAGDOLL_ERROR = 'Error loading ragdoll.';
 
-const PersonaList = ({
+const RagdollList = ({
   children,
-  persona,
-  personaList,
+  ragdoll,
+  ragdollList,
   onClickListItem,
   didClickListItem
 }) => {
   const { RAGDOLL_URI } = window;
 
   const getPersonasArray = () => (
-    Object.values(personaList || {})
+    Object.values(ragdollList || {})
   );
 
-  const onClickPersonaListItem = key => async () => {
-    const updatedCurrentPersona = { ...persona };
+  const onClickRagdollListItem = key => async () => {
+    const updatedCurrentPersona = { ...ragdoll };
 
     updatedCurrentPersona.online = false;
 
     const selectedPersona = {
-      ...personaList[key],
+      ...ragdollList[key],
 
       online: true
     };
@@ -45,7 +45,7 @@ const PersonaList = ({
       const { success } = await response.json();
 
       if (!success) {
-        alert(PERSONA_ERROR);
+        alert(RAGDOLL_ERROR);
       }
     }
 
@@ -57,9 +57,9 @@ const PersonaList = ({
 
   return <>
     <nav id="nav" className="panel">
-      <h1>{PERSONA_LIST_HEADING}</h1>
-      <ul className="persona-list">
-        {personaList && getPersonasArray().map(({
+      <h1>{RAGDOLL_LIST_HEADING}</h1>
+      <ul className="ragdoll-list">
+        {ragdollList && getPersonasArray().map(({
           name,
           knowledgeURI,
           avatarURL,
@@ -67,11 +67,11 @@ const PersonaList = ({
         }) => (
           <li
             key={knowledgeURI}
-            className={`persona-list-item panel ${online ? 'selected' : ''}`}
-            onClick={onClickPersonaListItem(knowledgeURI)}
+            className={`ragdoll-list-item panel ${online ? 'selected' : ''}`}
+            onClick={onClickRagdollListItem(knowledgeURI)}
           >
             <span className="online-indicator" />
-            <span className="persona-avatar">
+            <span className="ragdoll-avatar">
               {avatarURL && <img
                 src={avatarURL}
                 alt={name}
@@ -88,4 +88,4 @@ const PersonaList = ({
   </>;
 }
 
-export default PersonaList;
+export default RagdollList;
