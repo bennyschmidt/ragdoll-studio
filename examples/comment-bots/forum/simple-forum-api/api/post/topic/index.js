@@ -6,10 +6,10 @@
 const { randomUUID } = require('crypto');
 
 const {
-  DEFAULT_NAME: personaName,
-  DEFAULT_KNOWLEDGE_URI: personaKnowledgeURI,
-  DEFAULT_WRITING_STYLE: personaWritingStyle,
-  DEFAULT_WRITING_TONE: personaWritingTone
+  DEFAULT_NAME: ragdollName,
+  DEFAULT_KNOWLEDGE_URI: ragdollKnowledgeURI,
+  DEFAULT_WRITING_STYLE: ragdollWritingStyle,
+  DEFAULT_WRITING_TONE: ragdollWritingTone
 } = require('ragdoll-core/src/utils/strings');
 
 const RAGDOLL_URI = 'http://localhost:8000';
@@ -66,20 +66,20 @@ module.exports = asyncCache => async (req, res) => {
 
       let query;
 
-      if (topic.toLowerCase().split(' ').includes(personaName.toLowerCase())) {
+      if (topic.toLowerCase().split(' ').includes(ragdollName.toLowerCase())) {
         query = topic;
-      } else if (text.toLowerCase().split(' ').includes(personaName.toLowerCase())) {
+      } else if (text.toLowerCase().split(' ').includes(ragdollName.toLowerCase())) {
         query = text;
       }
 
       if (query) {
-        const personaConfig = {
-          name: personaName,
-          knowledgeURI: personaKnowledgeURI,
+        const ragdollConfig = {
+          name: ragdollName,
+          knowledgeURI: ragdollKnowledgeURI,
           avatarURL: '',
           artStyle: null,
-          writingStyle: personaWritingStyle,
-          writingTone: personaWritingTone
+          writingStyle: ragdollWritingStyle,
+          writingTone: ragdollWritingTone
         };
 
         const configResponse = await fetch(`${RAGDOLL_URI}/v1/configure`, {
@@ -88,7 +88,7 @@ module.exports = asyncCache => async (req, res) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(personaConfig)
+          body: JSON.stringify(ragdollConfig)
         });
 
         if (configResponse?.ok) {
@@ -103,7 +103,7 @@ module.exports = asyncCache => async (req, res) => {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              key: personaKnowledgeURI,
+              key: ragdollKnowledgeURI,
               input: query
             })
           });
@@ -122,7 +122,7 @@ module.exports = asyncCache => async (req, res) => {
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify({
-                authorName: personaName,
+                authorName: ragdollName,
                 topicId,
                 text: answer.text
               })

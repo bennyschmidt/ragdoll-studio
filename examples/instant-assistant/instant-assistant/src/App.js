@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import {
-  PersonaChat,
-  PersonaForm
+  RagdollChat,
+  RagdollForm
 } from 'ragdoll-react';
 
 import './App.css';
@@ -17,7 +17,7 @@ const { STORAGE_KEY } = window;
 const OVERLAY = 'overlay';
 const CREATE = '🗨';
 
-const SAVED_PERSONAS = JSON.parse(
+const SAVED_RAGDOLLS = JSON.parse(
   localStorage.getItem(STORAGE_KEY)
 );
 
@@ -25,36 +25,36 @@ const App = () => {
   const [question, setQuestion] = useState('');
   const [text, setText] = useState('');
   const [disabled, setDisabled] = useState(false);
-  const [persona, setPersona] = useState();
-  const [personaList, setPersonaList] = useState(SAVED_PERSONAS);
+  const [ragdoll, setRagdoll] = useState();
+  const [ragdollList, setRagdollList] = useState(SAVED_RAGDOLLS);
   const [isCreating, setIsCreating] = useState(false);
   const [overlayClassName, setOverlayClassName] = useState('');
   const [timeoutId, setTimeoutId] = useState();
 
-  const [personaName, setPersonaName] = useState('');
-  const [personaKnowledgeURI, setPersonaKnowledgeURI] = useState('');
-  const [personaWritingStyle, setPersonaWritingStyle] = useState('');
-  const [personaWritingTone, setPersonaWritingTone] = useState('');
-  const [personaAvatarURL, setPersonaAvatarURL] = useState('');
+  const [ragdollName, setRagdollName] = useState('');
+  const [ragdollKnowledgeURI, setRagdollKnowledgeURI] = useState('');
+  const [ragdollWritingStyle, setRagdollWritingStyle] = useState('');
+  const [ragdollWritingTone, setRagdollWritingTone] = useState('');
+  const [ragdollAvatarURL, setRagdollAvatarURL] = useState('');
 
   useEffect(() => {
-    const personas = getPersonasArray();
-    const currentPersona = personas.pop();
+    const ragdolls = getRagdollsArray();
+    const currentRagdoll = ragdolls.pop();
 
-    if (!currentPersona) return;
+    if (!currentRagdoll) return;
 
-    const savedPersonas = {
-      ...personaList,
+    const savedRagdolls = {
+      ...ragdollList,
 
-      [currentPersona.knowledgeURI]: {
-        ...currentPersona,
+      [currentRagdoll.knowledgeURI]: {
+        ...currentRagdoll,
 
         online: true
       }
     };
 
-    setPersona(currentPersona);
-    setPersonaList(savedPersonas);
+    setRagdoll(currentRagdoll);
+    setRagdollList(savedRagdolls);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -104,8 +104,8 @@ const App = () => {
     );
   };
 
-  const getPersonasArray = () => (
-    Object.values(personaList || {})
+  const getRagdollsArray = () => (
+    Object.values(ragdollList || {})
   );
 
   const onKeyDownOverlay = ({ keyCode }) => {
@@ -120,50 +120,50 @@ const App = () => {
     }
   };
 
-  const onChangePersonaName = ({ target: { value }}) => (
-    setPersonaName(value)
+  const onChangeRagdollName = ({ target: { value }}) => (
+    setRagdollName(value)
   );
 
-  const onChangePersonaKnowledgeURI = ({ target: { value }}) => (
-    setPersonaKnowledgeURI(value)
+  const onChangeRagdollKnowledgeURI = ({ target: { value }}) => (
+    setRagdollKnowledgeURI(value)
   );
 
-  const onChangePersonaWritingStyle = ({ target: { value }}) => (
-    setPersonaWritingStyle(value)
+  const onChangeRagdollWritingStyle = ({ target: { value }}) => (
+    setRagdollWritingStyle(value)
   );
 
-  const onChangePersonaWritingTone = ({ target: { value }}) => (
-    setPersonaWritingTone(value)
+  const onChangeRagdollWritingTone = ({ target: { value }}) => (
+    setRagdollWritingTone(value)
   );
 
-  const onChangePersonaAvatarURL = ({ target: { value }}) => (
-    setPersonaAvatarURL(value)
+  const onChangeRagdollAvatarURL = ({ target: { value }}) => (
+    setRagdollAvatarURL(value)
   );
 
   const onQuestion = value => setQuestion(value);
 
   const onAnswer = answer => setText(answer?.text);
 
-  const personaFormProps = {
+  const ragdollFormProps = {
     textOnly: true,
     disabled,
-    persona,
-    personaList,
-    personaName,
-    personaKnowledgeURI,
-    personaWritingStyle,
-    personaWritingTone,
-    personaAvatarURL,
-    onChangePersonaName,
-    onChangePersonaKnowledgeURI,
-    onChangePersonaWritingStyle,
-    onChangePersonaWritingTone,
-    onChangePersonaAvatarURL
+    ragdoll,
+    ragdollList,
+    ragdollName,
+    ragdollKnowledgeURI,
+    ragdollWritingStyle,
+    ragdollWritingTone,
+    ragdollAvatarURL,
+    onChangeRagdollName,
+    onChangeRagdollKnowledgeURI,
+    onChangeRagdollWritingStyle,
+    onChangeRagdollWritingTone,
+    onChangeRagdollAvatarURL
   };
 
-  const personaChatProps = {
+  const ragdollChatProps = {
     disabled: disabled || isCreating,
-    persona,
+    ragdoll,
     question,
     text,
     onQuestion,
@@ -172,17 +172,17 @@ const App = () => {
 
   return <>
     {isCreating && <aside id="overlay" className={overlayClassName} onClick={onClickOverlay}>
-      <PersonaForm {...personaFormProps} />
+      <RagdollForm {...ragdollFormProps} />
     </aside>}
     <button
       disabled={isCreating}
-      id="create-persona-button"
+      id="create-ragdoll-button"
       onClick={openOverlay}
     >
       {CREATE}
     </button>
-    {persona && <main id="app" className="panel">
-      <PersonaChat {...personaChatProps } />
+    {ragdoll && <main id="app" className="panel">
+      <RagdollChat {...ragdollChatProps } />
     </main>}
   </>;
 }

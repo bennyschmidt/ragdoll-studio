@@ -29,21 +29,21 @@ See [ragdoll Environment Config](https://github.com/bennyschmidt/ragdoll#env-sca
 
 ### Configure
 
-Load the context of a persona in order to prompt it.
+Load the context of a ragdoll in order to prompt it.
 
 `POST /v1/configure`
 
 **name**: `string`
 
-> The persona's name.
+> The ragdoll's name.
 
 **knowledgeURI**: `string`
 
-> The knowledge source - typically a web page (like a Wiki style article). `knowledgeURI` is also the unique identifier (or `key`) for a persona when looking them up.
+> The knowledge source - typically a web page (like a Wiki style article). `knowledgeURI` is also the unique identifier (or `key`) for a ragdoll when looking them up.
 
 **avatarURL**: `string`
 
-> The persona's profile image.
+> The ragdoll's profile image.
 
 **artStyle**: `string`
 
@@ -70,11 +70,11 @@ Returns
 
 `POST /v1/prompt`
 
-Prompt the persona with a question.
+Prompt the ragdoll with a question.
 
 **key**: `string`
 
-> The persona's identifier (the same as its `knowledgeURI` upon configuration).
+> The ragdoll's identifier (the same as its `knowledgeURI` upon configuration).
 
 **input**: `string`
 

@@ -4,7 +4,7 @@ A live chat assistant based on [ragdoll](https://github.com/bennyschmidt/ragdoll
 
 ## Background
 
-Ragdoll can store and index knowledge so fast you can deploy a persona to any live URL - even a temporary and encrypted one. I plugged in an Amazon search result page for "beauty products" and made an AI shopping assistant in seconds:
+Ragdoll can store and index knowledge so fast you can deploy one to any live URL - even a temporary and encrypted one. I plugged in an Amazon search result page for "beauty products" and made an AI shopping assistant in seconds:
 
 >
 > Question: What's a good shampoo for under $20?

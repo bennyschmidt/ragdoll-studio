@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { usePersona } from 'ragdoll-react';
+import { useRagdoll } from 'ragdoll-react';
 
 import './App.css';
 
@@ -24,7 +24,7 @@ const App = () => {
   const [gameClassName, setGameClassName] = useState('');
   const [playerClassName, setPlayerClassName] = useState('');
 
-  const [persona] = usePersona({
+  const [ragdoll] = useRagdoll({
     name: 'The Oracle',
     knowledgeURI: `${RAGDOLL_URI}/oracle`,
     avatarURL: '',
@@ -97,7 +97,7 @@ const App = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        key: persona.knowledgeURI,
+        key: ragdoll.knowledgeURI,
         input: question
       })
     });
@@ -140,7 +140,7 @@ const App = () => {
   };
 
   const getQuestionPlaceholder = () => (
-    !persona ? '...' : 'Type something...'
+    !ragdoll ? '...' : 'Type something...'
   );
 
   const onChangeQuestion = ({ target: { value }}) => {
@@ -161,7 +161,7 @@ const App = () => {
   );
 
   return <>
-    {persona && <main id="app" className="panel">
+    {ragdoll && <main id="app" className="panel">
       <div id="output">
         <div id="game" className={gameClassName}>
           <div id="player" className={playerClassName} style={{ left: positionX }} />

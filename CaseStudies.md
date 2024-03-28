@@ -1,6 +1,8 @@
 ## Ragdoll Studio Examples
 
-- [**AI characters**](https://github.com/bennyschmidt/ragdoll-studio/tree/master/ragdoll-react) (default) - Create personas based on historical or fictional characters and chat with them. You can even base a persona on a subject matter to get life coaching, dating advice, coding assistance, and more. These personas can reply in text format with an optional corresponding image. It could be a digital friend, therapist, personal storyteller, or an interactive learning tool.
+Retrieval augmented generation ([RAG](https://stackoverflow.blog/2023/10/18/retrieval-augmented-generation-keeping-llms-relevant-and-current/)) is a strategy that helps address both LLM hallucinations and out-of-date or off-topic training data.
+
+- [**AI characters**](https://github.com/bennyschmidt/ragdoll-studio/tree/master/ragdoll-react) (default) - Create personas or "ragdolls" based on historical or fictional characters and chat with them. You can even base a persona on a subject matter to get life coaching, dating advice, coding assistance, and more. These personas can reply in text format with an optional corresponding image. It could be a digital friend, therapist, personal storyteller, or an interactive learning tool.
 
 - [**Instant assistants (by URL)**](https://github.com/bennyschmidt/ragdoll-studio/tree/master/examples/instant-assistant): Instantly create a shopping assistant for an e-commerce website or online catalog to help you find the right products, confirm details like shipping costs, inventory, and discounts to help clarify purchasing decisions. You can even base the knowledge on a search result or saved filter. Or create an instant research assistant to help you understand subject matter on a page.
 
