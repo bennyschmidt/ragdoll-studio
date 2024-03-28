@@ -1,4 +1,4 @@
-const ragdoll = require('ragdoll-core');
+const Ragdoll = require('ragdoll-core');
 const { Ollama } = require('llamaindex');
 
 // Storage utils
@@ -34,7 +34,6 @@ const { prefixInput } = require('ragdoll-core/src/utils/prefix');
  */
 
 module.exports = asyncCache => async (req, res) => {
-  console.log('request')
   const timeout = await asyncCache.getItem('timeout');
 
   let answer = await asyncCache.getItem('answer');
@@ -126,7 +125,7 @@ module.exports = asyncCache => async (req, res) => {
         log(CREATING_AGENT);
       }
 
-      answer = await ragdoll({
+      answer = await Ragdoll({
         ...currentConfig,
 
         query: messageResponse,
