@@ -1,6 +1,6 @@
 # Ragdoll API
 
-A parallelized Node.js API for interacting with [ragdoll](https://github.com/bennyschmidt/ragdoll).
+A parallelized Node.js API for interacting with [Ragdoll](https://github.com/bennyschmidt/ragdoll).
 
 #### .env
 

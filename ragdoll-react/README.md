@@ -1,6 +1,6 @@
 # Ragdoll React
 
-React front-end for interacting with [ragdoll](https://github.com/bennyschmidt/ragdoll).
+React front-end for interacting with [Ragdoll](https://github.com/bennyschmidt/ragdoll).
 
 ![Screenshot from 2024-03-17 14-39-22](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/2088fcaf-4513-4014-b285-bfc4f43999c6)
 
