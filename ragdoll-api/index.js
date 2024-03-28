@@ -17,7 +17,7 @@ const {
   DEFAULT_ART_STYLE,
   DEFAULT_WRITING_TONE,
   DEFAULT_WRITING_STYLE
-} = require('ragdoll/src/utils/strings');
+} = require('ragdoll-core/src/utils/strings');
 
 dotenv.config();
 

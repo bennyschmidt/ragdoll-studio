@@ -6,7 +6,7 @@ const { Ollama } = require('llamaindex');
 const {
   remember,
   recall
-} = require('ragdoll/src/utils/storage');
+} = require('ragdoll-core/src/utils/storage');
 
 // Output utils
 
@@ -14,7 +14,7 @@ const {
   isVerbose,
   log,
   delay
-} = require('ragdoll/src/utils/output');
+} = require('ragdoll-core/src/utils/output');
 
 // Human-readable strings
 
@@ -25,9 +25,9 @@ const {
   textModelLogPrefix,
   waiting,
   TEXT_MODEL
-} = require('ragdoll/src/utils/strings');
+} = require('ragdoll-core/src/utils/strings');
 
-const { prefixInput } = require('ragdoll/src/utils/prefix');
+const { prefixInput } = require('ragdoll-core/src/utils/prefix');
 
 /**
  * Prompt
