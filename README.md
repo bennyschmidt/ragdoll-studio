@@ -84,12 +84,6 @@ You should see the default UI:
 
 -----
 
-## Comparing Ragdoll Studio to other products
-
-See [TolkienTest.md](./TolkienTest.md).
-
------
-
 ## Use Cases
 
 See [CaseStudies.md](./CaseStudies.md).
