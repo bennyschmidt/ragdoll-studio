@@ -50,7 +50,9 @@ Worker (#8) is listening for messages.
 Worker (#7) is listening for messages.
 ```
 
-This means the server is running and handling concurrent requests on all CPU cores. Ragdoll API is now listening on `http://localhost:8000/`.
+This means the server is running and handling concurrent requests on all CPU cores. 
+
+Ragdoll API is now listening on `http://localhost:8000/`.
 
 4. Set up the [front-end](https://github.com/bennyschmidt/ragdoll-studio/tree/master/ragdoll-react)
 
