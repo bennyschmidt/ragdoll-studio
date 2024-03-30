@@ -10,7 +10,7 @@ import './App.css';
 // Globals
 
 window.RAGDOLL_URI = 'http://localhost:8000';
-window.STORAGE_KEY = 'RAGDOLL_INSTANT_ASSISTANT';
+window.STORAGE_KEY = 'RAGDOLL_INSTANT_ASSISTANTS';
 
 const { STORAGE_KEY } = window;
 

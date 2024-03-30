@@ -51,7 +51,7 @@ const Home = () => {
             <h4 className="text-center text-lg my-1">Create and interact with personas by URL.</h4>
             <h4 className="text-center text-lg my-1 mb-4">Run models on your own machine. No accounts or API keys required.</h4>
             <Image
-              src="/img/product.png"
+              src="/assets/img/product.png"
               alt="Ragdoll Studio"
               width={1268}
               height={776}
@@ -63,7 +63,7 @@ const Home = () => {
             />
             <div className="flex justify-center py-8">
               <a target="_blank" href="https://github.com/bennyschmidt/ragdoll-studio" className="flex items-center justify-center gap-2 w-full mt-8 px-5 py-3 bg-white text-slate-500 text-center rounded-full lg:max-w-[14rem] lg:mt-0">
-                <Icon src="/img/github.svg" />
+                <Icon src="/assets/img/github.svg" />
                 <span className="w-auto lg:w-full">Download Source</span>
               </a>
             </div>

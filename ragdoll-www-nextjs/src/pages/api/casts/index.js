@@ -6,7 +6,7 @@ import { slugify } from '@/utils';
 export default async function (req, res) {
   let casts = [];
 
-  const manifestPath = path.join(process.cwd(), '/src/data/cast.manifest.json');
+  const manifestPath = path.join(process.cwd(), '/public/.casts/casts.json');
   const manifestFile = fs.readFileSync(manifestPath);
   const manifest = JSON.parse(manifestFile);
 
@@ -17,7 +17,7 @@ export default async function (req, res) {
 
     for (const file of files) {
       const fileSlug = slugify(file);
-      const castPath = path.join(process.cwd(), `/src/data/${authorSlug}/${fileSlug}/cast.json`);
+      const castPath = path.join(process.cwd(), `/public/.casts/${authorSlug}/${fileSlug}/cast.json`);
       const castFile = fs.readFileSync(castPath);
       const cast = JSON.parse(castFile);
 

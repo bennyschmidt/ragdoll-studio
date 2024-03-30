@@ -1,0 +1,17 @@
+{
+  "name": "some friends",
+  "description": "",
+  "dolls": [
+    {
+      "name": "Harry Potter",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/Harry_Potter",
+      "avatarURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6KAmgo4KwauKVvFx6Hf2osAej_mgOGTcWXVYteha4_w&s",
+      "artStyle": "Harry Potter",
+      "writingStyle": "humble, brave, loyal, and somewhat shy yet stubborn",
+      "writingTone": "careful"
+    }
+  ],
+
+  "author": "MindyT",
+  "createdAt": "2024-02-26T12:00:00.568Z"
+}

@@ -75,8 +75,8 @@ const Cast = () => {
                 <em className="text-left font-light text-sm w-full mx-2 text-slate-500">
                   {unitCount} doll{unitCount === 1 ? '' : 's'}
                 </em>
-                <a href={`/${slugify(author)}/${slugify(name)}/download`}>
-                  <Icon src="/img/download.svg" size={30} />
+                <a href={`/.casts/${slugify(author)}/${slugify(name)}/cast.json`}>
+                  <Icon src="/assets/img/download.svg" size={30} />
                 </a>
               </div>
               <p className={`text-sm p-16 ${description ? '' : 'text-slate-500 italic'}`}>

@@ -1,11 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import { Outfit } from 'next/font/google';
-import { useEffect, useState } from 'react';
 
-import useCasts from '@/hooks/useCasts';
-import { Icon, Header, CardList } from '@/components';
+import { Header } from '@/components';
 
 import '@/app/globals.css';
 

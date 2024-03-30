@@ -38,8 +38,8 @@ const CardList = ({ title = '', items = [] }) => (
                 {unitCount} doll{unitCount === 1 ? '' : 's'}
               </em>
             </div>
-            <a href={`/${slugify(author)}/${slugify(name)}/download`}>
-              <Icon src="/img/download.svg" size={30} />
+            <a href={`/.casts/${slugify(author)}/${slugify(name)}/cast.json`}>
+              <Icon src="/assets/img/download.svg" size={30} />
             </a>
           </div>
         </li>

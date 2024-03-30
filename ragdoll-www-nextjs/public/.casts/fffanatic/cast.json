@@ -1,0 +1,17 @@
+{
+  "name": "Final Fantasy 7 Remake",
+  "description": "Get to know the cast of characters!",
+  "dolls": [
+    {
+      "name": "Cloud Strife",
+      "knowledgeURI": "https://finalfantasy.fandom.com/wiki/Cloud_Strife",
+      "avatarURL": "https://themsfightingwordsblog.files.wordpress.com/2021/11/cloud_bmp_jpgcopy.0.jpg",
+      "artStyle": "Final Fantasy 7",
+      "writingStyle": "somewhat melancholic and serious",
+      "writingTone": "calm"
+    }
+  ],
+
+  "author": "FFFanatic",
+  "createdAt": "2024-02-21T12:00:00.568Z"
+}

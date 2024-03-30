@@ -11,7 +11,7 @@ const Header = () => (
     </nav>
     <div className="flex justify-center my-2 lg:my-0">
       <Link target="_blank" href="https://github.com/bennyschmidt/ragdoll-studio" className="flex items-center justify-center gap-2 w-full max-w-[16rem] mt-8 px-5 py-3 bg-white text-slate-500 text-center rounded-full lg:max-w-[8rem] lg:mt-0">
-        <Icon src="/img/github.svg" />
+        <Icon src="/assets/img/github.svg" />
         <span className="w-auto lg:w-full">Download</span>
       </Link>
     </div>
