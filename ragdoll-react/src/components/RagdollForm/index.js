@@ -36,6 +36,7 @@ const RagdollForm = ({
   } = window;
 
   const [disabled, setDisabled] = useState(parentDisabled);
+  const [castFile, setCastFile] = useState();
 
   const onClickSave = async () => {
     setDisabled(true);
@@ -97,6 +98,41 @@ const RagdollForm = ({
     setDisabled(false);
   };
 
+  const onChangeCastUpload = ({ target: { files } }) => {
+    if (!window.confirm('Are you sure? This will clear the current cast.')) return;
+
+    const [file] = files;
+
+    setCastFile(file);
+
+    const reader = new FileReader();
+
+    reader.onload = ({ target: { result }}) => {
+      const { dolls } = JSON.parse(result);
+
+      const cache = {};
+
+      if (dolls) {
+        for (const doll of dolls) {
+          cache[doll.knowledgeURI] = doll;
+        }
+
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify(cache)
+        );
+
+        window.location.reload();
+      }
+    };
+
+    reader.onerror = () => {
+      alert('Format error.');
+    };
+
+    reader.readAsText(file, 'UTF-8');
+  };
+
   return <>
     <div className="form">
       <h2>Persona</h2>
@@ -144,6 +180,13 @@ const RagdollForm = ({
         onChange={onChangePersonaWritingTone}
         value={ragdollWritingTone}
       />
+      <p>Or, load a <a href="https://ragdoll-studio.vercel.app/dolls" target="_blank">cast</a>:</p>
+      {!castFile && <input
+        type="file"
+        accept="application/json"
+        disabled={disabled}
+        onChange={onChangeCastUpload}
+      />}
       <button
         disabled={disabled}
         onClick={onClickSave}

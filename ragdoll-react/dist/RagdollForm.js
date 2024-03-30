@@ -32,6 +32,7 @@ const RagdollForm = ({
     STORAGE_KEY
   } = window;
   const [disabled, setDisabled] = useState(parentDisabled);
+  const [castFile, setCastFile] = useState();
   const onClickSave = async () => {
     setDisabled(true);
     const ragdollConfig = {
@@ -81,6 +82,37 @@ const RagdollForm = ({
     }
     setDisabled(false);
   };
+  const onChangeCastUpload = ({
+    target: {
+      files
+    }
+  }) => {
+    if (!window.confirm('Are you sure? This will clear the current cast.')) return;
+    const [file] = files;
+    setCastFile(file);
+    const reader = new FileReader();
+    reader.onload = ({
+      target: {
+        result
+      }
+    }) => {
+      const {
+        dolls
+      } = JSON.parse(result);
+      const cache = {};
+      if (dolls) {
+        for (const doll of dolls) {
+          cache[doll.knowledgeURI] = doll;
+        }
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(cache));
+        window.location.reload();
+      }
+    };
+    reader.onerror = () => {
+      alert('Format error.');
+    };
+    reader.readAsText(file, 'UTF-8');
+  };
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "form"
   }, /*#__PURE__*/React.createElement("h2", null, "Persona"), /*#__PURE__*/React.createElement("input", {
@@ -119,6 +151,14 @@ const RagdollForm = ({
     placeholder: PLACEHOLDER_RAGDOLL_WRITING_TONE,
     onChange: onChangePersonaWritingTone,
     value: ragdollWritingTone
+  }), /*#__PURE__*/React.createElement("p", null, "Or, load a ", /*#__PURE__*/React.createElement("a", {
+    href: "https://ragdoll-studio.vercel.app/dolls",
+    target: "_blank"
+  }, "cast"), ":"), !castFile && /*#__PURE__*/React.createElement("input", {
+    type: "file",
+    accept: "application/json",
+    disabled: disabled,
+    onChange: onChangeCastUpload
   }), /*#__PURE__*/React.createElement("button", {
     disabled: disabled,
     onClick: onClickSave

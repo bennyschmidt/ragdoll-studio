@@ -1,5 +1,4 @@
 import './RagdollList.css';
-const RAGDOLL_LIST_HEADING = 'Domain-specific Personas (DSPs)';
 const RAGDOLL_ERROR = 'Error loading ragdoll.';
 const RagdollList = ({
   children,
@@ -49,7 +48,7 @@ const RagdollList = ({
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("nav", {
     id: "nav",
     className: "panel"
-  }, /*#__PURE__*/React.createElement("h1", null, RAGDOLL_LIST_HEADING), /*#__PURE__*/React.createElement("ul", {
+  }, /*#__PURE__*/React.createElement("ul", {
     className: "ragdoll-list"
   }, ragdollList && getPersonasArray().map(({
     name,
