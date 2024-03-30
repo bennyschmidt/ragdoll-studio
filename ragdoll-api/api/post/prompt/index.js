@@ -129,7 +129,7 @@ module.exports = asyncCache => async (req, res) => {
         ...currentConfig,
 
         query: messageResponse,
-        cache: false
+        cache: true
       });
 
       res.end(JSON.stringify({

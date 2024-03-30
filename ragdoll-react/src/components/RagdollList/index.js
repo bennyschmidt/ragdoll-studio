@@ -1,6 +1,5 @@
 import './index.css';
 
-const RAGDOLL_LIST_HEADING = 'Domain-specific Personas (DSPs)';
 const RAGDOLL_ERROR = 'Error loading ragdoll.';
 
 const RagdollList = ({
@@ -57,7 +56,6 @@ const RagdollList = ({
 
   return <>
     <nav id="nav" className="panel">
-      <h1>{RAGDOLL_LIST_HEADING}</h1>
       <ul className="ragdoll-list">
         {ragdollList && getPersonasArray().map(({
           name,
