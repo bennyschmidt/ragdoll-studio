@@ -50,7 +50,9 @@ Worker (#8) is listening for messages.
 Worker (#7) is listening for messages.
 ```
 
-This means the server is running and handling concurrent requests on all CPU cores
+This means the server is running and handling concurrent requests on all CPU cores. 
+
+Ragdoll API is now listening on `http://localhost:8000/`.
 
 4. Set up the [front-end](https://github.com/bennyschmidt/ragdoll-studio/tree/master/ragdoll-react)
 
@@ -66,7 +68,7 @@ See the React `README.md`.
 
 You should see the default UI:
 
-![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/d1980924-7a50-408e-b5c6-aa586743d1d5)
+![Screenshot from 2024-03-28 19-34-58](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/d81fdccf-3ad2-45d6-bd03-bf667cc25ab0)
 
 -----
 
@@ -79,12 +81,6 @@ You should see the default UI:
 #### Ragdoll API
 
 [How to run the API](https://github.com/bennyschmidt/ragdoll-studio/blob/master/ragdoll-api/README.md)
-
------
-
-## Comparing Ragdoll Studio to other products
-
-See [TolkienTest.md](./TolkienTest.md).
 
 -----
 

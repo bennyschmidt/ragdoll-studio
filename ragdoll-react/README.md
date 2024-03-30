@@ -2,7 +2,17 @@
 
 React front-end for interacting with [Ragdoll](https://github.com/bennyschmidt/ragdoll).
 
-![Screenshot from 2024-03-17 14-39-22](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/2088fcaf-4513-4014-b285-bfc4f43999c6)
+| Arthas (World of Warcraft)    | Kuja (Final Fantasy IX)       |
+| ----------------------------- | ----------------------------- |
+| ![Screenshot from 2024-03-28 19-14-52](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/6e4919da-51f3-4d2f-9435-a4f1f9cc8042) | ![Screenshot from 2024-03-28 19-11-29](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/a3acad04-01fb-4915-8e99-f37994bba0e9) |
+
+| Lara Croft (Tomb Raider)      | Pokédex (Pokémon)             |
+| ----------------------------- | ----------------------------- |
+| ![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/50066c95-adef-4d46-9b66-cf4a4a2e2c27) | ![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/0fd89c49-c425-4f89-932c-ab69473ff623)
+
+| VW Beetle                     | Mother Nature                 |
+| ----------------------------- | ----------------------------- |
+| ![Screenshot from 2024-03-28 21-34-36](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/790ff032-7606-4d35-958a-9230f1aa4694) | ![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/c3a1569d-88eb-41a1-a98e-99ed31d55b29)
 
 ## Usage
 
