@@ -6,7 +6,7 @@ https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/c13c21ff-bab0-483
 
 ## Background
 
-Normally a ragdoll's knowledge is based on content of a web page at some remote URL, but in [*Oracle's Tomb*](./oracles-tomb-api/) we serve our own pages from our the project backend. Here's a simple HTML file that contains all of The Oracle's knowledge:
+Normally a ragdoll's knowledge is based on content of a web page at some remote URL, but in [*Oracle's Tomb*](./oracles-tomb-api/) a static page is served from the project backend. Here's a simple HTML file that contains all of The Oracle's knowledge:
 
 ![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/86072177-813d-497a-a1a8-6de84115ef67)
 
