@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Outfit } from 'next/font/google';
 import { useState, useEffect } from 'react';
@@ -57,7 +58,7 @@ const Cast = () => {
                     {name}
                   </h2>
                   <h3 className="truncate text-xs">
-                    by <a href={`/${slugify(author)}`}>{author}</a>
+                    by <Link href={`/${slugify(author)}`}>{author}</Link>
                   </h3>
                 </div>
                 <span>
@@ -75,9 +76,9 @@ const Cast = () => {
                 <em className="text-left font-light text-sm w-full mx-2 text-slate-500">
                   {unitCount} doll{unitCount === 1 ? '' : 's'}
                 </em>
-                <a href={`/.casts/${slugify(author)}/${slugify(name)}/cast.json`}>
+                <Link target="_blank" href={`/.casts/${slugify(author)}/${slugify(name)}/cast.json`}>
                   <Icon src="/assets/img/download.svg" size={30} />
-                </a>
+                </Link>
               </div>
               <p className={`text-sm p-16 ${description ? '' : 'text-slate-500 italic'}`}>
                 {description || 'No description.'}

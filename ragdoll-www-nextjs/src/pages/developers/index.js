@@ -16,7 +16,7 @@ const Developers = () => {
         <Header />
         <div className="flex flex-col-reverse justify-between lg:flex-col">
           <section className="max-w-5xl w-full mt-4">
-            Coming soon.
+            API documentation coming soon.
           </section>
         </div>
       </main>
