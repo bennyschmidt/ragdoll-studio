@@ -1,13 +1,92 @@
 {
   "ankit": [
-    "code stars"
+    {
+      "name": "code stars",
+      "ratings": []
+    }
   ],
-  "MindyT": [
-    "flirty friends",
-    "good talkers",
-    "some friends"
+  "autumnfestive": [
+    {
+      "name": "👻 Spooky Spirits",
+      "ratings": []
+    }
+  ],
+  "bigtrev": [
+    {
+      "name": "Video magicians pt. 1",
+      "ratings": []
+    }
+  ],
+  "clarkee": [
+    {
+      "name": "Startup Team",
+      "ratings": []
+    }
+  ],
+  "fffanatic": [
+    {
+      "name": "Final Fantasy 7 Remake",
+      "ratings": [5]
+    }
+  ],
+  "gaia": [
+    {
+      "name": "99+ Great Storytellers",
+      "ratings": [5]
+    }
+  ],
+  "gptgod": [
+    {
+      "name": "100+ RPG Characters For Your Game",
+      "ratings": [3]
+    },
+    {
+      "name": "goth queens by GPTgod",
+      "ratings": []
+    }
+  ],
+  "heromd": [
+    {
+      "name": "Superhero Doctors",
+      "ratings": []
+    }
+  ],
+  "jacobb": [
+    {
+      "name": "Temple: Talk to God",
+      "ratings": []
+    }
   ],
   "jessediaz": [
-    "javascript buddy"
+    {
+      "name": "javascript buddy",
+      "ratings": [3]
+    }
+  ],
+  "MindyT": [
+    {
+      "name": "flirty friends",
+      "ratings": [3]
+    },
+    {
+      "name": "good talkers",
+      "ratings": [4]
+    },
+    {
+      "name": "some friends",
+      "ratings": []
+    }
+  ],
+  "viddrip": [
+    {
+      "name": "Hollywood Magic",
+      "ratings": [3]
+    }
+  ],
+  "WikiHistory": [
+    {
+      "name": "Popular Figures",
+      "ratings": [3]
+    }
   ]
 }

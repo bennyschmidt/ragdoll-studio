@@ -1,0 +1,17 @@
+{
+  "name": "100+ RPG Characters For Your Game",
+  "description": "trying to build a library of 100+ NPCs for any RPG game",
+  "dolls": [
+    {
+      "name": "Black Knight",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/Black_Knight_(Arthurian_legend)",
+      "avatarURL": "https://images.nightcafe.studio/jobs/hUqrCkLmIcjMN6Qo4niU/hUqrCkLmIcjMN6Qo4niU--4--tg9z5_2x.jpg?tr=w-1600,c-at_max",
+      "artStyle": "game concept art of gothic style paintings",
+      "writingStyle": "epic",
+      "writingTone": "threatening"
+    }
+  ],
+
+  "author": "GPTgod",
+  "createdAt": "2024-03-29T12:00:00.568Z"
+}

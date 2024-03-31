@@ -1,0 +1,17 @@
+{
+  "name": "goth queens by GPTgod",
+  "description": "",
+  "dolls": [
+    {
+      "name": "Grimes",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/Grimes",
+      "avatarURL": "https://people.com/thmb/O8dq4AcvDPS9mXhLD4LHb2XKRPw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(742x559:744x561)/grimes-0dff4244715b4b32871977b71117219c.jpg",
+      "artStyle": "high fashion post-goth",
+      "writingStyle": "elegant yet somewhat raunchy",
+      "writingTone": "quiet"
+    }
+  ],
+
+  "author": "GPTgod",
+  "createdAt": "2024-03-27T12:00:00.568Z"
+}

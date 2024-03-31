@@ -1,0 +1,17 @@
+{
+  "name": "Popular Figures",
+  "description": "Your favorite characters throughout Wikipedia.",
+  "dolls": [
+    {
+      "name": "Billie Eilish",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/Billie_Eilish",
+      "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/4/42/Billie_Eilish_Vogue_2023.jpg",
+      "artStyle": "colorful, fun, hipster, unpredictable",
+      "writingStyle": "really different from a lot of people, but still commercially pop",
+      "writingTone": "pretentious"
+    }
+  ],
+
+  "author": "WikiHistory",
+  "createdAt": "2024-03-30T12:00:00.568Z"
+}

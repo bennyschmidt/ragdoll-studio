@@ -16,7 +16,7 @@ export default async function (req, res) {
     const files = manifest[author];
 
     for (const file of files) {
-      const fileSlug = slugify(file);
+      const fileSlug = slugify(file.name);
       const castPath = path.join(process.cwd(), `/public/.casts/${authorSlug}/${fileSlug}/cast.json`);
       const castFile = fs.readFileSync(castPath);
       const cast = JSON.parse(castFile);
@@ -28,7 +28,7 @@ export default async function (req, res) {
           name: cast.name,
           author: cast.author,
           description: cast.description,
-          rating: 0,
+          rating: file.ratings.reduce((a, b) => a + b, 0),
           imageURL: cast.dolls[0].avatarURL,
           unitCount: cast.dolls.length,
           createdAt: cast.createdAt

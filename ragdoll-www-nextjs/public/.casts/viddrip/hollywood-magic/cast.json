@@ -1,0 +1,17 @@
+{
+  "name": "Hollywood Magic",
+  "description": "Hollywood-style cinematography",
+  "dolls": [
+    {
+      "name": "Great Films",
+      "knowledgeURI": "https://www.indepthcine.com/videos/what-makes-a-movie-great",
+      "avatarURL": "https://cdn.getyourguide.com/img/tour/63d8276b0a980.png/97.jpg",
+      "artStyle": "like a Hollywood film",
+      "writingStyle": "well-written, like an Academy-award winning film",
+      "writingTone": "prestigious"
+    }
+  ],
+
+  "author": "viddrip",
+  "createdAt": "2024-03-28T12:00:00.568Z"
+}

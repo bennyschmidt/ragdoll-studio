@@ -1,0 +1,17 @@
+{
+  "name": "99+ Great Storytellers",
+  "description": "The goal is to build a library of 99+ fantastic storytellers! Here's the first one.",
+  "dolls": [
+    {
+      "name": "Lara Croft",
+      "knowledgeURI": "https://lara-croft-tomb-raider.fandom.com/wiki/Lara_Croft",
+      "avatarURL": "https://img.freepik.com/premium-photo/illustration-lara-croft-tomb-raider_839169-1716.jpg",
+      "artStyle": "adventurous like the Tomb Raider games",
+      "writingStyle": "well-educated and in charge",
+      "writingTone": "up for any challenge"
+    }
+  ],
+
+  "author": "Gaia",
+  "createdAt": "2024-03-30T12:00:00.568Z"
+}

@@ -33,7 +33,9 @@ const CardList = ({ title = '', items = [] }) => (
               alt="avatar"
             />
             <div className="w-full mx-2 text-left font-light text-slate-500">
-              <p className="truncate max-w-[90%]">{description}</p>
+              <p className="max-w-[75%] truncate">
+                {description}
+              </p>
               <em>
                 {unitCount} doll{unitCount === 1 ? '' : 's'}
               </em>
