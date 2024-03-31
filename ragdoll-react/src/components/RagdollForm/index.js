@@ -8,6 +8,7 @@ const SAVE_ERROR = 'Error saving ragdoll.';
 const PLACEHOLDER_RAGDOLL_NAME = 'Name';
 const PLACEHOLDER_RAGDOLL_AVATAR_URL = 'Avatar URL';
 const PLACEHOLDER_RAGDOLL_KNOWLEDGE_URI = 'Target URL';
+const PLACEHOLDER_RAGDOLL_ADDITIONAL_KNOWLEDGE_URI = 'Additional URL';
 const PLACEHOLDER_RAGDOLL_ART_STYLE = 'Art style';
 const PLACEHOLDER_RAGDOLL_WRITING_STYLE = 'Writing style';
 const PLACEHOLDER_RAGDOLL_WRITING_TONE = 'Writing tone';
@@ -23,12 +24,14 @@ const RagdollForm = ({
   ragdollWritingStyle,
   ragdollWritingTone,
   ragdollAvatarURL,
-  onChangePersonaName,
-  onChangePersonaKnowledgeURI,
-  onChangePersonaArtStyle,
-  onChangePersonaWritingStyle,
-  onChangePersonaWritingTone,
-  onChangePersonaAvatarURL
+  ragdollAdditionalKnowledgeURIs,
+  onChangeRagdollName,
+  onChangeRagdollKnowledgeURI,
+  onChangeRagdollAdditionalKnowledgeURIs,
+  onChangeRagdollArtStyle,
+  onChangeRagdollWritingStyle,
+  onChangeRagdollWritingTone,
+  onChangeRagdollAvatarURL
 }) => {
   const {
     RAGDOLL_URI,
@@ -50,10 +53,11 @@ const RagdollForm = ({
 
       artStyle: textOnly ? null : ragdollArtStyle,
       writingStyle: ragdollWritingStyle,
-      writingTone: ragdollWritingTone
+      writingTone: ragdollWritingTone,
+      additionalKnowledgeURIs: ragdollAdditionalKnowledgeURIs
     };
 
-    const updatedCurrentPersona = ragdoll?.knowledgeURI && { ...ragdoll };
+    const updatedCurrentRagdoll = ragdoll?.knowledgeURI && { ...ragdoll };
 
     const updatedRagdollList = {
       ...ragdollList,
@@ -61,9 +65,9 @@ const RagdollForm = ({
       [ragdollKnowledgeURI]: ragdollConfig
     };
 
-    if (updatedCurrentPersona) {
-      updatedCurrentPersona.online = false;
-      updatedRagdollList[updatedCurrentPersona.knowledgeURI] = updatedCurrentPersona;
+    if (updatedCurrentRagdoll) {
+      updatedCurrentRagdoll.online = false;
+      updatedRagdollList[updatedCurrentRagdoll.knowledgeURI] = updatedCurrentRagdoll;
     }
 
     const response = await fetch(`${RAGDOLL_URI}/v1/configure`, {
@@ -135,49 +139,63 @@ const RagdollForm = ({
 
   return <>
     <div className="form">
-      <h2>Persona</h2>
+      <h2>Ragdoll</h2>
       <input
         required
         disabled={disabled}
         placeholder={PLACEHOLDER_RAGDOLL_NAME}
-        onChange={onChangePersonaName}
+        onChange={onChangeRagdollName}
         value={ragdollName}
       />
       <input
         required
         disabled={disabled}
         placeholder={PLACEHOLDER_RAGDOLL_AVATAR_URL}
-        onChange={onChangePersonaAvatarURL}
+        onChange={onChangeRagdollAvatarURL}
         value={ragdollAvatarURL}
       />
+      <input
+        required
+        disabled={disabled}
+        placeholder={PLACEHOLDER_RAGDOLL_KNOWLEDGE_URI}
+        onChange={onChangeRagdollKnowledgeURI}
+        value={ragdollKnowledgeURI}
+      />
+      <input
+        disabled={disabled}
+        placeholder={PLACEHOLDER_RAGDOLL_ADDITIONAL_KNOWLEDGE_URI}
+        onChange={onChangeRagdollAdditionalKnowledgeURIs}
+        value={ragdollAdditionalKnowledgeURIs[0] || ''}
+      />
+      {
+        ragdollAdditionalKnowledgeURIs[0] && <input
+          disabled={disabled}
+          placeholder={PLACEHOLDER_RAGDOLL_ADDITIONAL_KNOWLEDGE_URI}
+          onChange={onChangeRagdollAdditionalKnowledgeURIs}
+          value={ragdollAdditionalKnowledgeURIs[1] || ''}
+        />
+      }
       {
         !textOnly && <input
           required
           disabled={disabled}
           placeholder={PLACEHOLDER_RAGDOLL_ART_STYLE}
-          onChange={onChangePersonaArtStyle}
+          onChange={onChangeRagdollArtStyle}
           value={ragdollArtStyle}
       />
       }
       <input
         required
         disabled={disabled}
-        placeholder={PLACEHOLDER_RAGDOLL_KNOWLEDGE_URI}
-        onChange={onChangePersonaKnowledgeURI}
-        value={ragdollKnowledgeURI}
-      />
-      <input
-        required
-        disabled={disabled}
         placeholder={PLACEHOLDER_RAGDOLL_WRITING_STYLE}
-        onChange={onChangePersonaWritingStyle}
+        onChange={onChangeRagdollWritingStyle}
         value={ragdollWritingStyle}
       />
       <input
         required
         disabled={disabled}
         placeholder={PLACEHOLDER_RAGDOLL_WRITING_TONE}
-        onChange={onChangePersonaWritingTone}
+        onChange={onChangeRagdollWritingTone}
         value={ragdollWritingTone}
       />
       <p>Or, load a <a href="https://ragdoll-studio.vercel.app/dolls" target="_blank">cast</a>:</p>

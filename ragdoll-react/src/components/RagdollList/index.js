@@ -11,24 +11,24 @@ const RagdollList = ({
 }) => {
   const { RAGDOLL_URI } = window;
 
-  const getPersonasArray = () => (
+  const getRagdollsArray = () => (
     Object.values(ragdollList || {})
   );
 
   const onClickRagdollListItem = key => async () => {
-    const updatedCurrentPersona = { ...ragdoll };
+    const updatedCurrentRagdoll = { ...ragdoll };
 
-    updatedCurrentPersona.online = false;
+    updatedCurrentRagdoll.online = false;
 
-    const selectedPersona = {
+    const selectedRagdoll = {
       ...ragdollList[key],
 
       online: true
     };
 
     onClickListItem({
-      currentPersona: selectedPersona,
-      previousPersona: updatedCurrentPersona
+      currentRagdoll: selectedRagdoll,
+      previousRagdoll: updatedCurrentRagdoll
     });
 
     const response = await fetch(`${RAGDOLL_URI}/v1/configure`, {
@@ -37,7 +37,7 @@ const RagdollList = ({
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(selectedPersona)
+      body: JSON.stringify(selectedRagdoll)
     });
 
     if (response?.ok) {
@@ -49,15 +49,15 @@ const RagdollList = ({
     }
 
     didClickListItem({
-      currentPersona: selectedPersona,
-      previousPersona: updatedCurrentPersona
+      currentRagdoll: selectedRagdoll,
+      previousRagdoll: updatedCurrentRagdoll
     });
   };
 
   return <>
     <nav id="nav" className="panel">
       <ul className="ragdoll-list">
-        {ragdollList && getPersonasArray().map(({
+        {ragdollList && getRagdollsArray().map(({
           name,
           knowledgeURI,
           avatarURL,

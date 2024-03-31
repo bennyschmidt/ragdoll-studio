@@ -10,19 +10,19 @@ const RagdollList = ({
   const {
     RAGDOLL_URI
   } = window;
-  const getPersonasArray = () => Object.values(ragdollList || {});
+  const getRagdollsArray = () => Object.values(ragdollList || {});
   const onClickRagdollListItem = key => async () => {
-    const updatedCurrentPersona = {
+    const updatedCurrentRagdoll = {
       ...ragdoll
     };
-    updatedCurrentPersona.online = false;
-    const selectedPersona = {
+    updatedCurrentRagdoll.online = false;
+    const selectedRagdoll = {
       ...ragdollList[key],
       online: true
     };
     onClickListItem({
-      currentPersona: selectedPersona,
-      previousPersona: updatedCurrentPersona
+      currentRagdoll: selectedRagdoll,
+      previousRagdoll: updatedCurrentRagdoll
     });
     const response = await fetch(`${RAGDOLL_URI}/v1/configure`, {
       method: 'POST',
@@ -30,7 +30,7 @@ const RagdollList = ({
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(selectedPersona)
+      body: JSON.stringify(selectedRagdoll)
     });
     if (response?.ok) {
       const {
@@ -41,8 +41,8 @@ const RagdollList = ({
       }
     }
     didClickListItem({
-      currentPersona: selectedPersona,
-      previousPersona: updatedCurrentPersona
+      currentRagdoll: selectedRagdoll,
+      previousRagdoll: updatedCurrentRagdoll
     });
   };
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("nav", {
@@ -50,7 +50,7 @@ const RagdollList = ({
     className: "panel"
   }, /*#__PURE__*/React.createElement("ul", {
     className: "ragdoll-list"
-  }, ragdollList && getPersonasArray().map(({
+  }, ragdollList && getRagdollsArray().map(({
     name,
     knowledgeURI,
     avatarURL,

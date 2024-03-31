@@ -6,6 +6,7 @@ const SAVE_ERROR = 'Error saving ragdoll.';
 const PLACEHOLDER_RAGDOLL_NAME = 'Name';
 const PLACEHOLDER_RAGDOLL_AVATAR_URL = 'Avatar URL';
 const PLACEHOLDER_RAGDOLL_KNOWLEDGE_URI = 'Target URL';
+const PLACEHOLDER_RAGDOLL_ADDITIONAL_KNOWLEDGE_URI = 'Additional URL';
 const PLACEHOLDER_RAGDOLL_ART_STYLE = 'Art style';
 const PLACEHOLDER_RAGDOLL_WRITING_STYLE = 'Writing style';
 const PLACEHOLDER_RAGDOLL_WRITING_TONE = 'Writing tone';
@@ -20,12 +21,14 @@ const RagdollForm = ({
   ragdollWritingStyle,
   ragdollWritingTone,
   ragdollAvatarURL,
-  onChangePersonaName,
-  onChangePersonaKnowledgeURI,
-  onChangePersonaArtStyle,
-  onChangePersonaWritingStyle,
-  onChangePersonaWritingTone,
-  onChangePersonaAvatarURL
+  ragdollAdditionalKnowledgeURIs,
+  onChangeRagdollName,
+  onChangeRagdollKnowledgeURI,
+  onChangeRagdollAdditionalKnowledgeURIs,
+  onChangeRagdollArtStyle,
+  onChangeRagdollWritingStyle,
+  onChangeRagdollWritingTone,
+  onChangeRagdollAvatarURL
 }) => {
   const {
     RAGDOLL_URI,
@@ -43,18 +46,19 @@ const RagdollForm = ({
 
       artStyle: textOnly ? null : ragdollArtStyle,
       writingStyle: ragdollWritingStyle,
-      writingTone: ragdollWritingTone
+      writingTone: ragdollWritingTone,
+      additionalKnowledgeURIs: ragdollAdditionalKnowledgeURIs
     };
-    const updatedCurrentPersona = ragdoll?.knowledgeURI && {
+    const updatedCurrentRagdoll = ragdoll?.knowledgeURI && {
       ...ragdoll
     };
     const updatedRagdollList = {
       ...ragdollList,
       [ragdollKnowledgeURI]: ragdollConfig
     };
-    if (updatedCurrentPersona) {
-      updatedCurrentPersona.online = false;
-      updatedRagdollList[updatedCurrentPersona.knowledgeURI] = updatedCurrentPersona;
+    if (updatedCurrentRagdoll) {
+      updatedCurrentRagdoll.online = false;
+      updatedRagdollList[updatedCurrentRagdoll.knowledgeURI] = updatedCurrentRagdoll;
     }
     const response = await fetch(`${RAGDOLL_URI}/v1/configure`, {
       method: 'POST',
@@ -115,41 +119,51 @@ const RagdollForm = ({
   };
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "form"
-  }, /*#__PURE__*/React.createElement("h2", null, "Persona"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("h2", null, "Ragdoll"), /*#__PURE__*/React.createElement("input", {
     required: true,
     disabled: disabled,
     placeholder: PLACEHOLDER_RAGDOLL_NAME,
-    onChange: onChangePersonaName,
+    onChange: onChangeRagdollName,
     value: ragdollName
   }), /*#__PURE__*/React.createElement("input", {
     required: true,
     disabled: disabled,
     placeholder: PLACEHOLDER_RAGDOLL_AVATAR_URL,
-    onChange: onChangePersonaAvatarURL,
+    onChange: onChangeRagdollAvatarURL,
     value: ragdollAvatarURL
-  }), !textOnly && /*#__PURE__*/React.createElement("input", {
-    required: true,
-    disabled: disabled,
-    placeholder: PLACEHOLDER_RAGDOLL_ART_STYLE,
-    onChange: onChangePersonaArtStyle,
-    value: ragdollArtStyle
   }), /*#__PURE__*/React.createElement("input", {
     required: true,
     disabled: disabled,
     placeholder: PLACEHOLDER_RAGDOLL_KNOWLEDGE_URI,
-    onChange: onChangePersonaKnowledgeURI,
+    onChange: onChangeRagdollKnowledgeURI,
     value: ragdollKnowledgeURI
+  }), /*#__PURE__*/React.createElement("input", {
+    disabled: disabled,
+    placeholder: PLACEHOLDER_RAGDOLL_ADDITIONAL_KNOWLEDGE_URI,
+    onChange: onChangeRagdollAdditionalKnowledgeURIs,
+    value: ragdollAdditionalKnowledgeURIs[0] || ''
+  }), ragdollAdditionalKnowledgeURIs[0] && /*#__PURE__*/React.createElement("input", {
+    disabled: disabled,
+    placeholder: PLACEHOLDER_RAGDOLL_ADDITIONAL_KNOWLEDGE_URI,
+    onChange: onChangeRagdollAdditionalKnowledgeURIs,
+    value: ragdollAdditionalKnowledgeURIs[1] || ''
+  }), !textOnly && /*#__PURE__*/React.createElement("input", {
+    required: true,
+    disabled: disabled,
+    placeholder: PLACEHOLDER_RAGDOLL_ART_STYLE,
+    onChange: onChangeRagdollArtStyle,
+    value: ragdollArtStyle
   }), /*#__PURE__*/React.createElement("input", {
     required: true,
     disabled: disabled,
     placeholder: PLACEHOLDER_RAGDOLL_WRITING_STYLE,
-    onChange: onChangePersonaWritingStyle,
+    onChange: onChangeRagdollWritingStyle,
     value: ragdollWritingStyle
   }), /*#__PURE__*/React.createElement("input", {
     required: true,
     disabled: disabled,
     placeholder: PLACEHOLDER_RAGDOLL_WRITING_TONE,
-    onChange: onChangePersonaWritingTone,
+    onChange: onChangeRagdollWritingTone,
     value: ragdollWritingTone
   }), /*#__PURE__*/React.createElement("p", null, "Or, load a ", /*#__PURE__*/React.createElement("a", {
     href: "https://ragdoll-studio.vercel.app/dolls",

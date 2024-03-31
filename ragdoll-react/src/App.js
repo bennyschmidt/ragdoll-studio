@@ -28,13 +28,20 @@ const DEFAULT_ART_STYLE = `Blizzard's World of Warcraft concept art in high reso
 const DEFAULT_WRITING_STYLE = 'inspiring but grim, like from the dark ages, excluding asterisk-based interjections like "*sigh*"';
 const DEFAULT_WRITING_TONE = 'slightly annoyed';
 
+const DEFAULT_ADDITIONAL_KNOWLEDGE_URIS = [
+  'https://wowwiki-archive.fandom.com/wiki/Arthas:_Rise_of_the_Lich_King',
+  'https://cableplugger.wordpress.com/wp-content/uploads/2010/11/world-of-warcraft-2009-arthas-rise-of-the-lich-king-christie-golden.pdf',
+  'https://www.reddit.com/r/wow/comments/7guydb/lore_post_the_tragedy_of_arthas_menethil/'
+]
+
 const DEFAULT_RAGDOLL = {
   name: DEFAULT_NAME,
   knowledgeURI: DEFAULT_KNOWLEDGE_URI,
   avatarURL: DEFAULT_AVATAR_URL,
   artStyle: DEFAULT_ART_STYLE,
   writingStyle: DEFAULT_WRITING_STYLE,
-  writingTone: DEFAULT_WRITING_TONE
+  writingTone: DEFAULT_WRITING_TONE,
+  additionalKnowledgeURIs: DEFAULT_ADDITIONAL_KNOWLEDGE_URIS
 };
 
 const SAVED_RAGDOLLS = JSON.parse(
@@ -50,32 +57,33 @@ const App = () => {
   const [overlayClassName, setOverlayClassName] = useState('');
   const [timeoutId, setTimeoutId] = useState();
 
-  const [ragdollName, setPersonaName] = useState('');
-  const [ragdollKnowledgeURI, setPersonaKnowledgeURI] = useState('');
-  const [ragdollArtStyle, setPersonaArtStyle] = useState('');
-  const [ragdollWritingStyle, setPersonaWritingStyle] = useState('');
-  const [ragdollWritingTone, setPersonaWritingTone] = useState('');
-  const [ragdollAvatarURL, setPersonaAvatarURL] = useState('');
-  const [ragdoll, setPersona] = useState(DEFAULT_RAGDOLL);
+  const [ragdollName, setRagdollName] = useState('');
+  const [ragdollKnowledgeURI, setRagdollKnowledgeURI] = useState('');
+  const [ragdollArtStyle, setRagdollArtStyle] = useState('');
+  const [ragdollWritingStyle, setRagdollWritingStyle] = useState('');
+  const [ragdollWritingTone, setRagdollWritingTone] = useState('');
+  const [ragdollAvatarURL, setRagdollAvatarURL] = useState('');
+  const [ragdollAdditionalKnowledgeURIs, setRagdollAdditionalKnowledgeURIs] = useState([]);
+  const [ragdoll, setRagdoll] = useState(DEFAULT_RAGDOLL);
   const [ragdollList, setRagdollList] = useState(SAVED_RAGDOLLS);
-  const [activePersona] = useRagdoll(ragdoll);
+  const [activeRagdoll] = useRagdoll(ragdoll);
 
   useEffect(() => {
-    const ragdolls = getPersonasArray();
-    const currentPersona = ragdolls[0] || ragdoll;
+    const ragdolls = getRagdollsArray();
+    const currentRagdoll = ragdolls[0] || ragdoll;
 
-    const savedPersonas = {
+    const savedRagdolls = {
       ...ragdollList,
 
-      [currentPersona.knowledgeURI]: {
-        ...currentPersona,
+      [currentRagdoll.knowledgeURI]: {
+        ...currentRagdoll,
 
         online: true
       }
     };
 
-    setPersona(currentPersona);
-    setRagdollList(savedPersonas);
+    setRagdoll(currentRagdoll);
+    setRagdollList(savedRagdolls);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -104,11 +112,11 @@ const App = () => {
   };
 
   const closeOverlay = () => {
-    setPersonaName('');
-    setPersonaKnowledgeURI('');
-    setPersonaArtStyle('');
-    setPersonaWritingStyle('');
-    setPersonaWritingTone('');
+    setRagdollName('');
+    setRagdollKnowledgeURI('');
+    setRagdollArtStyle('');
+    setRagdollWritingStyle('');
+    setRagdollWritingTone('');
     setOverlayClassName('');
 
     setTimeoutId(
@@ -118,7 +126,7 @@ const App = () => {
     );
   };
 
-  const getPersonasArray = () => (
+  const getRagdollsArray = () => (
     Object.values(ragdollList || {})
   );
 
@@ -134,28 +142,36 @@ const App = () => {
     }
   };
 
-  const onChangePersonaName = ({ target: { value }}) => (
-    setPersonaName(value)
+  const onChangeRagdollName = ({ target: { value }}) => (
+    setRagdollName(value)
   );
 
-  const onChangePersonaKnowledgeURI = ({ target: { value }}) => (
-    setPersonaKnowledgeURI(value)
+  const onChangeRagdollKnowledgeURI = ({ target: { value }}) => (
+    setRagdollKnowledgeURI(value)
   );
 
-  const onChangePersonaArtStyle = ({ target: { value }}) => (
-    setPersonaArtStyle(value)
+  const onChangeRagdollArtStyle = ({ target: { value }}) => (
+    setRagdollArtStyle(value)
   );
 
-  const onChangePersonaWritingStyle = ({ target: { value }}) => (
-    setPersonaWritingStyle(value)
+  const onChangeRagdollWritingStyle = ({ target: { value }}) => (
+    setRagdollWritingStyle(value)
   );
 
-  const onChangePersonaWritingTone = ({ target: { value }}) => (
-    setPersonaWritingTone(value)
+  const onChangeRagdollWritingTone = ({ target: { value }}) => (
+    setRagdollWritingTone(value)
   );
 
-  const onChangePersonaAvatarURL = ({ target: { value }}) => (
-    setPersonaAvatarURL(value)
+  const onChangeRagdollAvatarURL = ({ target: { value }}) => (
+    setRagdollAvatarURL(value)
+  );
+
+  const onChangeRagdollAdditionalKnowledgeURIs = ({ target: { value }}) => (
+    setRagdollAdditionalKnowledgeURIs([
+      ...ragdollAdditionalKnowledgeURIs,
+
+      value
+    ])
   );
 
   const onQuestion = value => setQuestion(value);
@@ -169,18 +185,18 @@ const App = () => {
     setDisabled(true);
   };
 
-  const didClickListItem = ({ currentPersona, previousPersona }) => {
-    setPersona(currentPersona);
+  const didClickListItem = ({ currentRagdoll, previousRagdoll }) => {
+    setRagdoll(currentRagdoll);
 
     const updatedRagdollList = {
       ...ragdollList,
 
-      [currentPersona.knowledgeURI]: currentPersona
+      [currentRagdoll.knowledgeURI]: currentRagdoll
     };
 
-    if (previousPersona?.knowledgeURI) {
-      previousPersona.online = false;
-      updatedRagdollList[previousPersona.knowledgeURI] = previousPersona;
+    if (previousRagdoll?.knowledgeURI) {
+      previousRagdoll.online = false;
+      updatedRagdollList[previousRagdoll.knowledgeURI] = previousRagdoll;
     }
 
     setRagdollList(updatedRagdollList);
@@ -192,7 +208,7 @@ const App = () => {
 
   const ragdollFormProps = {
     disabled,
-    ragdoll: activePersona || ragdoll,
+    ragdoll: activeRagdoll || ragdoll,
     ragdollList,
     ragdollName,
     ragdollKnowledgeURI,
@@ -200,17 +216,19 @@ const App = () => {
     ragdollWritingStyle,
     ragdollWritingTone,
     ragdollAvatarURL,
-    onChangePersonaName,
-    onChangePersonaKnowledgeURI,
-    onChangePersonaArtStyle,
-    onChangePersonaWritingStyle,
-    onChangePersonaWritingTone,
-    onChangePersonaAvatarURL
+    ragdollAdditionalKnowledgeURIs,
+    onChangeRagdollName,
+    onChangeRagdollKnowledgeURI,
+    onChangeRagdollArtStyle,
+    onChangeRagdollWritingStyle,
+    onChangeRagdollWritingTone,
+    onChangeRagdollAvatarURL,
+    onChangeRagdollAdditionalKnowledgeURIs
   };
 
   const ragdollChatProps = {
     disabled: disabled || isCreating,
-    ragdoll: activePersona || ragdoll,
+    ragdoll: activeRagdoll || ragdoll,
     question,
     imageURL,
     text,
@@ -219,7 +237,7 @@ const App = () => {
   };
 
   const ragdollListProps = {
-    ragdoll: activePersona || ragdoll,
+    ragdoll: activeRagdoll || ragdoll,
     ragdollList,
     onClickListItem,
     didClickListItem
