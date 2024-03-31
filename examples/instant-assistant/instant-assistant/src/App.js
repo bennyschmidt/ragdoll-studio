@@ -36,6 +36,7 @@ const App = () => {
   const [ragdollWritingStyle, setRagdollWritingStyle] = useState('');
   const [ragdollWritingTone, setRagdollWritingTone] = useState('');
   const [ragdollAvatarURL, setRagdollAvatarURL] = useState('');
+  const [ragdollAdditionalKnowledgeURIs, setRagdollAdditionalKnowledgeURIs] = useState([]);
 
   useEffect(() => {
     const ragdolls = getRagdollsArray();
@@ -140,6 +141,14 @@ const App = () => {
     setRagdollAvatarURL(value)
   );
 
+  const onChangeRagdollAdditionalKnowledgeURIs = ({ target: { value }}) => (
+    setRagdollAdditionalKnowledgeURIs([
+      ...ragdollAdditionalKnowledgeURIs,
+
+      value
+    ])
+  );
+
   const onQuestion = value => setQuestion(value);
 
   const onAnswer = answer => setText(answer?.text);
@@ -154,11 +163,13 @@ const App = () => {
     ragdollWritingStyle,
     ragdollWritingTone,
     ragdollAvatarURL,
+    ragdollAdditionalKnowledgeURIs,
     onChangeRagdollName,
     onChangeRagdollKnowledgeURI,
     onChangeRagdollWritingStyle,
     onChangeRagdollWritingTone,
-    onChangeRagdollAvatarURL
+    onChangeRagdollAvatarURL,
+    onChangeRagdollAdditionalKnowledgeURIs
   };
 
   const ragdollChatProps = {

@@ -68,3 +68,19 @@
   color: white;
   z-index: 1000;
 }
+
+#history .me {
+  width: 100%;
+}
+
+#history .me p {
+  background: dodgerblue;
+}
+
+#history .past {
+  opacity: 1;
+}
+
+#history .me div.img {
+  border: none;
+}
