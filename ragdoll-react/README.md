@@ -6,9 +6,9 @@ React front-end for interacting with [Ragdoll](https://github.com/bennyschmidt/r
 | ----------------------------- | ----------------------------- |
 | ![Screenshot from 2024-03-28 19-14-52](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/6e4919da-51f3-4d2f-9435-a4f1f9cc8042) | ![Screenshot from 2024-03-28 19-11-29](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/a3acad04-01fb-4915-8e99-f37994bba0e9) |
 
-| Lara Croft (Tomb Raider)      | Pokédex (Pokémon)             |
+| Gandalf (Lord of the Rings)   | Pokédex (Pokémon)             |
 | ----------------------------- | ----------------------------- |
-| ![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/50066c95-adef-4d46-9b66-cf4a4a2e2c27) | ![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/0fd89c49-c425-4f89-932c-ab69473ff623)
+| ![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/7110763f-65fb-4924-9328-b41b16178963) | ![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/0fd89c49-c425-4f89-932c-ab69473ff623)
 
 | VW Beetle                     | Mother Nature                 |
 | ----------------------------- | ----------------------------- |
