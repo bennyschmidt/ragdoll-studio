@@ -18,7 +18,8 @@ module.exports = asyncCache => async (req, res) => {
         avatarURL,
         artStyle,
         writingStyle,
-        writingTone
+        writingTone,
+        additionalKnowledgeURIs
       } = JSON.parse(body || '{}');
 
       if (
@@ -48,7 +49,8 @@ module.exports = asyncCache => async (req, res) => {
           avatarURL,
           artStyle,
           writingStyle,
-          writingTone
+          writingTone,
+          additionalKnowledgeURIs
         }
       });
 

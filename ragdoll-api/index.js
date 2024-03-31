@@ -16,7 +16,8 @@ const {
   DEFAULT_KNOWLEDGE_URI,
   DEFAULT_ART_STYLE,
   DEFAULT_WRITING_TONE,
-  DEFAULT_WRITING_STYLE
+  DEFAULT_WRITING_STYLE,
+  DEFAULT_ADDITIONAL_KNOWLEDGE_URIS
 } = require('ragdoll-core/src/utils/strings');
 
 dotenv.config();
@@ -54,13 +55,14 @@ module.exports = (routes = { GET: {}, POST: {}}, init) => {
 
   store.set('config', {
     [DEFAULT_KNOWLEDGE_URI]: {
-      cache: true,
+      cache: false,
       greeting: false,
       name: DEFAULT_NAME,
       knowledgeURI: DEFAULT_KNOWLEDGE_URI,
       artStyle: DEFAULT_ART_STYLE,
       writingStyle: DEFAULT_WRITING_STYLE,
-      writingTone: DEFAULT_WRITING_TONE
+      writingTone: DEFAULT_WRITING_TONE,
+      additionalKnowledgeURIs: DEFAULT_ADDITIONAL_KNOWLEDGE_URIS
     }
   });
 

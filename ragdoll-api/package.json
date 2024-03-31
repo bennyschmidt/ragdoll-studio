@@ -1,11 +1,11 @@
 {
   "name": "ragdoll-api",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "scripts": {
     "start": "node start"
   },
   "dependencies": {
-    "ragdoll-core": "^1.2.8",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "ragdoll-core": "^1.2.9"
   }
 }
