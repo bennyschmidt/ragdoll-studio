@@ -52,7 +52,7 @@ const Cast = () => {
         <div className="max-w-5xl w-full flex flex-col-reverse justify-between mt-4 lg:flex-col">
           <section className="max-w-5xl w-full mt-4">
             <div className="bg-slate-900 p-6 text-xl rounded-[1rem]">
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex flex-col gap-2 items-start justify-between mb-3 lg:flex-row lg:gap-0">
                 <div>
                   <h2 className="truncate">
                     {name}

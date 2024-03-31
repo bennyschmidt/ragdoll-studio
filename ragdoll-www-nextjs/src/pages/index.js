@@ -48,7 +48,7 @@ const Home = () => {
           </section>
           <section className="max-w-5xl w-full mt-4 pt-4 lg:border-t lg:border-slate-800">
             <h3 className="text-center text-5xl font-black my-4">Domain-Specific Personas</h3>
-            <h4 className="text-center text-lg my-1">Create and interact with personas by URL.</h4>
+            <h4 className="text-center text-lg my-1">Create, interact with, and deploy AI personas with scoped knowledge and distinct personalities.</h4>
             <h4 className="text-center text-lg my-1 mb-4">Run models on your own machine. No accounts or API keys required.</h4>
             <Image
               src="/assets/img/product.png"
