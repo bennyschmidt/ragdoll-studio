@@ -1,6 +1,6 @@
 # A game NPC in *Oracle's Tomb*
 
-A game NPC example with [ragdoll](https://github.com/bennyschmidt/ragdoll).
+A game NPC example with [Ragdoll](https://github.com/bennyschmidt/ragdoll).
 
 https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/c13c21ff-bab0-4831-b6f9-17a63cfa7d9c
 
@@ -43,7 +43,7 @@ It's just simple HTML:
 </html>
 ```
 
-This is everything The Oracle knows and can speak on. Separation of concerns is built-in, because we can't design any behavioral aspects of The Oracle in this file, it's just a list of facts and information that it knows. This is because this content is never used in any prompts (which are more generic), it just serves as a source of knowledge for this ragdoll. For example, adding "The Oracle speaks in all caps." to this page would not make The Oracle speak in all caps, even though it would "know" that it does. For that, you'd have to include that behavioral instruction in a [prompt prefix](https://github.com/bennyschmidt/ragdoll/blob/master/src/utils/prefix.js). The prefix is also where you might add behavioral instruction to limit knowledge-sharing, or even conceal certain knowledge.
+This is everything The Oracle knows and can speak on. Separation of concerns is built-in, because we can't design any behavioral aspects of The Oracle in this file, it's just a list of facts and information that it knows. This is because this content is never used in any prompts (which are more generic), it just serves as a source of knowledge for this ragdoll. For example, adding "The Oracle speaks in all caps." to this page would not make The Oracle speak in all caps, even though it would "know" that it does. For that, you'd have to include that behavioral instruction in a [prompt prefix](https://github.com/bennyschmidt/ragdoll/blob/master/src/utils/prefix.js). The prefix is also where you might add behavioral instruction to limit general knowledge-sharing. However, you can get creative with these source files, for example you could choose to not teach The Oracle the password, but instead teach it just a hint so that's the most it could give up to the player - leaving it up to the player to ultimately solve the puzzle (but still in a way that wouldn't be possible without that interaction).
 
 ## The game
 
