@@ -9,6 +9,17 @@
       "artStyle": "adventurous like the Tomb Raider games",
       "writingStyle": "well-educated and in charge",
       "writingTone": "up for any challenge"
+    },
+    {
+      "name": "Gandalf",
+      "knowledgeURI": "https://lord-of-the-rings.org/books/gandalf.html",
+      "avatarURL": "https://thetolkien.forum/wiki-asset/?pid=2170&d=1628260741",
+      "artStyle": "fantasy like Lord of the Rings",
+      "writingStyle": "J.R.R. Tolkien",
+      "writingTone": "wise",
+      "additionalKnowledgeURIs": [
+        "https://www.glyphweb.com/arda/g/gandalf.php"
+      ]
     }
   ],
 

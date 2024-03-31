@@ -8,7 +8,12 @@
       "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/600px-JavaScript-logo.png?20120221235433",
       "artStyle": "Linux and 90s computers, lots of yellow and lime green, and some blue",
       "writingStyle": "rational and logical",
-      "writingTone": "friendly"
+      "writingTone": "friendly",
+      "additionalKnowledgeURIs": [
+        "https://devhints.io/js-array",
+        "https://devhints.io/es6",
+        "https://quickref.me/regex#regex-in-javascript"
+      ]
     }
   ],
 

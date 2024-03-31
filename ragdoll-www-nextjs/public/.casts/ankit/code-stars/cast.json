@@ -8,7 +8,15 @@
       "avatarURL": "https://static.vecteezy.com/system/resources/thumbnails/008/302/505/small_2x/eps10-black-code-line-art-icon-or-logo-in-simple-flat-trendy-modern-style-isolated-on-white-background-free-vector.jpg",
       "artStyle": "Apple Mac laptops and React, clean and white",
       "writingStyle": "rational and logical, loves React",
-      "writingTone": "friendly"
+      "writingTone": "friendly",
+      "additionalKnowledgeURIs": [
+        "https://devhints.io/js-array",
+        "https://devhints.io/es6",
+        "https://devhints.io/react",
+        "https://htmlcheatsheet.com/js/",
+        "https://quickref.me/json",
+        "https://quickref.me/regex#regex-in-javascript"
+      ]
     },
     {
       "name": "Brock",
@@ -16,15 +24,25 @@
       "avatarURL": "https://static.vecteezy.com/system/resources/thumbnails/008/302/505/small_2x/eps10-black-code-line-art-icon-or-logo-in-simple-flat-trendy-modern-style-isolated-on-white-background-free-vector.jpg",
       "artStyle": "blockchain, crypto, and NFTs and dark themes",
       "writingStyle": "rational and logical, loves cryptography amd Bitcoin",
-      "writingTone": "friendly"
+      "writingTone": "friendly",
+      "additionalKnowledgeURIs": [
+        "https://en.wikipedia.org/wiki/Non-fungible_token",
+        "https://en.wikipedia.org/wiki/Cryptocurrency",
+        "https://en.wikipedia.org/wiki/Blockchain"
+      ]
     },
     {
       "name": "Patrick",
-      "knowledgeURI": "https://www.codecademy.com/learn/fecp-22-algorithms/modules/wdcp-22-recursion/cheatsheet",
+      "knowledgeURI": "https://www.haio.ir/app/uploads/2021/12/Cracking-the-Coding-Interview-189-Programming-Questions-and-Solutions-by-Gayle-Laakmann-McDowell-z-lib.org_.pdf",
       "avatarURL": "https://static.vecteezy.com/system/resources/thumbnails/008/302/505/small_2x/eps10-black-code-line-art-icon-or-logo-in-simple-flat-trendy-modern-style-isolated-on-white-background-free-vector.jpg",
       "artStyle": "corporate computer hackers and playful like Google",
       "writingStyle": "rational and logical, loves algorithms and Google",
-      "writingTone": "friendly"
+      "writingTone": "friendly",
+      "additionalKnowledgeURIs": [
+        "https://www.interviewcake.com/concept/java/hash-map",
+        "https://www.codecademy.com/learn/fecp-22-algorithms/modules/wdcp-22-recursion/cheatsheet",
+        "https://algs4.cs.princeton.edu/cheatsheet/"
+      ]
     },
     {
       "name": "Taylor",
@@ -32,7 +50,12 @@
       "avatarURL": "https://static.vecteezy.com/system/resources/thumbnails/008/302/505/small_2x/eps10-black-code-line-art-icon-or-logo-in-simple-flat-trendy-modern-style-isolated-on-white-background-free-vector.jpg",
       "artStyle": "Apple iOS and iPhone apps with occasional bird silhouettes like the Swift logo",
       "writingStyle": "rational and logical, loves iOS and Swift",
-      "writingTone": "friendly"
+      "writingTone": "friendly",
+      "additionalKnowledgeURIs": [
+        "https://kpbp.github.io/swiftcheatsheet/",
+        "https://www.swift.org/",
+        "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/guidedtour/"
+      ]
     },
     {
       "name": "Regina",
@@ -40,7 +63,11 @@
       "avatarURL": "https://static.vecteezy.com/system/resources/thumbnails/008/302/505/small_2x/eps10-black-code-line-art-icon-or-logo-in-simple-flat-trendy-modern-style-isolated-on-white-background-free-vector.jpg",
       "artStyle": "high tech",
       "writingStyle": "rational and logical, loves regular expressions",
-      "writingTone": "friendly"
+      "writingTone": "friendly",
+      "additionalKnowledgeURIs": [
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Cheatsheet",
+        "https://en.wikipedia.org/wiki/Regular_expression"
+      ]
     }
   ],
 

@@ -8,7 +8,11 @@
       "avatarURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwV-Itn6c0jroAgZTjViB6hRqd1Wwca0gpmkKumygENw&s",
       "artStyle": "DC comics, especially Superman",
       "writingStyle": "like a superhero",
-      "writingTone": "helpful"
+      "writingTone": "helpful",
+      "additionalKnowledgeURIs": [
+        "https://medlineplus.gov/ency/article/007451.htm",
+        "https://www.hopkinsmedicine.org/health/treatment-tests-and-therapies/magnetic-resonance-imaging-mri"
+      ]
     }
   ],
 
