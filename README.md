@@ -68,7 +68,7 @@ See the React `README.md`.
 
 You should see the default UI:
 
-![Screenshot from 2024-03-28 19-34-58](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/d81fdccf-3ad2-45d6-bd03-bf667cc25ab0)
+![Ragdoll UI](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/4113aa84-83e8-4807-b651-a57090c3c587)
 
 -----
 
