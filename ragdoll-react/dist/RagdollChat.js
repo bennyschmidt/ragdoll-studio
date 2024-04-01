@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Icon from '../Icon';
+import Icon from './Icon';
 import './RagdollChat.css';
 const SEND = 'Send';
 const DEFAULT_IMG_ALT = 'Corresponding visualization';

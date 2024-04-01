@@ -16,7 +16,8 @@ const COMPONENTS = [
   'RagdollCast',
   'RagdollChat',
   'RagdollForm',
-  'RagdollList'
+  'RagdollList',
+  'Icon'
 ];
 
 // Define which hooks should be
@@ -61,13 +62,22 @@ const transpileComponent = async component => {
     `import './${component}.css';`
   );
 
+  // Transform Icon imports
+
+  const fileWithIcons = fileWithCSS.replace(
+    '../Icon',
+    './Icon'
+  );
+
   // Write the transformed component file
 
-  await fs.writeFile(`${DIRECTORY}/${component}.js`, fileWithCSS);
+  await fs.writeFile(`${DIRECTORY}/${component}.js`, fileWithIcons);
 
-  // Move a copy of the CSS file to it
+  if (fileWithIcons.match('index.css')) {
+    // Move a copy of the CSS file to it
 
-  await fs.copyFile(`./src/components/${component}/index.css`, `${DIRECTORY}/${component}.css`);
+    await fs.copyFile(`./src/components/${component}/index.css`, `${DIRECTORY}/${component}.css`);
+  }
 };
 
 /**
