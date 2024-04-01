@@ -1,3 +1,4 @@
+import React from 'react';
 import './RagdollCast.css';
 const CONFIRM_EXPORT = 'Export the current cast?';
 const EXPORT = 'Export';

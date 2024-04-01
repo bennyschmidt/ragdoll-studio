@@ -1,3 +1,5 @@
+import React from 'react';
+
 import './index.css';
 
 const CONFIRM_EXPORT = 'Export the current cast?';

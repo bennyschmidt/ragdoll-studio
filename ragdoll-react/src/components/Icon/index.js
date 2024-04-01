@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Icon = ({ src, size = 20 }) => (
   <img
     src={src}
