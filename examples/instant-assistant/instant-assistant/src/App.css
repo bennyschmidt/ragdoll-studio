@@ -84,3 +84,7 @@
 #history .me div.img {
   border: none;
 }
+
+#conversation {
+  display: none;
+}
