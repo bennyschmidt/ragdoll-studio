@@ -67,6 +67,7 @@ module.exports = (cluster, routes) => {
     }
   }
 
+  routes.GET[`${API_PATH_PREFIX}/info`] = require('./get/info')(asyncCache);
   routes.POST[`${API_PATH_PREFIX}/prompt`] = require('./post/prompt')(asyncCache);
   routes.POST[`${API_PATH_PREFIX}/configure`] = require('./post/configure')(asyncCache);
 
