@@ -1,26 +1,131 @@
 .panel {
-  background: #12121280;
+  background: #100e1880;
   border-radius: 1rem;
   padding: 1rem;
 }
 
-#root {
-  display: flex;
-  gap: 1rem;
-  padding: 1rem;
+.form {
+  background: #010105;
+  color: #e6edf6;
 }
 
-#app,
+.form a {
+  color: dodgerblue;
+}
+
+.form input {
+  background: #e6edf625;
+  color: #e6edf6;
+}
+
+.form button {
+  background: linear-gradient(#262739, #010105);
+  box-shadow:  0 2px 0 #010105, 0 0 1rem #010105;
+  margin: 1rem auto;
+  transition: all .2s ease;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+#app > header,
+#switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: .9em;
+  margin: 0 1rem;
+}
+
+#app > header h4 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: .77em;
+  gap: .4rem;
+}
+
+#app > header h4 span {
+  display: block;
+}
+
+#app > header h4 > span {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#app > header h4 .indicator {
+  border-radius: 0;
+  background: yellow;
+  box-shadow: 0 0 1rem yellow;
+  min-width: 6px;
+  min-height: 6px;
+  max-width: 6px;
+  max-height: 6px;
+}
+
+#app > header h4 .indicator.success {
+  border-radius: 0;
+  background: dodgerblue;
+  box-shadow: 0 0 1rem dodgerblue;
+}
+
+#app > header h4 .indicator-label {
+  text-transform: uppercase;
+}
+
+#switch {
+  background: linear-gradient(#262739, #010105);
+  box-shadow: 0 0 3rem #010105;
+  margin: 1rem 0;
+  padding: .5rem 1.5rem;
+  border-radius: 100vw;
+  gap: 1.5rem;
+}
+
+#switch > button {
+  position: relative;
+  background: none;
+  opacity: .5;
+  margin: 0;
+  padding: 0;
+}
+
+#switch > button:first-of-type {
+  opacity: 1;
+}
+
+#switch > button .indicator {
+  position: absolute;
+  bottom: -.2rem;
+  left: 0;
+  max-width: .2rem;
+  max-height: .2rem;
+  min-height: .2rem;
+  min-width: .2rem;
+}
+
+#app-frame {
+  display: flex;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+}
+
+#workspace,
 #nav {
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin: 1rem auto;
-  height: calc(100vh - 3rem);
+  margin: 0 auto;
+  height: calc(100vh - 5.5rem);
   overflow-x: hidden;
 }
 
-#app {
+#workspace {
+  position: relative;
   justify-content: space-between;
 }
 
@@ -28,7 +133,8 @@
   max-width: 20vw;
 }
 
-#overlay {
+#overlay,
+#publish {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,7 +150,43 @@
   transition: opacity .5s ease;
 }
 
-#overlay.show {
+#publish > div {
+  position: absolute;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  max-width: 75%;
+  max-height: 75%;
+  top: 12.5%;
+  line-height: 2em;
+  overflow: auto;
+  background: #010105;
+  border-radius: 1rem;
+  box-shadow: 0 0 2rem #010105;
+}
+
+#publish .instructions,
+#publish .instructions > li {
+  text-align: left;
+  list-style: decimal;
+  margin: 1rem 0;
+}
+
+#publish a {
+  color: dodgerblue;
+}
+
+#publish button {
+  background: #111;
+  margin: 2rem auto;
+  max-width: 50%;
+}
+
+#publish button:hover {
+  background: #222;
+}
+
+#overlay.show,
+#publish.show {
   opacity: 1;
 }
 
@@ -61,8 +203,21 @@
 }
 
 #create-ragdoll-button {
-  background: white;
-  color: dodgerblue;
+  background: linear-gradient(#262739, #010105);
+  box-shadow:  0 2px 0 #010105, 0 0 1rem #010105;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  margin: 1rem auto;
+  padding: .75rem;
+  transition: all .2s ease;
+}
+
+#create-ragdoll-button:hover,
+.form button:hover {
+  background: #06dee6;
+  border-color: transparent;
+  box-shadow: inset 0 .5rem 1rem dodgerblue, 0 1px 0 #000000, 0 0 2rem dodgerblue;
+  text-shadow: 0 0 .5rem dodgerblue;
 }
 
 #input,
@@ -78,35 +233,45 @@
 }
 
 #input > input,
-#input > button {
+#send {
   display: block;
   min-height: 3rem;
   margin-bottom: .5rem;
   border: none;
   border-radius: .5rem;
-  width: calc(100% - 1rem);
+  width: 100%;
   appearance: none;
   outline: none;
-  background: black;
+  background: #010105;
   color: white;
 }
 
 #input > input {
-  background: #12121280;
+  background: #01010550;
   padding: 0 .5rem;
 }
 
-#input > button {
-  background: dodgerblue;
+#send {
+  background: linear-gradient(#262739, #010105);
+  box-shadow:  0 2px 0 #010105, 0 0 2rem #010105;
+  border-radius: 1rem;
+  transition: all .2s ease;
+  color: dodgerblue;
+  text-shadow: 0 0 .5rem dodgerblue;
+  margin: 0;
+  width: 100%;
 }
 
-#input > button:hover {
-  background-color: white;
-  color: dodgerblue;
+#send:hover {
+  background: #06dee6;
+  border-color: transparent;
+  box-shadow: inset 0 .5rem 1rem dodgerblue, 0 1px 0 #000000, 0 0 2rem dodgerblue;
+  color: #e6edf6;
 }
 
 @media (max-width: 900px) {
-  h1 {
+  h1,
+  #app > header h4 {
     display: none;
   }
 
@@ -118,17 +283,17 @@
     padding: unset;
   }
 
-  #root {
+  #app-frame {
     padding: 0;
     gap: 2px;
   }
 
   #nav,
-  #app {
+  #workspace {
     margin: 0;
     border-radius: 0;
-    height: 100vh;
-    max-height: 100vh;
+    height: calc(100vh - 4.5rem);
+    max-height: calc(100vh - 4.5rem);
     overflow-y: auto;
   }
 
@@ -145,5 +310,9 @@
     width: 3rem;
     height: 3rem;
     padding: 0;
+  }
+
+  #switch {
+    margin: 1rem auto;
   }
 }

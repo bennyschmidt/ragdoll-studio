@@ -13,8 +13,9 @@ const DIRECTORY = './dist';
 // transformed
 
 const COMPONENTS = [
-  'RagdollForm',
+  'RagdollCast',
   'RagdollChat',
+  'RagdollForm',
   'RagdollList'
 ];
 
@@ -22,6 +23,7 @@ const COMPONENTS = [
 // transformed
 
 const HOOKS = [
+  'useModelInfo',
   'useRagdoll'
 ];
 
@@ -80,7 +82,7 @@ const transpileHook = async hook => {
   // Babel transform
 
   const file = await babel.transformFileAsync(
-    `./src/hooks/${hook}.js`,
+    `./src/hooks/${hook}/index.js`,
     babelConfig
   );
 

@@ -12,6 +12,7 @@ const RagdollList = ({
   } = window;
   const getRagdollsArray = () => Object.values(ragdollList || {});
   const onClickRagdollListItem = key => async () => {
+    if (ragdoll.knowledgeURI === key) return;
     const updatedCurrentRagdoll = {
       ...ragdoll
     };

@@ -3,14 +3,17 @@ import { useEffect, useState } from 'react';
 import {
   RagdollForm,
   RagdollChat,
-  RagdollList
+  RagdollList,
+  RagdollCast
 } from './components';
 
 import {
+  useModelInfo,
   useRagdoll
 } from './hooks';
 
 import './App.css';
+import Icon from './components/Icon';
 
 // Globals
 
@@ -20,6 +23,7 @@ window.STORAGE_KEY = 'RAGDOLLS';
 const { STORAGE_KEY } = window;
 
 const OVERLAY = 'overlay';
+const PUBLISH = 'publish';
 const CREATE = '+';
 const DEFAULT_AVATAR_URL = '/img/avatars/arthas.png';
 const DEFAULT_NAME = 'Arthas';
@@ -30,8 +34,11 @@ const DEFAULT_WRITING_TONE = 'slightly annoyed';
 
 const DEFAULT_ADDITIONAL_KNOWLEDGE_URIS = [
   'https://wowwiki-archive.fandom.com/wiki/Arthas:_Rise_of_the_Lich_King',
-  'https://cableplugger.wordpress.com/wp-content/uploads/2010/11/world-of-warcraft-2009-arthas-rise-of-the-lich-king-christie-golden.pdf',
-  'https://www.reddit.com/r/wow/comments/7guydb/lore_post_the_tragedy_of_arthas_menethil/'
+  // The following is an entire novel, but it seems like they:
+  // 1. slow the vector store way down
+  // 2. don't add much informational value
+  // 3. can smooth out the personality and fill in gaps
+  // 'https://cableplugger.wordpress.com/wp-content/uploads/2010/11/world-of-warcraft-2009-arthas-rise-of-the-lich-king-christie-golden.pdf',
 ]
 
 const DEFAULT_RAGDOLL = {
@@ -54,6 +61,7 @@ const App = () => {
   const [imageURL, setImageURL] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
+  const [isPublishing, setIsPublishing] = useState(false);
   const [overlayClassName, setOverlayClassName] = useState('');
   const [timeoutId, setTimeoutId] = useState();
 
@@ -66,7 +74,9 @@ const App = () => {
   const [ragdollAdditionalKnowledgeURIs, setRagdollAdditionalKnowledgeURIs] = useState([]);
   const [ragdoll, setRagdoll] = useState(DEFAULT_RAGDOLL);
   const [ragdollList, setRagdollList] = useState(SAVED_RAGDOLLS);
+
   const [activeRagdoll] = useRagdoll(ragdoll);
+  const [modelInfo] = useModelInfo(ragdoll);
 
   useEffect(() => {
     const ragdolls = getRagdollsArray();
@@ -89,7 +99,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    document.body.onkeydown = isCreating
+    document.body.onkeydown = isCreating || isPublishing
       ? (overlayClassName && onKeyDownOverlay)
       : null;
 
@@ -122,6 +132,7 @@ const App = () => {
     setTimeoutId(
       setTimeout(() => {
         setIsCreating(false);
+        setIsPublishing(false);
       }, 1000)
     );
   };
@@ -137,7 +148,7 @@ const App = () => {
   };
 
   const onClickOverlay = ({ target: { id }}) => {
-    if (id === OVERLAY) {
+    if (id === OVERLAY || id === PUBLISH) {
       closeOverlay();
     }
   };
@@ -206,6 +217,16 @@ const App = () => {
     setDisabled(false);
   };
 
+  const onOpenPublishOverlay = () => {
+    setIsPublishing(true);
+
+    setOverlayClassName('');
+
+    requestAnimationFrame(() => {
+      setOverlayClassName('show');
+    });
+  };
+
   const ragdollFormProps = {
     disabled,
     ragdoll: activeRagdoll || ragdoll,
@@ -243,23 +264,91 @@ const App = () => {
     didClickListItem
   };
 
-  return <>
+  const ragdollCastProps = {
+    disabled: disabled || isCreating,
+    ragdollList,
+    onShow: onOpenPublishOverlay
+  };
+
+  return <main id="app">
     {isCreating && <aside id="overlay" className={overlayClassName} onClick={onClickOverlay}>
       <RagdollForm { ...ragdollFormProps } />
     </aside>}
-    <RagdollList { ...ragdollListProps }>
-      <button
-        disabled={isCreating}
-        id="create-ragdoll-button"
-        onClick={openOverlay}
-      >
-        {CREATE}
-      </button>
-    </RagdollList>
-    <main id="app" className="panel">
-      <RagdollChat {...ragdollChatProps } />
-    </main>
-  </>;
+    {isPublishing && <aside id="publish" className={overlayClassName} onClick={onClickOverlay}>
+      <div>
+        <h3>Publishing a Cast</h3>
+        <ol className="instructions">
+          <li>
+            Clone the <a href="https://github.com/bennyschmidt/ragdoll-studio/tree/master/ragdoll-www-nextjs" target="_blank">Community Site repo</a> from GitHub.
+          </li>
+          <li>
+            If publishing for the first time, create a directory for the name you want to publish under, like this:
+            <br />
+            <code>/ragdoll-www-nextjs/public/.casts/YOUR_NAME/</code>
+            <br />
+            This is where you'll put your published casts moving forward. Create a folder for the cast you want to publish, like this:
+            <br />
+            <code>/ragdoll-www-nextjs/public/.casts/YOUR_NAME/YOUR_CAST/</code>
+          </li>
+          <li>In Ragdoll Studio, <em>Export</em> your cast with the name and cast matching the newly created directories. A JSON file will open in a new tab.</li>
+          <li><em>Save Link As...</em> <code>cast.json</code> to the newly created directory in the Community Site repo.</li>
+          <li>Your <code>cast.json</code> file path should look like this:
+            <br />
+            <code>/ragdoll-www-nextjs/public/.casts/YOUR_NAME/YOUR_CAST/cast.json</code>
+            <br />
+            You can now open a <a href="https://github.com/bennyschmidt/ragdoll-studio/pulls" target="_blank">Pull Request</a> to commit your changes.</li>
+          <li>The approver of the pull request <em>signs</em> your <code>cast.json</code> by appending a <code>createdAt</code> timestamp to the file.</li>
+          <li>Once approved and signed, the Pull Request can be merged into <code>master</code> and your cast will appear on the front page of the Community Site momentarily.</li>
+        </ol>
+        <button onClick={closeOverlay}>Close</button>
+      </div>
+    </aside>}
+    <header>
+      <h4>
+        <span>
+          <span className={`indicator ${modelInfo?.textModel ? 'success' : ''}`} />
+          <span className="indicator-label">Text-to-Text:</span>&nbsp;<em>{modelInfo?.textModel || 'Loading...'}</em>
+        </span>
+        <span>
+          <span className={`indicator ${modelInfo?.textModel ? 'success' : ''}`} />
+          <span className="indicator-label">Text-to-Image:</span>&nbsp;<em>{modelInfo?.stableDiffusionImageModel || 'Loading...'}</em>
+        </span>
+      </h4>
+      <nav id="switch">
+        <button>
+          <Icon src="/img/story.svg" />
+          <span className="indicator" />
+        </button>
+        <button>
+          <Icon src="/img/picture.svg" />
+        </button>
+        <button>
+          <Icon src="/img/video.svg" />
+        </button>
+        <button>
+          <Icon src="/img/audio.svg" />
+        </button>
+        <button>
+          <Icon src="/img/code.svg" />
+        </button>
+      </nav>
+    </header>
+    <div id="app-frame">
+      <RagdollList { ...ragdollListProps }>
+        <button
+          disabled={isCreating}
+          id="create-ragdoll-button"
+          onClick={openOverlay}
+        >
+          {CREATE}
+        </button>
+        <RagdollCast {...ragdollCastProps} />
+      </RagdollList>
+      <div id="workspace" className="panel">
+        <RagdollChat {...ragdollChatProps } />
+      </div>
+    </div>
+  </main>;
 }
 
 export default App;

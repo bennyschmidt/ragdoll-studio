@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import Icon from '../Icon';
+
 import './index.css';
 
 const SEND = 'Send';
@@ -90,6 +92,22 @@ const RagdollChat = ({
     question && keyCode === 13 && ask()
   );
 
+  const onClickClear = () => {
+    if (!window.confirm('Are you sure you want to clear the output?')) return;
+
+    setHistory([]);
+    onQuestion('');
+    onAnswer();
+  };
+
+  const onClickSave = () => {
+    console.log(`data:text/html,<html><body>${history.join('')}</body></html>`)
+    window.open(
+      `data:text/html,<html><body>${history.join('')}</body></html>`,
+      '_blank'
+    );
+  };
+
   return ragdoll && <>
     <div id="output">
       <header>
@@ -104,7 +122,7 @@ const RagdollChat = ({
       </header>
       <div id="history">
         {history.map(output => output?.text && (
-          <div className={`past ${output.isMe ? 'me' : ''}`}>
+          <div key={Date.now()} className={`past ${output.isMe ? 'me' : ''}`}>
             <div className="img">
               {output.avatarURL && <img
                 src={output.avatarURL}
@@ -125,7 +143,7 @@ const RagdollChat = ({
           </div>
         ))}
         <div>
-          {<div className="img">
+          {text && <div className="img">
             {ragdoll.avatarURL && <img
               src={ragdoll.avatarURL}
               alt={ragdoll.name}
@@ -147,7 +165,7 @@ const RagdollChat = ({
         </div>
       </div>
     </div>
-    <div id="input">
+    <div id="input" className="panel">
       <input
         autoFocus
         disabled={disabled}
@@ -156,12 +174,26 @@ const RagdollChat = ({
         onChange={onChangeQuestion}
         onKeyDown={onKeyDownQuestion}
       />
-      <button
-        disabled={disabled}
-        onClick={ask}
-      >
-        {SEND}
-      </button>
+      <div className="button-group">
+        <button
+          disabled={disabled}
+          onClick={ask}
+          id="send"
+        >
+          {SEND}
+        </button>
+        <div id="conversation">
+          <h6>Conversation</h6>
+          <div>
+            <button disabled={disabled} onClick={onClickClear}>
+              <Icon src="/img/trash.svg" />
+            </button>
+            <button disabled={disabled} onClick={onClickSave}>
+              <Icon src="/img/save.svg" />
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </>;
 }

@@ -6,6 +6,11 @@
   justify-content: space-between;
 }
 
+#input.panel {
+  background: none;
+  box-shadow: inset 0 .1rem 2rem #00000025, 0 1px 0 #e6edf610;
+}
+
 #output {
   flex: 1;
 }
@@ -14,8 +19,8 @@
   width: calc(100% - 1rem);
   margin: 1rem;
   border-radius: 100vw;
-  box-shadow: 0 0 5rem black;
-  background: black;
+  box-shadow: 0 0 5rem #010105;
+  background: #010105;
   min-width: 3rem;
   min-height: 3rem;
   width: 3rem;
@@ -32,8 +37,8 @@
   height: auto;
   margin: 1rem .5rem;
   border-radius: 1rem;
-  box-shadow: 0 0 5rem black;
-  background: black;
+  box-shadow: 0 0 5rem #010105;
+  background: #010105;
 }
 
 #output .img.full > img {
@@ -45,7 +50,7 @@
   align-content: center;
   justify-content: center;
   width: 100%;
-  border-bottom: solid 1px #ffffff10;
+  border-bottom: solid 1px #e6edf610;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
 }
@@ -68,14 +73,14 @@
   max-width: 60%;
   margin: 1rem .5rem;
   padding: 1rem;
-  background: white;
+  background: #e6edf6;
   border-radius: 1rem;
   color: dodgerblue;
 }
 
 #history p.typing {
   font-weight: bold;
-  background: #ffffff25;
+  background: #e6edf625;
 }
 
 #history .past {
@@ -84,7 +89,7 @@
 
 #history .past p {
   background: dodgerblue;
-  color: white;
+  color: #e6edf6;
 }
 
 #history .me {
@@ -98,8 +103,8 @@
 
 #history .me p {
   align-self: flex-end;
-  background: #ffffff25;
-  color: white;
+  background: #e6edf625;
+  color: #e6edf6;
 }
 
 #history > div {
@@ -112,11 +117,11 @@
 
 #history .me div.img {
   background: linear-gradient(to top right, dodgerblue, violet);
-  border: .1rem solid black;
+  border: .1rem solid #010105;
 }
 
 #input > input,
-#input > button {
+#send {
   display: block;
   min-height: 3rem;
   margin-bottom: .5rem;
@@ -125,7 +130,7 @@
   width: 100%;
   appearance: none;
   outline: none;
-  background: black;
+  background: #010105;
 }
 
 #input > input {
@@ -133,12 +138,62 @@
   padding: 0 .5rem;
 }
 
-#input > button {
+#input .button-group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+#send {
   background: dodgerblue;
 }
 
-#input > button:hover {
-  background-color: white;
+#send:hover {
+  background-color: #e6edf6;
+  color: dodgerblue;
+}
+
+#conversation {
+  background: #00000050;
+  border-radius: 1rem;
+  padding: .5rem;
+  margin-left: 1rem;
+}
+
+#conversation > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+}
+
+#conversation h6 {
+  margin: 0 0 .5rem;
+  font-size: .6em;
+  text-transform: uppercase;
+  color: #e6edf650;
+}
+
+.button-group #conversation button {
+  background: linear-gradient(to bottom, #262739, #010105);
+  box-shadow: inset 0 .5rem .5rem #010105, 0 1px 0 #e6edf640;
+  text-transform: uppercase;
+  font-size: .6em;
+  transition: all .2s ease;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0;
+}
+
+.button-group #conversation button:hover {
+  background: #06dee6;
+  border-color: transparent;
+  box-shadow: inset 0 .5rem 1rem dodgerblue, 0 1px 0 #000000, 0 0 2rem dodgerblue;
+  text-shadow: 0 0 .5rem dodgerblue;
+}
+
+.button-group #conversation button:hover img {
   color: dodgerblue;
 }
 
@@ -154,5 +209,14 @@
 
   #history p {
     max-width: 75%;
+  }
+
+  #conversation {
+    margin: 1rem 0 0;
+    width: 100%;
+  }
+
+  .button-group {
+    flex-direction: column;
   }
 }

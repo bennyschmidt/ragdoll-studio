@@ -16,6 +16,8 @@ const RagdollList = ({
   );
 
   const onClickRagdollListItem = key => async () => {
+    if (ragdoll.knowledgeURI === key) return;
+
     const updatedCurrentRagdoll = { ...ragdoll };
 
     updatedCurrentRagdoll.online = false;

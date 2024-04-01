@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Icon from '../Icon';
 import './RagdollChat.css';
 const SEND = 'Send';
 const DEFAULT_IMG_ALT = 'Corresponding visualization';
@@ -74,6 +75,16 @@ const RagdollChat = ({
   const onKeyDownQuestion = ({
     keyCode
   }) => question && keyCode === 13 && ask();
+  const onClickClear = () => {
+    if (!window.confirm('Are you sure you want to clear the output?')) return;
+    setHistory([]);
+    onQuestion('');
+    onAnswer();
+  };
+  const onClickSave = () => {
+    console.log(`data:text/html,<html><body>${history.join('')}</body></html>`);
+    window.open(`data:text/html,<html><body>${history.join('')}</body></html>`, '_blank');
+  };
   return ragdoll && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     id: "output"
   }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("div", {
@@ -86,6 +97,7 @@ const RagdollChat = ({
   }))), /*#__PURE__*/React.createElement("div", {
     id: "history"
   }, history.map(output => output?.text && /*#__PURE__*/React.createElement("div", {
+    key: Date.now(),
     className: `past ${output.isMe ? 'me' : ''}`
   }, /*#__PURE__*/React.createElement("div", {
     className: "img"
@@ -101,7 +113,7 @@ const RagdollChat = ({
     alt: DEFAULT_IMG_ALT,
     width: "100%",
     height: "100%"
-  })), /*#__PURE__*/React.createElement("p", null, output.text))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/React.createElement("p", null, output.text))), /*#__PURE__*/React.createElement("div", null, text && /*#__PURE__*/React.createElement("div", {
     className: "img"
   }, ragdoll.avatarURL && /*#__PURE__*/React.createElement("img", {
     src: ragdoll.avatarURL,
@@ -118,7 +130,8 @@ const RagdollChat = ({
   })), text && /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("span", {
     className: "author"
   }, ragdoll.name, " says..."), text)))), /*#__PURE__*/React.createElement("div", {
-    id: "input"
+    id: "input",
+    className: "panel"
   }, /*#__PURE__*/React.createElement("input", {
     autoFocus: true,
     disabled: disabled,
@@ -126,9 +139,24 @@ const RagdollChat = ({
     placeholder: getQuestionPlaceholder(),
     onChange: onChangeQuestion,
     onKeyDown: onKeyDownQuestion
-  }), /*#__PURE__*/React.createElement("button", {
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "button-group"
+  }, /*#__PURE__*/React.createElement("button", {
     disabled: disabled,
-    onClick: ask
-  }, SEND)));
+    onClick: ask,
+    id: "send"
+  }, SEND), /*#__PURE__*/React.createElement("div", {
+    id: "conversation"
+  }, /*#__PURE__*/React.createElement("h6", null, "Conversation"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+    disabled: disabled,
+    onClick: onClickClear
+  }, /*#__PURE__*/React.createElement(Icon, {
+    src: "/img/trash.svg"
+  })), /*#__PURE__*/React.createElement("button", {
+    disabled: disabled,
+    onClick: onClickSave
+  }, /*#__PURE__*/React.createElement(Icon, {
+    src: "/img/save.svg"
+  })))))));
 };
 export default RagdollChat;

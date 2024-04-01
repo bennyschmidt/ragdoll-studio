@@ -6,13 +6,20 @@ body {
   font-family: "Outfit Light", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #333;
+  background: #262739;
   color: white;
 }
 
 * {
   box-sizing: border-box;
   font-size: 1em;
+}
+
+code {
+  font-family: monospace;
+  background: #ffffff15;
+  padding: .5rem;
+  border-radius: .5rem;
 }
 
 input[disabled],
