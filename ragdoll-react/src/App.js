@@ -33,7 +33,6 @@ const DEFAULT_WRITING_STYLE = 'inspiring but grim, like from the dark ages, excl
 const DEFAULT_WRITING_TONE = 'slightly annoyed';
 
 const DEFAULT_ADDITIONAL_KNOWLEDGE_URIS = [
-  'https://wowwiki-archive.fandom.com/wiki/Arthas:_Rise_of_the_Lich_King',
   // The following is an entire novel, but it seems like they:
   // 1. slow the vector store way down
   // 2. don't add much informational value
