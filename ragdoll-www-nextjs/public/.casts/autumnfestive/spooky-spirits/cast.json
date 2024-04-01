@@ -25,6 +25,14 @@
       "artStyle": "dark and ominous with branching oaks, old wagons, and the ghost of Abraham Lincoln",
       "writingStyle": "eerie",
       "writingTone": "mysterious"
+    },
+    {
+      "name": "Ghosts of the Titanic",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/Passengers_of_the_Titanic",
+      "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/7/72/Mollybrown.jpg",
+      "artStyle": "1910s Atlantic and art deco",
+      "writingStyle": "lost and alone",
+      "writingTone": "ghost-like"
     }
   ],
 

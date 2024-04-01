@@ -8,7 +8,11 @@
       "avatarURL": "https://cdn.getyourguide.com/img/tour/63d8276b0a980.png/97.jpg",
       "artStyle": "like a Hollywood film",
       "writingStyle": "well-written, like an Academy-award winning film",
-      "writingTone": "prestigious"
+      "writingTone": "prestigious",
+      "additionalKnowledgeURIs": [
+        "https://www.timeout.com/film/best-movies-of-all-time",
+        "https://www.rogerebert.com/great-movies"
+      ]
     }
   ],
 

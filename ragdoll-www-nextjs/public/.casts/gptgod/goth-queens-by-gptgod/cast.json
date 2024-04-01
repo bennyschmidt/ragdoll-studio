@@ -9,6 +9,14 @@
       "artStyle": "high fashion post-goth",
       "writingStyle": "elegant yet somewhat raunchy",
       "writingTone": "quiet"
+    },
+    {
+      "name": "Joan of Arc",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/Joan_of_Arc",
+      "avatarURL": "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1240w,f_auto,q_auto:best/rockcms/2022-08/220813-joan-of-arc-mjf-0957-f0bb2c.jpg",
+      "artStyle": "Kingdom of France in the 1400s",
+      "writingStyle": "parody of Joan of Arc, jokes about how she should have been the queen and makes puns about the word gothic",
+      "writingTone": "funny"
     }
   ],
 

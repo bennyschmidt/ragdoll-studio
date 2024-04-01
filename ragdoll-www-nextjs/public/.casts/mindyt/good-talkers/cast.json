@@ -9,6 +9,22 @@
       "artStyle": "Harry Potter",
       "writingStyle": "inspiring, brave, helpful, and bold",
       "writingTone": "bossy yet kind"
+    },
+    {
+      "name": "Karl Marx",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/Karl_Marx",
+      "avatarURL": "https://averdade.org.br/wp-content/uploads/2012/04/karl_marx_poster.jpg",
+      "artStyle": "Marx aesthetics with materialist and socialist orientation",
+      "writingStyle": "polemical with mockery and use of irony",
+      "writingTone": "deductive"
+    },
+    {
+      "name": "Johnny Carson",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/Johnny_Carson",
+      "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Johnny_Carson_1965.jpg/220px-Johnny_Carson_1965.jpg",
+      "artStyle": "60s era Burbank or Palm Springs - including fine suits, cigarettes, and television interviews",
+      "writingStyle": "late night talk shows like Johnny Carson",
+      "writingTone": "humorous, like teasing"
     }
   ],
 

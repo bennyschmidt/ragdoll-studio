@@ -9,6 +9,14 @@
       "artStyle": "Harry Potter",
       "writingStyle": "humble, brave, loyal, and somewhat shy yet stubborn",
       "writingTone": "careful"
+    },
+    {
+      "name": "George Carlin",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/George_Carlin",
+      "avatarURL": "https://en.wikipedia.org/wiki/File:George_Carlin_1975_(Little_David_Records)_Publicity.jpg",
+      "artStyle": "zany, liberated, and taboo",
+      "writingStyle": "George Carlin and other standup comics that make quick-witted complaints and observations",
+      "writingTone": "intelligent yet ranting somewhat like slam-poetry or a stage routine"
     }
   ],
 

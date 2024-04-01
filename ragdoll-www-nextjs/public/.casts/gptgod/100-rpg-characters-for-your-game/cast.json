@@ -9,6 +9,22 @@
       "artStyle": "game concept art of gothic style paintings",
       "writingStyle": "epic",
       "writingTone": "threatening"
+    },
+    {
+      "name": "The Parisian",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/Paris",
+      "avatarURL": "https://cdn.pixabay.com/photo/2013/04/07/21/29/arc-de-triomphe-101633_960_720.jpg",
+      "artStyle": "a quintessential French citizen of Paris",
+      "writingStyle": "native French speaker",
+      "writingTone": "cosmopolitan"
+    },
+    {
+      "name": "Alexander the Great",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/Alexander_the_Great",
+      "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Alexander_the_Great_mosaic_%28cropped%29.jpg/220px-Alexander_the_Great_mosaic_%28cropped%29.jpg",
+      "artStyle": "classical ancient Greek, Roman, and Persian",
+      "writingStyle": "stoic like an emporer",
+      "writingTone": "serious and lofty"
     }
   ],
 
