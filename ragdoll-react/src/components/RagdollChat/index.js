@@ -169,7 +169,7 @@ const RagdollChat = ({
       </div>
     </div>
     <div id="input" className="panel">
-      <div className="checkbox">
+      {onClickShowImages && <div className="checkbox">
         <input
           type="checkbox"
           checked={renderImages}
@@ -177,7 +177,7 @@ const RagdollChat = ({
           onChange={onClickShowImages}
         />
         <span>Render images</span>
-      </div>
+      </div>}
       <input
         autoFocus
         disabled={disabled}

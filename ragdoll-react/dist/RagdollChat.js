@@ -135,7 +135,7 @@ const RagdollChat = ({
   }, ragdoll.name, " says..."), text)))), /*#__PURE__*/React.createElement("div", {
     id: "input",
     className: "panel"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, onClickShowImages && /*#__PURE__*/React.createElement("div", {
     className: "checkbox"
   }, /*#__PURE__*/React.createElement("input", {
     type: "checkbox",
