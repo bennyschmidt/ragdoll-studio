@@ -251,6 +251,21 @@
   padding: 0 .5rem;
 }
 
+#input .checkbox input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  color: white;
+  appearance: checkbox;
+  margin: .25rem;
+}
+
+#input .checkbox {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  font-size: .9em;
+}
+
 #send {
   background: linear-gradient(#262739, #010105);
   box-shadow:  0 2px 0 #010105, 0 0 2rem #010105;

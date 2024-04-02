@@ -14,8 +14,10 @@ const RagdollChat = ({
   question,
   imageURL,
   text,
+  renderImages,
   onQuestion,
-  onAnswer
+  onAnswer,
+  onClickShowImages
 }) => {
   const { RAGDOLL_URI } = window;
 
@@ -122,7 +124,7 @@ const RagdollChat = ({
       </header>
       <div id="history">
         {history.map(output => output?.text && (
-          <div key={Date.now()} className={`past ${output.isMe ? 'me' : ''}`}>
+          <div key={crypto.randomUUID()} className={`past ${output.isMe ? 'me' : ''}`}>
             <div className="img">
               {output.avatarURL && <img
                 src={output.avatarURL}
@@ -166,6 +168,15 @@ const RagdollChat = ({
       </div>
     </div>
     <div id="input" className="panel">
+      <div className="checkbox">
+        <input
+          type="checkbox"
+          checked={renderImages}
+          value={renderImages}
+          onChange={onClickShowImages}
+        />
+        <span>Render images</span>
+      </div>
       <input
         autoFocus
         disabled={disabled}

@@ -1,36 +1,47 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react';
-const useRagdoll = ragdollConfig => {
+const useRagdoll = (ragdollConfig, renderImages) => {
   const {
-    RAGDOLL_URI
+    RAGDOLL_URI,
+    STORAGE_KEY
   } = window;
-  const [ragdoll, setPersona] = useState();
+  const savedRagdolls = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  const [ragdoll, setRagdoll] = useState();
   const [pending, setPending] = useState(false);
+  const [isRenderingImages, setIsRenderingImages] = useState(renderImages);
   useEffect(() => {
-    const fetchPersona = async () => {
+    const fetchRagdoll = async () => {
       setPending(true);
-      const isUpdate = ragdollConfig?.knowledgeURI && ragdollConfig.knowledgeURI !== ragdoll?.knowledgeURI;
+      const isUpdate = ragdollConfig?.knowledgeURI && (ragdollConfig.knowledgeURI !== ragdoll?.knowledgeURI || renderImages !== isRenderingImages);
       if (isUpdate) {
+        setIsRenderingImages(renderImages);
+        const config = {
+          ...ragdollConfig
+        };
+        config.artStyle = renderImages ? savedRagdolls[ragdollConfig.knowledgeURI].artStyle : null;
         const response = await fetch(`${RAGDOLL_URI}/v1/configure`, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(ragdollConfig)
+          body: JSON.stringify(config)
         });
         if (response?.ok) {
           const {
             success
           } = await response.json();
           if (success) {
-            setPersona(ragdollConfig);
+            setRagdoll(config);
           }
         }
         setPending(false);
       }
     };
-    fetchPersona();
-  }, [ragdollConfig]);
+    fetchRagdoll();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ragdollConfig, ragdoll, renderImages]);
   return [ragdoll, pending];
 };
 export default useRagdoll;

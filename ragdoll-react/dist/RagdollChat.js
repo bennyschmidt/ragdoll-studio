@@ -10,8 +10,10 @@ const RagdollChat = ({
   question,
   imageURL,
   text,
+  renderImages,
   onQuestion,
-  onAnswer
+  onAnswer,
+  onClickShowImages
 }) => {
   const {
     RAGDOLL_URI
@@ -97,7 +99,7 @@ const RagdollChat = ({
   }))), /*#__PURE__*/React.createElement("div", {
     id: "history"
   }, history.map(output => output?.text && /*#__PURE__*/React.createElement("div", {
-    key: Date.now(),
+    key: crypto.randomUUID(),
     className: `past ${output.isMe ? 'me' : ''}`
   }, /*#__PURE__*/React.createElement("div", {
     className: "img"
@@ -132,7 +134,14 @@ const RagdollChat = ({
   }, ragdoll.name, " says..."), text)))), /*#__PURE__*/React.createElement("div", {
     id: "input",
     className: "panel"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "checkbox"
   }, /*#__PURE__*/React.createElement("input", {
+    type: "checkbox",
+    checked: renderImages,
+    value: renderImages,
+    onChange: onClickShowImages
+  }), /*#__PURE__*/React.createElement("span", null, "Render images")), /*#__PURE__*/React.createElement("input", {
     autoFocus: true,
     disabled: disabled,
     value: question,

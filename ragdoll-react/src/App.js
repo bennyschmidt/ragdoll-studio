@@ -71,11 +71,12 @@ const App = () => {
   const [ragdollWritingTone, setRagdollWritingTone] = useState('');
   const [ragdollAvatarURL, setRagdollAvatarURL] = useState('');
   const [ragdollAdditionalKnowledgeURIs, setRagdollAdditionalKnowledgeURIs] = useState([]);
-  const [ragdoll, setRagdoll] = useState(DEFAULT_RAGDOLL);
   const [ragdollList, setRagdollList] = useState(SAVED_RAGDOLLS);
+  const [ragdoll, setRagdoll] = useState(!SAVED_RAGDOLLS ? DEFAULT_RAGDOLL : null);
 
-  const [activeRagdoll] = useRagdoll(ragdoll);
   const [modelInfo] = useModelInfo(ragdoll);
+  const [renderImages, setRenderImages] = useState(!!ragdoll?.artStyle);
+  const [activeRagdoll] = useRagdoll(ragdoll, renderImages);
 
   useEffect(() => {
     const ragdolls = getRagdollsArray();
@@ -91,8 +92,11 @@ const App = () => {
       }
     };
 
-    setRagdoll(currentRagdoll);
-    setRagdollList(savedRagdolls);
+    setTimeout(() => {
+      setRagdoll(currentRagdoll);
+      setRagdollList(savedRagdolls);
+      setRenderImages(!!currentRagdoll.artStyle);
+    }, 200);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -152,6 +156,10 @@ const App = () => {
     }
   };
 
+  const onClickShowImages = () => (
+    setRenderImages(!renderImages)
+  );
+
   const onChangeRagdollName = ({ target: { value }}) => (
     setRagdollName(value)
   );
@@ -209,6 +217,7 @@ const App = () => {
       updatedRagdollList[previousRagdoll.knowledgeURI] = previousRagdoll;
     }
 
+    setRenderImages(!!currentRagdoll.artStyle);
     setRagdollList(updatedRagdollList);
     setText('');
     setImageURL('')
@@ -252,8 +261,10 @@ const App = () => {
     question,
     imageURL,
     text,
+    renderImages,
     onQuestion,
-    onAnswer
+    onAnswer,
+    onClickShowImages
   };
 
   const ragdollListProps = {
@@ -278,7 +289,7 @@ const App = () => {
         <h3>Publishing a Cast</h3>
         <ol className="instructions">
           <li>
-            Clone the <a href="https://github.com/bennyschmidt/ragdoll-studio/tree/master/ragdoll-www-nextjs" target="_blank">Community Site repo</a> from GitHub.
+            Clone the <a rel="noreferrer" href="https://github.com/bennyschmidt/ragdoll-studio/tree/master/ragdoll-www-nextjs" target="_blank">Community Site repo</a> from GitHub.
           </li>
           <li>
             If publishing for the first time, create a directory for the name you want to publish under, like this:
@@ -295,7 +306,7 @@ const App = () => {
             <br />
             <code>/ragdoll-www-nextjs/public/.casts/YOUR_NAME/YOUR_CAST/cast.json</code>
             <br />
-            You can now open a <a href="https://github.com/bennyschmidt/ragdoll-studio/pulls" target="_blank">Pull Request</a> to commit your changes.</li>
+            You can now open a <a rel="noreferrer" href="https://github.com/bennyschmidt/ragdoll-studio/pulls" target="_blank">Pull Request</a> to commit your changes.</li>
           <li>The approver of the pull request <em>signs</em> your <code>cast.json</code> by appending a <code>createdAt</code> timestamp to the file.</li>
           <li>Once approved and signed, the Pull Request can be merged into <code>master</code> and your cast will appear on the front page of the Community Site momentarily.</li>
         </ol>
