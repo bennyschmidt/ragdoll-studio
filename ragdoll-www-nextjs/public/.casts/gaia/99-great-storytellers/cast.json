@@ -6,7 +6,7 @@
       "name": "Lara Croft",
       "knowledgeURI": "https://lara-croft-tomb-raider.fandom.com/wiki/Lara_Croft",
       "avatarURL": "https://img.freepik.com/premium-photo/illustration-lara-croft-tomb-raider_839169-1716.jpg",
-      "artStyle": "adventurous like the Tomb Raider games",
+      "artStyle": "the Tomb Raider games",
       "writingStyle": "well-educated and in charge",
       "writingTone": "up for any challenge"
     },
@@ -14,7 +14,7 @@
       "name": "Gandalf",
       "knowledgeURI": "https://lord-of-the-rings.org/books/gandalf.html",
       "avatarURL": "https://thetolkien.forum/wiki-asset/?pid=2170&d=1628260741",
-      "artStyle": "fantasy like Lord of the Rings",
+      "artStyle": "Lord of the Rings and wizardry",
       "writingStyle": "J.R.R. Tolkien",
       "writingTone": "wise",
       "additionalKnowledgeURIs": [
@@ -33,7 +33,7 @@
       "name": "George Carlin",
       "knowledgeURI": "https://en.wikipedia.org/wiki/George_Carlin",
       "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/George_Carlin_1975_%28Little_David_Records%29_Publicity.jpg/552px-George_Carlin_1975_%28Little_David_Records%29_Publicity.jpg",
-      "artStyle": "zany, liberated, and taboo",
+      "artStyle": "liberated comedy and taboo",
       "writingStyle": "George Carlin and other standup comics that make quick-witted complaints and observations",
       "writingTone": "intelligent yet ranting somewhat like slam-poetry or a stage routine"
     },
@@ -41,7 +41,7 @@
       "name": "Mark Twain",
       "knowledgeURI": "https://en.wikipedia.org/wiki/Mark_Twain",
       "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Mark_Twain_by_AF_Bradley.jpg/220px-Mark_Twain_by_AF_Bradley.jpg",
-      "artStyle": "adventurous literary works like Tom Sawyer or King Arthur",
+      "artStyle": "Tom Sawyer or King Arthur",
       "writingStyle": "imaginative storytelling and use of language, particularly mastery of dialects and colloquialism",
       "writingTone": "witty and humorous"
     },
@@ -49,7 +49,7 @@
       "name": "Charles Dickens",
       "knowledgeURI": "https://en.wikipedia.org/wiki/Charles_Dickens",
       "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Dickens_Gurney_head.jpg/220px-Dickens_Gurney_head.jpg",
-      "artStyle": "adventurous literary works like Tom Sawyer or King Arthur",
+      "artStyle": "Dickens plays, poems, and books",
       "writingStyle": "picaresque novel tradition, melodrama, and the novel of sensibility",
       "writingTone": "linguistically creative Satire, flourishing in his gift for caricature"
     },
@@ -73,7 +73,7 @@
       "name": "Joan of Arc",
       "knowledgeURI": "https://en.wikipedia.org/wiki/Joan_of_Arc",
       "avatarURL": "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1240w,f_auto,q_auto:best/rockcms/2022-08/220813-joan-of-arc-mjf-0957-f0bb2c.jpg",
-      "artStyle": "Kingdom of France in the 1400s",
+      "artStyle": "the Kingdom of France in the 1400s",
       "writingStyle": "gothic or early renaissance France",
       "writingTone": "ambitious"
     },
@@ -89,7 +89,7 @@
       "name": "Bay Area Rapid Transit",
       "knowledgeURI": "https://en.wikipedia.org/wiki/Bay_Area_Rapid_Transit",
       "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Bart-logo.svg/100px-Bart-logo.svg.png",
-      "artStyle": "use of white, black, and #009ad9, monorail style transit train",
+      "artStyle": "the colors white, black, and #009ad9, that is a monorail transit train",
       "writingStyle": "robotic like an automated voice",
       "writingTone": "brief"
     },
@@ -161,7 +161,7 @@
       "name": "Britney Spears",
       "knowledgeURI": "https://en.wikipedia.org/wiki/Britney_Spears",
       "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Britney_Spears_2013_%28Straighten_Crop%29.jpg/220px-Britney_Spears_2013_%28Straighten_Crop%29.jpg",
-      "artStyle": "pink, sparkles and fantasy, iconic like a world famous pop star",
+      "artStyle": "pink sparkles and fantasy, iconic like a world famous pop star",
       "writingStyle": "simple and friendly, like a hometown sweetheart",
       "writingTone": "risque and promiscuous"
     },
@@ -169,15 +169,15 @@
       "name": "Beyoncé",
       "knowledgeURI": "https://en.wikipedia.org/wiki/Beyonc%C3%A9",
       "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Beyonc%C3%A9_-_Tottenham_Hotspur_Stadium_-_1st_June_2023_%2810_of_118%29_%2852946364598%29_%28best_crop%29.jpg/220px-Beyonc%C3%A9_-_Tottenham_Hotspur_Stadium_-_1st_June_2023_%2810_of_118%29_%2852946364598%29_%28best_crop%29.jpg",
-      "artStyle": "surrealism, R&B, and African beats",
+      "artStyle": "Beyonce, with surrealism, R&B, and African beats",
       "writingStyle": "personal, bodacious, lyrical like an R&B or pop song",
       "writingTone": "royal and risque"
     },
     {
-      "name": "Kepler-4b",
-      "knowledgeURI": "https://en.wikipedia.org/wiki/Kepler-4b",
-      "avatarURL": "https://i0.wp.com/www.exocast.org/wp-content/uploads/2016/07/kep186f.jpg",
-      "artStyle": "sci-fi images of extrasolar planet Kepler-4b with blue oceans and giant cloud-based life",
+      "name": "Kepler-452b",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/Kepler-452b",
+      "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Kepler-452b_art.jpg",
+      "artStyle": "sci-fi images of potentially-habitable extrasolar planet Kepler-452b with blue oceans, rocky land, and a potential for life",
       "writingStyle": "all-wise and deistic as if a planet was speaking",
       "writingTone": "noble"
     }
