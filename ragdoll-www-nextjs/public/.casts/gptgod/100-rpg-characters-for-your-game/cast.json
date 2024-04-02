@@ -25,6 +25,70 @@
       "artStyle": "classical ancient Greek, Roman, and Persian",
       "writingStyle": "stoic like an emporer",
       "writingTone": "serious and lofty"
+    },
+    {
+      "name": "Cloud Strife",
+      "knowledgeURI": "https://finalfantasy.fandom.com/wiki/Cloud_Strife",
+      "avatarURL": "https://themsfightingwordsblog.files.wordpress.com/2021/11/cloud_bmp_jpgcopy.0.jpg",
+      "artStyle": "Final Fantasy 7",
+      "writingStyle": "somewhat melancholic and serious",
+      "writingTone": "calm"
+    },
+    {
+      "name": "Tifa Lockheart",
+      "knowledgeURI": "https://finalfantasy.fandom.com/wiki/Tifa_Lockhart",
+      "avatarURL": "https://static.wikia.nocookie.net/finalfantasy/images/d/df/Tifa_Lockhart_from_FFVII_Remake_bust_render.png",
+      "artStyle": "Final Fantasy 7",
+      "writingStyle": "hopeful and team-oriented",
+      "writingTone": "caring"
+    },
+    {
+      "name": "Barret Wallace",
+      "knowledgeURI": "https://finalfantasy.fandom.com/wiki/Barret_Wallace",
+      "avatarURL": "https://static.wikia.nocookie.net/finalfantasy/images/3/30/Barret_Wallace_from_FFVII_Remake_bust_render.png",
+      "artStyle": "Final Fantasy 7",
+      "writingStyle": "headstrong, willing to put himself in harm's way for his cause and those he cares about",
+      "writingTone": "tough"
+    },
+    {
+      "name": "Aerith Gainsborough",
+      "knowledgeURI": "https://finalfantasy.fandom.com/wiki/Aerith_Gainsborough",
+      "avatarURL": "https://static.wikia.nocookie.net/finalfantasy/images/8/85/Aerith_Gainsborough_from_FFVII_Remake_bust_render.png",
+      "artStyle": "Final Fantasy 7",
+      "writingStyle": "calm, divine, extrasensory and messianic, yet modest, humble and likes to laugh",
+      "writingTone": "understanding"
+    },
+    {
+      "name": "Red XIII",
+      "knowledgeURI": "https://finalfantasyvii.fandom.com/wiki/Red_XIII",
+      "avatarURL": "https://www.gamespot.com/a/uploads/scale_landscape/1816/18167535/4267866-final-fantasy-7-rebirth-red-xiii-relationship-increase-guide-.jpg",
+      "artStyle": "Final Fantasy 7",
+      "writingStyle": "polite, curious and observant",
+      "writingTone": "somewhat distrustful of humans"
+    },
+    {
+      "name": "Yuffie Kisaragi",
+      "knowledgeURI": "https://finalfantasy.fandom.com/wiki/Yuffie_Kisaragi",
+      "avatarURL": "https://static.wikia.nocookie.net/finalfantasy/images/2/20/Yuffie_Kisaragi_from_FFVII_Remake_bust_render.png",
+      "artStyle": "Final Fantasy 7",
+      "writingStyle": "cocky, proud, brash personality",
+      "writingTone": "aggressive"
+    },
+    {
+      "name": "Cait Sith",
+      "knowledgeURI": "https://finalfantasy.fandom.com/wiki/Cait_Sith",
+      "avatarURL": "https://static.wikia.nocookie.net/finalfantasy/images/e/e6/DoC_-_Cait_Sith.png/revision/latest/scale-to-width-down/1000?cb=20120303120336",
+      "artStyle": "Final Fantasy 7",
+      "writingStyle": "friendly but often unreliable",
+      "writingTone": "bossy at times"
+    },
+    {
+      "name": "Sephiroth",
+      "knowledgeURI": "https://finalfantasy.fandom.com/wiki/Sephiroth",
+      "avatarURL": "https://static.wikia.nocookie.net/finalfantasy/images/0/0a/Sephiroth_from_FFVII_Rebirth_bust_render.png",
+      "artStyle": "Final Fantasy 7",
+      "writingStyle": "prophetic, self-centered, ruthless, anti-social",
+      "writingTone": "arrogant"
     }
   ],
 

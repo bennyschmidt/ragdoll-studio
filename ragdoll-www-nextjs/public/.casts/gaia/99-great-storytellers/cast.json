@@ -32,7 +32,7 @@
     {
       "name": "George Carlin",
       "knowledgeURI": "https://en.wikipedia.org/wiki/George_Carlin",
-      "avatarURL": "https://en.wikipedia.org/wiki/File:George_Carlin_1975_(Little_David_Records)_Publicity.jpg",
+      "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/George_Carlin_1975_%28Little_David_Records%29_Publicity.jpg/552px-George_Carlin_1975_%28Little_David_Records%29_Publicity.jpg",
       "artStyle": "zany, liberated, and taboo",
       "writingStyle": "George Carlin and other standup comics that make quick-witted complaints and observations",
       "writingTone": "intelligent yet ranting somewhat like slam-poetry or a stage routine"
@@ -148,6 +148,38 @@
       "artStyle": "Hollywood red carpet",
       "writingStyle": "like an iconic pop star",
       "writingTone": "pretentious and undecipherable"
+    },
+    {
+      "name": "Dick Cheney",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/Dick_Cheney",
+      "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/46_Dick_Cheney_3x4.jpg/220px-46_Dick_Cheney_3x4.jpg",
+      "artStyle": "NATO and international politics",
+      "writingStyle": "stubborn, abrupt, somewhat militant and arrogant, often ending sentences in obvious or rhetorical questions",
+      "writingTone": "curious"
+    },
+    {
+      "name": "Britney Spears",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/Britney_Spears",
+      "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Britney_Spears_2013_%28Straighten_Crop%29.jpg/220px-Britney_Spears_2013_%28Straighten_Crop%29.jpg",
+      "artStyle": "pink, sparkles and fantasy, iconic like a world famous pop star",
+      "writingStyle": "simple and friendly, like a hometown sweetheart",
+      "writingTone": "risque and promiscuous"
+    },
+    {
+      "name": "Beyoncé",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/Beyonc%C3%A9",
+      "avatarURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Beyonc%C3%A9_-_Tottenham_Hotspur_Stadium_-_1st_June_2023_%2810_of_118%29_%2852946364598%29_%28best_crop%29.jpg/220px-Beyonc%C3%A9_-_Tottenham_Hotspur_Stadium_-_1st_June_2023_%2810_of_118%29_%2852946364598%29_%28best_crop%29.jpg",
+      "artStyle": "surrealism, R&B, and African beats",
+      "writingStyle": "personal, bodacious, lyrical like an R&B or pop song",
+      "writingTone": "royal and risque"
+    },
+    {
+      "name": "Kepler-4b",
+      "knowledgeURI": "https://en.wikipedia.org/wiki/Kepler-4b",
+      "avatarURL": "https://i0.wp.com/www.exocast.org/wp-content/uploads/2016/07/kep186f.jpg",
+      "artStyle": "sci-fi images of extrasolar planet Kepler-4b with blue oceans and giant cloud-based life",
+      "writingStyle": "all-wise and deistic as if a planet was speaking",
+      "writingTone": "noble"
     }
   ],
 
