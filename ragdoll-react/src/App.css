@@ -65,12 +65,22 @@
   min-height: 6px;
   max-width: 6px;
   max-height: 6px;
+  transition: all 1s ease;
 }
 
 #app > header h4 .indicator.success {
-  border-radius: 0;
   background: dodgerblue;
   box-shadow: 0 0 1rem dodgerblue;
+}
+
+#app > header h4 .indicator.success + .indicator-label + em,
+#app > header h4 .indicator.success + .indicator-label {
+  opacity: .5;
+}
+
+#app > header h4 .indicator.online {
+  background: #07f007;
+  box-shadow: 0 0 1rem #07f007;
 }
 
 #app > header h4 .indicator-label {

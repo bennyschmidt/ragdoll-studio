@@ -56,7 +56,7 @@ const useRagdoll = (ragdollConfig, renderImages) => {
 
     fetchRagdoll();
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ragdollConfig, ragdoll, renderImages]);
 
   return [ragdoll, pending];

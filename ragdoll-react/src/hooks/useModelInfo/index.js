@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react';
 
 const useModelInfo = () => {
@@ -37,6 +38,8 @@ const useModelInfo = () => {
     };
 
     setTimeout(fetchModelInfo, 400);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return [modelInfo, pending];

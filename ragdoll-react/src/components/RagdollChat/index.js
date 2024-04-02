@@ -64,7 +64,8 @@ const RagdollChat = ({
           {
             avatarURL: ragdoll.avatarURL,
             name: ragdoll.name,
-            text
+            text,
+            imageURL
           },
           {
             avatarURL: null,
@@ -133,7 +134,7 @@ const RagdollChat = ({
                 height="100%"
               />}
             </div>
-            {output?.imageURL && <div className="img full">
+            {renderImages && output?.imageURL && <div className="img full">
               {output.imageURL && <img
                 src={output.imageURL}
                 alt={DEFAULT_IMG_ALT}
@@ -153,7 +154,7 @@ const RagdollChat = ({
               height="100%"
             />}
           </div>}
-          {imageURL && <div className="img full">
+          {renderImages && imageURL && <div className="img full">
             {imageURL && <img
               src={imageURL}
               alt={DEFAULT_IMG_ALT}

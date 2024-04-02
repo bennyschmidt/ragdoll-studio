@@ -166,6 +166,7 @@ const RagdollForm = ({
     onChange: onChangeRagdollWritingTone,
     value: ragdollWritingTone
   }), /*#__PURE__*/React.createElement("p", null, "Or, load a ", /*#__PURE__*/React.createElement("a", {
+    rel: "noreferrer",
     href: "https://ragdoll-studio.vercel.app/dolls",
     target: "_blank"
   }, "cast"), ":"), !castFile && /*#__PURE__*/React.createElement("input", {

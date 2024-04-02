@@ -316,11 +316,11 @@ const App = () => {
     <header>
       <h4>
         <span>
-          <span className={`indicator ${modelInfo?.textModel ? 'success' : ''}`} />
+          <span className={`indicator ${modelInfo?.textModel ? 'online' : ''}`} />
           <span className="indicator-label">Text-to-Text:</span>&nbsp;<em>{modelInfo?.textModel || 'Loading...'}</em>
         </span>
         <span>
-          <span className={`indicator ${modelInfo?.textModel ? 'success' : ''}`} />
+          <span className={`indicator ${modelInfo?.textModel ? renderImages ? 'online' : 'success' : ''}`} />
           <span className="indicator-label">Text-to-Image:</span>&nbsp;<em>{modelInfo?.stableDiffusionImageModel || 'Loading...'}</em>
         </span>
       </h4>

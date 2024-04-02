@@ -53,7 +53,8 @@ const RagdollChat = ({
         setHistory([...history, {
           avatarURL: ragdoll.avatarURL,
           name: ragdoll.name,
-          text
+          text,
+          imageURL
         }, {
           avatarURL: null,
           name: 'Me',
@@ -108,7 +109,7 @@ const RagdollChat = ({
     alt: output.name,
     width: "100%",
     height: "100%"
-  })), output?.imageURL && /*#__PURE__*/React.createElement("div", {
+  })), renderImages && output?.imageURL && /*#__PURE__*/React.createElement("div", {
     className: "img full"
   }, output.imageURL && /*#__PURE__*/React.createElement("img", {
     src: output.imageURL,
@@ -122,7 +123,7 @@ const RagdollChat = ({
     alt: ragdoll.name,
     width: "100%",
     height: "100%"
-  })), imageURL && /*#__PURE__*/React.createElement("div", {
+  })), renderImages && imageURL && /*#__PURE__*/React.createElement("div", {
     className: "img full"
   }, imageURL && /*#__PURE__*/React.createElement("img", {
     src: imageURL,

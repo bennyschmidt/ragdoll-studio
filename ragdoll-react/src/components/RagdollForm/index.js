@@ -198,7 +198,7 @@ const RagdollForm = ({
         onChange={onChangeRagdollWritingTone}
         value={ragdollWritingTone}
       />
-      <p>Or, load a <a href="https://ragdoll-studio.vercel.app/dolls" target="_blank">cast</a>:</p>
+      <p>Or, load a <a rel="noreferrer" href="https://ragdoll-studio.vercel.app/dolls" target="_blank">cast</a>:</p>
       {!castFile && <input
         type="file"
         accept="application/json"
