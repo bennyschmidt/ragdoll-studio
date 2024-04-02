@@ -73,11 +73,7 @@ const transpileComponent = async component => {
 
   await fs.writeFile(`${DIRECTORY}/${component}.js`, fileWithIcons);
 
-  if (fileWithIcons.match('index.css')) {
-    // Move a copy of the CSS file to it
-
-    await fs.copyFile(`./src/components/${component}/index.css`, `${DIRECTORY}/${component}.css`);
-  }
+  await fs.copyFile(`./src/components/${component}/index.css`, `${DIRECTORY}/${component}.css`);
 };
 
 /**
