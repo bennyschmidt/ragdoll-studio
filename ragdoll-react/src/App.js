@@ -50,7 +50,19 @@ const DEFAULT_RAGDOLL = {
   additionalKnowledgeURIs: DEFAULT_ADDITIONAL_KNOWLEDGE_URIS
 };
 
-const SAVED_RAGDOLLS = JSON.parse(
+const DEFAULT_RAGDOLLS = {
+  [DEFAULT_KNOWLEDGE_URI]: DEFAULT_RAGDOLL
+};
+
+let SAVED_RAGDOLLS = JSON.parse(
+  localStorage.getItem(STORAGE_KEY)
+);
+
+if (!SAVED_RAGDOLLS) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_RAGDOLLS));
+}
+
+SAVED_RAGDOLLS = JSON.parse(
   localStorage.getItem(STORAGE_KEY)
 );
 
