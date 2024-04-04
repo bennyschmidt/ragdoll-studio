@@ -2,17 +2,18 @@
 
 React front-end for interacting with [Ragdoll](https://github.com/bennyschmidt/ragdoll).
 
-| Arthas (World of Warcraft)    | Kuja (Final Fantasy IX)       |
+| Gandalf (Lord of the Rings)   | Storytelling (Lord of the Rings)         |
 | ----------------------------- | ----------------------------- |
-| ![Screenshot from 2024-03-28 19-14-52](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/6e4919da-51f3-4d2f-9435-a4f1f9cc8042) | ![Screenshot from 2024-03-28 19-11-29](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/a3acad04-01fb-4915-8e99-f37994bba0e9) |
+| ![Screenshot from 2024-04-02 10-36-45](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/2b6e3047-2885-46e4-b3a4-cffa42c7d91d) | ![Screenshot from 2024-04-02 10-32-08](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/767666d6-dc4b-421d-b322-79173e2086d1) |
 
-| Gandalf (Lord of the Rings)   | Pokédex (Pokémon)             |
+| Native Language Translator    | Pokédex (Pokémon)             |
 | ----------------------------- | ----------------------------- |
-| ![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/7110763f-65fb-4924-9328-b41b16178963) | ![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/0fd89c49-c425-4f89-932c-ab69473ff623)
+| ![Screenshot from 2024-04-03 07-06-49](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/c68516f9-327e-4be0-86e8-220789609716) | ![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/0fd89c49-c425-4f89-932c-ab69473ff623)
 
-| VW Beetle                     | Mother Nature                 |
+| George Carlin (NSFW!)         | Rich Accompanying Imagery     |
 | ----------------------------- | ----------------------------- |
-| ![Screenshot from 2024-03-28 21-34-36](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/790ff032-7606-4d35-958a-9230f1aa4694) | ![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/c3a1569d-88eb-41a1-a98e-99ed31d55b29)
+| ![Screenshot from 2024-04-03 19-14-28](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/e546baea-c1ee-4f61-ae85-47929cd7d078) | ![Screenshot from 2024-03-31 22-38-20](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/a0a7f853-7e62-45ff-9b07-8f6b97d16159)
+
 
 ## Usage
 
