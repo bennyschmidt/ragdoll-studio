@@ -7,7 +7,7 @@ A parallelized Node.js API for interacting with [Ragdoll](https://github.com/ben
 ```
 LLM_FRAMEWORK=llamaindex
 TEXT_MODEL=mistral
-STABLE_DIFFUSION_URI=http://127.0.0.1:7860
+STABLE_DIFFUSION_URI=http://localhost:7860
 IMAGE_MODEL=txt2img
 DELAY=200
 RENDER=true
