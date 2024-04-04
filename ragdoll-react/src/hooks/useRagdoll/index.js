@@ -30,7 +30,7 @@ const useRagdoll = (ragdollConfig, renderImages) => {
         const config = { ...ragdollConfig };
 
         config.artStyle = renderImages
-          ? savedRagdolls[ragdollConfig.knowledgeURI].artStyle
+          ? savedRagdolls?.[ragdollConfig.knowledgeURI]?.artStyle
           : null;
 
         const response = await fetch(`${RAGDOLL_URI}/v1/configure`, {

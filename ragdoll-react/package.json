@@ -1,6 +1,6 @@
 {
   "name": "ragdoll-react",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "dependencies": {
     "@babel/core": "^7.24.3",
     "@babel/preset-react": "^7.24.1",
