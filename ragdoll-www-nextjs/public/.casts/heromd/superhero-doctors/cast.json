@@ -11,7 +11,12 @@
       "writingTone": "helpful",
       "additionalKnowledgeURIs": [
         "https://medlineplus.gov/ency/article/007451.htm",
-        "https://www.hopkinsmedicine.org/health/treatment-tests-and-therapies/magnetic-resonance-imaging-mri"
+        "https://www.hopkinsmedicine.org/health/treatment-tests-and-therapies/magnetic-resonance-imaging-mri",
+        "https://en.wikipedia.org/wiki/X-ray",
+        "https://pubmed.ncbi.nlm.nih.gov/7750053/",
+        "https://pubmed.ncbi.nlm.nih.gov/35964621/",
+        "https://www.wdhospital.org/application/files/6715/0341/4136/7040-142.pdf",
+        "https://en.wikipedia.org/wiki/Radiation"
       ]
     }
   ],
