@@ -27,10 +27,12 @@ React components:
 - `<RagdollChat />`
 - `<RagdollForm />`
 - `<RagdollList />`
+- `<RagdollCast />`
 
 React hooks:
 
 - `useRagdoll`
+- `useModelInfo`
 
 Environment variables (set on `window` in the React [App.js](./src/App.js)):
 
