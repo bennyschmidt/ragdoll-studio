@@ -2,18 +2,17 @@
 
 React front-end for interacting with [Ragdoll](https://github.com/bennyschmidt/ragdoll).
 
-| Gandalf (Lord of the Rings)   | Storytelling (Lord of the Rings)         |
+| High Quality Images (Lord of the Rings) | Storytelling (Lord of the Rings) |
 | ----------------------------- | ----------------------------- |
 | ![Screenshot from 2024-04-02 10-36-45](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/2b6e3047-2885-46e4-b3a4-cffa42c7d91d) | ![Screenshot from 2024-04-02 10-32-08](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/767666d6-dc4b-421d-b322-79173e2086d1) |
 
-| Native Language Translator    | Pokédex (Pokémon)             |
+| "Native" Language Translators (Images Optional) | A Pokédex! (Pokémon)          |
 | ----------------------------- | ----------------------------- |
 | ![Screenshot from 2024-04-03 07-06-49](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/c68516f9-327e-4be0-86e8-220789609716) | ![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/0fd89c49-c425-4f89-932c-ab69473ff623)
 
-| George Carlin (NSFW!)         | Rich Accompanying Imagery     |
+| Uncensored Content (NSFW!)    | Context Aware Imagery     |
 | ----------------------------- | ----------------------------- |
 | ![Screenshot from 2024-04-03 19-14-28](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/e546baea-c1ee-4f61-ae85-47929cd7d078) | ![Screenshot from 2024-03-31 22-38-20](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/a0a7f853-7e62-45ff-9b07-8f6b97d16159)
-
 
 ## Usage
 
