@@ -2,7 +2,7 @@
 
 Web apps and libraries for interacting with [Ragdoll](https://github.com/bennyschmidt/ragdoll).
 
-https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/dcfdbb68-3d3c-4bfe-8190-fa47db2e55ca
+https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/8d96ba60-8b82-45d2-9f54-d1f40a1ebc9c
 
 ## Installation
 
