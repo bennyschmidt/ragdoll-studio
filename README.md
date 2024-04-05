@@ -2,13 +2,13 @@
 
 Web apps and libraries for interacting with [Ragdoll](https://github.com/bennyschmidt/ragdoll).
 
+#### Demo
+
+https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/c090d262-be06-48e9-8c70-3ca8ba4c557c
+
 #### Focus (RAG based learning)
 
 https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/cd7464fe-9984-4ae3-8911-1da104f68e8c
-
-#### Demos
-
-https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/8d96ba60-8b82-45d2-9f54-d1f40a1ebc9c
 
 ## Installation
 
