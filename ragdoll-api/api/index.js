@@ -1,3 +1,5 @@
+const path = require('path');
+const fs = require('fs').promises;
 const process = require('node:process');
 const dotenv = require('dotenv');
 
@@ -46,6 +48,17 @@ const asyncCache = {
 };
 
 /**
+ * serveStatic
+ * Middleware to serve a static file
+ */
+
+const serveStatic = async (res, url) => {
+  const html = await fs.readFile(path.join(__dirname, '..', url));
+
+  return res.end(html);
+};
+
+/**
  * API Gateway
  * Handles incoming HTTP requests
  */
@@ -70,6 +83,7 @@ module.exports = (cluster, routes) => {
   routes.GET[`${API_PATH_PREFIX}/info`] = require('./get/info')(asyncCache);
   routes.POST[`${API_PATH_PREFIX}/prompt`] = require('./post/prompt')(asyncCache);
   routes.POST[`${API_PATH_PREFIX}/configure`] = require('./post/configure')(asyncCache);
+  routes.POST[`${API_PATH_PREFIX}/upload`] = require('./post/upload')(asyncCache);
 
   return (req, res) => {
     const headers = {
@@ -95,6 +109,10 @@ module.exports = (cluster, routes) => {
       res.writeHead(200, headers);
 
       console.log(`Request handled by Worker #${cluster.worker.id}: ${req.method} ${req.url}`);
+
+      if (req.url.match('public/documents')) {
+        serveStatic(res, req.url);
+      }
 
       try {
         routes[req.method.toUpperCase()]?.[req.url]?.(req, res);

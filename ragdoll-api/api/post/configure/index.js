@@ -43,7 +43,7 @@ module.exports = asyncCache => async (req, res) => {
         ...config,
 
         [knowledgeURI]: {
-          cache: true,
+          cache: false,
           name,
           knowledgeURI,
           avatarURL,

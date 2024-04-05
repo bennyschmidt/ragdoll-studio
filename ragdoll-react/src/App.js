@@ -4,7 +4,9 @@ import {
   RagdollForm,
   RagdollChat,
   RagdollList,
-  RagdollCast
+  RagdollCast,
+  Publish,
+  Upload
 } from './components';
 
 import {
@@ -22,14 +24,13 @@ window.STORAGE_KEY = 'RAGDOLLS';
 
 const { STORAGE_KEY } = window;
 
-const OVERLAY = 'overlay';
-const PUBLISH = 'publish';
+const OVERLAY_NAMES = ['overlay', 'publish', 'upload'];
 const CREATE = '+';
 const DEFAULT_AVATAR_URL = '/img/avatars/arthas.png';
 const DEFAULT_NAME = 'Arthas';
 const DEFAULT_KNOWLEDGE_URI = 'https://wowpedia.fandom.com/wiki/Arthas_Menethil';
-const DEFAULT_ART_STYLE = `Blizzard's World of Warcraft concept art in high resolution like a fine-tuned video game model including each detail and anatomically correct features (if any)`;
-const DEFAULT_WRITING_STYLE = 'inspiring but grim, like from the dark ages, excluding asterisk-based interjections like "*sigh*"';
+const DEFAULT_ART_STYLE = 'World of Warcraft concept art';
+const DEFAULT_WRITING_STYLE = 'inspiring but grim, like from the dark ages';
 const DEFAULT_WRITING_TONE = 'slightly annoyed';
 
 const DEFAULT_ADDITIONAL_KNOWLEDGE_URIS = [
@@ -67,12 +68,15 @@ SAVED_RAGDOLLS = JSON.parse(
 );
 
 const App = () => {
+  const { RAGDOLL_URI } = window;
+
   const [question, setQuestion] = useState('');
   const [text, setText] = useState('');
   const [imageURL, setImageURL] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const [overlayClassName, setOverlayClassName] = useState('');
   const [timeoutId, setTimeoutId] = useState();
 
@@ -89,6 +93,7 @@ const App = () => {
   const [modelInfo] = useModelInfo(ragdoll);
   const [renderImages, setRenderImages] = useState(!!ragdoll?.artStyle);
   const [activeRagdoll] = useRagdoll(ragdoll, renderImages);
+  const [fileUpload, setFileUpload] = useState();
 
   useEffect(() => {
     const ragdolls = getRagdollsArray();
@@ -114,7 +119,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    document.body.onkeydown = isCreating || isPublishing
+    document.body.onkeydown = isCreating || isPublishing || isUploading
       ? (overlayClassName && onKeyDownOverlay)
       : null;
 
@@ -136,6 +141,26 @@ const App = () => {
     });
   };
 
+  const openPublishOverlay = () => {
+    setIsPublishing(true);
+
+    setOverlayClassName('');
+
+    requestAnimationFrame(() => {
+      setOverlayClassName('show');
+    });
+  };
+
+  const openUploadOverlay = () => {
+    setIsUploading(true);
+
+    setOverlayClassName('');
+
+    requestAnimationFrame(() => {
+      setOverlayClassName('show');
+    });
+  };
+
   const closeOverlay = () => {
     setRagdollName('');
     setRagdollKnowledgeURI('');
@@ -148,6 +173,7 @@ const App = () => {
       setTimeout(() => {
         setIsCreating(false);
         setIsPublishing(false);
+        setIsUploading(false);
       }, 1000)
     );
   };
@@ -156,6 +182,34 @@ const App = () => {
     Object.values(ragdollList || {})
   );
 
+  const uploadFile = async file => {
+    const response = await fetch(`${RAGDOLL_URI}/v1/upload`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        key: ragdoll.knowledgeURI,
+        knowledge: file
+      })
+    });
+
+    if (response?.ok) {
+      const result = await response?.json();
+
+      if (result?.additionalKnowledgeURIs) {
+        setRagdoll({
+          ...ragdoll,
+
+          additionalKnowledgeURIs: result.additionalKnowledgeURIs
+        });
+
+        closeOverlay();
+      }
+    }
+  };
+
   const onKeyDownOverlay = ({ keyCode }) => {
     if (keyCode === 27) {
       closeOverlay();
@@ -163,7 +217,7 @@ const App = () => {
   };
 
   const onClickOverlay = ({ target: { id }}) => {
-    if (id === OVERLAY || id === PUBLISH) {
+    if (OVERLAY_NAMES.includes(id)) {
       closeOverlay();
     }
   };
@@ -237,16 +291,6 @@ const App = () => {
     setDisabled(false);
   };
 
-  const onOpenPublishOverlay = () => {
-    setIsPublishing(true);
-
-    setOverlayClassName('');
-
-    requestAnimationFrame(() => {
-      setOverlayClassName('show');
-    });
-  };
-
   const ragdollFormProps = {
     disabled,
     ragdoll: activeRagdoll || ragdoll,
@@ -276,7 +320,8 @@ const App = () => {
     renderImages,
     onQuestion,
     onAnswer,
-    onClickShowImages
+    onClickShowImages,
+    openUploadOverlay
   };
 
   const ragdollListProps = {
@@ -289,7 +334,7 @@ const App = () => {
   const ragdollCastProps = {
     disabled: disabled || isCreating,
     ragdollList,
-    onShow: onOpenPublishOverlay
+    onShow: openPublishOverlay
   };
 
   return <main id="app">
@@ -297,33 +342,10 @@ const App = () => {
       <RagdollForm { ...ragdollFormProps } />
     </aside>}
     {isPublishing && <aside id="publish" className={overlayClassName} onClick={onClickOverlay}>
-      <div>
-        <h3>Publishing a Cast</h3>
-        <ol className="instructions">
-          <li>
-            Clone the <a rel="noreferrer" href="https://github.com/bennyschmidt/ragdoll-studio/tree/master/ragdoll-www-nextjs" target="_blank">Community Site repo</a> from GitHub.
-          </li>
-          <li>
-            If publishing for the first time, create a directory for the name you want to publish under, like this:
-            <br />
-            <code>/ragdoll-www-nextjs/public/.casts/YOUR_NAME/</code>
-            <br />
-            This is where you'll put your published casts moving forward. Create a folder for the cast you want to publish, like this:
-            <br />
-            <code>/ragdoll-www-nextjs/public/.casts/YOUR_NAME/YOUR_CAST/</code>
-          </li>
-          <li>In Ragdoll Studio, <em>Export</em> your cast with the name and cast matching the newly created directories. A JSON file will open in a new tab.</li>
-          <li><em>Save Link As...</em> <code>cast.json</code> to the newly created directory in the Community Site repo.</li>
-          <li>Your <code>cast.json</code> file path should look like this:
-            <br />
-            <code>/ragdoll-www-nextjs/public/.casts/YOUR_NAME/YOUR_CAST/cast.json</code>
-            <br />
-            You can now open a <a rel="noreferrer" href="https://github.com/bennyschmidt/ragdoll-studio/pulls" target="_blank">Pull Request</a> to commit your changes.</li>
-          <li>The approver of the pull request <em>signs</em> your <code>cast.json</code> by appending a <code>createdAt</code> timestamp to the file.</li>
-          <li>Once approved and signed, the Pull Request can be merged into <code>master</code> and your cast will appear on the front page of the Community Site momentarily.</li>
-        </ol>
-        <button onClick={closeOverlay}>Close</button>
-      </div>
+      <Publish onClickClose={closeOverlay} />
+    </aside>}
+    {isUploading && <aside id="upload" className={overlayClassName} onClick={onClickOverlay}>
+      <Upload disabled={disabled} onFile={uploadFile} />
     </aside>}
     <header>
       <h4>
@@ -332,7 +354,7 @@ const App = () => {
           <span className="indicator-label">Text-to-Text:</span>&nbsp;<em>{modelInfo?.textModel || 'Loading...'}</em>
         </span>
         <span>
-          <span className={`indicator ${modelInfo?.textModel ? renderImages ? 'online' : 'success' : ''}`} />
+          <span className={`indicator ${modelInfo?.textModel ? renderImages ? 'online' : 'idle' : ''}`} />
           <span className="indicator-label">Text-to-Image:</span>&nbsp;<em>{modelInfo?.stableDiffusionImageModel || 'Loading...'}</em>
         </span>
       </h4>

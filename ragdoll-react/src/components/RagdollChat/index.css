@@ -153,28 +153,37 @@
   color: dodgerblue;
 }
 
-#conversation {
+#conversation,
+#focus {
   background: #00000050;
   border-radius: 1rem;
   padding: .5rem;
   margin-left: 1rem;
 }
 
-#conversation > div {
+#focus {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+#conversation > div,
+#focus > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: .5rem;
 }
 
-#conversation h6 {
+#conversation h6,
+#focus h6 {
   margin: 0 0 .5rem;
   font-size: .6em;
   text-transform: uppercase;
   color: #e6edf650;
 }
 
-.button-group #conversation button {
+.button-group #conversation button,
+.button-group #focus button {
   background: linear-gradient(to bottom, #262739, #010105);
   box-shadow: inset 0 .5rem .5rem #010105, 0 1px 0 #e6edf640;
   text-transform: uppercase;
@@ -186,14 +195,16 @@
   margin: 0;
 }
 
-.button-group #conversation button:hover {
+.button-group #conversation button:hover,
+.button-group #focus button:hover {
   background: #06dee6;
   border-color: transparent;
   box-shadow: inset 0 .5rem 1rem dodgerblue, 0 1px 0 #000000, 0 0 2rem dodgerblue;
   text-shadow: 0 0 .5rem dodgerblue;
 }
 
-.button-group #conversation button:hover img {
+.button-group #conversation button:hover img,
+.button-group #focus button:hover img {
   color: dodgerblue;
 }
 
@@ -211,7 +222,8 @@
     max-width: 75%;
   }
 
-  #conversation {
+  #conversation,
+  #focus {
     margin: 1rem 0 0;
     width: 100%;
   }

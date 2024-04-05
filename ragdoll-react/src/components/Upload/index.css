@@ -1,0 +1,5 @@
+#upload > input[type="file"] {
+  background: white;
+  width: 20rem;
+  padding: 2rem;
+}

@@ -65,22 +65,30 @@
   min-height: 6px;
   max-width: 6px;
   max-height: 6px;
-  transition: all 1s ease;
+  transition: all .5s ease;
 }
 
-#app > header h4 .indicator.success {
+#app > header h4 .indicator.online {
   background: dodgerblue;
   box-shadow: 0 0 1rem dodgerblue;
 }
 
 #app > header h4 .indicator.success + .indicator-label + em,
-#app > header h4 .indicator.success + .indicator-label {
+#app > header h4 .indicator.success + .indicator-label,
+#app > header h4 .indicator.idle + .indicator-label + em,
+#app > header h4 .indicator.idle + .indicator-label,
+#app > header h4 .indicator.idle {
   opacity: .5;
 }
 
-#app > header h4 .indicator.online {
+#app > header h4 .indicator.success {
   background: #07f007;
   box-shadow: 0 0 1rem #07f007;
+}
+
+#app > header h4 .indicator.idle {
+  background: white;
+  box-shadow: none;
 }
 
 #app > header h4 .indicator-label {
@@ -144,7 +152,8 @@
 }
 
 #overlay,
-#publish {
+#publish,
+#upload {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -160,43 +169,9 @@
   transition: opacity .5s ease;
 }
 
-#publish > div {
-  position: absolute;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  max-width: 75%;
-  max-height: 75%;
-  top: 12.5%;
-  line-height: 2em;
-  overflow: auto;
-  background: #010105;
-  border-radius: 1rem;
-  box-shadow: 0 0 2rem #010105;
-}
-
-#publish .instructions,
-#publish .instructions > li {
-  text-align: left;
-  list-style: decimal;
-  margin: 1rem 0;
-}
-
-#publish a {
-  color: dodgerblue;
-}
-
-#publish button {
-  background: #111;
-  margin: 2rem auto;
-  max-width: 50%;
-}
-
-#publish button:hover {
-  background: #222;
-}
-
 #overlay.show,
-#publish.show {
+#publish.show,
+#upload.show {
   opacity: 1;
 }
 

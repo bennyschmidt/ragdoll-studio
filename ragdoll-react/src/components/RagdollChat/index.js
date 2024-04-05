@@ -17,7 +17,8 @@ const RagdollChat = ({
   renderImages,
   onQuestion,
   onAnswer,
-  onClickShowImages
+  onClickShowImages,
+  openUploadOverlay
 }) => {
   const { RAGDOLL_URI } = window;
 
@@ -104,9 +105,12 @@ const RagdollChat = ({
   };
 
   const onClickSave = () => {
-    console.log(`data:text/html,<html><body>${history.join('')}</body></html>`)
     window.open(
-      `data:text/html,<html><body>${history.join('')}</body></html>`,
+      `data:text/html,<html><body>${
+        history
+          .map(({ text: historyText }) => historyText)
+          .join('\n')
+      }</body></html>`,
       '_blank'
     );
   };
@@ -187,6 +191,14 @@ const RagdollChat = ({
         onKeyDown={onKeyDownQuestion}
       />
       <div className="button-group">
+        <div id="focus">
+          <h6>Focus</h6>
+          <div>
+            <button disabled={disabled} onClick={openUploadOverlay}>
+              <Icon src="/img/upload.svg" />
+            </button>
+          </div>
+        </div>
         <button
           disabled={disabled}
           onClick={ask}
@@ -195,7 +207,7 @@ const RagdollChat = ({
           {SEND}
         </button>
         <div id="conversation">
-          <h6>Conversation</h6>
+          <h6>Output</h6>
           <div>
             <button disabled={disabled} onClick={onClickClear}>
               <Icon src="/img/trash.svg" />
