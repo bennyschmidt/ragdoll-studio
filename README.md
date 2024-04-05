@@ -2,7 +2,7 @@
 
 Web apps and libraries for interacting with [Ragdoll](https://github.com/bennyschmidt/ragdoll).
 
-#### Character Demos
+#### Demos
 
 https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/8d96ba60-8b82-45d2-9f54-d1f40a1ebc9c
 
