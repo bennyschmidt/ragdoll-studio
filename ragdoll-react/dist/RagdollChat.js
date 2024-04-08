@@ -4,25 +4,32 @@ import './RagdollChat.css';
 const SEND = 'Send';
 const DEFAULT_IMG_ALT = 'Corresponding visualization';
 const API_ERROR = 'API temporarily unavailable.';
+const STORY = 'STORY';
 const RagdollChat = ({
   disabled: parentDisabled,
   ragdoll,
   question,
+  imageInput,
   imageURL,
+  imageURL2,
   text,
   renderImages,
+  mode,
   onQuestion,
   onAnswer,
-  onClickShowImages
+  onClickShowImages,
+  openUploadOverlay
 }) => {
   const {
     RAGDOLL_URI
   } = window;
   const [disabled, setDisabled] = useState(parentDisabled);
   const [history, setHistory] = useState([]);
-  useEffect(() => {
-    setHistory([]);
-  }, [ragdoll]);
+
+  // useEffect(() => {
+  //   setHistory([]);
+  // }, [ragdoll]);
+
   const ask = async () => {
     setDisabled(true);
     const response = await fetch(`${RAGDOLL_URI}/v1/prompt`, {
@@ -33,7 +40,8 @@ const RagdollChat = ({
       },
       body: JSON.stringify({
         key: ragdoll.knowledgeURI,
-        input: question
+        input: question,
+        imageInput
       })
     });
     if (response?.ok) {
@@ -54,7 +62,8 @@ const RagdollChat = ({
           avatarURL: ragdoll.avatarURL,
           name: ragdoll.name,
           text,
-          imageURL
+          imageURL,
+          imageURL2
         }, {
           avatarURL: null,
           name: 'Me',
@@ -67,7 +76,7 @@ const RagdollChat = ({
     onQuestion('');
     setDisabled(false);
   };
-  const getQuestionPlaceholder = () => !ragdoll ? '...' : `What would you like to ask ${ragdoll.name}?`;
+  const getQuestionPlaceholder = () => !ragdoll ? '...' : mode === STORY ? `What would you like to ask ${ragdoll.name}?` : 'Add tags...';
   const onChangeQuestion = ({
     target: {
       value
@@ -85,9 +94,11 @@ const RagdollChat = ({
     onAnswer();
   };
   const onClickSave = () => {
-    console.log(`data:text/html,<html><body>${history.join('')}</body></html>`);
-    window.open(`data:text/html,<html><body>${history.join('')}</body></html>`, '_blank');
+    window.open(`data:text/html,<html><body>${history.map(({
+      text: historyText
+    }) => historyText).join('\n')}</body></html>`, '_blank');
   };
+  const isStoryMode = mode === STORY;
   return ragdoll && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     id: "output"
   }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("div", {
@@ -109,55 +120,113 @@ const RagdollChat = ({
     alt: output.name,
     width: "100%",
     height: "100%"
-  })), renderImages && output?.imageURL && /*#__PURE__*/React.createElement("div", {
+  })), (renderImages || !isStoryMode) && output?.imageURL && /*#__PURE__*/React.createElement("div", {
     className: "img full"
-  }, output.imageURL && /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/React.createElement("img", {
     src: output.imageURL,
+    alt: DEFAULT_IMG_ALT,
+    width: "100%",
+    height: "100%"
+  })), !isStoryMode && output?.imageURL2 && /*#__PURE__*/React.createElement("div", {
+    className: "img full"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: output.imageURL2,
     alt: DEFAULT_IMG_ALT,
     width: "100%",
     height: "100%"
   })), /*#__PURE__*/React.createElement("p", null, output.text))), /*#__PURE__*/React.createElement("div", null, text && /*#__PURE__*/React.createElement("div", {
     className: "img"
-  }, ragdoll.avatarURL && /*#__PURE__*/React.createElement("img", {
+  }, ragdoll?.avatarURL && /*#__PURE__*/React.createElement("img", {
     src: ragdoll.avatarURL,
     alt: ragdoll.name,
     width: "100%",
     height: "100%"
-  })), renderImages && imageURL && /*#__PURE__*/React.createElement("div", {
+  })), (renderImages || !isStoryMode) && imageURL && /*#__PURE__*/React.createElement("div", {
     className: "img full"
-  }, imageURL && /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/React.createElement("img", {
     src: imageURL,
     alt: DEFAULT_IMG_ALT,
     width: "100%",
     height: "100%"
-  })), text && /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("span", {
+  })), !isStoryMode && imageURL2 && /*#__PURE__*/React.createElement("div", {
+    className: "img full"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: imageURL2,
+    alt: DEFAULT_IMG_ALT,
+    width: "100%",
+    height: "100%"
+  })), isStoryMode && text && /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("span", {
     className: "author"
   }, ragdoll.name, " says..."), text)))), /*#__PURE__*/React.createElement("div", {
     id: "input",
     className: "panel"
-  }, onClickShowImages && /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", null, !isStoryMode && /*#__PURE__*/React.createElement("div", {
+    id: "inspire"
+  }, /*#__PURE__*/React.createElement("h6", null, "Inspire"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+    disabled: disabled,
+    onClick: openUploadOverlay,
+    style: imageInput ? {
+      background: `url(${imageInput}) center center / contain no-repeat`
+    } : {}
+  }, /*#__PURE__*/React.createElement(Icon, {
+    src: `/img/${isStoryMode ? 'upload' : 'picture'}.svg`
+  })))), /*#__PURE__*/React.createElement("div", {
+    className: "controls"
+  }, isStoryMode && onClickShowImages && /*#__PURE__*/React.createElement("div", {
     className: "checkbox"
   }, /*#__PURE__*/React.createElement("input", {
     type: "checkbox",
     checked: renderImages,
     value: renderImages,
     onChange: onClickShowImages
-  }), /*#__PURE__*/React.createElement("span", null, "Render images")), /*#__PURE__*/React.createElement("input", {
+  }), /*#__PURE__*/React.createElement("span", null, "Render images")), isStoryMode && /*#__PURE__*/React.createElement("div", {
+    className: "checkbox"
+  }, /*#__PURE__*/React.createElement("input", {
+    disabled: true,
+    type: "checkbox",
+    checked: false,
+    value: false,
+    onChange: () => {}
+  }), /*#__PURE__*/React.createElement("span", null, "Play voiceovers")), !isStoryMode && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "checkbox"
+  }, /*#__PURE__*/React.createElement("input", {
+    disabled: true,
+    type: "checkbox",
+    checked: false,
+    value: false,
+    onChange: () => {}
+  }), /*#__PURE__*/React.createElement("span", null, "Output a batch of 4")), /*#__PURE__*/React.createElement("div", {
+    className: "checkbox"
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "checkbox",
+    checked: true,
+    value: true,
+    onChange: () => {}
+  }), /*#__PURE__*/React.createElement("span", null, "Stay true to original"))), /*#__PURE__*/React.createElement("input", {
+    id: "text-input",
     autoFocus: true,
+    autoComplete: "off",
     disabled: disabled,
     value: question,
     placeholder: getQuestionPlaceholder(),
     onChange: onChangeQuestion,
     onKeyDown: onKeyDownQuestion
-  }), /*#__PURE__*/React.createElement("div", {
+  }))), /*#__PURE__*/React.createElement("div", {
     className: "button-group"
-  }, /*#__PURE__*/React.createElement("button", {
+  }, isStoryMode && /*#__PURE__*/React.createElement("div", {
+    id: "focus"
+  }, /*#__PURE__*/React.createElement("h6", null, "Focus"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+    disabled: disabled,
+    onClick: openUploadOverlay
+  }, /*#__PURE__*/React.createElement(Icon, {
+    src: "/img/upload.svg"
+  })))), /*#__PURE__*/React.createElement("button", {
     disabled: disabled,
     onClick: ask,
     id: "send"
   }, SEND), /*#__PURE__*/React.createElement("div", {
     id: "conversation"
-  }, /*#__PURE__*/React.createElement("h6", null, "Conversation"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React.createElement("h6", null, "Output"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
     disabled: disabled,
     onClick: onClickClear
   }, /*#__PURE__*/React.createElement(Icon, {

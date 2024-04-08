@@ -12,7 +12,7 @@ const useRagdoll = (ragdollConfig, renderImages) => {
   useEffect(() => {
     const fetchRagdoll = async () => {
       setPending(true);
-      const isUpdate = ragdollConfig?.knowledgeURI && (ragdollConfig.knowledgeURI !== ragdoll?.knowledgeURI || renderImages !== isRenderingImages);
+      const isUpdate = ragdollConfig?.knowledgeURI && (ragdollConfig.knowledgeURI !== ragdoll?.knowledgeURI || ragdollConfig.additionalKnowledgeURIs.join() !== ragdoll.additionalKnowledgeURIs.join() || renderImages !== isRenderingImages);
       if (isUpdate) {
         setIsRenderingImages(renderImages);
         const config = {

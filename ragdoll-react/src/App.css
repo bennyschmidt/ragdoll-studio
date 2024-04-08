@@ -112,8 +112,13 @@
   padding: 0;
 }
 
-#switch > button:first-of-type {
+#switch > button.active {
   opacity: 1;
+}
+
+#switch > button.disabled {
+  cursor: not-allowed;
+  opacity: .25;
 }
 
 #switch > button .indicator {
@@ -217,7 +222,7 @@
   flex: 1;
 }
 
-#input > input,
+#text-input,
 #send {
   display: block;
   min-height: 3rem;
@@ -231,7 +236,7 @@
   color: white;
 }
 
-#input > input {
+#text-input {
   background: #01010550;
   padding: 0 .5rem;
 }

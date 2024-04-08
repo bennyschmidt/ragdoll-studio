@@ -7,14 +7,18 @@ import './index.css';
 const SEND = 'Send';
 const DEFAULT_IMG_ALT = 'Corresponding visualization';
 const API_ERROR = 'API temporarily unavailable.';
+const STORY = 'STORY';
 
 const RagdollChat = ({
   disabled: parentDisabled,
   ragdoll,
   question,
+  imageInput,
   imageURL,
+  imageURL2,
   text,
   renderImages,
+  mode,
   onQuestion,
   onAnswer,
   onClickShowImages,
@@ -25,9 +29,9 @@ const RagdollChat = ({
   const [disabled, setDisabled] = useState(parentDisabled);
   const [history, setHistory] = useState([]);
 
-  useEffect(() => {
-    setHistory([]);
-  }, [ragdoll]);
+  // useEffect(() => {
+  //   setHistory([]);
+  // }, [ragdoll]);
 
   const ask = async () => {
     setDisabled(true);
@@ -40,7 +44,8 @@ const RagdollChat = ({
       },
       body: JSON.stringify({
         key: ragdoll.knowledgeURI,
-        input: question
+        input: question,
+        imageInput
       })
     });
 
@@ -66,7 +71,8 @@ const RagdollChat = ({
             avatarURL: ragdoll.avatarURL,
             name: ragdoll.name,
             text,
-            imageURL
+            imageURL,
+            imageURL2
           },
           {
             avatarURL: null,
@@ -85,7 +91,11 @@ const RagdollChat = ({
   };
 
   const getQuestionPlaceholder = () => (
-    !ragdoll ? '...' : `What would you like to ask ${ragdoll.name}?`
+    !ragdoll
+      ? '...'
+      : mode === STORY
+        ? `What would you like to ask ${ragdoll.name}?`
+        : 'Add tags...'
   );
 
   const onChangeQuestion = ({ target: { value }}) => {
@@ -115,6 +125,8 @@ const RagdollChat = ({
     );
   };
 
+  const isStoryMode = mode === STORY;
+
   return ragdoll && <>
     <div id="output">
       <header>
@@ -138,67 +150,138 @@ const RagdollChat = ({
                 height="100%"
               />}
             </div>
-            {renderImages && output?.imageURL && <div className="img full">
-              {output.imageURL && <img
+            {(renderImages || !isStoryMode) && output?.imageURL && <div className="img full">
+              <img
                 src={output.imageURL}
                 alt={DEFAULT_IMG_ALT}
                 width="100%"
                 height="100%"
-              />}
+              />
+            </div>}
+            {!isStoryMode && output?.imageURL2 && <div className="img full">
+              <img
+                src={output.imageURL2}
+                alt={DEFAULT_IMG_ALT}
+                width="100%"
+                height="100%"
+              />
             </div>}
             <p>{output.text}</p>
           </div>
         ))}
         <div>
           {text && <div className="img">
-            {ragdoll.avatarURL && <img
+            {ragdoll?.avatarURL && <img
               src={ragdoll.avatarURL}
               alt={ragdoll.name}
               width="100%"
               height="100%"
             />}
           </div>}
-          {renderImages && imageURL && <div className="img full">
-            {imageURL && <img
+          {(renderImages || !isStoryMode) && imageURL && <div className="img full">
+            <img
               src={imageURL}
               alt={DEFAULT_IMG_ALT}
               width="100%"
               height="100%"
-            />}
+            />
           </div>}
-          {text && <p>
+          {!isStoryMode && imageURL2 && <div className="img full">
+            <img
+              src={imageURL2}
+              alt={DEFAULT_IMG_ALT}
+              width="100%"
+              height="100%"
+            />
+          </div>}
+          {isStoryMode && text && <p>
             <span className="author">{ragdoll.name} says...</span>{text}
           </p>}
         </div>
       </div>
     </div>
     <div id="input" className="panel">
-      {onClickShowImages && <div className="checkbox">
-        <input
-          type="checkbox"
-          checked={renderImages}
-          value={renderImages}
-          onChange={onClickShowImages}
-        />
-        <span>Render images</span>
-      </div>}
-      <input
-        autoFocus
-        disabled={disabled}
-        value={question}
-        placeholder={getQuestionPlaceholder()}
-        onChange={onChangeQuestion}
-        onKeyDown={onKeyDownQuestion}
-      />
+      <div>
+        {!isStoryMode && <div id="inspire">
+          <h6>Inspire</h6>
+          <div>
+            <button
+              disabled={disabled}
+              onClick={openUploadOverlay}
+              style={(imageInput
+                ? { background: `url(${imageInput}) center center / contain no-repeat` }
+                : {}
+              )}
+            >
+              <Icon src={`/img/${isStoryMode ? 'upload' : 'picture'}.svg`} />
+            </button>
+          </div>
+        </div>}
+        <div className="controls">
+          {isStoryMode && onClickShowImages && <div className="checkbox">
+            <input
+              type="checkbox"
+              checked={renderImages}
+              value={renderImages}
+              onChange={onClickShowImages}
+            />
+            <span>Render images</span>
+          </div>}
+          {isStoryMode && <div className="checkbox">
+            <input
+              disabled
+              type="checkbox"
+              checked={false}
+              value={false}
+              onChange={() => {}}
+            />
+            <span>Play voiceovers</span>
+          </div>}
+          {!isStoryMode && <>
+            <div className="checkbox">
+              <input
+                disabled
+                type="checkbox"
+                checked={false}
+                value={false}
+                onChange={() => {}}
+              />
+              <span>Output a batch of 4</span>
+            </div>
+            <div className="checkbox">
+              <input
+                type="checkbox"
+                checked={true}
+                value={true}
+                onChange={() => {}}
+              />
+              <span>Stay true to original</span>
+            </div>
+          </>}
+          <input
+            id="text-input"
+            autoFocus
+            autoComplete="off"
+            disabled={disabled}
+            value={question}
+            placeholder={getQuestionPlaceholder()}
+            onChange={onChangeQuestion}
+            onKeyDown={onKeyDownQuestion}
+          />
+        </div>
+      </div>
       <div className="button-group">
-        <div id="focus">
+        {isStoryMode && <div id="focus">
           <h6>Focus</h6>
           <div>
-            <button disabled={disabled} onClick={openUploadOverlay}>
+            <button
+              disabled={disabled}
+              onClick={openUploadOverlay}
+            >
               <Icon src="/img/upload.svg" />
             </button>
           </div>
-        </div>
+        </div>}
         <button
           disabled={disabled}
           onClick={ask}

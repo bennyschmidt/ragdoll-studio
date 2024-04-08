@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './index.css';
 
-const Upload = ({ disabled, onFile }) => {
+const Upload = ({ disabled, type, onFile }) => {
   const [fileUpload, setFileUpload] = useState();
 
   const onChangeFileUpload = ({ target: { files } }) => {
@@ -21,12 +21,16 @@ const Upload = ({ disabled, onFile }) => {
       alert('File upload error.');
     };
 
-    reader.readAsText(file, 'UTF-8');
+    if (type.match('image')) {
+      reader.readAsDataURL(file);
+    } else {
+      reader.readAsText(file, 'UTF-8');
+    }
   };
 
   return !fileUpload && <input
     type="file"
-    accept="application/json"
+    accept={type}
     disabled={disabled}
     onChange={onChangeFileUpload}
   />;

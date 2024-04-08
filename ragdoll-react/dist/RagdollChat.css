@@ -120,7 +120,7 @@
   border: .1rem solid #010105;
 }
 
-#input > input,
+#text-input,
 #send {
   display: block;
   min-height: 3rem;
@@ -133,7 +133,7 @@
   background: #010105;
 }
 
-#input > input {
+#text-input {
   background: #12121210;
   padding: 0 .5rem;
 }
@@ -141,6 +141,16 @@
 #input .button-group {
   display: flex;
   align-items: center;
+  width: 100%;
+}
+
+#input > div {
+  display: flex;
+  align-items: flex-end;
+}
+
+#input > div,
+#input > div > .controls {
   width: 100%;
 }
 
@@ -153,28 +163,42 @@
   color: dodgerblue;
 }
 
-#conversation {
-  background: #00000050;
+#conversation,
+#focus,
+#inspire {
+  background: #00000030;
   border-radius: 1rem;
   padding: .5rem;
   margin-left: 1rem;
 }
 
-#conversation > div {
+#focus,
+#inspire {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+#conversation > div,
+#focus > div,
+#inspire > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: .5rem;
 }
 
-#conversation h6 {
+#conversation h6,
+#focus h6,
+#inspire h6 {
   margin: 0 0 .5rem;
   font-size: .6em;
   text-transform: uppercase;
   color: #e6edf650;
 }
 
-.button-group #conversation button {
+.button-group #conversation button,
+.button-group #focus button,
+#inspire button {
   background: linear-gradient(to bottom, #262739, #010105);
   box-shadow: inset 0 .5rem .5rem #010105, 0 1px 0 #e6edf640;
   text-transform: uppercase;
@@ -186,15 +210,34 @@
   margin: 0;
 }
 
-.button-group #conversation button:hover {
+#inspire button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 16vw;
+  height: 16vw;
+  max-width: 20rem;
+  max-height: 20rem;
+}
+
+.button-group #conversation button:hover,
+.button-group #focus button:hover,
+#inspire button:hover {
   background: #06dee6;
   border-color: transparent;
   box-shadow: inset 0 .5rem 1rem dodgerblue, 0 1px 0 #000000, 0 0 2rem dodgerblue;
   text-shadow: 0 0 .5rem dodgerblue;
 }
 
-.button-group #conversation button:hover img {
+.button-group #conversation button:hover img,
+.button-group #focus button:hover img,
+#inspire button:hover img {
   color: dodgerblue;
+}
+
+#inspire + div {
+  width: 100%;
 }
 
 @media (max-width: 900px) {
@@ -211,9 +254,19 @@
     max-width: 75%;
   }
 
-  #conversation {
+  #conversation,
+  #focus,
+  #inspire {
     margin: 1rem 0 0;
     width: 100%;
+  }
+
+  #inspire {
+    margin: 1rem 1rem 1rem 0;
+  }
+
+  .controls {
+    margin: 1rem 0 1rem;
   }
 
   .button-group {

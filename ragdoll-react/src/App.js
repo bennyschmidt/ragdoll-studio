@@ -32,12 +32,14 @@ const DEFAULT_KNOWLEDGE_URI = 'https://wowpedia.fandom.com/wiki/Arthas_Menethil'
 const DEFAULT_ART_STYLE = 'World of Warcraft concept art';
 const DEFAULT_WRITING_STYLE = 'inspiring but grim, like from the dark ages';
 const DEFAULT_WRITING_TONE = 'slightly annoyed';
+const UPLOAD_SUCCESS = 'Document ingested.';
 
 const DEFAULT_ADDITIONAL_KNOWLEDGE_URIS = [
-  // The following is an entire novel, but it seems like they:
-  // 1. slow the vector store way down
-  // 2. don't add much informational value
+  // The following is an entire novel... it seems like long-form text:
+  // 1. slows the vector store way down
+  // 2. doesn't add much informational value
   // 3. can smooth out the personality and fill in gaps
+  // 4. worth exploring for some use cases
   // 'https://cableplugger.wordpress.com/wp-content/uploads/2010/11/world-of-warcraft-2009-arthas-rise-of-the-lich-king-christie-golden.pdf',
 ]
 
@@ -53,6 +55,14 @@ const DEFAULT_RAGDOLL = {
 
 const DEFAULT_RAGDOLLS = {
   [DEFAULT_KNOWLEDGE_URI]: DEFAULT_RAGDOLL
+};
+
+const MODES = {
+  STORY: 'STORY',
+  PICTURE: 'PICTURE',
+  VIDEO: 'VIDEO',
+  SOUND: 'SOUND',
+  CODE: 'CODE'
 };
 
 let SAVED_RAGDOLLS = JSON.parse(
@@ -71,8 +81,10 @@ const App = () => {
   const { RAGDOLL_URI } = window;
 
   const [question, setQuestion] = useState('');
+  const [imageInput, setImageInput] = useState('');
   const [text, setText] = useState('');
   const [imageURL, setImageURL] = useState('');
+  const [imageURL2, setImageURL2] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
@@ -93,7 +105,7 @@ const App = () => {
   const [modelInfo] = useModelInfo(ragdoll);
   const [renderImages, setRenderImages] = useState(!!ragdoll?.artStyle);
   const [activeRagdoll] = useRagdoll(ragdoll, renderImages);
-  const [fileUpload, setFileUpload] = useState();
+  const [mode, setMode] = useState(MODES.STORY);
 
   useEffect(() => {
     const ragdolls = getRagdollsArray();
@@ -126,11 +138,26 @@ const App = () => {
     return () => document.body.onkeydown = null;
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isCreating, overlayClassName]);
+  }, [
+    isCreating,
+    isPublishing,
+    isUploading,
+    overlayClassName
+  ]);
 
   useEffect(() => {
     return () => clearTimeout(timeoutId);
   }, [timeoutId]);
+
+  useEffect(() => {
+    const isPictureMode = mode === MODES.PICTURE;
+
+    if (isPictureMode) {
+      setQuestion('');
+    } else {
+      setImageInput('');
+    }
+  }, [mode]);
 
   const openOverlay = () => {
     setIsCreating(true);
@@ -205,9 +232,17 @@ const App = () => {
           additionalKnowledgeURIs: result.additionalKnowledgeURIs
         });
 
+        alert(UPLOAD_SUCCESS);
         closeOverlay();
       }
     }
+  };
+
+  const loadImage = src => {
+    const image = new Image();
+
+    image.onload = () => didLoadImage(image);
+    image.src = src;
   };
 
   const onKeyDownOverlay = ({ keyCode }) => {
@@ -225,6 +260,22 @@ const App = () => {
   const onClickShowImages = () => (
     setRenderImages(!renderImages)
   );
+
+  const onClickStoryMode = () => {
+    setQuestion('');
+    setText('');
+    setImageURL('');
+    setImageURL2('');
+    setMode(MODES.STORY)
+  };
+
+  const onClickPictureMode = () => {
+    setQuestion('');
+    setText('');
+    setImageURL('');
+    setImageURL2('');
+    setMode(MODES.PICTURE)
+  };
 
   const onChangeRagdollName = ({ target: { value }}) => (
     setRagdollName(value)
@@ -263,10 +314,32 @@ const App = () => {
   const onAnswer = answer => {
     setImageURL(answer?.imageURL);
     setText(answer?.text);
+
+    if (answer?.imageURL2) {
+      setImageURL2(answer.imageURL2);
+    }
   };
 
   const onClickListItem = () => {
     setDisabled(true);
+  };
+
+  const didLoadImage = src => {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.height = src.naturalHeight;
+    canvas.width = src.naturalWidth;
+
+    ctx.drawImage(src, 0, 0);
+
+    const dataURL = canvas.toDataURL();
+
+    if (dataURL) {
+      setImageInput(dataURL);
+    }
+
+    closeOverlay();
   };
 
   const didClickListItem = ({ currentRagdoll, previousRagdoll }) => {
@@ -286,7 +359,8 @@ const App = () => {
     setRenderImages(!!currentRagdoll.artStyle);
     setRagdollList(updatedRagdollList);
     setText('');
-    setImageURL('')
+    setImageURL('');
+    setImageURL2('');
     setQuestion('');
     setDisabled(false);
   };
@@ -315,9 +389,12 @@ const App = () => {
     disabled: disabled || isCreating,
     ragdoll: activeRagdoll || ragdoll,
     question,
+    imageInput,
     imageURL,
+    imageURL2,
     text,
     renderImages,
+    mode,
     onQuestion,
     onAnswer,
     onClickShowImages,
@@ -337,42 +414,81 @@ const App = () => {
     onShow: openPublishOverlay
   };
 
+  const isPictureMode = mode === MODES.PICTURE;
+
   return <main id="app">
-    {isCreating && <aside id="overlay" className={overlayClassName} onClick={onClickOverlay}>
-      <RagdollForm { ...ragdollFormProps } />
-    </aside>}
-    {isPublishing && <aside id="publish" className={overlayClassName} onClick={onClickOverlay}>
-      <Publish onClickClose={closeOverlay} />
-    </aside>}
-    {isUploading && <aside id="upload" className={overlayClassName} onClick={onClickOverlay}>
-      <Upload disabled={disabled} onFile={uploadFile} />
-    </aside>}
+    {isCreating && (
+      <aside
+        id="overlay"
+        className={overlayClassName}
+        onClick={onClickOverlay}
+      >
+        <RagdollForm { ...ragdollFormProps } />
+      </aside>
+    )}
+    {isPublishing && (
+      <aside
+        id="publish"
+        className={overlayClassName}
+        onClick={onClickOverlay}
+      >
+        <Publish onClickClose={closeOverlay} />
+      </aside>
+    )}
+    {isUploading && (
+      <aside
+        id="upload"
+        className={overlayClassName}
+        onClick={onClickOverlay}
+      >
+        <Upload
+          disabled={disabled}
+          type={isPictureMode
+            ? 'image/*'
+            : 'application/json'
+          }
+          onFile={isPictureMode
+            ? loadImage
+            : uploadFile
+          }
+        />
+      </aside>
+    )}
     <header>
-      <h4>
-        <span>
-          <span className={`indicator ${modelInfo?.textModel ? 'online' : ''}`} />
-          <span className="indicator-label">Text-to-Text:</span>&nbsp;<em>{modelInfo?.textModel || 'Loading...'}</em>
-        </span>
-        <span>
-          <span className={`indicator ${modelInfo?.textModel ? renderImages ? 'online' : 'idle' : ''}`} />
-          <span className="indicator-label">Text-to-Image:</span>&nbsp;<em>{modelInfo?.stableDiffusionImageModel || 'Loading...'}</em>
-        </span>
+      <h4 id="llm-status">
+        {!isPictureMode && <span>
+          <span className={`indicator ${modelInfo?.textTextModel ? 'online' : ''}`} />
+          <span className="indicator-label">Text-to-Text:</span>&nbsp;<em>{modelInfo?.textTextModel || 'Loading...'}</em>
+        </span>}
+        {!isPictureMode && <span>
+          <span className="indicator idle" />
+          <span className="indicator-label">Text-to-speech:</span>&nbsp;<em>-</em>
+        </span>}
+        {!isPictureMode && <span>
+          <span className={`indicator ${modelInfo?.textTextModel ? renderImages ? 'online' : 'idle' : ''}`} />
+          <span className="indicator-label">Text-to-Image:</span>&nbsp;<em>{modelInfo?.textImageModel || 'Loading...'}</em>
+        </span>}
+        {isPictureMode && <span>
+          <span className={`indicator ${(isPictureMode && modelInfo?.imageImageModel) ? 'online' : 'idle'}`} />
+          <span className="indicator-label">Image-to-Image:</span>&nbsp;<em>{(!isPictureMode ? '-' : (modelInfo?.imageImageModel || 'Loading...'))}</em>
+        </span>}
       </h4>
       <nav id="switch">
-        <button>
+        <button onClick={onClickStoryMode} className={!isPictureMode ? 'active' : ''}>
           <Icon src="/img/story.svg" />
-          <span className="indicator" />
+          {!isPictureMode && <span className="indicator" />}
         </button>
-        <button>
+        <button onClick={onClickPictureMode} className={isPictureMode ? 'active' : ''}>
           <Icon src="/img/picture.svg" />
+          {isPictureMode && <span className="indicator" />}
         </button>
-        <button>
+        <button className="disabled">
           <Icon src="/img/video.svg" />
         </button>
-        <button>
+        <button className="disabled">
           <Icon src="/img/audio.svg" />
         </button>
-        <button>
+        <button className="disabled">
           <Icon src="/img/code.svg" />
         </button>
       </nav>

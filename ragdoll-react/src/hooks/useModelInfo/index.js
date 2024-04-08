@@ -16,19 +16,21 @@ const useModelInfo = () => {
       if (response?.ok) {
         const {
           success,
-          framework,
-          textModel,
-          stableDiffusionURI,
-          stableDiffusionImageModel,
+          textModelProvider,
+          textTextModel,
+          imageModelProviderURI,
+          textImageModel,
+          imageImageModel,
           version
         } = await response.json();
 
         if (success) {
           setModelInfo({
-            framework,
-            textModel,
-            stableDiffusionURI,
-            stableDiffusionImageModel,
+            textModelProvider,
+            textTextModel,
+            imageModelProviderURI,
+            textImageModel,
+            imageImageModel,
             version
           });
         }

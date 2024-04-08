@@ -48,7 +48,12 @@ input {
   outline: none;
 }
 
-input {
+input,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 100vw transparent inset;
   cursor: auto;
   background: #00000025;
   color: #121212;
