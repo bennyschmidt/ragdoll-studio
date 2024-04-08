@@ -2,7 +2,7 @@
 
 Web apps and libraries for interacting with [Ragdoll](https://github.com/bennyschmidt/ragdoll).
 
-## Perfect concept art and photography 🔊
+## Perfect art and photography 🔊
 
 https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/20427f0b-7e64-449d-b9e2-d881f867dd5a
 
