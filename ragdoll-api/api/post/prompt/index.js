@@ -24,7 +24,7 @@ const {
   languageModel,
   textModelLogPrefix,
   waiting,
-  TEXT_MODEL
+  TEXT_TEXT_MODEL
 } = require('ragdoll-core/src/utils/strings');
 
 const { prefixInput } = require('ragdoll-core/src/utils/prefix');
@@ -49,7 +49,11 @@ module.exports = asyncCache => async (req, res) => {
 
       body = Buffer.concat(body).toString();
 
-      const { key, input } = JSON.parse(body || '{}');
+      const {
+        key,
+        input,
+        imageInput
+      } = JSON.parse(body || '{}');
 
       if (!input) {
         res.end(JSON.stringify({
@@ -73,12 +77,29 @@ module.exports = asyncCache => async (req, res) => {
         return;
       }
 
+      if (imageInput) {
+        answer = await Ragdoll({
+          ...currentConfig,
+
+          query: input,
+          imageSrc: imageInput,
+          cache: false
+        });
+
+        res.end(JSON.stringify({
+          success: true,
+          answer
+        }));
+
+        return;
+      }
+
       // Prefix input prompt
 
       const povPromptPrefix = prefixInput(currentConfig);
 
       const chatAgent = new Ollama({
-        model: TEXT_MODEL
+        model: TEXT_TEXT_MODEL
       });
 
       // Create prompt transforming the user input into the third-person
@@ -100,7 +121,7 @@ module.exports = asyncCache => async (req, res) => {
         }
 
         const { message: textModelResponse } = await chatAgent.chat({
-          model: TEXT_MODEL,
+          model: TEXT_TEXT_MODEL,
           messages: [
             {
               role: 'user',

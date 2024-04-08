@@ -1,6 +1,7 @@
 # directories
 /node_modules
 /.tmp
+/public/documents
 
 # env
 .env

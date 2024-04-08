@@ -80,10 +80,10 @@ module.exports = (cluster, routes) => {
     }
   }
 
-  routes.GET[`${API_PATH_PREFIX}/info`] = require('./get/info')(asyncCache);
-  routes.POST[`${API_PATH_PREFIX}/prompt`] = require('./post/prompt')(asyncCache);
-  routes.POST[`${API_PATH_PREFIX}/configure`] = require('./post/configure')(asyncCache);
-  routes.POST[`${API_PATH_PREFIX}/upload`] = require('./post/upload')(asyncCache);
+  routes.GET[`/${API_PATH_PREFIX}/info`] = require('./get/info')(asyncCache);
+  routes.POST[`/${API_PATH_PREFIX}/prompt`] = require('./post/prompt')(asyncCache);
+  routes.POST[`/${API_PATH_PREFIX}/configure`] = require('./post/configure')(asyncCache);
+  routes.POST[`/${API_PATH_PREFIX}/upload`] = require('./post/upload')(asyncCache);
 
   return (req, res) => {
     const headers = {
@@ -92,7 +92,7 @@ module.exports = (cluster, routes) => {
       'Access-Control-Max-Age': 2592000
     };
 
-    if (req.url.slice(0, 3) !== `${API_PATH_PREFIX}`) {
+    if (req.url.slice(1, 3) !== `${API_PATH_PREFIX}`) {
       res.setHeader('Content-Type', 'text/html');
     }
 
@@ -112,6 +112,8 @@ module.exports = (cluster, routes) => {
 
       if (req.url.match('public/documents')) {
         serveStatic(res, req.url);
+
+        return;
       }
 
       try {

@@ -4,21 +4,28 @@ A parallelized Node.js API for interacting with [Ragdoll](https://github.com/ben
 
 #### .env
 
+Create an `.env` file in the project's root directory with the following variables:
+
 ```
-LLM_FRAMEWORK=llamaindex
-TEXT_MODEL=mistral
-STABLE_DIFFUSION_URI=http://localhost:7860
-IMAGE_MODEL=txt2img
+TEXT_MODEL_PROVIDER=LlamaIndex
+TEXT_MODEL_URI=http://localhost:11434
+TEXT_TEXT_MODEL=mistral
+IMAGE_MODEL_PROVIDER=Stable Diffusion
+IMAGE_MODEL_URI=http://localhost:7860
+TEXT_IMAGE_MODEL=txt2img
+IMAGE_IMAGE_MODEL=img2img
+IMAGE_CFG_SCALE=8;
+IMAGE_CFG_SCALE_TRUE=24;
+IMAGE_DENOISING_STRENGTH=0.8;
+IMAGE_DENOISING_STRENGTH_TRUE=0.56;
 DELAY=200
 RENDER=true
 VERBOSE=true
 GREETING=false
 CACHE=true
 MAX_STORAGE_KEY_LENGTH=32
-LOG_PREFIX=<ragdoll>
-API_PATH_PREFIX=/v1
+LOG_PREFIX=<Ragdoll>
 STORAGE_URI=./.tmp
-
 ```
 
 See [ragdoll Environment Config](https://github.com/bennyschmidt/ragdoll#env-scaffold).
@@ -26,6 +33,26 @@ See [ragdoll Environment Config](https://github.com/bennyschmidt/ragdoll#env-sca
 -----
 
 ## Endpoints
+
+### Model Info
+
+Upload files for continuous learning.
+
+`GET /v1/info`
+
+Returns
+
+```
+{
+  success: boolean,
+  textModelProvider: string,
+  textTextModel: string,
+  imageModelProviderURI: string,
+  textImageModel: string,
+  imageImageModel: string,
+  version: string
+}
+```
 
 ### Configure
 
@@ -93,6 +120,29 @@ Returns
 }
 ```
 
+### Upload
+
+Upload files for continuous learning.
+
+`POST /v1/upload`
+
+**key**: `string`
+
+> The ragdoll's identifier (the same as its `knowledgeURI` upon configuration).
+
+**knowledge**: `string`
+
+> The text content of the document.
+
+Returns
+
+```
+{
+  success: boolean,
+  additionalKnowledgeURIs: string[]
+}
+```
+
 ## Library documentation
 
 You can use `RagdollAPI` as a library in your existing application.
@@ -100,8 +150,10 @@ You can use `RagdollAPI` as a library in your existing application.
 `npm i ragdoll-api`
 
 Serverless functions (exportable):
+- `info`
 - `configure`
 - `prompt`
+- `upload`
 
 Extending the API:
 
@@ -109,11 +161,13 @@ Extending the API:
 
 ## Running models
 
-The API defaults to locally-running models on your machine. Make sure you have them up and running on `localhost`:
+The API defaults to locally-running models on your machine. There are no API keys required to get started, just make sure you have a model up and running on `localhost`:
 
 - [Run your text model (via Ollama)](https://github.com/bennyschmidt/ragdoll#install-ollama)
 
 - [Run your image model (via Stable Diffusion)](https://github.com/bennyschmidt/ragdoll#install-stable-diffusion)
+
+Ragdoll also works without an image model, it will fall back to text-only if there isn't one running at the host specified in the `.env`.
 
 -----
 

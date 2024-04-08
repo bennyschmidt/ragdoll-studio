@@ -9,20 +9,22 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const {
-  LLM_FRAMEWORK,
-  TEXT_MODEL,
-  STABLE_DIFFUSION_URI,
-  IMAGE_MODEL,
+  TEXT_MODEL_PROVIDER,
+  TEXT_TEXT_MODEL,
+  IMAGE_MODEL_URI,
+  TEXT_IMAGE_MODEL,
+  IMAGE_IMAGE_MODEL,
   npm_package_version
 } = process.env;
 
-module.exports = () => (_, res) => {
+module.exports = () => (_, res) => (
   res.end(JSON.stringify({
     success: true,
-    framework: LLM_FRAMEWORK,
-    textModel: TEXT_MODEL,
-    stableDiffusionURI: STABLE_DIFFUSION_URI,
-    stableDiffusionImageModel: IMAGE_MODEL,
+    textModelProvider: TEXT_MODEL_PROVIDER,
+    textTextModel: TEXT_TEXT_MODEL,
+    imageModelProviderURI: IMAGE_MODEL_URI,
+    textImageModel: TEXT_IMAGE_MODEL,
+    imageImageModel: IMAGE_IMAGE_MODEL,
     version: npm_package_version
-  }));
-};
+  }))
+);
