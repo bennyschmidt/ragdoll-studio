@@ -9,11 +9,11 @@ const { API_PATH_PREFIX } = process.env;
 
 RagdollAPI({
   GET: {
-    [`${API_PATH_PREFIX}/comments`]: require('./api/get/comments'),
+    [`/${API_PATH_PREFIX}/comments`]: require('./api/get/comments'),
   },
   POST: {
-    [`${API_PATH_PREFIX}/comment`]: require('./api/post/comment'),
-    [`${API_PATH_PREFIX}/topic`]: require('./api/post/topic')
+    [`/${API_PATH_PREFIX}/comment`]: require('./api/post/comment'),
+    [`/${API_PATH_PREFIX}/topic`]: require('./api/post/topic')
   }
 }, store => {
   store.set('comments', {

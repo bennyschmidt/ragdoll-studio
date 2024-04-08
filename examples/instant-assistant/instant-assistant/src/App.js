@@ -174,6 +174,7 @@ const App = () => {
 
   const ragdollChatProps = {
     disabled: disabled || isCreating,
+    mode: "STORY",
     ragdoll,
     question,
     text,

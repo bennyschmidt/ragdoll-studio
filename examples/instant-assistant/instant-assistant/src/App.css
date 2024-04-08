@@ -4,6 +4,20 @@
   padding: 1rem;
 }
 
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  color: #00000050;
+  font-size: .9em;
+}
+
+.checkbox > input {
+  width: .5rem;
+  height: .5rem;
+  border-radius: .5rem;
+}
+
 #app {
   display: flex;
   flex-direction: column;
@@ -85,6 +99,8 @@
   border: none;
 }
 
-#conversation {
+#conversation,
+#focus,
+#inspire {
   display: none;
 }

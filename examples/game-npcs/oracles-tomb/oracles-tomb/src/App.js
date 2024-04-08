@@ -27,6 +27,7 @@ const App = () => {
   const [ragdoll] = useRagdoll({
     name: 'The Oracle',
     knowledgeURI: `${RAGDOLL_URI}/oracle`,
+    additionalKnowledgeURIs: [],
     avatarURL: '',
 
     // Passing null for artStyle will skip image generation
