@@ -246,7 +246,7 @@ const RagdollChat = ({
                 value={false}
                 onChange={() => {}}
               />
-              <span>Output a batch of 4</span>
+              <span>Batch of 4</span>
             </div>
             <div className="checkbox">
               <input
@@ -255,7 +255,7 @@ const RagdollChat = ({
                 value={true}
                 onChange={() => {}}
               />
-              <span>Stay true to original</span>
+              <span>True to original</span>
             </div>
           </>}
           <input

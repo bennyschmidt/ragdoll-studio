@@ -195,14 +195,14 @@ const RagdollChat = ({
     checked: false,
     value: false,
     onChange: () => {}
-  }), /*#__PURE__*/React.createElement("span", null, "Output a batch of 4")), /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/React.createElement("span", null, "Batch of 4")), /*#__PURE__*/React.createElement("div", {
     className: "checkbox"
   }, /*#__PURE__*/React.createElement("input", {
     type: "checkbox",
     checked: true,
     value: true,
     onChange: () => {}
-  }), /*#__PURE__*/React.createElement("span", null, "Stay true to original"))), /*#__PURE__*/React.createElement("input", {
+  }), /*#__PURE__*/React.createElement("span", null, "True to original"))), /*#__PURE__*/React.createElement("input", {
     id: "text-input",
     autoFocus: true,
     autoComplete: "off",
