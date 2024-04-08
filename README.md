@@ -2,13 +2,53 @@
 
 Web apps and libraries for interacting with [Ragdoll](https://github.com/bennyschmidt/ragdoll).
 
-#### Demo
-
 https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/c090d262-be06-48e9-8c70-3ca8ba4c557c
 
-#### Focus (RAG based learning) 🔊
+## Features
+
+Go beyond fine-tuning to produce flawless creative deliverables.
+
+### 1. Story Mode
+
+Create and chat with characters that have scoped knowledge and distinct personalities.
+
+Define their source of knowledge at a URL (e.g. Wikipedia page).
+
+✨ ***Focus:** Upload additional documents to extend their knowledge.*
 
 https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/cd7464fe-9984-4ae3-8911-1da104f68e8c
+
+### 2. Picture Mode
+
+Produce art in a specific style.
+
+✨ ***Inspire**: Upload source images to inspire compositional features of a new image.*
+
+https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/20427f0b-7e64-449d-b9e2-d881f867dd5a
+
+### 3. Video Mode
+
+Produce videos, CGI, and animation of a certain genre.
+
+✨ ***Stage**: Upload an image to set the stage for a new video clip.*
+
+*Coming soon!*
+
+### 4. Sound Mode
+
+Produce music and sound effects of a certain genre.
+
+✨ ***Cue**: Upload an audio clip to cue a specific style or sound.*
+
+*Coming soon!*
+
+### 5. Logic Mode
+
+Produce code and other technical work.
+
+✨ ***Focus:** Upload additional documents to extend technical knowledge.*
+
+*Coming soon!*
 
 ## Installation
 
