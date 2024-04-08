@@ -10,9 +10,9 @@ React front-end for interacting with [Ragdoll](https://github.com/bennyschmidt/r
 | ----------------------------- | ----------------------------- |
 | ![Screenshot from 2024-04-03 07-06-49](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/c68516f9-327e-4be0-86e8-220789609716) | ![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/0fd89c49-c425-4f89-932c-ab69473ff623)
 
-| Uncensored Content (NSFW!)    | Context Aware Imagery     |
+| Uncensored Content (NSFW!)    | Art Directing     |
 | ----------------------------- | ----------------------------- |
-| ![Screenshot from 2024-04-03 19-14-28](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/e546baea-c1ee-4f61-ae85-47929cd7d078) | ![Screenshot from 2024-03-31 22-38-20](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/a0a7f853-7e62-45ff-9b07-8f6b97d16159)
+| ![Screenshot from 2024-04-03 19-14-28](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/e546baea-c1ee-4f61-ae85-47929cd7d078) | ![image](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/4348d4b3-0e94-4392-b353-8295a40770a2) |
 
 ## Usage
 
