@@ -312,12 +312,9 @@ const App = () => {
   const onQuestion = value => setQuestion(value);
 
   const onAnswer = answer => {
-    setImageURL(answer?.imageURL);
     setText(answer?.text);
-
-    if (answer?.imageURL2) {
-      setImageURL2(answer.imageURL2);
-    }
+    setImageURL(answer?.imageURL);
+    setImageURL2(answer?.imageURL2);
   };
 
   const onClickListItem = () => {

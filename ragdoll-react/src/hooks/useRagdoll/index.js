@@ -20,7 +20,7 @@ const useRagdoll = (ragdollConfig, renderImages) => {
         ragdollConfig?.knowledgeURI &&
         (
           ragdollConfig.knowledgeURI !== ragdoll?.knowledgeURI ||
-          ragdollConfig.additionalKnowledgeURIs.join() !== ragdoll.additionalKnowledgeURIs.join() ||
+          ragdollConfig.additionalKnowledgeURIs?.join?.() !== ragdoll.additionalKnowledgeURIs?.join?.() ||
           renderImages !== isRenderingImages
         )
       );
