@@ -50,6 +50,14 @@ Produce code and other technical work.
 
 *Coming soon!*
 
+✨ ***Community Site:** Export & publish collections of ragdolls, or "casts", and download others.*
+
+![community-site](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/3dd6e058-957b-4947-a0d8-09c93152bc93)
+
+✨ ***Download Content:** When you're happy with a result, download your generated content in a variety of formats (default is an HTML page), or clear the channel to start over.*
+
+![download](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/eea000cb-bd84-4dd6-b4a9-a463409a62f7)
+
 ## Installation
 
 1. Configure the [API](https://github.com/bennyschmidt/ragdoll-studio/tree/master/ragdoll-api)
