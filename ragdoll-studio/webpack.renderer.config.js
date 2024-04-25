@@ -8,20 +8,20 @@ rules.push({
   use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
 });
 
-const assets = ['static'];
-
 module.exports = {
   module: {
     rules
   },
-  plugins: assets.map(asset => {
-    return new CopyWebpackPlugin({
+  plugins: [
+    'img',
+    'font'
+  ].map(asset => new CopyWebpackPlugin({
       patterns: [
         {
           from: path.resolve(__dirname, 'src', asset),
           to: asset
         }
       ],
-    });
-  })
+    })
+  )
 };

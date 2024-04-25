@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import {
-  Icon,
   RagdollForm,
   RagdollChat,
   RagdollList,
@@ -12,7 +11,8 @@ import {
 
 import {
   Publish,
-  Upload
+  Upload,
+  Icon
 } from './components';
 
 import './App.css';
@@ -26,7 +26,7 @@ const { STORAGE_KEY } = window;
 
 const OVERLAY_NAMES = ['overlay', 'publish', 'upload'];
 const CREATE = '+';
-const DEFAULT_AVATAR_URL = '../static/img/avatars/arthas.png';
+const DEFAULT_AVATAR_URL = 'img/avatars/arthas.png';
 const DEFAULT_NAME = 'Arthas';
 const DEFAULT_KNOWLEDGE_URI = 'https://wowpedia.fandom.com/wiki/Arthas_Menethil';
 const DEFAULT_ART_STYLE = 'World of Warcraft concept art';
@@ -464,21 +464,21 @@ const App = () => {
       </h4>
       <nav id="switch">
         <button onClick={onClickStoryMode} className={!isPictureMode ? 'active' : ''}>
-          <Icon src="../static/img/story.svg" />
+          <Icon src="img/story.svg" />
           {!isPictureMode && <span className="indicator" />}
         </button>
         <button onClick={onClickPictureMode} className={isPictureMode ? 'active' : ''}>
-          <Icon src="../static/img/picture.svg" />
+          <Icon src="img/picture.svg" />
           {isPictureMode && <span className="indicator" />}
         </button>
         <button className="disabled">
-          <Icon src="../static/img/video.svg" />
+          <Icon src="img/video.svg" />
         </button>
         <button className="disabled">
-          <Icon src="../static/img/audio.svg" />
+          <Icon src="img/audio.svg" />
         </button>
         <button className="disabled">
-          <Icon src="../static/img/code.svg" />
+          <Icon src="img/code.svg" />
         </button>
       </nav>
     </header>
