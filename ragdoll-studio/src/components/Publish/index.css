@@ -1,0 +1,34 @@
+#publish > div {
+  position: absolute;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  max-width: 75%;
+  max-height: 75%;
+  top: 12.5%;
+  line-height: 2em;
+  overflow: auto;
+  background: #010105;
+  border-radius: 1rem;
+  box-shadow: 0 0 2rem #010105;
+}
+
+#publish .instructions,
+#publish .instructions > li {
+  text-align: left;
+  list-style: decimal;
+  margin: 1rem 0;
+}
+
+#publish a {
+  color: dodgerblue;
+}
+
+#publish button {
+  background: #111;
+  margin: 2rem auto;
+  max-width: 50%;
+}
+
+#publish button:hover {
+  background: #222;
+}
