@@ -1,3 +1,5 @@
+import React from 'react';
+
 import './index.css';
 
 const RAGDOLL_ERROR = 'Error loading ragdoll.';
