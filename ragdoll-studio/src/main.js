@@ -28,6 +28,23 @@ const MODEL_START_COMMAND = `ollama run ${TEXT_TEXT_MODEL}`;
 const MODEL_READY = `Ollama (${TEXT_TEXT_MODEL}) is running.`;
 const RAGDOLL_READY = 'Starting Ragdoll Studio...';
 
+// Start the Ragdoll API
+
+RagdollAPI({
+
+  // Custom API routes (GET)
+
+  GET: {},
+
+  // Custom API routes (POST)
+
+  POST: {}
+}, store => {
+  // Backend store
+
+  console.log(store);
+});
+
 // Start the browser instance
 
 if (app) {
@@ -47,7 +64,6 @@ if (app) {
       autoHideMenuBar: true,
       webPreferences: {
         nodeIntegration: true,
-        contextIsolation: false,
         devTools: false
       }
     });
@@ -81,8 +97,7 @@ if (app) {
           autoHideMenuBar: true,
           fullscreen: app.isPackaged,
           webPreferences: {
-            devTools: !app.isPackaged,
-            preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY
+            devTools: !app.isPackaged
           }
         });
 
@@ -134,10 +149,6 @@ if (app) {
       // Start OllamaCLI
 
       await OllamaCLI();
-
-      // Start the Ragdoll API
-
-      RagdollAPI();
     });
 
     // Create installer HTML and handle messages
