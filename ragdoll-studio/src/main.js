@@ -183,22 +183,14 @@ if (app) {
       `data:text/html;charset=utf-8,
       <html>
         <head>
-          <style>
-            @font-face {
-              font-family: "Outfit Light";
-              src: url("font/Outfit/static/Outfit-Light.ttf");
-            }
-            @font-face {
-              font-family: "Outfit Medium";
-              src: url("font/Outfit/static/Outfit-Medium.ttf");
-            }
-          </style>
+          <title>Ragdoll Studio</title>
         </head>
-        <body style="color: white; font: normal normal 14px/21px 'Outfit Light', monospace;">
-          <p style="position: fixed; left: 1rem; bottom: 2.4rem;"><strong>Ragdoll Studio v1.0</strong></p>
-          <p style="position: fixed; left: 1rem; bottom: 1rem; opacity: .5;"><em>Starting...</em></p>
+        <body style="color: white; font: normal normal 14px sans-serif;">
+          <p style="position: fixed; left: 2rem; bottom: 10rem; font-size: 1.3em;"><strong>Ragdoll Studio v1.0</strong></p>
+          <p style="position: fixed; left: 2rem; bottom: 8.6rem; opacity: .5; font-size: 1.2em;">The creative suite for character-driven AI experiences.</p>
+          <p style="position: fixed; left: 2rem; bottom: 2.4rem; font-size: .9em;">${OLLAMA_START} 1/4</p>
+          <p style="position: fixed; left: 2rem; bottom: 1rem; opacity: .5; font-size: .9em;"><em>Starting...</em></p>
           <script>
-            alert('ipcRenderer');
             const { ipcRenderer } = require('electron');
             ipcRenderer.on('message', (_, message) => {
               document.getElementById('message').innerHTML = message;
