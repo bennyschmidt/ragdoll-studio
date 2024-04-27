@@ -1,5 +1,4 @@
 const { promisify } = require('util');
-const { spawn } = require('child_process');
 const exec = promisify(require('child_process').exec);
 
 const dotenv = require('dotenv');
@@ -31,7 +30,7 @@ const MODEL_START_COMMAND = `ollama run ${TEXT_TEXT_MODEL}`;
 const MODEL_READY = `Ollama (${TEXT_TEXT_MODEL}) is running.`;
 const STABLE_DIFFUSION_START = 'Starting Stable Diffusion...';
 const STABLE_DIFFUSION_START_COMMAND = 'npm run start-stable-diffusion';
-const STABLE_DIFFUSION_READY = 'Running sdapi.';
+const STABLE_DIFFUSION_READY = 'Stable Diffusion is running.';
 const STABLE_DIFFUSION_ERROR = '⚠️ Error starting Stable Diffusion API.';
 const STABLE_DIFFUSION_PYTHON = 'Activating python venv...';
 const STABLE_DIFFUSION_TORCH = 'Verifying torch and torchvision versions...';
@@ -163,7 +162,7 @@ if (app) {
         // Exec commands
 
         try {
-          spawn(STABLE_DIFFUSION_START_COMMAND, { stdio: 'inherit', shell: true });
+          exec(STABLE_DIFFUSION_START_COMMAND);
           console.log(STABLE_DIFFUSION_READY);
           sendMessage(STABLE_DIFFUSION_READY);
           setTimeout(onRagdollReady, INSTALLER_CLOSE_TIMEOUT);
