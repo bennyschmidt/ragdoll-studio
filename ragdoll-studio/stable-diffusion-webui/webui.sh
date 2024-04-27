@@ -113,14 +113,14 @@ then
     exit 1
 fi
 
-if [[ -d "$SCRIPT_DIR/.git" ]]
-then
-    printf "\n%s\n" "${delimiter}"
-    printf "Repo already cloned, using it as install directory"
-    printf "\n%s\n" "${delimiter}"
-    install_dir="${SCRIPT_DIR}/../"
-    clone_dir="${SCRIPT_DIR##*/}"
-fi
+# if [[ -d "$SCRIPT_DIR/.git" ]]
+# then
+#     printf "\n%s\n" "${delimiter}"
+#     printf "Repo already cloned, using it as install directory"
+#     printf "\n%s\n" "${delimiter}"
+#     install_dir="${SCRIPT_DIR}/../"
+#     clone_dir="${SCRIPT_DIR##*/}"
+# fi
 
 # Check prerequisites
 gpu_info=$(lspci 2>/dev/null | grep -E "VGA|Display")
@@ -190,23 +190,23 @@ then
 fi
 
 cd "${install_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/, aborting...\e[0m" "${install_dir}"; exit 1; }
-if [[ -d "${clone_dir}" ]]
-then
-    cd "${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
-else
-    printf "\n%s\n" "${delimiter}"
-    printf "Clone stable-diffusion-webui"
-    printf "\n%s\n" "${delimiter}"
-    "${GIT}" clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git "${clone_dir}"
-    cd "${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
-fi
+# if [[ -d "${clone_dir}" ]]
+# then
+#     cd "${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
+# else
+#     printf "\n%s\n" "${delimiter}"
+#     printf "Clone stable-diffusion-webui"
+#     printf "\n%s\n" "${delimiter}"
+#     "${GIT}" clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git "${clone_dir}"
+#     cd "${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
+# fi
 
 if [[ $use_venv -eq 1 ]] && [[ -z "${VIRTUAL_ENV}" ]];
 then
     printf "\n%s\n" "${delimiter}"
     printf "Create and activate python venv"
     printf "\n%s\n" "${delimiter}"
-    cd "${install_dir}"/"${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
+    # cd "${install_dir}"/"${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
     if [[ ! -d "${venv_dir}" ]]
     then
         "${python_cmd}" -m venv "${venv_dir}"
