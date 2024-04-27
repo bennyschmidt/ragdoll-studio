@@ -1,5 +1,8 @@
 const { promisify } = require('util');
+const { spawn } = require('child_process');
 const exec = promisify(require('child_process').exec);
+
+const dotenv = require('dotenv');
 
 const {
   app,
@@ -7,13 +10,13 @@ const {
   MessageChannelMain
 } = require('electron');
 
-const RagdollAPI = require('ragdoll-api');
+dotenv.config();
 
 const { TEXT_TEXT_MODEL } = process.env;
 
 const INSTALLER_WIDTH = 800;
 const INSTALLER_HEIGHT = 460;
-const INSTALLER_CLOSE_TIMEOUT = 2000;
+const INSTALLER_CLOSE_TIMEOUT = 4000;
 const WINDOW_WIDTH = 1280;
 const WINDOW_HEIGHT = 800;
 const WINDOW_READY = 'ready-to-show';
@@ -21,29 +24,19 @@ const SERVER_READY = 'ready';
 const BLACK = '#000000';
 const OLLAMA_START = 'Starting Ollama...';
 const OLLAMA_START_ERROR = 'Ollama is not installed.';
-const OLLAMA_RUN = `Running ${TEXT_TEXT_MODEL}...`;
+const OLLAMA_RUN = `Starting ${TEXT_TEXT_MODEL}...`;
 const OLLAMA_INSTALL = 'Installing Ollama...';
 const OLLAMA_INSTALL_COMMAND = 'curl -fsSL https://ollama.com/install.sh | sh';
 const MODEL_START_COMMAND = `ollama run ${TEXT_TEXT_MODEL}`;
 const MODEL_READY = `Ollama (${TEXT_TEXT_MODEL}) is running.`;
+const STABLE_DIFFUSION_START = 'Starting Stable Diffusion...';
+const STABLE_DIFFUSION_START_COMMAND = 'npm run start-stable-diffusion';
+const STABLE_DIFFUSION_READY = 'Running sdapi.';
+const STABLE_DIFFUSION_ERROR = '⚠️ Error starting Stable Diffusion API.';
+const STABLE_DIFFUSION_PYTHON = 'Activating python venv...';
+const STABLE_DIFFUSION_TORCH = 'Verifying torch and torchvision versions...';
+const STABLE_DIFFUSION_DEPS = 'Verifying other dependencies...';
 const RAGDOLL_READY = 'Starting Ragdoll Studio...';
-
-// Start the Ragdoll API
-
-RagdollAPI({
-
-  // Custom API routes (GET)
-
-  GET: {},
-
-  // Custom API routes (POST)
-
-  POST: {}
-}, store => {
-  // Backend store
-
-  console.log(store);
-});
 
 // Start the browser instance
 
@@ -79,7 +72,7 @@ if (app) {
         installer.webContents.postMessage('message', message, [port1])
       };
 
-      // Start Ragdoll Studio
+      // Handle dependencies installed
 
       const onRagdollReady = () => {
 
@@ -113,7 +106,18 @@ if (app) {
         window.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
       };
 
-      // Start or install ollama CLI
+      // Handle ollama installed
+
+      const onOllamaReady = () => {
+        console.log(MODEL_READY);
+        sendMessage(MODEL_READY);
+
+        // Start Stable Diffusion
+
+        StableDiffusionCLI();
+      };
+
+      // Start or install ollama
 
       const OllamaCLI = async () => {
         console.log(OLLAMA_START);
@@ -125,9 +129,7 @@ if (app) {
           console.log(OLLAMA_RUN);
           sendMessage(OLLAMA_RUN);
           exec(MODEL_START_COMMAND);
-          console.log(MODEL_READY);
-          sendMessage(MODEL_READY);
-          setTimeout(onRagdollReady, INSTALLER_CLOSE_TIMEOUT);
+          setTimeout(onOllamaReady, INSTALLER_CLOSE_TIMEOUT);
         };
 
         // Exec commands
@@ -135,7 +137,7 @@ if (app) {
         try {
           await mistral();
         } catch (error) {
-          console.log(OLLAMA_START_ERROR);
+          console.log(OLLAMA_START_ERROR, error);
           sendMessage(OLLAMA_START_ERROR);
           console.log(OLLAMA_INSTALL);
           sendMessage(OLLAMA_INSTALL);
@@ -146,7 +148,32 @@ if (app) {
         }
       };
 
-      // Start OllamaCLI
+      // Start sdapi
+
+      const StableDiffusionCLI = () => {
+        console.log(STABLE_DIFFUSION_START);
+        sendMessage(STABLE_DIFFUSION_START);
+        console.log(STABLE_DIFFUSION_PYTHON);
+        sendMessage(STABLE_DIFFUSION_PYTHON);
+        console.log(STABLE_DIFFUSION_TORCH);
+        sendMessage(STABLE_DIFFUSION_TORCH);
+        console.log(STABLE_DIFFUSION_DEPS);
+        sendMessage(STABLE_DIFFUSION_DEPS);
+
+        // Exec commands
+
+        try {
+          spawn(STABLE_DIFFUSION_START_COMMAND, { stdio: 'inherit', shell: true });
+          console.log(STABLE_DIFFUSION_READY);
+          sendMessage(STABLE_DIFFUSION_READY);
+          setTimeout(onRagdollReady, INSTALLER_CLOSE_TIMEOUT);
+        } catch (error) {
+          console.log(STABLE_DIFFUSION_ERROR, error);
+          sendMessage(STABLE_DIFFUSION_ERROR);
+        }
+      };
+
+      // Start Ollama
 
       await OllamaCLI();
     });

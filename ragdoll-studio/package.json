@@ -5,7 +5,9 @@
   "description": "The creative suite for character-driven AI experiences.",
   "main": ".webpack/main",
   "scripts": {
-    "start": "electron-forge start",
+    "start-ragdoll": "cd ragdoll-api && npm i && npm start && cd ..",
+    "start-stable-diffusion": "cd stable-diffusion-webui && ./webui.sh --nowebui --xformers --lowvram",
+    "start": "npm run start-ragdoll & electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
@@ -38,8 +40,8 @@
   },
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "electron-squirrel-startup": "^1.0.0",
-    "ragdoll-api": "^1.2.0",
     "ragdoll-react": "^0.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
