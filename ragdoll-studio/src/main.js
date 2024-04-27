@@ -21,20 +21,21 @@ const WINDOW_HEIGHT = 800;
 const WINDOW_READY = 'ready-to-show';
 const SERVER_READY = 'ready';
 const BLACK = '#000000';
-const OLLAMA_START = 'Starting Ollama...';
-const OLLAMA_START_ERROR = 'Ollama is not installed.';
-const OLLAMA_RUN = `Starting ${TEXT_TEXT_MODEL}...`;
-const OLLAMA_INSTALL = 'Installing Ollama...';
+const OLLAMA_START = 'Starting Ollama... 1/4';
+const OLLAMA_START_ERROR = 'Ollama is not installed. 1/4';
+const OLLAMA_RUN = `Starting ${TEXT_TEXT_MODEL}... 2/4`;
+const OLLAMA_INSTALL = 'Installing Ollama... 1/4';
 const OLLAMA_INSTALL_COMMAND = 'curl -fsSL https://ollama.com/install.sh | sh';
 const MODEL_START_COMMAND = `ollama run ${TEXT_TEXT_MODEL}`;
-const MODEL_READY = `Ollama (${TEXT_TEXT_MODEL}) is running.`;
-const STABLE_DIFFUSION_START = 'Starting Stable Diffusion...';
+const MODEL_READY = `Ollama (${TEXT_TEXT_MODEL}) is running.  3/4`;
+const STABLE_DIFFUSION_START = 'Starting Stable Diffusion...  3/4';
 const STABLE_DIFFUSION_START_COMMAND = 'npm run start-stable-diffusion';
-const STABLE_DIFFUSION_READY = 'Stable Diffusion is running.';
+const STABLE_DIFFUSION_READY = 'Stable Diffusion is running. 4/4';
 const STABLE_DIFFUSION_ERROR = '⚠️ Error starting Stable Diffusion API.';
-const STABLE_DIFFUSION_PYTHON = 'Activating python venv...';
-const STABLE_DIFFUSION_TORCH = 'Verifying torch and torchvision versions...';
-const STABLE_DIFFUSION_DEPS = 'Verifying other dependencies...';
+const STABLE_DIFFUSION_SDAPI = 'Starting sdapi... 1/4';
+const STABLE_DIFFUSION_PYTHON = 'Activating python venv... 2/4';
+const STABLE_DIFFUSION_TORCH = 'Verifying torch and torchvision versions... 3/4';
+const STABLE_DIFFUSION_DEPS = 'Verifying other dependencies... 4/4';
 const RAGDOLL_READY = 'Starting Ragdoll Studio...';
 
 // Start the browser instance
@@ -46,6 +47,8 @@ if (app) {
   // Handle start
 
   app.once(SERVER_READY, () => {
+    const startTime = Date.now();
+
     // Create installer window
 
     installer = new BrowserWindow({
@@ -56,6 +59,7 @@ if (app) {
       autoHideMenuBar: true,
       webPreferences: {
         nodeIntegration: true,
+        contextIsolation: false,
         devTools: false
       }
     });
@@ -65,10 +69,10 @@ if (app) {
     installer.once(WINDOW_READY, async () => {
       // Send a message to the installer
 
-      const sendMessage = message => {
+      const sendMessage = (message, step) => {
         const { port1 } = new MessageChannelMain();
 
-        installer.webContents.postMessage('message', message, [port1])
+        installer.webContents.postMessage('message', { message, step }, [port1])
       };
 
       // Handle dependencies installed
@@ -109,7 +113,7 @@ if (app) {
 
       const onOllamaReady = () => {
         console.log(MODEL_READY);
-        sendMessage(MODEL_READY);
+        sendMessage(MODEL_READY, 'Ready.');
 
         // Start Stable Diffusion
 
@@ -120,13 +124,13 @@ if (app) {
 
       const OllamaCLI = async () => {
         console.log(OLLAMA_START);
-        sendMessage(OLLAMA_START);
+        sendMessage(OLLAMA_START, `Pulling ${TEXT_TEXT_MODEL}... 1/3`);
 
         // Run mistral
 
         const mistral = async () => {
           console.log(OLLAMA_RUN);
-          sendMessage(OLLAMA_RUN);
+          sendMessage(OLLAMA_RUN, `${MODEL_START_COMMAND} 2/3`);
           exec(MODEL_START_COMMAND);
           setTimeout(onOllamaReady, INSTALLER_CLOSE_TIMEOUT);
         };
@@ -137,9 +141,9 @@ if (app) {
           await mistral();
         } catch (error) {
           console.log(OLLAMA_START_ERROR, error);
-          sendMessage(OLLAMA_START_ERROR);
+          sendMessage(OLLAMA_START_ERROR, '⚠️ Error!');
           console.log(OLLAMA_INSTALL);
-          sendMessage(OLLAMA_INSTALL);
+          sendMessage(OLLAMA_INSTALL, `${OLLAMA_INSTALL_COMMAND} 3/3`);
 
           await exec(OLLAMA_INSTALL_COMMAND);
 
@@ -151,24 +155,25 @@ if (app) {
 
       const StableDiffusionCLI = () => {
         console.log(STABLE_DIFFUSION_START);
-        sendMessage(STABLE_DIFFUSION_START);
+        sendMessage(STABLE_DIFFUSION_SDAPI, STABLE_DIFFUSION_START);
         console.log(STABLE_DIFFUSION_PYTHON);
-        sendMessage(STABLE_DIFFUSION_PYTHON);
+        sendMessage(STABLE_DIFFUSION_SDAPI, STABLE_DIFFUSION_PYTHON);
         console.log(STABLE_DIFFUSION_TORCH);
-        sendMessage(STABLE_DIFFUSION_TORCH);
+        sendMessage(STABLE_DIFFUSION_SDAPI, STABLE_DIFFUSION_TORCH);
         console.log(STABLE_DIFFUSION_DEPS);
-        sendMessage(STABLE_DIFFUSION_DEPS);
+        sendMessage(STABLE_DIFFUSION_SDAPI, STABLE_DIFFUSION_DEPS);
 
         // Exec commands
 
         try {
           exec(STABLE_DIFFUSION_START_COMMAND);
           console.log(STABLE_DIFFUSION_READY);
-          sendMessage(STABLE_DIFFUSION_READY);
+          sendMessage(STABLE_DIFFUSION_SDAPI, 'Done.');
+          sendMessage(`Finished in ${((Date.now() - startTime) / 1000).toFixed(1)} seconds!`, RAGDOLL_READY);
           setTimeout(onRagdollReady, INSTALLER_CLOSE_TIMEOUT);
         } catch (error) {
           console.log(STABLE_DIFFUSION_ERROR, error);
-          sendMessage(STABLE_DIFFUSION_ERROR);
+          sendMessage(STABLE_DIFFUSION_ERROR, '⚠️ Error!');
         }
       };
 
@@ -180,24 +185,19 @@ if (app) {
     // Create installer HTML and handle messages
 
     installer.loadURL(
-      `data:text/html;charset=utf-8,
-      <html>
-        <head>
-          <title>Ragdoll Studio</title>
-        </head>
-        <body style="color: white; font: normal normal 14px sans-serif;">
-          <p style="position: fixed; left: 2rem; bottom: 10rem; font-size: 1.3em;"><strong>Ragdoll Studio v1.0</strong></p>
-          <p style="position: fixed; left: 2rem; bottom: 8.6rem; opacity: .5; font-size: 1.2em;">The creative suite for character-driven AI experiences.</p>
-          <p style="position: fixed; left: 2rem; bottom: 2.4rem; font-size: .9em;">${OLLAMA_START} 1/4</p>
-          <p style="position: fixed; left: 2rem; bottom: 1rem; opacity: .5; font-size: .9em;"><em>Starting...</em></p>
-          <script>
-            const { ipcRenderer } = require('electron');
-            ipcRenderer.on('message', (_, message) => {
-              document.getElementById('message').innerHTML = message;
-            });
-          </script>
-        </body>
-      </html>`
+      `data:text/html;charset=utf-8,<body style="color: white; font: normal normal 14px sans-serif;">
+        <p style="position: fixed; left: 2rem; bottom: 10rem; font-size: 1.3em;"><strong>Ragdoll Studio v1.0</strong></p>
+        <p style="position: fixed; left: 2rem; bottom: 8.6rem; opacity: .5; font-size: 1.2em;">The creative suite for character-driven AI experiences.</p>
+        <p style="position: fixed; left: 2rem; bottom: 2.4rem; font-size: .9em;" id="message">${OLLAMA_START} 0/4</p>
+        <p style="position: fixed; left: 2rem; bottom: 1rem; opacity: .5; font-size: .9em;" id="step"><em>Starting...</em></p>
+        <script>
+          const { ipcRenderer } = require('electron');
+          ipcRenderer.on('message', (_, { message = '', step = '' }) => {
+            document.getElementById('message').innerHTML = message;
+            document.getElementById('step').firstElementChild.innerHTML = step;
+          });
+        </script>
+      </body>`
     );
   });
 }
