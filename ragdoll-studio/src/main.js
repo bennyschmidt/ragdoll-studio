@@ -181,35 +181,31 @@ if (app) {
 
     installer.loadURL(
       `data:text/html;charset=utf-8,
-      <body>
-        <style>
-          @font-face {
-            font-family: "Outfit Light";
-            src: url("font/Outfit/static/Outfit-Light.ttf");
-          }
-          @font-face {
-            font-family: "Outfit Medium";
-            src: url("font/Outfit/static/Outfit-Medium.ttf");
-          }
-          body {
-            font: normal normal 14px/21px "Outfit Light", monospace;
-            color: white;
-            margin: 0;
-          }
-          #message {
-            position: fixed;
-            left: 1rem;
-            bottom: 1rem;
-          }
-        </style>
-        <p id="message">Starting...</p>
-        <script>
-          const { ipcRenderer } = require('electron');
-          ipcRenderer.on('message', (_, message) => {
-            document.getElementById('message').innerHTML = message;
-          });
-        </script>
-      </body>`
+      <html>
+        <head>
+          <style>
+            @font-face {
+              font-family: "Outfit Light";
+              src: url("font/Outfit/static/Outfit-Light.ttf");
+            }
+            @font-face {
+              font-family: "Outfit Medium";
+              src: url("font/Outfit/static/Outfit-Medium.ttf");
+            }
+          </style>
+        </head>
+        <body style="color: white; font: normal normal 14px/21px 'Outfit Light', monospace;">
+          <p style="position: fixed; left: 1rem; bottom: 2.4rem;"><strong>Ragdoll Studio v1.0</strong></p>
+          <p style="position: fixed; left: 1rem; bottom: 1rem; opacity: .5;"><em>Starting...</em></p>
+          <script>
+            alert('ipcRenderer');
+            const { ipcRenderer } = require('electron');
+            ipcRenderer.on('message', (_, message) => {
+              document.getElementById('message').innerHTML = message;
+            });
+          </script>
+        </body>
+      </html>`
     );
   });
 }
