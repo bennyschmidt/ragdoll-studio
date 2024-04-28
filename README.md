@@ -18,7 +18,7 @@ Define their source of knowledge at a URL (e.g. Wikipedia page).
 
 https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/cd7464fe-9984-4ae3-8911-1da104f68e8c
 
-> The above video shows the case of a storyteller (Arthas Menethil, from *World of Warcraft*) who was created with limited knowledge, and so he doesn't know as much as he should. This demonstration shows the ragdoll's knowledge being extended by uploading a text file containing additional information about his domain. After that, he knows and is able to talk about the new information and even renders images that are more on-brand. 
+> The above video shows the case of a storyteller (Arthas Menethil, from *World of Warcraft*) who was created with limited knowledge, so he doesn't know as much as he should. This demonstration shows the ragdoll's knowledge being extended by uploading a text file containing additional information about his domain. After that, he knows and is able to talk about the new information and even renders images that are more on-brand. 
 
 ### 2. Vector Mode
 
