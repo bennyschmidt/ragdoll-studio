@@ -11,7 +11,7 @@ const {
 
 dotenv.config();
 
-const { TEXT_TEXT_MODEL } = process.env;
+TEXT_TEXT_MODEL = 'mistral';
 
 const INSTALLER_WIDTH = 800;
 const INSTALLER_HEIGHT = 460;
@@ -91,7 +91,6 @@ if (app) {
           show: false,
           backgroundColor: BLACK,
           autoHideMenuBar: true,
-          fullscreen: app.isPackaged,
           webPreferences: {
             devTools: !app.isPackaged
           }
