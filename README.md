@@ -2,11 +2,11 @@
 
 Web apps and libraries for interacting with [Ragdoll](https://github.com/bennyschmidt/ragdoll).
 
-https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/c090d262-be06-48e9-8c70-3ca8ba4c557c
+![product](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/84a5f7d3-9178-41bc-9bb4-265e4399a651)
 
 ## Features
 
-Go beyond fine-tuning to produce flawless creative deliverables.
+Go beyond fine-tuning to produce flawless creative deliverables, rich multimedia, and engaging experiences.
 
 ### 1. Story Mode
 
@@ -18,45 +18,53 @@ Define their source of knowledge at a URL (e.g. Wikipedia page).
 
 https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/cd7464fe-9984-4ae3-8911-1da104f68e8c
 
-### 2. Picture Mode
+### 2. Vector Mode
 
-Produce art in a specific style.
+Produce vector art (icons, logos, animations) in a specific style.
+
+✨ ***Inspire**: Upload source images to inspire compositional features of a new image.*
+
+### 3. Raster Mode
+
+Produce raster art (photos, illustrations, concept art) in a specific style.
 
 ✨ ***Inspire**: Upload source images to inspire compositional features of a new image.*
 
 https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/20427f0b-7e64-449d-b9e2-d881f867dd5a
 
-### 3. Video Mode
+### 4. Video Mode
 
-Produce videos, CGI, and animation of a certain genre.
+Produce videos (shows, podcasts, cinematics, cutscenes, films, animations) of a certain style or genre.
 
 ✨ ***Stage**: Upload an image to set the stage for a new video clip.*
 
 *Coming soon!*
 
-### 4. Sound Mode
+### 5. Audio Mode
 
-Produce music and sound effects of a certain genre.
+Produce audio (music, sound effects, speech) of a certain style or genre.
 
 ✨ ***Cue**: Upload an audio clip to cue a specific style or sound.*
 
 *Coming soon!*
 
-### 5. Logic Mode
+### 6. 3D Mode
 
-Produce code and other technical work.
+Produce 3D objects (scenes, characters, animations) in a specific style.
 
-✨ ***Focus:** Upload additional documents to extend technical knowledge.*
+✨ ***Inspire**: Upload source 3D objects to inspire compositional features of a new one.*
 
 *Coming soon!*
+
+### 7. Export 
+
+✨ ***Download Content:** When you're happy with a result, download your generated content in a variety of formats, or clear the channel to start over.*
+
+![download](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/eea000cb-bd84-4dd6-b4a9-a463409a62f7)
 
 ✨ ***Community Site:** Export & publish collections of ragdolls, or "casts", and download others.*
 
 ![community-site](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/3dd6e058-957b-4947-a0d8-09c93152bc93)
-
-✨ ***Download Content:** When you're happy with a result, download your generated content in a variety of formats (default is an HTML page), or clear the channel to start over.*
-
-![download](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/eea000cb-bd84-4dd6-b4a9-a463409a62f7)
 
 ## Installation
 
