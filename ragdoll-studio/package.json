@@ -38,8 +38,8 @@
       ".env",
       "ragdoll-api",
       "stable-diffusion-webui",
-      "src/font",
-      "src/img"
+      "font",
+      "img"
     ]
   },
   "keywords": [],
