@@ -1,7 +1,7 @@
 {
   "name": "ragdoll-studio",
   "productName": "ragdoll-studio",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "The creative suite for character-driven AI experiences.",
   "main": ".webpack/main",
   "scripts": {
