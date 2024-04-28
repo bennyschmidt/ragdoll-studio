@@ -18,6 +18,8 @@ Define their source of knowledge at a URL (e.g. Wikipedia page).
 
 https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/cd7464fe-9984-4ae3-8911-1da104f68e8c
 
+> The above video shows the case of a storyteller (Arthas Menethil, from *World of Warcraft*) who was created with limited knowledge, and so he doesn't know as much as he should. This demonstration shows the ragdoll's knowledge being extended by uploading a text file containing additional information about his domain. After that, he knows and is able to talk about the new information and even renders images that are more on-brand. 
+
 ### 2. Vector Mode
 
 Produce vector art (icons, logos, animations) in a specific style.
@@ -32,6 +34,8 @@ Produce raster art (photos, illustrations, concept art) in a specific style.
 
 https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/20427f0b-7e64-449d-b9e2-d881f867dd5a
 
+> The above video shows how Ragdoll uses Stable Diffusion's img2img feature through the lens of different ragdolls to produce a variety of different image results. Optionally check "True to original" to keep the overall structure of the source image in place while still applying stylistic attributes of the ragdoll. The initial `artStyle` set when creating a ragoll defines the overall kind of image (photorealistic, concept art, pixel art, etc.) but because the ragdoll prompts `img2img` itself, some of its own speech patterns can influence the resulting image too.  
+ 
 ### 4. Video Mode
 
 Produce videos (shows, podcasts, cinematics, cutscenes, films, animations) of a certain style or genre.
@@ -62,9 +66,13 @@ Produce 3D objects (scenes, characters, animations) in a specific style.
 
 ![download](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/eea000cb-bd84-4dd6-b4a9-a463409a62f7)
 
+> The above image shows the Download button highlighted in the bottom-right. The output format depends on which app mode you're currently in, see [#14](https://github.com/bennyschmidt/ragdoll-studio/issues/14).
+
 ✨ ***Community Site:** Export & publish collections of ragdolls, or "casts", and download others.*
 
 ![community-site](https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/3dd6e058-957b-4947-a0d8-09c93152bc93)
+
+> The above image shows casts of characters, or [dolls](https://ragdoll-studio.vercel.app/dolls), on the [community site](https://ragdoll-studio.vercel.app/). If you want to share characters you've created or download others, you can do so through sharing casts. There's also an [apps](https://ragdoll-studio.vercel.app/) section that's coming soon for the purpose of sharing different apps created with the Ragdoll software (using Ragdoll [core](https://github.com/bennyschmidt/ragdoll) and/or the [node](https://www.npmjs.com/package/ragdoll-api) or [react](https://www.npmjs.com/package/ragdoll-react) libraries).
 
 ## Installation
 
