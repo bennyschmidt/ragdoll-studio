@@ -11,7 +11,7 @@ const {
 
 dotenv.config();
 
-TEXT_TEXT_MODEL = 'mistral';
+const { TEXT_TEXT_MODEL } = process.env;
 
 const INSTALLER_WIDTH = 800;
 const INSTALLER_HEIGHT = 460;
