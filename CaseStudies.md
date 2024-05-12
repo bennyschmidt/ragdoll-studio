@@ -12,3 +12,5 @@
     - *Clue-following*: The player has to talk to several different personas to get the complete set of knowledge details in order to advance
     - *Dynamic vendors*: The player and vendor get more flexibility in how they negotiate, and the conversation is unique whether or not the vendor is flexible on price
     - *General lore & dialogue*: The player gets to have realistic and unique conversations with the characters of the story
+
+- [**Concept art**](https://bennyschmidt.itch.io/16-free-ff7-style-cyberpunk-images): Generate concept art in a specific style.
