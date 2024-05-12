@@ -1,0 +1,323 @@
+.panel {
+  background: #100e1880;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.form {
+  background: #010105;
+  color: #e6edf6;
+}
+
+.form a {
+  color: dodgerblue;
+}
+
+.form input {
+  background: #e6edf625;
+  color: #e6edf6;
+}
+
+.form button {
+  background: linear-gradient(#262739, #010105);
+  box-shadow:  0 2px 0 #010105, 0 0 1rem #010105;
+  margin: 1rem auto;
+  transition: all .2s ease;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+#app > header,
+#switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: .9em;
+  margin: 0 1rem;
+}
+
+#app > header h4 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: .77em;
+  gap: .4rem;
+}
+
+#app > header h4 span {
+  display: block;
+}
+
+#app > header h4 > span {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#app > header h4 .indicator {
+  border-radius: 0;
+  background: yellow;
+  box-shadow: 0 0 1rem yellow;
+  min-width: 6px;
+  min-height: 6px;
+  max-width: 6px;
+  max-height: 6px;
+  transition: all .5s ease;
+}
+
+#app > header h4 .indicator.online {
+  background: dodgerblue;
+  box-shadow: 0 0 1rem dodgerblue;
+}
+
+#app > header h4 .indicator.success + .indicator-label + em,
+#app > header h4 .indicator.success + .indicator-label,
+#app > header h4 .indicator.idle + .indicator-label + em,
+#app > header h4 .indicator.idle + .indicator-label,
+#app > header h4 .indicator.idle {
+  opacity: .5;
+}
+
+#app > header h4 .indicator.success {
+  background: #07f007;
+  box-shadow: 0 0 1rem #07f007;
+}
+
+#app > header h4 .indicator.idle {
+  background: white;
+  box-shadow: none;
+}
+
+#app > header h4 .indicator-label {
+  text-transform: uppercase;
+}
+
+#switch {
+  background: linear-gradient(#262739, #010105);
+  box-shadow: 0 0 3rem #010105;
+  margin: 1rem 0;
+  padding: .5rem 1.5rem;
+  border-radius: 100vw;
+  gap: 1.5rem;
+}
+
+#switch > button {
+  position: relative;
+  background: none;
+  opacity: .5;
+  margin: 0;
+  padding: 0;
+}
+
+#switch > button.active {
+  opacity: 1;
+}
+
+#switch > button.disabled {
+  cursor: not-allowed;
+  opacity: .25;
+}
+
+#switch > button .indicator {
+  position: absolute;
+  bottom: -.2rem;
+  left: 0;
+  max-width: .2rem;
+  max-height: .2rem;
+  min-height: .2rem;
+  min-width: .2rem;
+}
+
+#app-frame {
+  display: flex;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+}
+
+#workspace,
+#nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0 auto;
+  height: calc(100vh - 5.5rem);
+  overflow-x: hidden;
+}
+
+#workspace {
+  position: relative;
+  justify-content: space-between;
+}
+
+#nav {
+  max-width: 20vw;
+}
+
+#overlay,
+#publish,
+#upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  background: #00000075;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+
+#overlay.show,
+#publish.show,
+#upload.show {
+  opacity: 1;
+}
+
+#overlay > .form {
+  max-width: 34rem;
+  transition: opacity .5s ease, margin-top .5s ease;
+  margin-top: 10vh;
+  opacity: 0;
+}
+
+#overlay.show > .form {
+  margin-top: 0;
+  opacity: 1;
+}
+
+#create-ragdoll-button {
+  background: linear-gradient(#262739, #010105);
+  box-shadow:  0 2px 0 #010105, 0 0 1rem #010105;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  margin: 1rem auto;
+  padding: .75rem;
+  transition: all .2s ease;
+}
+
+#create-ragdoll-button:hover,
+.form button:hover {
+  background: #06dee6;
+  border-color: transparent;
+  box-shadow: inset 0 .5rem 1rem dodgerblue, 0 1px 0 #000000, 0 0 2rem dodgerblue;
+  text-shadow: 0 0 .5rem dodgerblue;
+}
+
+#input,
+#output {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#output {
+  flex: 1;
+}
+
+#text-input,
+#send {
+  display: block;
+  min-height: 3rem;
+  margin-bottom: .5rem;
+  border: none;
+  border-radius: .5rem;
+  width: 100%;
+  appearance: none;
+  outline: none;
+  background: #010105;
+  color: white;
+}
+
+#text-input {
+  background: #01010550;
+  padding: 0 .5rem;
+}
+
+#input .checkbox input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  color: white;
+  appearance: checkbox;
+  margin: .25rem;
+}
+
+#input .checkbox {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  font-size: .9em;
+}
+
+#send {
+  background: linear-gradient(#262739, #010105);
+  box-shadow:  0 2px 0 #010105, 0 0 2rem #010105;
+  border-radius: 1rem;
+  transition: all .2s ease;
+  color: dodgerblue;
+  text-shadow: 0 0 .5rem dodgerblue;
+  margin: 0;
+  width: 100%;
+}
+
+#send:hover {
+  background: #06dee6;
+  border-color: transparent;
+  box-shadow: inset 0 .5rem 1rem dodgerblue, 0 1px 0 #000000, 0 0 2rem dodgerblue;
+  color: #e6edf6;
+}
+
+@media (max-width: 900px) {
+  h1,
+  #app > header h4 {
+    display: none;
+  }
+
+  .form {
+    width: 95%;
+  }
+
+  .ragdoll-list-item.panel {
+    padding: unset;
+  }
+
+  #app-frame {
+    padding: 0;
+    gap: 2px;
+  }
+
+  #nav,
+  #workspace {
+    margin: 0;
+    border-radius: 0;
+    height: calc(100vh - 4.5rem);
+    max-height: calc(100vh - 4.5rem);
+    overflow-y: auto;
+  }
+
+  #nav {
+    max-width: 5rem;
+  }
+
+  #output p {
+    width: calc(100% - 1rem);
+  }
+
+  #create-ragdoll-button {
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+  }
+
+  #switch {
+    margin: 1rem auto;
+  }
+}

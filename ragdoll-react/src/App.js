@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   RagdollForm,
@@ -6,7 +6,8 @@ import {
   RagdollList,
   RagdollCast,
   Publish,
-  Upload
+  Upload,
+  Icon
 } from './components';
 
 import {
@@ -15,7 +16,6 @@ import {
 } from './hooks';
 
 import './App.css';
-import Icon from './components/Icon';
 
 // Globals
 
@@ -26,22 +26,14 @@ const { STORAGE_KEY } = window;
 
 const OVERLAY_NAMES = ['overlay', 'publish', 'upload'];
 const CREATE = '+';
-const DEFAULT_AVATAR_URL = '/img/avatars/arthas.png';
+const DEFAULT_AVATAR_URL = 'img/avatars/arthas.png';
 const DEFAULT_NAME = 'Arthas';
 const DEFAULT_KNOWLEDGE_URI = 'https://wowpedia.fandom.com/wiki/Arthas_Menethil';
 const DEFAULT_ART_STYLE = 'World of Warcraft concept art';
 const DEFAULT_WRITING_STYLE = 'inspiring but grim, like from the dark ages';
 const DEFAULT_WRITING_TONE = 'slightly annoyed';
 const UPLOAD_SUCCESS = 'Document ingested.';
-
-const DEFAULT_ADDITIONAL_KNOWLEDGE_URIS = [
-  // The following is an entire novel... it seems like long-form text:
-  // 1. slows the vector store way down
-  // 2. doesn't add much informational value
-  // 3. can smooth out the personality and fill in gaps
-  // 4. worth exploring for some use cases
-  // 'https://cableplugger.wordpress.com/wp-content/uploads/2010/11/world-of-warcraft-2009-arthas-rise-of-the-lich-king-christie-golden.pdf',
-]
+const DEFAULT_ADDITIONAL_KNOWLEDGE_URIS = [];
 
 const DEFAULT_RAGDOLL = {
   name: DEFAULT_NAME,
@@ -59,10 +51,11 @@ const DEFAULT_RAGDOLLS = {
 
 const MODES = {
   STORY: 'STORY',
-  PICTURE: 'PICTURE',
+  VECTOR: 'VECTOR',
+  RASTER: 'RASTER',
   VIDEO: 'VIDEO',
-  SOUND: 'SOUND',
-  CODE: 'CODE'
+  AUDIO: 'AUDIO',
+  THREE_D: 'THREE_D'
 };
 
 let SAVED_RAGDOLLS = JSON.parse(
@@ -150,12 +143,12 @@ const App = () => {
   }, [timeoutId]);
 
   useEffect(() => {
-    const isPictureMode = mode === MODES.PICTURE;
+    const isStoryMode = mode === MODES.STORY;
 
-    if (isPictureMode) {
-      setQuestion('');
-    } else {
+    if (isStoryMode) {
       setImageInput('');
+    } else {
+      setQuestion('');
     }
   }, [mode]);
 
@@ -239,6 +232,14 @@ const App = () => {
   };
 
   const loadImage = src => {
+    const isVectorMode = mode === MODES.VECTOR;
+
+    if (isVectorMode) {
+      setImageInput(src);
+
+      return;
+    }
+
     const image = new Image();
 
     image.onload = () => didLoadImage(image);
@@ -269,12 +270,20 @@ const App = () => {
     setMode(MODES.STORY)
   };
 
-  const onClickPictureMode = () => {
+  const onClickRasterMode = () => {
     setQuestion('');
     setText('');
     setImageURL('');
     setImageURL2('');
-    setMode(MODES.PICTURE)
+    setMode(MODES.RASTER)
+  };
+
+  const onClickVectorMode = () => {
+    setQuestion('');
+    setText('');
+    setImageURL('');
+    setImageURL2('');
+    setMode(MODES.VECTOR);
   };
 
   const onChangeRagdollName = ({ target: { value }}) => (
@@ -411,7 +420,9 @@ const App = () => {
     onShow: openPublishOverlay
   };
 
-  const isPictureMode = mode === MODES.PICTURE;
+  const isStoryMode = mode === MODES.STORY;
+  const isVectorMode = mode === MODES.VECTOR;
+  const isRasterMode = mode === MODES.RASTER;
 
   return <main id="app">
     {isCreating && (
@@ -440,53 +451,57 @@ const App = () => {
       >
         <Upload
           disabled={disabled}
-          type={isPictureMode
+          type={((isVectorMode || isRasterMode)
             ? 'image/*'
             : 'application/json'
-          }
-          onFile={isPictureMode
+          )}
+          onFile={((isVectorMode || isRasterMode)
             ? loadImage
             : uploadFile
-          }
+          )}
         />
       </aside>
     )}
     <header>
       <h4 id="llm-status">
-        {!isPictureMode && <span>
+        {isStoryMode && <span>
           <span className={`indicator ${modelInfo?.textTextModel ? 'online' : ''}`} />
           <span className="indicator-label">Text-to-Text:</span>&nbsp;<em>{modelInfo?.textTextModel || 'Loading...'}</em>
         </span>}
-        {!isPictureMode && <span>
+        {isStoryMode && <span>
           <span className="indicator idle" />
           <span className="indicator-label">Text-to-speech:</span>&nbsp;<em>-</em>
         </span>}
-        {!isPictureMode && <span>
+        {!isRasterMode && <span>
           <span className={`indicator ${modelInfo?.textTextModel ? renderImages ? 'online' : 'idle' : ''}`} />
           <span className="indicator-label">Text-to-Image:</span>&nbsp;<em>{modelInfo?.textImageModel || 'Loading...'}</em>
         </span>}
-        {isPictureMode && <span>
-          <span className={`indicator ${(isPictureMode && modelInfo?.imageImageModel) ? 'online' : 'idle'}`} />
-          <span className="indicator-label">Image-to-Image:</span>&nbsp;<em>{(!isPictureMode ? '-' : (modelInfo?.imageImageModel || 'Loading...'))}</em>
+        {isRasterMode && <span>
+          <span className={`indicator ${(isRasterMode && modelInfo?.imageImageModel) ? 'online' : 'idle'}`} />
+          <span className="indicator-label">Image-to-Image:</span>&nbsp;<em>{(!isRasterMode ? '-' : (modelInfo?.imageImageModel || 'Loading...'))}</em>
         </span>}
       </h4>
       <nav id="switch">
-        <button onClick={onClickStoryMode} className={!isPictureMode ? 'active' : ''}>
-          <Icon src="/img/story.svg" />
-          {!isPictureMode && <span className="indicator" />}
+        <button onClick={onClickStoryMode} className={isStoryMode ? 'active' : ''} title="Story Mode">
+          <Icon src="img/story.svg" />
+          {isStoryMode && <span className="indicator" />}
         </button>
-        <button onClick={onClickPictureMode} className={isPictureMode ? 'active' : ''}>
-          <Icon src="/img/picture.svg" />
-          {isPictureMode && <span className="indicator" />}
+        <button onClick={onClickVectorMode} className={isVectorMode ? 'active' : ''} title="Vector Mode">
+          <Icon src="img/vector.svg" />
+          {isVectorMode && <span className="indicator" />}
         </button>
-        <button className="disabled">
-          <Icon src="/img/video.svg" />
+        <button onClick={onClickRasterMode} className={isRasterMode ? 'active' : ''} title="Raster Mode">
+          <Icon src="img/raster.svg" />
+          {isRasterMode && <span className="indicator" />}
         </button>
-        <button className="disabled">
-          <Icon src="/img/audio.svg" />
+        <button className="disabled" title="Video Mode">
+          <Icon src="img/video.svg" />
         </button>
-        <button className="disabled">
-          <Icon src="/img/code.svg" />
+        <button className="disabled" title="Audio Mode">
+          <Icon src="img/audio.svg" />
+        </button>
+        <button className="disabled" title="3D Mode">
+          <Icon src="img/3d.svg" />
         </button>
       </nav>
     </header>

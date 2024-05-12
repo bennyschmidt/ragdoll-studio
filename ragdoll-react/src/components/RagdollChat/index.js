@@ -5,9 +5,10 @@ import Icon from '../Icon';
 import './index.css';
 
 const SEND = 'Send';
-const DEFAULT_IMG_ALT = 'Corresponding visualization';
 const API_ERROR = 'API temporarily unavailable.';
+const DEFAULT_IMG_ALT = 'output';
 const STORY = 'STORY';
+const VECTOR = 'VECTOR';
 
 const RagdollChat = ({
   disabled: parentDisabled,
@@ -33,7 +34,79 @@ const RagdollChat = ({
   //   setHistory([]);
   // }, [ragdoll]);
 
+  const generateSvg = async () => {
+    setDisabled(true);
+
+    const response = await fetch(`${RAGDOLL_URI}/v1/svg`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        key: ragdoll.knowledgeURI,
+        question,
+        svgInput: atob(imageInput.replace(/^data:image\/svg\+xml;base64,/, ''))
+      })
+    });
+
+    if (response?.ok) {
+      const { error, answer = {} } = await response.json();
+
+      if (answer.pending) {
+        window.location.reload();
+
+        return;
+      }
+
+      if (error) {
+        alert(error.message || API_ERROR);
+        setDisabled(false);
+
+        return;
+      } else {
+        const {
+          imageResponse1,
+          imageResponse2
+        } = answer;
+
+        const imageURL = `data:image/svg+xml;base64,${btoa(imageResponse1)}`;
+        const imageURL2 = `data:image/svg+xml;base64,${btoa(imageResponse2)}`;
+
+        setHistory([
+          ...history,
+
+          {
+            avatarURL: ragdoll.avatarURL,
+            name: ragdoll.name,
+            text: 'These images are in SVG format.',
+            imageURL,
+            imageURL2
+          },
+          {
+            avatarURL: null,
+            name: 'Me',
+            text: question,
+            isMe: true
+          }
+        ]);
+
+        onAnswer(answer);
+      }
+    }
+
+    onQuestion('');
+    setDisabled(false)
+  };
+
   const ask = async () => {
+    if (mode === VECTOR) {
+      return generateSvg({
+        key: ragdoll.knowledgeURI,
+        svgInput: imageInput
+      })
+    }
+
     setDisabled(true);
 
     const response = await fetch(`${RAGDOLL_URI}/v1/prompt`, {
@@ -166,7 +239,7 @@ const RagdollChat = ({
                 height="100%"
               />
             </div>}
-            <p>{output.text}</p>
+            {(isStoryMode || output.isMe) && <p>{output.text}</p>}
           </div>
         ))}
         <div>
@@ -181,7 +254,7 @@ const RagdollChat = ({
           {(renderImages || !isStoryMode) && imageURL && <div className="img full">
             <img
               src={imageURL}
-              alt={DEFAULT_IMG_ALT}
+              alt={question}
               width="100%"
               height="100%"
             />
@@ -189,7 +262,7 @@ const RagdollChat = ({
           {!isStoryMode && imageURL2 && <div className="img full">
             <img
               src={imageURL2}
-              alt={DEFAULT_IMG_ALT}
+              alt={question}
               width="100%"
               height="100%"
             />
