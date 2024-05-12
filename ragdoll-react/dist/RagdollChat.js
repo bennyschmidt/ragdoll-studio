@@ -228,7 +228,7 @@ const RagdollChat = ({
       background: `url(${imageInput}) center center / contain no-repeat`
     } : {}
   }, /*#__PURE__*/React.createElement(Icon, {
-    src: `/img/${isStoryMode ? 'upload' : 'picture'}.svg`
+    src: `/img/${isStoryMode ? 'upload' : 'raster'}.svg`
   })))), /*#__PURE__*/React.createElement("div", {
     className: "controls"
   }, isStoryMode && onClickShowImages && /*#__PURE__*/React.createElement("div", {

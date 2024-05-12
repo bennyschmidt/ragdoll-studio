@@ -286,7 +286,7 @@ const RagdollChat = ({
                 : {}
               )}
             >
-              <Icon src={`/img/${isStoryMode ? 'upload' : 'picture'}.svg`} />
+              <Icon src={`/img/${isStoryMode ? 'upload' : 'raster'}.svg`} />
             </button>
           </div>
         </div>}
