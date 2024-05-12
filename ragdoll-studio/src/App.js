@@ -5,15 +5,12 @@ import {
   RagdollChat,
   RagdollList,
   RagdollCast,
+  Publish,
+  Upload,
+  Icon,
   useModelInfo,
   useRagdoll
 } from 'ragdoll-react';
-
-import {
-  Publish,
-  Upload,
-  Icon
-} from './components';
 
 import './App.css';
 
@@ -51,10 +48,11 @@ const DEFAULT_RAGDOLLS = {
 
 const MODES = {
   STORY: 'STORY',
-  PICTURE: 'PICTURE',
+  VECTOR: 'VECTOR',
+  RASTER: 'RASTER',
   VIDEO: 'VIDEO',
-  SOUND: 'SOUND',
-  CODE: 'CODE'
+  AUDIO: 'AUDIO',
+  THREE_D: 'THREE_D'
 };
 
 let SAVED_RAGDOLLS = JSON.parse(
@@ -142,12 +140,12 @@ const App = () => {
   }, [timeoutId]);
 
   useEffect(() => {
-    const isPictureMode = mode === MODES.PICTURE;
+    const isStoryMode = mode === MODES.STORY;
 
-    if (isPictureMode) {
-      setQuestion('');
-    } else {
+    if (isStoryMode) {
       setImageInput('');
+    } else {
+      setQuestion('');
     }
   }, [mode]);
 
@@ -231,6 +229,14 @@ const App = () => {
   };
 
   const loadImage = src => {
+    const isVectorMode = mode === MODES.VECTOR;
+
+    if (isVectorMode) {
+      setImageInput(src);
+
+      return;
+    }
+
     const image = new Image();
 
     image.onload = () => didLoadImage(image);
@@ -261,12 +267,20 @@ const App = () => {
     setMode(MODES.STORY)
   };
 
-  const onClickPictureMode = () => {
+  const onClickRasterMode = () => {
     setQuestion('');
     setText('');
     setImageURL('');
     setImageURL2('');
-    setMode(MODES.PICTURE)
+    setMode(MODES.RASTER)
+  };
+
+  const onClickVectorMode = () => {
+    setQuestion('');
+    setText('');
+    setImageURL('');
+    setImageURL2('');
+    setMode(MODES.VECTOR);
   };
 
   const onChangeRagdollName = ({ target: { value }}) => (
@@ -403,7 +417,9 @@ const App = () => {
     onShow: openPublishOverlay
   };
 
-  const isPictureMode = mode === MODES.PICTURE;
+  const isStoryMode = mode === MODES.STORY;
+  const isVectorMode = mode === MODES.VECTOR;
+  const isRasterMode = mode === MODES.RASTER;
 
   return <main id="app">
     {isCreating && (
@@ -432,53 +448,57 @@ const App = () => {
       >
         <Upload
           disabled={disabled}
-          type={isPictureMode
+          type={((isVectorMode || isRasterMode)
             ? 'image/*'
             : 'application/json'
-          }
-          onFile={isPictureMode
+          )}
+          onFile={((isVectorMode || isRasterMode)
             ? loadImage
             : uploadFile
-          }
+          )}
         />
       </aside>
     )}
     <header>
       <h4 id="llm-status">
-        {!isPictureMode && <span>
+        {isStoryMode && <span>
           <span className={`indicator ${modelInfo?.textTextModel ? 'online' : ''}`} />
           <span className="indicator-label">Text-to-Text:</span>&nbsp;<em>{modelInfo?.textTextModel || 'Loading...'}</em>
         </span>}
-        {!isPictureMode && <span>
+        {isStoryMode && <span>
           <span className="indicator idle" />
           <span className="indicator-label">Text-to-speech:</span>&nbsp;<em>-</em>
         </span>}
-        {!isPictureMode && <span>
+        {!isRasterMode && <span>
           <span className={`indicator ${modelInfo?.textTextModel ? renderImages ? 'online' : 'idle' : ''}`} />
           <span className="indicator-label">Text-to-Image:</span>&nbsp;<em>{modelInfo?.textImageModel || 'Loading...'}</em>
         </span>}
-        {isPictureMode && <span>
-          <span className={`indicator ${(isPictureMode && modelInfo?.imageImageModel) ? 'online' : 'idle'}`} />
-          <span className="indicator-label">Image-to-Image:</span>&nbsp;<em>{(!isPictureMode ? '-' : (modelInfo?.imageImageModel || 'Loading...'))}</em>
+        {isRasterMode && <span>
+          <span className={`indicator ${(isRasterMode && modelInfo?.imageImageModel) ? 'online' : 'idle'}`} />
+          <span className="indicator-label">Image-to-Image:</span>&nbsp;<em>{(!isRasterMode ? '-' : (modelInfo?.imageImageModel || 'Loading...'))}</em>
         </span>}
       </h4>
       <nav id="switch">
-        <button onClick={onClickStoryMode} className={!isPictureMode ? 'active' : ''}>
+        <button onClick={onClickStoryMode} className={isStoryMode ? 'active' : ''} title="Story Mode">
           <Icon src="img/story.svg" />
-          {!isPictureMode && <span className="indicator" />}
+          {isStoryMode && <span className="indicator" />}
         </button>
-        <button onClick={onClickPictureMode} className={isPictureMode ? 'active' : ''}>
-          <Icon src="img/picture.svg" />
-          {isPictureMode && <span className="indicator" />}
+        <button onClick={onClickVectorMode} className={isVectorMode ? 'active' : ''} title="Vector Mode">
+          <Icon src="img/vector.svg" />
+          {isVectorMode && <span className="indicator" />}
         </button>
-        <button className="disabled">
+        <button onClick={onClickRasterMode} className={isRasterMode ? 'active' : ''} title="Raster Mode">
+          <Icon src="img/raster.svg" />
+          {isRasterMode && <span className="indicator" />}
+        </button>
+        <button className="disabled" title="Video Mode">
           <Icon src="img/video.svg" />
         </button>
-        <button className="disabled">
+        <button className="disabled" title="Audio Mode">
           <Icon src="img/audio.svg" />
         </button>
-        <button className="disabled">
-          <Icon src="img/code.svg" />
+        <button className="disabled" title="3D Mode">
+          <Icon src="img/3d.svg" />
         </button>
       </nav>
     </header>

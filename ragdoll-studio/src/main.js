@@ -11,7 +11,7 @@ const {
 
 dotenv.config();
 
-const { TEXT_TEXT_MODEL } = process.env;
+const TEXT_TEXT_MODEL = 'mistral';
 
 const INSTALLER_WIDTH = 800;
 const INSTALLER_HEIGHT = 460;
@@ -125,9 +125,9 @@ if (app) {
         console.log(OLLAMA_START);
         sendMessage(OLLAMA_START, `Pulling ${TEXT_TEXT_MODEL}... 1/3`);
 
-        // Run mistral
+        // Run text model
 
-        const mistral = async () => {
+        const TextModelCLI = async () => {
           console.log(OLLAMA_RUN);
           sendMessage(OLLAMA_RUN, `${MODEL_START_COMMAND} 2/3`);
           exec(MODEL_START_COMMAND);
@@ -137,7 +137,7 @@ if (app) {
         // Exec commands
 
         try {
-          await mistral();
+          await TextModelCLI();
         } catch (error) {
           console.log(OLLAMA_START_ERROR, error);
           sendMessage(OLLAMA_START_ERROR, '⚠️ Error!');
@@ -146,7 +146,7 @@ if (app) {
 
           await exec(OLLAMA_INSTALL_COMMAND);
 
-          await mistral();
+          await TextModelCLI();
         }
       };
 

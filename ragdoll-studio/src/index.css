@@ -1,3 +1,22 @@
+::-webkit-scrollbar {
+  width: .5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #00000010;
+  border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #ffffff25;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: dodgerblue;
+  cursor: pointer;
+}
+
 body {
   width: 100vw;
   height: 100vh;
