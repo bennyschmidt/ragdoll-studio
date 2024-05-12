@@ -1,13 +1,13 @@
 {
   "name": "ragdoll-studio",
   "productName": "ragdoll-studio",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The creative suite for character-driven AI experiences.",
   "main": ".webpack/main",
   "scripts": {
-    "start-ragdoll": "cd ragdoll-api && npm i && npm start && cd ..",
-    "start-stable-diffusion": "cd stable-diffusion-webui && ./webui.sh --nowebui --xformers --lowvram",
-    "start": "npm run start-ragdoll & electron-forge start",
+    "start-studio": "cd studio-api && npm i && npm start && cd ..",
+    "start-stable-diffusion": "cd stable-diffusion-api && ./webui.sh --nowebui --xformers --lowvram",
+    "start": "npm run start-studio & electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",

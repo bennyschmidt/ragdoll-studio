@@ -78,7 +78,7 @@ A web interface for Stable Diffusion, implemented using Gradio library.
 - Clip skip
 - Hypernetworks
 - Loras (same as Hypernetworks but more pretty)
-- A separate UI where you can choose, with preview, which embeddings, hypernetworks or Loras to add to your prompt 
+- A separate UI where you can choose, with preview, which embeddings, hypernetworks or Loras to add to your prompt
 - Can select to load a different VAE from settings screen
 - Estimated completion time in progress bar
 - API
@@ -122,7 +122,7 @@ Alternatively, use online services (like Google Colab):
 # Debian-based:
 sudo apt install wget git python3 python3-venv libgl1 libglib2.0-0
 # Red Hat-based:
-sudo dnf install wget git python3 gperftools-libs libglvnd-glx 
+sudo dnf install wget git python3 gperftools-libs libglvnd-glx
 # openSUSE-based:
 sudo zypper install wget git python3 libtcmalloc4 libglvnd
 # Arch-based:
@@ -180,4 +180,4 @@ Licenses for borrowed code can be found in `Settings -> Licenses` screen, and al
 - Restart sampling - lambertae - https://github.com/Newbeeer/diffusion_restart_sampling
 - Hypertile - tfernd - https://github.com/tfernd/HyperTile
 - Initial Gradio script - posted on 4chan by an Anonymous user. Thank you Anonymous user.
-- (You)
+- Ragdoll build - Benny Schmidt
