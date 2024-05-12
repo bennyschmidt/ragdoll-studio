@@ -99,6 +99,7 @@ const App = () => {
   const [renderImages, setRenderImages] = useState(!!ragdoll?.artStyle);
   const [activeRagdoll] = useRagdoll(ragdoll, renderImages);
   const [mode, setMode] = useState(MODES.STORY);
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
     const ragdolls = getRagdollsArray();
@@ -151,6 +152,14 @@ const App = () => {
       setQuestion('');
     }
   }, [mode]);
+
+  const clear = () => {
+    setHistory([]);
+    setQuestion('');
+    setText('');
+    setImageURL('');
+    setImageURL2('');
+  };
 
   const openOverlay = () => {
     setIsCreating(true);
@@ -263,26 +272,17 @@ const App = () => {
   );
 
   const onClickStoryMode = () => {
-    setQuestion('');
-    setText('');
-    setImageURL('');
-    setImageURL2('');
-    setMode(MODES.STORY)
+    clear();
+    setMode(MODES.STORY);
   };
 
   const onClickRasterMode = () => {
-    setQuestion('');
-    setText('');
-    setImageURL('');
-    setImageURL2('');
-    setMode(MODES.RASTER)
+    clear();
+    setMode(MODES.RASTER);
   };
 
   const onClickVectorMode = () => {
-    setQuestion('');
-    setText('');
-    setImageURL('');
-    setImageURL2('');
+    clear();
     setMode(MODES.VECTOR);
   };
 
@@ -364,10 +364,7 @@ const App = () => {
 
     setRenderImages(!!currentRagdoll.artStyle);
     setRagdollList(updatedRagdollList);
-    setText('');
-    setImageURL('');
-    setImageURL2('');
-    setQuestion('');
+    clear();
     setDisabled(false);
   };
 
@@ -401,6 +398,8 @@ const App = () => {
     text,
     renderImages,
     mode,
+    history,
+    setHistory,
     onQuestion,
     onAnswer,
     onClickShowImages,
@@ -410,6 +409,7 @@ const App = () => {
   const ragdollListProps = {
     ragdoll: activeRagdoll || ragdoll,
     ragdollList,
+    mode,
     onClickListItem,
     didClickListItem
   };
@@ -507,14 +507,14 @@ const App = () => {
     </header>
     <div id="app-frame">
       <RagdollList { ...ragdollListProps }>
-        <button
+        {!isVectorMode && <button
           disabled={isCreating}
           id="create-ragdoll-button"
           onClick={openOverlay}
         >
           {CREATE}
-        </button>
-        <RagdollCast {...ragdollCastProps} />
+        </button>}
+        {!isVectorMode && <RagdollCast {...ragdollCastProps} />}
       </RagdollList>
       <div id="workspace" className="panel">
         <RagdollChat {...ragdollChatProps } />
