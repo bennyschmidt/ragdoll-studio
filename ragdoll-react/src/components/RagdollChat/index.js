@@ -20,6 +20,8 @@ const RagdollChat = ({
   text,
   renderImages,
   mode,
+  history,
+  setHistory,
   onQuestion,
   onAnswer,
   onClickShowImages,
@@ -28,11 +30,6 @@ const RagdollChat = ({
   const { RAGDOLL_URI } = window;
 
   const [disabled, setDisabled] = useState(parentDisabled);
-  const [history, setHistory] = useState([]);
-
-  // useEffect(() => {
-  //   setHistory([]);
-  // }, [ragdoll]);
 
   const generateSvg = async () => {
     setDisabled(true);
@@ -199,12 +196,13 @@ const RagdollChat = ({
   };
 
   const isStoryMode = mode === STORY;
+  const isVectorMode = mode === VECTOR;
 
   return ragdoll && <>
     <div id="output">
       <header>
         <div className="img">
-          {ragdoll.avatarURL && <img
+          {!isVectorMode && ragdoll.avatarURL && <img
             src={ragdoll.avatarURL}
             alt={ragdoll.name}
             width="100%"
@@ -216,7 +214,7 @@ const RagdollChat = ({
         {history.map(output => output?.text && (
           <div key={crypto.randomUUID()} className={`past ${output.isMe ? 'me' : ''}`}>
             <div className="img">
-              {output.avatarURL && <img
+              {!isVectorMode && output.avatarURL && <img
                 src={output.avatarURL}
                 alt={output.name}
                 width="100%"
@@ -243,7 +241,7 @@ const RagdollChat = ({
           </div>
         ))}
         <div>
-          {text && <div className="img">
+          {!isVectorMode && text && <div className="img">
             {ragdoll?.avatarURL && <img
               src={ragdoll.avatarURL}
               alt={ragdoll.name}

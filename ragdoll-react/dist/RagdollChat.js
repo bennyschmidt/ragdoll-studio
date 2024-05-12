@@ -16,6 +16,8 @@ const RagdollChat = ({
   text,
   renderImages,
   mode,
+  history,
+  setHistory,
   onQuestion,
   onAnswer,
   onClickShowImages,
@@ -25,12 +27,6 @@ const RagdollChat = ({
     RAGDOLL_URI
   } = window;
   const [disabled, setDisabled] = useState(parentDisabled);
-  const [history, setHistory] = useState([]);
-
-  // useEffect(() => {
-  //   setHistory([]);
-  // }, [ragdoll]);
-
   const generateSvg = async () => {
     setDisabled(true);
     const response = await fetch(`${RAGDOLL_URI}/v1/svg`, {
@@ -158,11 +154,12 @@ const RagdollChat = ({
     }) => historyText).join('\n')}</body></html>`, '_blank');
   };
   const isStoryMode = mode === STORY;
+  const isVectorMode = mode === VECTOR;
   return ragdoll && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     id: "output"
   }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("div", {
     className: "img"
-  }, ragdoll.avatarURL && /*#__PURE__*/React.createElement("img", {
+  }, !isVectorMode && ragdoll.avatarURL && /*#__PURE__*/React.createElement("img", {
     src: ragdoll.avatarURL,
     alt: ragdoll.name,
     width: "100%",
@@ -174,7 +171,7 @@ const RagdollChat = ({
     className: `past ${output.isMe ? 'me' : ''}`
   }, /*#__PURE__*/React.createElement("div", {
     className: "img"
-  }, output.avatarURL && /*#__PURE__*/React.createElement("img", {
+  }, !isVectorMode && output.avatarURL && /*#__PURE__*/React.createElement("img", {
     src: output.avatarURL,
     alt: output.name,
     width: "100%",
@@ -193,7 +190,7 @@ const RagdollChat = ({
     alt: DEFAULT_IMG_ALT,
     width: "100%",
     height: "100%"
-  })), (isStoryMode || output.isMe) && /*#__PURE__*/React.createElement("p", null, output.text))), /*#__PURE__*/React.createElement("div", null, text && /*#__PURE__*/React.createElement("div", {
+  })), (isStoryMode || output.isMe) && /*#__PURE__*/React.createElement("p", null, output.text))), /*#__PURE__*/React.createElement("div", null, !isVectorMode && text && /*#__PURE__*/React.createElement("div", {
     className: "img"
   }, ragdoll?.avatarURL && /*#__PURE__*/React.createElement("img", {
     src: ragdoll.avatarURL,

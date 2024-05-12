@@ -3,11 +3,14 @@ import React from 'react';
 import './index.css';
 
 const RAGDOLL_ERROR = 'Error loading ragdoll.';
+const VECTOR = 'VECTOR';
+const SVG_ARTIST = 'SVG Artist';
 
 const RagdollList = ({
   children,
   ragdoll,
   ragdollList,
+  mode,
   onClickListItem,
   didClickListItem
 }) => {
@@ -58,10 +61,17 @@ const RagdollList = ({
     });
   };
 
+  const isVectorMode = mode === VECTOR;
+
   return <>
     <nav id="nav" className="panel">
       <ul className="ragdoll-list">
-        {ragdollList && getRagdollsArray().map(({
+        {isVectorMode && <li className="ragdoll-list-item panel selected">
+          <span className="online-indicator" />
+          <span className="ragdoll-avatar" />
+          <h2>{SVG_ARTIST}</h2>
+        </li>}
+        {!isVectorMode && ragdollList && getRagdollsArray().map(({
           name,
           knowledgeURI,
           avatarURL,
