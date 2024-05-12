@@ -5,12 +5,15 @@ import {
   RagdollChat,
   RagdollList,
   RagdollCast,
-  Publish,
-  Upload,
-  Icon,
   useModelInfo,
   useRagdoll
 } from 'ragdoll-react';
+
+import {
+  Publish,
+  Upload,
+  Icon
+} from './components';
 
 import './App.css';
 

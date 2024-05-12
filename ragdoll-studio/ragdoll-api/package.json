@@ -1,10 +1,10 @@
 {
   "name": "ragdoll-studio-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "start": "node index"
   },
   "dependencies": {
-    "ragdoll-api": "1.2"
+    "ragdoll-api": "^1.2.1"
   }
 }

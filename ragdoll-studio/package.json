@@ -1,7 +1,7 @@
 {
   "name": "ragdoll-studio",
   "productName": "ragdoll-studio",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "The creative suite for character-driven AI experiences.",
   "main": ".webpack/main",
   "scripts": {
@@ -51,7 +51,7 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "electron-squirrel-startup": "^1.0.0",
-    "ragdoll-react": "^0.4.5",
+    "ragdoll-react": "^0.4.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
