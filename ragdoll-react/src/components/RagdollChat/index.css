@@ -20,7 +20,7 @@
   margin: 1rem;
   border-radius: 100vw;
   box-shadow: 0 0 5rem #010105;
-  background: #010105;
+  background: transparent;
   min-width: 3rem;
   min-height: 3rem;
   width: 3rem;
@@ -38,7 +38,7 @@
   margin: 1rem .5rem;
   border-radius: 1rem;
   box-shadow: 0 0 5rem #010105;
-  background: #010105;
+  background: transparent;
 }
 
 #output .img.full > img {
