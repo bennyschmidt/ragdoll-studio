@@ -26,7 +26,8 @@ const OLLAMA_START_ERROR = 'Ollama is not installed. 1/4';
 const OLLAMA_RUN = `Starting ${TEXT_TEXT_MODEL}... 2/4`;
 const OLLAMA_INSTALL = 'Installing Ollama... 1/4';
 const OLLAMA_INSTALL_COMMAND = 'curl -fsSL https://ollama.com/install.sh | sh';
-const MODEL_START_COMMAND = `ollama run ${TEXT_TEXT_MODEL}`;
+const MODEL_START_COMMAND = `ollama start`;
+const MODEL_RUN_COMMAND = `ollama run ${TEXT_TEXT_MODEL}`;
 const MODEL_READY = `Ollama (${TEXT_TEXT_MODEL}) is running.  3/4`;
 const STABLE_DIFFUSION_START = 'Starting Stable Diffusion...  3/4';
 const STABLE_DIFFUSION_START_COMMAND = 'npm run start-stable-diffusion';
@@ -129,9 +130,10 @@ if (app) {
 
         const TextModelCLI = async () => {
           console.log(OLLAMA_RUN);
-          sendMessage(OLLAMA_RUN, `${MODEL_START_COMMAND} 2/3`);
+          sendMessage(OLLAMA_RUN, `${MODEL_RUN_COMMAND} 2/3`);
+
           exec(MODEL_START_COMMAND);
-          setTimeout(onOllamaReady, INSTALLER_CLOSE_TIMEOUT);
+          exec(MODEL_RUN_COMMAND);
         };
 
         // Exec commands
@@ -148,6 +150,8 @@ if (app) {
 
           await TextModelCLI();
         }
+
+        setTimeout(onOllamaReady, INSTALLER_CLOSE_TIMEOUT);
       };
 
       // Start sdapi
