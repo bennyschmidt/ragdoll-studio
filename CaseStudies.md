@@ -13,4 +13,4 @@
     - *Dynamic vendors*: The player and vendor get more flexibility in how they negotiate, and the conversation is unique whether or not the vendor is flexible on price
     - *General lore & dialogue*: The player gets to have realistic and unique conversations with the characters of the story
 
-- [**Concept art**](https://bennyschmidt.itch.io/16-free-cyberpunk-images): Generate concept art in a specific style.
+- [**Concept art**](https://bennyschmidt.itch.io): Generate concept art in a specific style.
