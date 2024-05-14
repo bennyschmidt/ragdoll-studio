@@ -24,6 +24,8 @@ const {
   TEXT_TEXT_MODEL
 } = require('ragdoll-core/src/utils/strings');
 
+const { prefixSVG } = require('ragdoll-core/src/utils/prefix');
+
 /**
  * Prompt
  */
@@ -78,7 +80,7 @@ module.exports = asyncCache => async (req, res) => {
 
       // Prefix svgInput prompt
 
-      const svgPrefix = `Barely modify some of the values of some of the attributes in this SVG code, leaving many of them unchanged, to depict a slightly different version that looks more like a ${question}. Here is the code:`;
+      const svgPrefix = prefixSVG({ query: question });
 
       // Create prompt transforming the svgInput into the output instruction
 
