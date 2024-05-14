@@ -34,7 +34,7 @@ const Apps = () => {
               date,
               categories
             }) => (
-              <li className="flex-1 rounded-lg border border-solid border-slate-900 m-0 p-4">
+              <li key={href} className="flex-1 rounded-lg border border-solid border-slate-900 m-0 p-4">
                 <h3 className="text-lg my-2">{title}</h3>
                 <Link
                   href={href}
@@ -58,7 +58,7 @@ const Apps = () => {
                 </div>
                 <div className="flex justify-between items-center my-2 text-xs">
                   <p className="flex justify-between items-center gap-2">{categories.map(element => (
-                    <span className="bg-slate-600 text-[white] px-3 py-1 rounded-full">{element.trim()}</span>)
+                    <span key={element} className="bg-slate-600 text-[white] px-3 py-1 rounded-full">{element.trim()}</span>)
                   )}</p>
                 </div>
               </li>
