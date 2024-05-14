@@ -17,6 +17,20 @@ const NO_DATA = "There are no posts.";
 const Feed = () => {
   const [posts] = useState([
     {
+      title: "30 Free Fantasy Spell Icons",
+      href: "https://bennyschmidt.itch.io/30-free-fantasy-spell-icons",
+      src: "https://img.itch.zone/aW1nLzE2MTQ4NDA5LnBuZw==/347x500/mlVOV4.png",
+      author: "@benny",
+      date: "May 14, 2024",
+      dolls: [
+        "Arthas"
+      ],
+      model: {
+        instruction: "mistral",
+        image: "stable diffusion"
+      }
+    },
+    {
       title: "24 Free Fantasy Icons",
       href: "https://bennyschmidt.itch.io/24-free-fantasy-icons",
       src: "https://img.itch.zone/aW1nLzE2MTM1OTg5LnBuZw==/original/0dX9pE.png",
