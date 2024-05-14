@@ -21,7 +21,7 @@ const Feed = () => {
       href: "https://bennyschmidt.itch.io/24-free-fantasy-icons",
       src: "https://img.itch.zone/aW1nLzE2MTM1OTg5LnBuZw==/original/0dX9pE.png",
       author: "@benny",
-      date: "Posted on May 13, 2024",
+      date: "May 13, 2024",
       dolls: [
         "Gandalf"
       ],
@@ -35,7 +35,7 @@ const Feed = () => {
       href: "https://bennyschmidt.itch.io/10-free-futuristic-alien-images",
       src: "https://img.itch.zone/aW1nLzE2MTI3MDY0LnBuZw==/original/6zikSe.png",
       author: "@benny",
-      date: "Posted on May 12, 2024",
+      date: "May 12, 2024",
       dolls: [
         "Cloud Strife",
         "The Alien"
@@ -50,7 +50,7 @@ const Feed = () => {
       href: "https://bennyschmidt.itch.io/16-free-cyberpunk-images",
       src: "https://img.itch.zone/aW1nLzE2MTEyMzE2LnBuZw==/original/pnNjF8.png",
       author: "@benny",
-      date: "Posted on May 12, 2024",
+      date: "May 12, 2024",
       dolls: [
         "Cloud Strife"
       ],
@@ -79,7 +79,7 @@ const Feed = () => {
               dolls,
               model
             }) => (
-              <li key={href} className="flex-1 rounded-lg border border-solid border-slate-900 m-0 p-4">
+              <li key={href} className="rounded-lg border border-solid border-slate-900 m-0 p-4">
                 <h3 className="text-lg my-2">{title}</h3>
                 <Link
                   href={href}
@@ -102,14 +102,14 @@ const Feed = () => {
                   <p>{date}</p>
                 </div>
                 <div className="flex justify-between items-center my-2 text-xs">
-                  <p className="flex justify-between items-center gap-2">{dolls.map(element => (
-                    <span key={element} className="bg-slate-600 text-[white] px-3 py-1 rounded-full">{element.trim()}</span>)
+                  <p className="flex flex-wrap justify-between items-center gap-1">{dolls.map(element => (
+                    <span key={element} className="bg-slate-600 text-[white] px-3 py-1 rounded-full truncate">{element.trim()}</span>)
                   )}</p>
-                  <p className="flex justify-between items-center gap-2">
-                    <span className="bg-[dodgerblue] text-[white] px-3 py-1 rounded-lg">
+                  <p className="flex flex-wrap justify-end items-center gap-1">
+                    <span className="bg-[dodgerblue] text-[white] px-3 py-1 rounded-lg truncate">
                       {model.instruction}
                     </span>
-                    <span className="bg-[dodgerblue] text-[white] px-3 py-1 rounded-lg">
+                    <span className="bg-[dodgerblue] text-[white] px-3 py-1 rounded-lg truncate">
                       {model.image}
                     </span>
                   </p>

@@ -57,8 +57,8 @@ const Apps = () => {
                   <p>{date}</p>
                 </div>
                 <div className="flex justify-between items-center my-2 text-xs">
-                  <p className="flex justify-between items-center gap-2">{categories.map(element => (
-                    <span key={element} className="bg-slate-600 text-[white] px-3 py-1 rounded-full">{element.trim()}</span>)
+                  <p className="flex justify-between items-center gap-1">{categories.map(element => (
+                    <span key={element} className="bg-slate-600 text-[white] px-3 py-1 rounded-full truncate">{element.trim()}</span>)
                   )}</p>
                 </div>
               </li>
