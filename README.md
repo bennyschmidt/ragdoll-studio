@@ -34,7 +34,7 @@ Produce raster art (photos, illustrations, concept art) in a specific style.
 
 https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/20427f0b-7e64-449d-b9e2-d881f867dd5a
 
-> The above video shows how Ragdoll uses Stable Diffusion's img2img feature through the lens of different ragdolls to produce a variety of different image results. Optionally check "True to original" to keep the overall structure of the source image in place while still applying stylistic attributes of the ragdoll. The initial `artStyle` set when creating a ragoll defines the overall kind of image (photorealistic, concept art, pixel art, etc.) but because the ragdoll prompts `img2img` itself, some of its own speech patterns can influence the resulting image too.  
+> The above video shows how Ragdoll uses Stable Diffusion's img2img feature through the lens of different ragdolls to produce a variety of different image results. Optionally check "True to original" to keep the overall structure of the source image in place while still applying stylistic attributes of the ragdoll. The initial `artStyle` set when creating a ragdoll defines the overall kind of image (photorealistic, concept art, pixel art, etc.) but because the ragdoll prompts `img2img` itself, some of its own speech patterns can influence the resulting image too.  
  
 ### 4. Video Mode
 
