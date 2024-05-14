@@ -5,6 +5,6 @@
     "start": "node index"
   },
   "dependencies": {
-    "ragdoll-api": "^1.2.1"
+    "ragdoll-api": "^1.2.2"
   }
 }
