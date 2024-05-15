@@ -19,7 +19,7 @@ const Feed = () => {
     {
       title: "30 Free Fantasy Spell Icons",
       href: "https://bennyschmidt.itch.io/30-free-fantasy-spell-icons",
-      src: "https://img.itch.zone/aW1nLzE2MTQ4NDA5LnBuZw==/347x500/mlVOV4.png",
+      src: "https://img.itch.zone/aW1nLzE2MTUwMTkzLnBuZw==/original/Efy%2F9U.png",
       author: "@benny",
       date: "May 14, 2024",
       dolls: [
@@ -33,7 +33,7 @@ const Feed = () => {
     {
       title: "24 Free Fantasy Icons",
       href: "https://bennyschmidt.itch.io/24-free-fantasy-icons",
-      src: "https://img.itch.zone/aW1nLzE2MTM1OTg5LnBuZw==/original/0dX9pE.png",
+      src: "https://img.itch.zone/aW1nLzE2MTUwMjUxLnBuZw==/original/UqQOoZ.png",
       author: "@benny",
       date: "May 13, 2024",
       dolls: [
