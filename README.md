@@ -20,15 +20,9 @@ https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/cd7464fe-9984-4ae
 
 > The above video shows the case of a storyteller (Arthas Menethil, from *World of Warcraft*) who was created with limited knowledge, so he doesn't know as much as he should. This demonstration shows the ragdoll's knowledge being extended by uploading a text file containing additional information about his domain. After that, he knows and is able to talk about the new information and even renders images that are more on-brand. 
 
-### 2. Vector Mode
+### 2. Picture Mode
 
-Produce vector art (icons, logos, animations) in a specific style.
-
-✨ ***Inspire**: Upload source images to inspire compositional features of a new image.*
-
-### 3. Raster Mode
-
-Produce raster art (photos, illustrations, concept art) in a specific style.
+Produce images (photos, illustrations, concept art) in a specific style.
 
 ✨ ***Inspire**: Upload source images to inspire compositional features of a new image.*
 
@@ -36,7 +30,7 @@ https://github.com/bennyschmidt/ragdoll-studio/assets/45407493/20427f0b-7e64-449
 
 > The above video shows how Ragdoll uses Stable Diffusion's img2img feature through the lens of different ragdolls to produce a variety of different image results. Optionally check "True to original" to keep the overall structure of the source image in place while still applying stylistic attributes of the ragdoll. The initial `artStyle` set when creating a ragdoll defines the overall kind of image (photorealistic, concept art, pixel art, etc.) but because the ragdoll prompts `img2img` itself, some of its own speech patterns can influence the resulting image too.  
  
-### 4. Video Mode
+### 3. Video Mode
 
 Produce videos (shows, podcasts, cinematics, cutscenes, films, animations) of a certain style or genre.
 
@@ -44,7 +38,7 @@ Produce videos (shows, podcasts, cinematics, cutscenes, films, animations) of a 
 
 *Coming soon!*
 
-### 5. Audio Mode
+### 4. Audio Mode
 
 Produce audio (music, sound effects, speech) of a certain style or genre.
 
@@ -52,7 +46,7 @@ Produce audio (music, sound effects, speech) of a certain style or genre.
 
 *Coming soon!*
 
-### 6. 3D Mode
+### 5. 3D Mode
 
 Produce 3D objects (scenes, characters, animations) in a specific style.
 
@@ -60,7 +54,7 @@ Produce 3D objects (scenes, characters, animations) in a specific style.
 
 *Coming soon!*
 
-### 7. Export 
+### 6. Export 
 
 ✨ ***Download Content:** When you're happy with a result, download your generated content in a variety of formats, or clear the channel to start over.*
 
