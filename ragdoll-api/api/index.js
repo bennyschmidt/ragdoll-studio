@@ -84,7 +84,6 @@ module.exports = (cluster, routes) => {
   routes.POST[`/${API_PATH_PREFIX}/prompt`] = require('./post/prompt')(asyncCache);
   routes.POST[`/${API_PATH_PREFIX}/configure`] = require('./post/configure')(asyncCache);
   routes.POST[`/${API_PATH_PREFIX}/upload`] = require('./post/upload')(asyncCache);
-  routes.POST[`/${API_PATH_PREFIX}/svg`] = require('./post/svg')(asyncCache);
 
   return (req, res) => {
     const headers = {
