@@ -1,8 +1,6 @@
 import React from 'react';
 import './RagdollList.css';
 const RAGDOLL_ERROR = 'Error loading ragdoll.';
-const VECTOR = 'VECTOR';
-const SVG_ARTIST = 'SVG Artist';
 const RagdollList = ({
   children,
   ragdoll,
@@ -50,19 +48,12 @@ const RagdollList = ({
       previousRagdoll: updatedCurrentRagdoll
     });
   };
-  const isVectorMode = mode === VECTOR;
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("nav", {
     id: "nav",
     className: "panel"
   }, /*#__PURE__*/React.createElement("ul", {
     className: "ragdoll-list"
-  }, isVectorMode && /*#__PURE__*/React.createElement("li", {
-    className: "ragdoll-list-item panel selected"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "online-indicator"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "ragdoll-avatar"
-  }), /*#__PURE__*/React.createElement("h2", null, SVG_ARTIST)), !isVectorMode && ragdollList && getRagdollsArray().map(({
+  }, ragdollList && getRagdollsArray().map(({
     name,
     knowledgeURI,
     avatarURL,

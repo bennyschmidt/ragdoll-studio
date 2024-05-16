@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import Icon from '../Icon';
 
@@ -8,7 +8,6 @@ const SEND = 'Send';
 const API_ERROR = 'API temporarily unavailable.';
 const DEFAULT_IMG_ALT = 'output';
 const STORY = 'STORY';
-const VECTOR = 'VECTOR';
 
 const RagdollChat = ({
   disabled: parentDisabled,
@@ -31,79 +30,7 @@ const RagdollChat = ({
 
   const [disabled, setDisabled] = useState(parentDisabled);
 
-  const generateSvg = async () => {
-    setDisabled(true);
-
-    const response = await fetch(`${RAGDOLL_URI}/v1/svg`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        key: ragdoll.knowledgeURI,
-        question,
-        svgInput: atob(imageInput.replace(/^data:image\/svg\+xml;base64,/, ''))
-      })
-    });
-
-    if (response?.ok) {
-      const { error, answer = {} } = await response.json();
-
-      if (answer.pending) {
-        window.location.reload();
-
-        return;
-      }
-
-      if (error) {
-        alert(error.message || API_ERROR);
-        setDisabled(false);
-
-        return;
-      } else {
-        const {
-          imageResponse1,
-          imageResponse2
-        } = answer;
-
-        const imageURL = `data:image/svg+xml;base64,${btoa(imageResponse1)}`;
-        const imageURL2 = `data:image/svg+xml;base64,${btoa(imageResponse2)}`;
-
-        setHistory([
-          ...history,
-
-          {
-            avatarURL: ragdoll.avatarURL,
-            name: ragdoll.name,
-            text: 'These images are in SVG format.',
-            imageURL,
-            imageURL2
-          },
-          {
-            avatarURL: null,
-            name: 'Me',
-            text: question,
-            isMe: true
-          }
-        ]);
-
-        onAnswer(answer);
-      }
-    }
-
-    onQuestion('');
-    setDisabled(false)
-  };
-
   const ask = async () => {
-    if (mode === VECTOR) {
-      return generateSvg({
-        key: ragdoll.knowledgeURI,
-        svgInput: imageInput
-      })
-    }
-
     setDisabled(true);
 
     const response = await fetch(`${RAGDOLL_URI}/v1/prompt`, {
@@ -196,13 +123,12 @@ const RagdollChat = ({
   };
 
   const isStoryMode = mode === STORY;
-  const isVectorMode = mode === VECTOR;
 
   return ragdoll && <>
     <div id="output">
       <header>
         <div className="img">
-          {!isVectorMode && ragdoll.avatarURL && <img
+          {ragdoll.avatarURL && <img
             src={ragdoll.avatarURL}
             alt={ragdoll.name}
             width="100%"
@@ -214,7 +140,7 @@ const RagdollChat = ({
         {history.map(output => output?.text && (
           <div key={crypto.randomUUID()} className={`past ${output.isMe ? 'me' : ''}`}>
             <div className="img">
-              {!isVectorMode && output.avatarURL && <img
+              {output.avatarURL && <img
                 src={output.avatarURL}
                 alt={output.name}
                 width="100%"
@@ -241,7 +167,7 @@ const RagdollChat = ({
           </div>
         ))}
         <div>
-          {!isVectorMode && text && <div className="img">
+          {text && <div className="img">
             {ragdoll?.avatarURL && <img
               src={ragdoll.avatarURL}
               alt={ragdoll.name}
@@ -284,7 +210,7 @@ const RagdollChat = ({
                 : {}
               )}
             >
-              <Icon src={`/img/${isStoryMode ? 'upload' : 'raster'}.svg`} />
+              <Icon src={`/img/${isStoryMode ? 'upload' : 'picture'}.svg`} />
             </button>
           </div>
         </div>}

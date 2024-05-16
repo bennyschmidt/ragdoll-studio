@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Icon from './Icon';
 import './RagdollChat.css';
 const SEND = 'Send';
 const API_ERROR = 'API temporarily unavailable.';
 const DEFAULT_IMG_ALT = 'output';
 const STORY = 'STORY';
-const VECTOR = 'VECTOR';
 const RagdollChat = ({
   disabled: parentDisabled,
   ragdoll,
@@ -27,65 +26,7 @@ const RagdollChat = ({
     RAGDOLL_URI
   } = window;
   const [disabled, setDisabled] = useState(parentDisabled);
-  const generateSvg = async () => {
-    setDisabled(true);
-    const response = await fetch(`${RAGDOLL_URI}/v1/svg`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        key: ragdoll.knowledgeURI,
-        question,
-        svgInput: atob(imageInput.replace(/^data:image\/svg\+xml;base64,/, ''))
-      })
-    });
-    if (response?.ok) {
-      const {
-        error,
-        answer = {}
-      } = await response.json();
-      if (answer.pending) {
-        window.location.reload();
-        return;
-      }
-      if (error) {
-        alert(error.message || API_ERROR);
-        setDisabled(false);
-        return;
-      } else {
-        const {
-          imageResponse1,
-          imageResponse2
-        } = answer;
-        const imageURL = `data:image/svg+xml;base64,${btoa(imageResponse1)}`;
-        const imageURL2 = `data:image/svg+xml;base64,${btoa(imageResponse2)}`;
-        setHistory([...history, {
-          avatarURL: ragdoll.avatarURL,
-          name: ragdoll.name,
-          text: 'These images are in SVG format.',
-          imageURL,
-          imageURL2
-        }, {
-          avatarURL: null,
-          name: 'Me',
-          text: question,
-          isMe: true
-        }]);
-        onAnswer(answer);
-      }
-    }
-    onQuestion('');
-    setDisabled(false);
-  };
   const ask = async () => {
-    if (mode === VECTOR) {
-      return generateSvg({
-        key: ragdoll.knowledgeURI,
-        svgInput: imageInput
-      });
-    }
     setDisabled(true);
     const response = await fetch(`${RAGDOLL_URI}/v1/prompt`, {
       method: 'POST',
@@ -154,12 +95,11 @@ const RagdollChat = ({
     }) => historyText).join('\n')}</body></html>`, '_blank');
   };
   const isStoryMode = mode === STORY;
-  const isVectorMode = mode === VECTOR;
   return ragdoll && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     id: "output"
   }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("div", {
     className: "img"
-  }, !isVectorMode && ragdoll.avatarURL && /*#__PURE__*/React.createElement("img", {
+  }, ragdoll.avatarURL && /*#__PURE__*/React.createElement("img", {
     src: ragdoll.avatarURL,
     alt: ragdoll.name,
     width: "100%",
@@ -171,7 +111,7 @@ const RagdollChat = ({
     className: `past ${output.isMe ? 'me' : ''}`
   }, /*#__PURE__*/React.createElement("div", {
     className: "img"
-  }, !isVectorMode && output.avatarURL && /*#__PURE__*/React.createElement("img", {
+  }, output.avatarURL && /*#__PURE__*/React.createElement("img", {
     src: output.avatarURL,
     alt: output.name,
     width: "100%",
@@ -190,7 +130,7 @@ const RagdollChat = ({
     alt: DEFAULT_IMG_ALT,
     width: "100%",
     height: "100%"
-  })), (isStoryMode || output.isMe) && /*#__PURE__*/React.createElement("p", null, output.text))), /*#__PURE__*/React.createElement("div", null, !isVectorMode && text && /*#__PURE__*/React.createElement("div", {
+  })), (isStoryMode || output.isMe) && /*#__PURE__*/React.createElement("p", null, output.text))), /*#__PURE__*/React.createElement("div", null, text && /*#__PURE__*/React.createElement("div", {
     className: "img"
   }, ragdoll?.avatarURL && /*#__PURE__*/React.createElement("img", {
     src: ragdoll.avatarURL,
@@ -225,7 +165,7 @@ const RagdollChat = ({
       background: `url(${imageInput}) center center / contain no-repeat`
     } : {}
   }, /*#__PURE__*/React.createElement(Icon, {
-    src: `/img/${isStoryMode ? 'upload' : 'raster'}.svg`
+    src: `/img/${isStoryMode ? 'upload' : 'picture'}.svg`
   })))), /*#__PURE__*/React.createElement("div", {
     className: "controls"
   }, isStoryMode && onClickShowImages && /*#__PURE__*/React.createElement("div", {
