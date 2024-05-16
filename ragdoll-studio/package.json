@@ -51,7 +51,7 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "electron-squirrel-startup": "^1.0.0",
-    "ragdoll-react": "^0.4.8",
+    "ragdoll-react": "^0.4.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

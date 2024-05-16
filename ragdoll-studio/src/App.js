@@ -51,8 +51,7 @@ const DEFAULT_RAGDOLLS = {
 
 const MODES = {
   STORY: 'STORY',
-  VECTOR: 'VECTOR',
-  RASTER: 'RASTER',
+  PICTURE: 'PICTURE',
   VIDEO: 'VIDEO',
   AUDIO: 'AUDIO',
   THREE_D: 'THREE_D'
@@ -241,14 +240,6 @@ const App = () => {
   };
 
   const loadImage = src => {
-    const isVectorMode = mode === MODES.VECTOR;
-
-    if (isVectorMode) {
-      setImageInput(src);
-
-      return;
-    }
-
     const image = new Image();
 
     image.onload = () => didLoadImage(image);
@@ -278,12 +269,7 @@ const App = () => {
 
   const onClickRasterMode = () => {
     clear();
-    setMode(MODES.RASTER);
-  };
-
-  const onClickVectorMode = () => {
-    clear();
-    setMode(MODES.VECTOR);
+    setMode(MODES.PICTURE);
   };
 
   const onChangeRagdollName = ({ target: { value }}) => (
@@ -421,8 +407,7 @@ const App = () => {
   };
 
   const isStoryMode = mode === MODES.STORY;
-  const isVectorMode = mode === MODES.VECTOR;
-  const isRasterMode = mode === MODES.RASTER;
+  const isRasterMode = mode === MODES.PICTURE;
 
   return <main id="app">
     {isCreating && (
@@ -451,14 +436,14 @@ const App = () => {
       >
         <Upload
           disabled={disabled}
-          type={((isVectorMode || isRasterMode)
+          type={isRasterMode
             ? 'image/*'
             : 'application/json'
-          )}
-          onFile={((isVectorMode || isRasterMode)
+          }
+          onFile={isRasterMode
             ? loadImage
             : uploadFile
-          )}
+          }
         />
       </aside>
     )}
@@ -486,12 +471,8 @@ const App = () => {
           <Icon src="img/story.svg" />
           {isStoryMode && <span className="indicator" />}
         </button>
-        <button onClick={onClickVectorMode} className={isVectorMode ? 'active' : ''} title="Vector Mode">
-          <Icon src="img/vector.svg" />
-          {isVectorMode && <span className="indicator" />}
-        </button>
         <button onClick={onClickRasterMode} className={isRasterMode ? 'active' : ''} title="Raster Mode">
-          <Icon src="img/raster.svg" />
+          <Icon src="img/picture.svg" />
           {isRasterMode && <span className="indicator" />}
         </button>
         <button className="disabled" title="Video Mode">
@@ -507,14 +488,14 @@ const App = () => {
     </header>
     <div id="app-frame">
       <RagdollList { ...ragdollListProps }>
-        {!isVectorMode && <button
+        <button
           disabled={isCreating}
           id="create-ragdoll-button"
           onClick={openOverlay}
         >
           {CREATE}
-        </button>}
-        {!isVectorMode && <RagdollCast {...ragdollCastProps} />}
+        </button>
+        <RagdollCast {...ragdollCastProps} />
       </RagdollList>
       <div id="workspace" className="panel">
         <RagdollChat {...ragdollChatProps } />
