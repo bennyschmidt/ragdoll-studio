@@ -1,4 +1,3 @@
-const Ragdoll = require('ragdoll-core');
 const { Ollama } = require('llamaindex');
 
 // Storage utils
@@ -12,18 +11,15 @@ const {
 
 const {
   isVerbose,
-  log,
-  delay
+  log
 } = require('ragdoll-core/src/utils/output');
 
 // Human-readable strings
 
 const {
   LOADED_CACHED_QUESTION,
-  CREATING_AGENT,
-  languageModel,
   textModelLogPrefix,
-  waiting,
+  textTextModel,
   TEXT_TEXT_MODEL
 } = require('ragdoll-core/src/utils/strings');
 
@@ -33,10 +29,8 @@ const { prefixInput } = require('ragdoll-core/src/utils/prefix');
  * Prompt
  */
 
-module.exports = asyncCache => async (req, res) => {
-  const timeout = await asyncCache.getItem('timeout');
-
-  let answer = await asyncCache.getItem('answer');
+module.exports = (AsyncCache, RAGClient) => async (req, res) => {
+  let answer = await AsyncCache.getItem('answer');
 
   let body = [];
 
@@ -45,7 +39,7 @@ module.exports = asyncCache => async (req, res) => {
       body.push(chunk);
     })
     .on('end', async () => {
-      const config = await asyncCache.getItem('config');
+      const config = await AsyncCache.getItem('config');
 
       body = Buffer.concat(body).toString();
 
@@ -77,14 +71,25 @@ module.exports = asyncCache => async (req, res) => {
         return;
       }
 
-      if (imageInput) {
-        answer = await Ragdoll({
-          ...currentConfig,
+      let messageResponse;
 
-          query: input,
-          imageSrc: imageInput,
-          cache: false
-        });
+      const getAnswer = async isImage => (
+        RAGClient.agent.chat(
+          messageResponse,
+          isImage ? imageInput : null
+        )
+      );
+
+      if (imageInput) {
+        if (RAGClient?.agent?.chat) {
+          answer = await getAnswer(true);
+        } else {
+          await RAGClient.load({ currentConfig });
+
+          answer = await getAnswer(true);
+        }
+
+        await RAGClient.update(answer);
 
         res.end(JSON.stringify({
           success: true,
@@ -105,7 +110,6 @@ module.exports = asyncCache => async (req, res) => {
       // Create prompt transforming the user input into the third-person
 
       let message = `${povPromptPrefix} ${input}`;
-      let messageResponse;
 
       const messageCache = recall(input);
 
@@ -135,23 +139,19 @@ module.exports = asyncCache => async (req, res) => {
         remember(input, messageResponse);
 
         if (isVerbose) {
-          log(`${languageModel} responded with "${messageResponse}".`);
-          log(waiting);
+          log(`${textTextModel} responded with "${messageResponse}".`);
         }
-
-        await delay(timeout);
       }
 
-      if (isVerbose) {
-        log(CREATING_AGENT);
+      if (RAGClient?.agent?.chat) {
+        answer = await getAnswer();
+      } else {
+        await RAGClient.load({ currentConfig });
+
+        answer = await getAnswer();
       }
 
-      answer = await Ragdoll({
-        ...currentConfig,
-
-        query: messageResponse,
-        cache: false
-      });
+      await RAGClient.update(answer);
 
       res.end(JSON.stringify({
         success: true,

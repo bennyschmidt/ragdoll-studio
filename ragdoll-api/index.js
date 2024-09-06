@@ -22,9 +22,9 @@ const {
 
 dotenv.config();
 
-const { DELAY } = process.env;
-
 const PORT = 8000;
+
+const isProduction = false;
 
 module.exports = (routes = { GET: {}, POST: {}}, init) => {
 
@@ -32,7 +32,9 @@ module.exports = (routes = { GET: {}, POST: {}}, init) => {
    * Config
    */
 
-  const numCPUs = availableParallelism();
+  const numCPUs = isProduction
+    ? availableParallelism()
+    : 1;
 
   const onCluster = require('./events/cluster');
   const onWorker = require('./events/worker');
@@ -50,7 +52,6 @@ module.exports = (routes = { GET: {}, POST: {}}, init) => {
 
   // Bootstrap some data
 
-  store.set('timeout', DELAY);
   store.set('answer', null);
 
   store.set('config', {

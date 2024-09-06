@@ -6,7 +6,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const { randomUUID } = require('crypto');
 
-module.exports = asyncCache => async (req, res) => {
+module.exports = AsyncCache => async (req, res) => {
   let body = [];
 
   req
@@ -14,7 +14,7 @@ module.exports = asyncCache => async (req, res) => {
       body.push(chunk);
     })
     .on('end', async () => {
-      const config = await asyncCache.getItem('config');
+      const config = await AsyncCache.getItem('config');
 
       body = Buffer.concat(body).toString();
 

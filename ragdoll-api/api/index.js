@@ -3,6 +3,14 @@ const fs = require('fs').promises;
 const process = require('node:process');
 const dotenv = require('dotenv');
 
+const Ragdoll = require('ragdoll-core');
+const { CREATING_AGENT } = require('ragdoll-core/src/utils/strings');
+
+const {
+  isVerbose,
+  log
+} = require('ragdoll-core/src/utils/output');
+
 dotenv.config();
 
 const {
@@ -16,7 +24,7 @@ const {
  * (so we can use async/await in endpoints)
  */
 
-const asyncCache = {
+const AsyncCache = {
   getItem: async storageKey => {
     const asyncGetItem = key => new Promise(resolve => {
       process.on('message', message => (
@@ -59,6 +67,50 @@ const serveStatic = async (res, url) => {
 };
 
 /**
+ * RAG Provider
+ */
+
+function RAGProvider () {
+  function RAGClient () {
+    return {
+      agent: null,
+
+      update: function (agentResponse) {
+        this.agent = agentResponse;
+
+        return this;
+      },
+
+      load: async function ({ currentConfig } = {}) {
+        if (isVerbose) {
+          log(CREATING_AGENT);
+        }
+
+        if (!currentConfig) {
+          const config = await AsyncCache.getItem('config');
+
+          currentConfig = config[Object.keys(config)[0]];
+        }
+
+        this.agent = await Ragdoll({
+          ...currentConfig,
+
+          cache: false
+        });
+
+        return this;
+      }
+    };
+  }
+
+  return new RAGClient();
+}
+
+const RAGClient = new RAGProvider();
+
+RAGClient.load({ AsyncCache });
+
+/**
  * API Gateway
  * Handles incoming HTTP requests
  */
@@ -67,7 +119,7 @@ module.exports = (cluster, routes) => {
   if (routes.GET) {
     for (const route of Object.keys(routes.GET)) {
       if (routes.GET[route]) {
-        routes.GET[route] = routes.GET[route](asyncCache);
+        routes.GET[route] = routes.GET[route](AsyncCache);
       }
     }
   }
@@ -75,15 +127,15 @@ module.exports = (cluster, routes) => {
   if (routes.POST) {
     for (const route of Object.keys(routes.POST)) {
       if (routes.POST[route]) {
-        routes.POST[route] = routes.POST[route](asyncCache);
+        routes.POST[route] = routes.POST[route](AsyncCache);
       }
     }
   }
 
-  routes.GET[`/${API_PATH_PREFIX}/info`] = require('./get/info')(asyncCache);
-  routes.POST[`/${API_PATH_PREFIX}/prompt`] = require('./post/prompt')(asyncCache);
-  routes.POST[`/${API_PATH_PREFIX}/configure`] = require('./post/configure')(asyncCache);
-  routes.POST[`/${API_PATH_PREFIX}/upload`] = require('./post/upload')(asyncCache);
+  routes.GET[`/${API_PATH_PREFIX}/info`] = require('./get/info')(AsyncCache);
+  routes.POST[`/${API_PATH_PREFIX}/prompt`] = require('./post/prompt')(AsyncCache, RAGClient);
+  routes.POST[`/${API_PATH_PREFIX}/configure`] = require('./post/configure')(AsyncCache, RAGClient);
+  routes.POST[`/${API_PATH_PREFIX}/upload`] = require('./post/upload')(AsyncCache);
 
   return (req, res) => {
     const headers = {

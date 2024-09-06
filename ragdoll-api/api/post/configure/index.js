@@ -2,7 +2,7 @@
  * Configure
  */
 
-module.exports = asyncCache => async (req, res) => {
+module.exports = (AsyncCache, RAGClient) => async (req, res) => {
   let body = [];
 
   req
@@ -37,21 +37,29 @@ module.exports = asyncCache => async (req, res) => {
         return;
       }
 
-      const config = await asyncCache.getItem('config');
+      const currentConfig = {
+        name,
+        knowledgeURI,
+        avatarURL,
+        artStyle,
+        writingStyle,
+        writingTone,
+        additionalKnowledgeURIs,
+        cache: false
+      };
 
-      await asyncCache.setItem('config', {
+      const ragdoll = await RAGClient.load({
+        currentConfig
+      });
+
+      RAGClient.update(ragdoll);
+
+      const config = await AsyncCache.getItem('config');
+
+      await AsyncCache.setItem('config', {
         ...config,
 
-        [knowledgeURI]: {
-          cache: false,
-          name,
-          knowledgeURI,
-          avatarURL,
-          artStyle,
-          writingStyle,
-          writingTone,
-          additionalKnowledgeURIs
-        }
+        [knowledgeURI]: currentConfig
       });
 
       res.end(JSON.stringify({

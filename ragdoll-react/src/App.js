@@ -95,7 +95,7 @@ const App = () => {
   const [ragdoll, setRagdoll] = useState(!SAVED_RAGDOLLS ? DEFAULT_RAGDOLL : null);
 
   const [modelInfo] = useModelInfo(ragdoll);
-  const [renderImages, setRenderImages] = useState(!!ragdoll?.artStyle);
+  const [renderImages, setRenderImages] = useState(false);
   const [activeRagdoll] = useRagdoll(ragdoll, renderImages);
   const [mode, setMode] = useState(MODES.STORY);
   const [history, setHistory] = useState([]);
@@ -117,7 +117,7 @@ const App = () => {
     setTimeout(() => {
       setRagdoll(currentRagdoll);
       setRagdollList(savedRagdolls);
-      setRenderImages(!!currentRagdoll.artStyle);
+      setRenderImages();
     }, 200);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -348,7 +348,7 @@ const App = () => {
       updatedRagdollList[previousRagdoll.knowledgeURI] = previousRagdoll;
     }
 
-    setRenderImages(!!currentRagdoll.artStyle);
+    setRenderImages();
     setRagdollList(updatedRagdollList);
     clear();
     setDisabled(false);
